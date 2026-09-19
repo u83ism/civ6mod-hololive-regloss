@@ -17,7 +17,16 @@
 - `LoadingInfo`/`DiplomacyInfo`の`Row`をどこかのxmlに追加(新規でも既存への混在でもよい)。`LeaderText`が不要なら削除、`PlayDawnOfManAudio="0"`でナレーション音声オフ
 - **ローディング画面で指導者名の下に生の定義名がそのまま出る場合は、`LoadingInfo`の`LeaderText`に対応するテキストが未定義なのが原因**(テキストを用意するか`LeaderText`属性ごと削除)
 
+## 英語圏ガイド(Sailor Cat's Modding Tutorial)との差分・要検証点
+
+出典: `https://steamcommunity.com/sharedfiles/filedetails/?id=2420858843`(詳細は`icon-blp-pipeline.md`の同名セクション参照)。civ6wiki.infoとは数値が食い違う箇所があり、**どちらも実機検証していないので、実装前に実物のバニラ/他Modファイルで裏取りすること**:
+
+- **外交交渉背景は単一画像ではなく`_1`〜`_4`のレイヤー合成**という説明になっている: `LeaderType_1.png`(背景アート)を最下層に、`LeaderType_4.png`(SDKアセットフォルダにある定型の額縁フレーム、着色されることが多い)を最上層に重ねる。サイズは**1920x1010**(このファイル冒頭の「1920x960」と数値が異なる)。さらに`_2`/`_3`を使うキャラは背景と額縁の間に小物・パララックス層を追加できるとの記述もある。civ6wiki.info側の「`hogehoge_DiplomacyInfo_Background`(1920x960)一枚絵」という説明とモデルが違うので、**どちらが現行バージョンの実態か未確定**
+- **Leader Fallbackポートレートのサイズが825x1024と書かれている**(このファイル冒頭の「888x1024」と食い違う)。キャンバス自体のサイズなのか、888x1024キャンバス内に825x1024で配置するという意味なのか原文からは判別できない
+- ローディング背景を自作せず、既存リーダーの背景を`LoadingInfo.BackgroundImage`に指定して使い回す(例: `LEADER_GORGO_BACKGROUND`)手抜き手段への言及があり、これはこのファイルの記述と一致する
+
 ## 参照元URL
 
 - `.../新文明・指導者/ローディング画面・リザルト`
 - `.../新文明・指導者/勝手に出てくるクレオパトラを消す方法`
+- `https://steamcommunity.com/sharedfiles/filedetails/?id=2420858843`(Sailor Cat's Modding Tutorial、英語)

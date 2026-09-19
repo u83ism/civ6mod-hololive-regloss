@@ -76,6 +76,31 @@ civ6mod-hololive-regloss本体での実際の配線:
 - **文明アイコンの45x45サイズだけ見た目の仕様が違う**: wiki本文にも明記されている(「他のサイズは白と透過だけで描かれていますが、45x45のものだけ色が付いています」)。バニラでは45x45以外が白抜き+透過のシルエットで、45x45だけ着色されたフルカラーになっている(社会制度ツリー等での使用箇所が異なるためと推測)。**ただしwikiは「そう作れ」という事実だけを書いており、理由(なぜ白+透過である必要があるか)にも、フルカラー素材から白+透過シルエットへの変換手順にも触れていない**。この2点はこのファイル自体を実際に踏み抜いて解決した内容なので、次節「白シルエット化の実装」を参照
 - xlpの`m_PackageName`は指導者用・文明用アイコンをまとめて1つのパッケージ(例: `UI/hogehoge_Icons`)にする運用で書かれている。本リポジトリの`RegLoss_Icons`も同じ「1パッケージにまとめる」方式
 
+## 英語圏ガイド(Sailor Cat's Modding Tutorial)との照合
+
+出典: `https://steamcommunity.com/sharedfiles/filedetails/?id=2420858843`(Steamガイド本体。CivFanaticsフォーラムの`https://forums.civfanatics.com/threads/making-and-implementing-icons-and-leader-images.668308/`は概要のみでSteamへのリンクのため、本文取得にはSteam側を直接curlする必要があった)。civ6wiki.infoとは別系統の英語チュートリアルで、**AssetEditorのGUI操作を正面から使う手順**を書いている点が本ファイル2〜3節(実物`.tex`/`.xlp`をテキストエディタでコピー編集するショートカット)と対照的。**このリポジトリで実機確認した内容ではない**ので、既存の実機検証結果と食い違う点は鵜呑みにせず「要検証」として扱う。
+
+- **「.pngだけでよく、.dds/.texを手書きする必要はない」との記述**: 原文 "Don't worry about saving as .dds. You don't need to anymore, so it isn't worth the effort. .png only." — AssetEditorでXLPを開き、Entriesパネルの「Add Source File」でPNGを直接選択→Exporting Classを`UserInterface`に設定→Import、という操作をすると内部でdds変換+`.tex`相当の処理までやってくれる、という趣旨。本文中に`.tex`ファイルを手で書く工程が一度も出てこない。**本プロジェクトの実機検証(PNG直置き/DDS直置きが効かず「？」フォールバックになった経緯、本ファイル冒頭)と一見矛盾する**が、それは「ローズファイル直置き」(XMLに書くだけでビルド通さない)を試した話で、こちらは「AssetEditorのImportボタンを押してビルドする」話なので厳密には別の手順。**乗り換える前に、このAssetEditor Import経由の手順を小さく検証してから判断すること**(現状の`tools/png2dds`パイプラインは実際にリーダー選択画面まで動作確認済みなので、置き換えは実証してから)
+- **`UserInterface.artdef`トリック**: Artdefを消費する他要素(Leader等)を持たないアイコン専用プロジェクトでもModBuddyがBLPを生成してくれない問題への対処として、以下のartdefを追加する方法が載っている。本プロジェクトが`tools/IconBuild`をわざわざ別ModBuddyプロジェクトに分離している理由(9行目)への、より簡単な代替になる可能性がある(未検証):
+  ```xml
+  <AssetObjects::ArtDefSet>
+      <m_Version><major>3</major><minor>0</minor><build>215</build><revision>207</revision></m_Version>
+      <m_TemplateName text="UserInterfaceBLPs"/>
+      <m_RootCollections/>
+      <m_BLPReferences>
+          <Element>
+              <xlpFile text="Atlas.xlp"/>
+              <blpPackage text="Project Name Here.blp"/>
+              <xlpClass text="UITexture"/>
+          </Element>
+      </m_BLPReferences>
+  </AssetObjects::ArtDefSet>
+  ```
+- **`CivilizationIcon`/`CivilizationAbilityIcon`は「白+透過(アルファ画像)」と明記**(Config节: "The alpha image of your civilization's icon (white with transparent background)")。これは本ファイル末尾の未解決色バグ調査で辿り着いた`SetColor`着色の仕組み(白+透過→ゲーム側でプレイヤーカラーを掛け合わせる)を、別系統の情報源からも裏付ける内容。ただし本プロジェクトでは白シルエット化を試して別の不具合(オレンジ/紺色化)が出て撤回済みなので、「白+透過が仕様として正しい」ことと「うちの未解決バグの原因」は別問題として扱うこと
+- **Leader Portrait Iconsのサイズ一覧も48が抜けている**(256, 80, 64, 55, 50, 45, 32の7サイズ)。civ6wiki.infoと同じ抜け方なので、**本ファイル冒頭の8サイズ(48込み)を優先する**という既存の結論をそのまま維持してよい
+- **thecrazyscot's "Mod Art Generator"というArt.xml自動生成ツールへの言及**(CivFanaticsフォーラム内、URL自体は本文に埋め込みリンクのみで直接は取得していない)。`tools/png2dds/gen-dep.ts`相当の作業を自動化する第三者ツールの可能性があるが、存在の言及を確認しただけで中身は未調査
+- **DiplomacyInfoテーブルへの直接INSERTは非推奨**("Remove any inserts into the DiplomacyInfo table. Some civilization and leader guides use this, and it conflicts with this guide.")。複数の英語ガイドを組み合わせて実装する場合はテーブルの重複INSERTに注意、という一般的な注意喚起
+
 ## 【試して撤回した】白シルエット化(2026-09-19〜20実機検証、最終的にフルカラー1本に戻した)
 
 一時期、文明アイコンを45px以外だけ「白+透過のシルエット」化する実装を入れたが、後述の未解決問題(リーダー選択画面の能力アイコンが不安定)が出たため**最終的に全サイズフルカラー1枚(`ichijou-corporation-logo-circle.png`)に戻した**。現在の`tools/png2dds/gen-icon-sources.ts`はフルカラーのみで、白シルエット化コード(`toWhiteSilhouette`)は削除済み。ただし調査で分かった技術的知見(`SetColor`の着色メカニズム、DDS直接検証の方法、GIMPでの変換手順)は将来別のReGLOSSメンバーで再度必要になる可能性があるため、以下に経緯ごと残す。
