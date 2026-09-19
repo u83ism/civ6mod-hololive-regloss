@@ -6,16 +6,16 @@ import { join } from "node:path";
 import { PNG } from "pngjs";
 import { civilizationIconName, civilizationIconSizes, leaderIconName, leaderIconSizes } from "./icon-manifest.js";
 
-interface RgbaImage {
+type RgbaImage = {
   readonly data: Buffer;
   readonly width: number;
   readonly height: number;
-}
+};
 
 // Alpha-weighted (premultiplied) box-filter downsample: averaging without premultiplying
 // by alpha first would bleed fully-transparent background color into the resized edge
 // pixels, producing a faint fringe around the icon silhouette.
-function downsampleImage(source: RgbaImage, targetWidth: number, targetHeight: number): RgbaImage {
+const downsampleImage = (source: RgbaImage, targetWidth: number, targetHeight: number): RgbaImage => {
   const destinationData = Buffer.alloc(targetWidth * targetHeight * 4);
   const scaleX = source.width / targetWidth;
   const scaleY = source.height / targetHeight;
@@ -53,13 +53,28 @@ function downsampleImage(source: RgbaImage, targetWidth: number, targetHeight: n
     }
   }
   return { data: destinationData, width: targetWidth, height: targetHeight };
-}
+};
+
+// Civ6 tints most civilization badge sizes at runtime via SetColor(playerColor) (see
+// Instances/LeaderIcon.lua, Instances/CivilizationIcon.lua), so the shipped asset must be a
+// white silhouette (RGB=255,255,255) carrying only the shape in its alpha channel. The 45px
+// size is the one documented exception: it is displayed as-is without tinting (civics/tech
+// tree), so it must stay full color. Verified against vanilla CivAztec22/32/45.dds pixel data.
+const toWhiteSilhouette = (image: RgbaImage): RgbaImage => {
+  const silhouetteData = Buffer.from(image.data);
+  for (let pixelIndex = 0; pixelIndex < silhouetteData.length; pixelIndex += 4) {
+    silhouetteData[pixelIndex] = 255;
+    silhouetteData[pixelIndex + 1] = 255;
+    silhouetteData[pixelIndex + 2] = 255;
+  }
+  return { data: silhouetteData, width: image.width, height: image.height };
+};
 
 // Leader portrait badges are displayed inside a circular frame; the master face art fills
 // its full square canvas (hair/shoulders reach past the inscribed circle), so without this
 // mask that content pokes out past the frame in-game. Coverage fades over the last half
 // pixel from the radius instead of a hard cutoff, so the downsampled sizes keep a clean edge.
-function maskToInscribedCircle(image: RgbaImage): RgbaImage {
+const maskToInscribedCircle = (image: RgbaImage): RgbaImage => {
   const radius = image.width / 2;
   const centerX = image.width / 2;
   const centerY = image.height / 2;
@@ -73,29 +88,30 @@ function maskToInscribedCircle(image: RgbaImage): RgbaImage {
     }
   }
   return { data: maskedData, width: image.width, height: image.height };
-}
+};
 
-function readRgbaImage(path: string): RgbaImage {
+const readRgbaImage = (path: string): RgbaImage => {
   const png = PNG.sync.read(readFileSync(path));
   if (png.width !== png.height) {
     throw new Error(`${path}: master source must be square (got ${png.width}x${png.height})`);
   }
   return { data: png.data, width: png.width, height: png.height };
-}
+};
 
-function writeIconPng(image: RgbaImage, outputPath: string): void {
+const writeIconPng = (image: RgbaImage, outputPath: string): void => {
   const png = new PNG({ width: image.width, height: image.height });
   image.data.copy(png.data);
   writeFileSync(outputPath, PNG.sync.write(png));
   console.log(`${outputPath}: ${image.width}x${image.height}`);
-}
+};
 
-interface IconSourceSpec {
+type IconSourceSpec = {
   readonly masterFileName: string;
   readonly sizes: readonly number[];
   readonly nameForSize: (size: number) => string;
   readonly clipToCircle: boolean;
-}
+  readonly isFullColorSize: (size: number) => boolean;
+};
 
 const sourceDirectory = join(import.meta.dirname, "..", "..", "Art", "Source");
 const outputDirectory = join(import.meta.dirname, "..", "..", "Art", "Icons");
@@ -106,16 +122,21 @@ const iconSources: readonly IconSourceSpec[] = [
     sizes: civilizationIconSizes,
     nameForSize: civilizationIconName,
     clipToCircle: false, // already designed to fit the inscribed circle
+    // Civ6 tints every civilization badge size at runtime via SetColor(playerColor) except
+    // 45px, which civics/tech tree display as-is (see toWhiteSilhouette above).
+    isFullColorSize: (size) => size === 45,
   },
   {
     masterFileName: "ichijou-ririka-face.png",
     sizes: leaderIconSizes,
     nameForSize: leaderIconName,
     clipToCircle: true,
+    // Leader portraits are never tinted by the game, so they stay full color at every size.
+    isFullColorSize: () => true,
   },
 ];
 
-for (const { masterFileName, sizes, nameForSize, clipToCircle } of iconSources) {
+for (const { masterFileName, sizes, nameForSize, clipToCircle, isFullColorSize } of iconSources) {
   const rawMaster = readRgbaImage(join(sourceDirectory, masterFileName));
   const master = clipToCircle ? maskToInscribedCircle(rawMaster) : rawMaster;
   for (const size of sizes) {
@@ -123,6 +144,7 @@ for (const { masterFileName, sizes, nameForSize, clipToCircle } of iconSources) 
       throw new Error(`${masterFileName}: master is ${master.width}px, too small to produce a ${size}px icon`);
     }
     const resized = size === master.width ? master : downsampleImage(master, size, size);
-    writeIconPng(resized, join(outputDirectory, `${nameForSize(size)}.png`));
+    const finalImage = isFullColorSize(size) ? resized : toWhiteSilhouette(resized);
+    writeIconPng(finalImage, join(outputDirectory, `${nameForSize(size)}.png`));
   }
 }

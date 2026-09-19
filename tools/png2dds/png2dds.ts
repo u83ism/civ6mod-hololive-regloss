@@ -5,14 +5,14 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { PNG } from "pngjs";
 
-interface MipLevel {
+type MipLevel = {
   readonly data: Buffer;
   readonly width: number;
   readonly height: number;
-}
+};
 
 // Box-filter downsample by exactly half (rounding down), used to build each mip level.
-function downsampleByHalf(source: MipLevel): MipLevel {
+const downsampleByHalf = (source: MipLevel): MipLevel => {
   const newWidth = Math.max(1, source.width >> 1);
   const newHeight = Math.max(1, source.height >> 1);
   const destinationData = Buffer.alloc(newWidth * newHeight * 4);
@@ -33,9 +33,9 @@ function downsampleByHalf(source: MipLevel): MipLevel {
     }
   }
   return { data: destinationData, width: newWidth, height: newHeight };
-}
+};
 
-function computeMipCount(size: number): number {
+const computeMipCount = (size: number): number => {
   let count = 1;
   let remaining = size;
   while (remaining > 1) {
@@ -43,9 +43,9 @@ function computeMipCount(size: number): number {
     count++;
   }
   return count;
-}
+};
 
-function convertPngToDds(inputPath: string, outputPath: string): void {
+const convertPngToDds = (inputPath: string, outputPath: string): void => {
   const png = PNG.sync.read(readFileSync(inputPath));
   const { width, height, data } = png; // RGBA, row-major, top-down
 
@@ -113,7 +113,7 @@ function convertPngToDds(inputPath: string, outputPath: string): void {
 
   writeFileSync(outputPath, buffer);
   console.log(`${outputPath}: ${width}x${height}, ${expectedMipCount} mips, ${buffer.length} bytes`);
-}
+};
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const [, , inputPath, outputPath] = process.argv;

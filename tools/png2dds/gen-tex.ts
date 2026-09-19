@@ -9,10 +9,10 @@ import { civilizationIconName, civilizationIconSizes, leaderIconName, leaderIcon
 const SDK_ASSETS_TEXTURES =
   "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Sid Meier's Civilization VI SDK Assets\\Civ6\\pantry\\Textures";
 
-interface TexMapping {
+type TexMapping = {
   readonly ourName: string;
   readonly templateName: string;
-}
+};
 
 const outputDirectory = join(import.meta.dirname, "..", "IconBuild", "Textures");
 mkdirSync(outputDirectory, { recursive: true });

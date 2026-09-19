@@ -3,10 +3,6 @@
 export const civilizationIconSizes = [22, 30, 32, 36, 44, 45, 48, 50, 64, 80, 128, 256] as const;
 export const leaderIconSizes = [32, 45, 48, 50, 55, 64, 80, 256] as const;
 
-export function civilizationIconName(size: number): string {
-  return `ICON_CIVILIZATION_REGLOSS_ICHIJOU_${size}`;
-}
+export const civilizationIconName = (size: number): string => `ICON_CIVILIZATION_REGLOSS_ICHIJOU_${size}`;
 
-export function leaderIconName(size: number): string {
-  return `ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_${size}`;
-}
+export const leaderIconName = (size: number): string => `ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_${size}`;
