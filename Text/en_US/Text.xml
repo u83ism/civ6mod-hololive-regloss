@@ -30,7 +30,67 @@
 		</Row>
 
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_HQ" Language="en_US">
-			<Text>Ichijou Headquarters</Text>
+			<Text>Tokyo Headquarters</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_01" Language="en_US">
+			<Text>New York Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_02" Language="en_US">
+			<Text>London Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_03" Language="en_US">
+			<Text>Paris Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_04" Language="en_US">
+			<Text>Shanghai Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_05" Language="en_US">
+			<Text>Hong Kong Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_06" Language="en_US">
+			<Text>Singapore Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_07" Language="en_US">
+			<Text>Dubai Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_08" Language="en_US">
+			<Text>Sydney Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_09" Language="en_US">
+			<Text>Berlin Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_10" Language="en_US">
+			<Text>Seoul Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_11" Language="en_US">
+			<Text>Mumbai Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_12" Language="en_US">
+			<Text>Sao Paulo Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_13" Language="en_US">
+			<Text>Toronto Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_14" Language="en_US">
+			<Text>Moscow Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_15" Language="en_US">
+			<Text>Cairo Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_16" Language="en_US">
+			<Text>Rome Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_17" Language="en_US">
+			<Text>Madrid Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_18" Language="en_US">
+			<Text>Bangkok Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_19" Language="en_US">
+			<Text>Mexico City Branch Office</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_20" Language="en_US">
+			<Text>Johannesburg Branch Office</Text>
 		</Row>
 	</LocalizedText>
 </GameData>

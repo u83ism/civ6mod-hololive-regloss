@@ -30,7 +30,67 @@
 		</Row>
 
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_HQ" Language="ja_JP">
-			<Text>一条本社</Text>
+			<Text>東京本社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_01" Language="ja_JP">
+			<Text>ニューヨーク支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_02" Language="ja_JP">
+			<Text>ロンドン支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_03" Language="ja_JP">
+			<Text>パリ支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_04" Language="ja_JP">
+			<Text>上海支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_05" Language="ja_JP">
+			<Text>香港支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_06" Language="ja_JP">
+			<Text>シンガポール支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_07" Language="ja_JP">
+			<Text>ドバイ支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_08" Language="ja_JP">
+			<Text>シドニー支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_09" Language="ja_JP">
+			<Text>ベルリン支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_10" Language="ja_JP">
+			<Text>ソウル支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_11" Language="ja_JP">
+			<Text>ムンバイ支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_12" Language="ja_JP">
+			<Text>サンパウロ支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_13" Language="ja_JP">
+			<Text>トロント支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_14" Language="ja_JP">
+			<Text>モスクワ支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_15" Language="ja_JP">
+			<Text>カイロ支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_16" Language="ja_JP">
+			<Text>ローマ支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_17" Language="ja_JP">
+			<Text>マドリード支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_18" Language="ja_JP">
+			<Text>バンコク支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_19" Language="ja_JP">
+			<Text>メキシコシティ支社</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_20" Language="ja_JP">
+			<Text>ヨハネスブルグ支社</Text>
 		</Row>
 	</LocalizedText>
 </GameData>
