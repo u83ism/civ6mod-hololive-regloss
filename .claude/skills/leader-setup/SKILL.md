@@ -70,3 +70,7 @@ TRAIT_LEADER_REGLOSS_<キャラ名ローマ字>
 ```
 
 これは完全にベースゲームの仕組みだけで完結し、拡張パック依存が無い。実例は`XML/Leaders.xml`(civ6mod-hololive-regloss本体)を参照。
+
+## 7. 文明能力/指導者能力の説明文を書くときのスタイル
+
+新しいTraitの説明文(`_NAME`/`_DESCRIPTION`)を日本語で書く前に、`references/ability-text-style.md`を読むこと。公式Trait説明文422件(バニラ〜Leader Pass、全DLC)をen_US/ja_JP対訳でリリース時期別に調査した結果、**半角/全角のルール、`[ICON_XXX] 効果+数値`の詰め方、鉤括弧「」を付ける固有名詞の範囲**などは時期を問わずほぼ完全に一貫している(逸脱は単発のtypoのみ)。似た効果の公式Traitを探してテンプレとして数値だけ差し替えるのが最短ルートで、これは公式自身も`_EXPANSION1`/`_EXPANSION2`サフィックス違いのTraitで多用している手法。
