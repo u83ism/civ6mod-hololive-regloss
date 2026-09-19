@@ -50,7 +50,7 @@ Civ6 Modding全般の基礎知識(ファイル構造、modinfoの正しいスキ
 以下は莉々華の能力候補として出たが、今回は資源Traitを優先して一旦確定・保留とした。技術的な実装可否は調査済み:
 
 - **独占/大企業モードON時の追加ボーナス**: `.modinfo`の`ActionCriteria`で`ConfigurationValueMatches`(`Group=Game`, `ConfigurationId=GAMEMODE_MONOPOLIES`, `Value=1`)を使えば判定可能。Firaxis自身が`KublaiKhan_Vietnam.modinfo`で同じ手法を使っており(`Criteria id="Monopolies_Mode"`)、モードON時だけ追加XMLをロードする構成にできる。モノポリー/コーポレーション専用のEffect/RequirementタイプはDB上に存在しない(倍率計算はエンジン内部でハードコード)ため、直接フックはできない。コーポレーション本社の産出や設立コストなど周辺要素への一般的なModifierで代替する必要がある
-- **コミュ力による外交関係値補正**: 任意の相手へのOpinion数値を直接動かす汎用効果は存在しない(Opinionはアジェンダごとにハードコード)。ただし`EFFECT_ADJUST_PLAYER_GRIEVANCE_DECAY`(`Amount`引数あり、`CollectionType=COLLECTION_OWNER`)で自分に対する他文明のGrievance(外交不満)の減衰速度を上げることは可能。アレクサンダー(`TRAIT_AGENDA_WITH_SHIELD`)・キュロス(`TRAIT_AGENDA_SHORT_LIFE_GLORY`)の実装で前例あり(`Amount=100`=減衰速度2倍)
+- **コミュ力による外交関係値補正**: 任意の相手へのOpinion数値を直接動かす汎用効果は存在しない(Opinionはアジェンダごとにハードコードされた専用ModifierType、例: `MODIFIER_PLAYER_DIPLOMACY_AGENDA_SHORT_LIFE_GLORY`)。ただし`EFFECT_ADJUST_PLAYER_GRIEVANCE_DECAY`(`ModifierType=MODIFIER_PLAYER_ADJUST_GRIEVANCE_DECAY`、`Amount`引数あり、`CollectionType=COLLECTION_OWNER`)で自分に対する他文明のGrievance(外交不満)の減衰速度を上げることは可能。ゴルゴ(`TRAIT_AGENDA_WITH_SHIELD`、Expansion2で追加)・アレクサンドロス3世(`TRAIT_AGENDA_SHORT_LIFE_GLORY`、同じくExpansion2で追加)の実装で前例あり(`Amount=100`=減衰速度2倍)。2026-09-20に実機データ(`Expansion2_Leaders.xml`/`Macedonia_Persia_Expansion2.xml`)で再確認・リーダー名の誤記を修正(旧: アレクサンダー/キュロスと誤記していた)
 
 ## 基礎情報(2026-09-19確定)
 
