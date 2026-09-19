@@ -2,31 +2,31 @@
 <GameData>
 	<!--
 		一条莉々華/一条コーポレーションのアイコン。
-		元画像がロゴ(32x32)しか無いため、指導者アイコンも暫定的に同じロゴを流用している。
-		肖像画からの切り出しに差し替える場合はここを更新する。
+		文明アイコンはArt/Source/ichijou-corporation-logo-square.png(1100x1100)から各サイズを再生成したもの。
+		指導者アイコンは暫定的に旧ロゴ画像を流用しており、本人の肖像画からの切り出しに差し替える予定。
 	-->
 	<IconTextureAtlases>
-		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="22" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_22.png"/>
-		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="30" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_30.png"/>
-		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="32" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_32.png"/>
-		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="36" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_36.png"/>
-		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="44" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_44.png"/>
-		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="45" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_45.png"/>
-		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="48" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_48.png"/>
-		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="50" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_50.png"/>
-		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="64" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_64.png"/>
-		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="80" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_80.png"/>
-		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="128" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_128.png"/>
-		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="256" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_256.png"/>
+		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="22" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_22.dds"/>
+		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="30" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_30.dds"/>
+		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="32" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_32.dds"/>
+		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="36" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_36.dds"/>
+		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="44" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_44.dds"/>
+		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="45" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_45.dds"/>
+		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="48" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_48.dds"/>
+		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="50" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_50.dds"/>
+		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="64" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_64.dds"/>
+		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="80" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_80.dds"/>
+		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="128" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_128.dds"/>
+		<Row Name="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" IconSize="256" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_CIVILIZATION_REGLOSS_ICHIJOU_256.dds"/>
 
-		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="32" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_32.png"/>
-		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="45" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_45.png"/>
-		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="48" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_48.png"/>
-		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="50" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_50.png"/>
-		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="55" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_55.png"/>
-		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="64" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_64.png"/>
-		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="80" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_80.png"/>
-		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="256" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_256.png"/>
+		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="32" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_32.dds"/>
+		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="45" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_45.dds"/>
+		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="48" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_48.dds"/>
+		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="50" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_50.dds"/>
+		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="55" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_55.dds"/>
+		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="64" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_64.dds"/>
+		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="80" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_80.dds"/>
+		<Row Name="ICON_ATLAS_LEADER_REGLOSS_ICHIJOU_RIRIKA" IconSize="256" IconsPerRow="1" IconsPerColumn="1" Filename="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_256.dds"/>
 	</IconTextureAtlases>
 	<IconDefinitions>
 		<Row Name="ICON_CIVILIZATION_REGLOSS_ICHIJOU" Atlas="ICON_ATLAS_CIV_REGLOSS_ICHIJOU" Index="0"/>

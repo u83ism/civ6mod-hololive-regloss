@@ -1,0 +1,10 @@
+{
+  "name": "png2dds",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Convert RGBA PNG icon sources into uncompressed BGRA DDS for Civ6 loose-file IconTextureAtlases.",
+  "main": "png2dds.js",
+  "dependencies": {
+    "pngjs": "^7.0.0"
+  }
+}

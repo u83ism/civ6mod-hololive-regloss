@@ -25,6 +25,9 @@
 		<UpdateIcons id="ConfigIcons">
 			<File>Art/Icons/Icons.xml</File>
 		</UpdateIcons>
+		<UpdateArt id="ConfigArt">
+			<File>civ6mod-hololive-regloss.dep</File>
+		</UpdateArt>
 	</FrontEndActions>
 	<InGameActions>
 		<UpdateDatabase id="Gameplay">
@@ -41,6 +44,9 @@
 		<UpdateIcons id="Icons">
 			<File>Art/Icons/Icons.xml</File>
 		</UpdateIcons>
+		<UpdateArt id="Art">
+			<File>civ6mod-hololive-regloss.dep</File>
+		</UpdateArt>
 	</InGameActions>
 	<Files>
 		<File>XML/Civilizations.xml</File>
@@ -50,25 +56,8 @@
 		<File>Text/en_US/Text.xml</File>
 		<File>Text/ja_JP/Text.xml</File>
 		<File>Art/Icons/Icons.xml</File>
-		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_22.png</File>
-		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_30.png</File>
-		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_32.png</File>
-		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_36.png</File>
-		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_44.png</File>
-		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_45.png</File>
-		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_48.png</File>
-		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_50.png</File>
-		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_64.png</File>
-		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_80.png</File>
-		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_128.png</File>
-		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_256.png</File>
-		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_32.png</File>
-		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_45.png</File>
-		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_48.png</File>
-		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_50.png</File>
-		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_55.png</File>
-		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_64.png</File>
-		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_80.png</File>
-		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_256.png</File>
+		<File>civ6mod-hololive-regloss.dep</File>
+		<File>Platforms/Windows/BLPs/UI/RegLoss_Icons.blp</File>
+		<File>Platforms/MacOS/BLPs/UI/RegLoss_Icons.blp</File>
 	</Files>
 </Mod>

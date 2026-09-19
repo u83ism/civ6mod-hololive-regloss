@@ -1,10 +1,16 @@
 # ModBuddy / Visual Studio artifacts (kept out even if ModBuddy is touched occasionally)
 .vs/
 *.suo
+*.civ6suo
 *.user
 *.modproj
 bin/
 obj/
+
+# tools/IconBuild local test-deploy byproducts (not part of the shipped mod's <Files>;
+# regenerate via ModBuddy build / tools/png2dds/build-icons.js)
+tools/IconBuild/RegLoss_IconBuild.dep
+tools/IconBuild/Textures/*.dds
 
 # Local playtest logs
 *.log
@@ -12,3 +18,6 @@ obj/
 # OS
 Thumbs.db
 .DS_Store
+
+# Node tooling (tools/)
+node_modules/

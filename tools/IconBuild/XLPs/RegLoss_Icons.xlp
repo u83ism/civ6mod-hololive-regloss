@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<AssetObjects..XLP>
+	<m_Version>
+		<major>4</major>
+		<minor>0</minor>
+		<build>434</build>
+		<revision>920</revision>
+	</m_Version>
+	<m_ClassName text="UITexture"/>
+	<m_PackageName text="UI/RegLoss_Icons"/>
+	<m_Entries>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_22"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_22"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_30"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_30"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_32"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_32"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_36"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_36"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_44"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_44"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_45"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_45"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_48"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_48"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_50"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_50"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_64"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_64"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_80"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_80"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_128"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_128"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_256"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_ICHIJOU_256"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_32"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_32"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_45"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_45"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_48"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_48"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_50"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_50"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_55"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_55"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_64"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_64"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_80"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_80"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_256"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_256"/>
+		</Element>
+	</m_Entries>
+	<m_AllowedPlatforms>
+		<Element>WINDOWS</Element>
+		<Element>LINUX</Element>
+		<Element>MACOS</Element>
+		<Element>IOS</Element>
+	</m_AllowedPlatforms>
+</AssetObjects..XLP>
