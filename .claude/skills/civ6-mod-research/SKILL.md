@@ -11,7 +11,7 @@ Civ6のModBuddy/Art Pipeline周りは公式ドキュメントが薄く、英語�
 
 断片情報から仮説を積み上げる前に、必ずこの順で一次情報を確認する:
 
-1. **`https://civ6wiki.info/?MOD/作成方法`とその配下ページ**(日本語、実践者による確立済み手順)。特にArt/Icon/ModBuddy関連は「指導者アイコンの作り方」「文明アイコン」「ローディング画面・リザルト」ページに`.tex`/`.xlp`の具体的な書き換え手順・ビルド後のフォルダ構成・`cooker.log`の見方まで載っている。**「新文明・指導者」配下と「その他」配下の主要ページはすでに以下へ要約済み**なので、これらのトピックは都度WebFetchし直さず先に読むこと。未収録のページ(偉人の追加配下など、執筆時点で空だったページ)や下記に無い内容だけ改めて取得すればよい:
+1. **`https://civ6wiki.info/?MOD/%BA%EE%C0%AE%CA%FD%CB%A1`とその配下ページ**(日本語、実践者による確立済み手順)。特にArt/Icon/ModBuddy関連は「指導者アイコンの作り方」「文明アイコン」「ローディング画面・リザルト」ページに`.tex`/`.xlp`の具体的な書き換え手順・ビルド後のフォルダ構成・`cooker.log`の見方まで載っている。**「新文明・指導者」配下と「その他」配下の主要ページはすでに以下へ要約済み**なので、これらのトピックは都度WebFetchし直さず先に読むこと。未収録のページ(偉人の追加配下など、執筆時点で空だったページ)や下記に無い内容だけ改めて取得すればよい:
    - `leader-icons/references/icon-blp-pipeline.md`(指導者/文明アイコン)、`leader-icons/references/loading-and-diplomacy-screen.md`(ローディング画面・外交交渉画面・クレオパトラ対策)
    - `leader-abilities/references/trait-and-identity-patterns.md`(文明特性・指導者特性・文明カラー・AIの好み・多言語対応)
    - `leader-unique-content/references/unique-content-patterns.md`(固有ユニット/区域/施設/建造物=UU/UD/UI/UB)
@@ -26,6 +26,12 @@ Civ6のModBuddy/Art Pipeline周りは公式ドキュメントが薄く、英語�
 - **文字コードはEUC-JP**。`WebFetch`はAIによる要約を返すため、この手のWikiで数値・フォーマット名(ミップマップ有無、ABGR8等)を誤要約することがある(実例: あるページの「ミップマップあり」を要約が拾い損ね、別ページの「ミップマップなし」と混同しかけた)。**数値・スキーマ・設定値など間違えると気づきにくい情報は、`curl -s -A "Mozilla/5.0" <URL> | iconv -f EUC-JP -t UTF-8 | sed 's/<[^>]*>//g'`で生テキストを直接読むこと**。WebFetchの要約だけで結論を出さない
 - **ナビゲーションに載っていないページが存在することがある**。`nav.md`相当のページ(civ6wiki.infoなら各カテゴリの一覧ページ)にリンクが無くても、URLパターンが分かれば直接アクセスできる場合がある。逆に、リンクがコメントアウトされている(=作者が書きかけで諦めた)ページは本当に存在しない場合もあるので、404を確認したら深追いしない
 - URLはEUC-JPパーセントエンコードなので、日本語ページ名を含むリンクをそのままコピペしてWebFetch/curlに渡してよい
+- **新しいページ名(このSkillに載っていない未収録ページ)のURLを自分で組み立てるときは、UTF-8の`encodeURIComponent`を使わないこと**。`?MOD/作成方法/新文明・指導者/文明アイコン`のようなパス階層は、区切りの`/`はそのまま、各セグメントをEUC-JPバイト列にpercent-encodeする必要がある。実際に動いた手順:
+  ```bash
+  printf 'MOD/作成方法/新文明・指導者/文明アイコン' | iconv -f UTF-8 -t EUC-JP | xxd -p | tr -d '\n' | sed 's/\(..\)/%\1/g'
+  # → %4d%4f%44%2f%ba%ee%c0%ae%ca%fd%cb%a1%2f%bf%b7%ca%b8%cc%c0%a1%a6%bb%d8%c6%b3%bc%d4%2f%ca%b8%cc%c0%a5%a2%a5%a4%a5%b3%a5%f3
+  ```
+  ASCII部分(`MOD`や`/`)も一緒にpercent-encodeされるが害はない。`https://civ6wiki.info/?`の後にこれを繋げてcurlに渡す。UTF-8percent-encode(`encodeURIComponent`等)で組み立てたURLは「有効なWikiNameではありません」と返ってくるだけで、404にすらならないので気づきにくい
 
 ## 3. 判断に迷ったら実機ログより先にここを見る
 
