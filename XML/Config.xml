@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+	<!--
+		リーダー選択画面(フロントエンド)用の登録。
+		Playersテーブルはここに並ぶ列のほぼ全てがNOT NULL制約(Icon/Ability/Portrait系も含む)。
+		Art未着手でも仮のType文字列を入れておく必要がある(実体を指す先が無いので表示は空/デフォルトになる想定)。
+	-->
+	<!--
+		リーダー選択画面はプレイ中のルールセット(Standard/Rise and Fall/Gathering Storm)ごとに
+		別のPlayersドメインを見ているため、3つとも登録しておく。
+	-->
+	<Players>
+		<Row>
+			<Domain>Players:StandardPlayers</Domain>
+			<CivilizationType>CIVILIZATION_REGLOSS_ICHIJOU</CivilizationType>
+			<LeaderType>LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderType>
+			<CivilizationName>LOC_CIVILIZATION_REGLOSS_ICHIJOU_NAME</CivilizationName>
+			<LeaderName>LOC_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME</LeaderName>
+			<CivilizationIcon>ICON_CIVILIZATION_REGLOSS_ICHIJOU</CivilizationIcon>
+			<LeaderIcon>ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderIcon>
+			<CivilizationAbilityName>LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME</CivilizationAbilityName>
+			<CivilizationAbilityDescription>LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION</CivilizationAbilityDescription>
+			<CivilizationAbilityIcon>ICON_CIVILIZATION_REGLOSS_ICHIJOU</CivilizationAbilityIcon>
+			<LeaderAbilityIcon>ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderAbilityIcon>
+			<LeaderAbilityName>LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME</LeaderAbilityName>
+			<LeaderAbilityDescription>LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION</LeaderAbilityDescription>
+			<Portrait>IMG_LEADER_REGLOSS_ICHIJOU_RIRIKA_FOREGROUND</Portrait>
+			<PortraitBackground>IMG_LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND</PortraitBackground>
+		</Row>
+		<Row>
+			<Domain>Players:Expansion1_Players</Domain>
+			<CivilizationType>CIVILIZATION_REGLOSS_ICHIJOU</CivilizationType>
+			<LeaderType>LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderType>
+			<CivilizationName>LOC_CIVILIZATION_REGLOSS_ICHIJOU_NAME</CivilizationName>
+			<LeaderName>LOC_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME</LeaderName>
+			<CivilizationIcon>ICON_CIVILIZATION_REGLOSS_ICHIJOU</CivilizationIcon>
+			<LeaderIcon>ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderIcon>
+			<CivilizationAbilityName>LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME</CivilizationAbilityName>
+			<CivilizationAbilityDescription>LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION</CivilizationAbilityDescription>
+			<CivilizationAbilityIcon>ICON_CIVILIZATION_REGLOSS_ICHIJOU</CivilizationAbilityIcon>
+			<LeaderAbilityIcon>ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderAbilityIcon>
+			<LeaderAbilityName>LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME</LeaderAbilityName>
+			<LeaderAbilityDescription>LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION</LeaderAbilityDescription>
+			<Portrait>IMG_LEADER_REGLOSS_ICHIJOU_RIRIKA_FOREGROUND</Portrait>
+			<PortraitBackground>IMG_LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND</PortraitBackground>
+		</Row>
+		<Row>
+			<Domain>Players:Expansion2_Players</Domain>
+			<CivilizationType>CIVILIZATION_REGLOSS_ICHIJOU</CivilizationType>
+			<LeaderType>LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderType>
+			<CivilizationName>LOC_CIVILIZATION_REGLOSS_ICHIJOU_NAME</CivilizationName>
+			<LeaderName>LOC_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME</LeaderName>
+			<CivilizationIcon>ICON_CIVILIZATION_REGLOSS_ICHIJOU</CivilizationIcon>
+			<LeaderIcon>ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderIcon>
+			<CivilizationAbilityName>LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME</CivilizationAbilityName>
+			<CivilizationAbilityDescription>LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION</CivilizationAbilityDescription>
+			<CivilizationAbilityIcon>ICON_CIVILIZATION_REGLOSS_ICHIJOU</CivilizationAbilityIcon>
+			<LeaderAbilityIcon>ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderAbilityIcon>
+			<LeaderAbilityName>LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME</LeaderAbilityName>
+			<LeaderAbilityDescription>LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION</LeaderAbilityDescription>
+			<Portrait>IMG_LEADER_REGLOSS_ICHIJOU_RIRIKA_FOREGROUND</Portrait>
+			<PortraitBackground>IMG_LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND</PortraitBackground>
+		</Row>
+	</Players>
+</GameData>

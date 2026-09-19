@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+	<Types>
+		<Row Type="LEADER_REGLOSS_ICHIJOU_RIRIKA" Kind="KIND_LEADER"/>
+		<Row Type="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA" Kind="KIND_TRAIT"/>
+	</Types>
+
+	<Leaders>
+		<Row LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" Name="LOC_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME" InheritFrom="LEADER_DEFAULT"/>
+	</Leaders>
+
+	<LeaderTraits>
+		<Row LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA"/>
+	</LeaderTraits>
+
+	<Traits>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA" Name="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME" Description="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION"/>
+	</Traits>
+
+	<TraitModifiers>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA" ModifierId="REGLOSS_ICHIJOU_RIRIKA_UA_ATTACH_BONUS"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA" ModifierId="REGLOSS_ICHIJOU_RIRIKA_UA_ATTACH_STRATEGIC"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA" ModifierId="REGLOSS_ICHIJOU_RIRIKA_UA_ATTACH_LUXURY"/>
+	</TraitModifiers>
+
+	<!--
+		資源クラス別ゴールドボーナス。
+		外側(MODIFIER_ALL_CITIES_ATTACH_MODIFIER)が内側のModifierを自国の全都市に付与し、
+		内側(MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD)が資源クラスの一致するタイルにのみゴールドを加算する。
+		Firaxis公式の信仰"Religious Idols"(ボーナス資源+鉱山→信仰力)と同じ構造。ベースゲームのみで完結。
+	-->
+	<Modifiers>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_ATTACH_BONUS</ModifierId>
+			<ModifierType>MODIFIER_ALL_CITIES_ATTACH_MODIFIER</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_BONUS</ModifierId>
+			<ModifierType>MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD</ModifierType>
+			<SubjectRequirementSetId>REGLOSS_ICHIJOU_REQSET_PLOT_BONUS</SubjectRequirementSetId>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_ATTACH_STRATEGIC</ModifierId>
+			<ModifierType>MODIFIER_ALL_CITIES_ATTACH_MODIFIER</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_STRATEGIC</ModifierId>
+			<ModifierType>MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD</ModifierType>
+			<SubjectRequirementSetId>REGLOSS_ICHIJOU_REQSET_PLOT_STRATEGIC</SubjectRequirementSetId>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_ATTACH_LUXURY</ModifierId>
+			<ModifierType>MODIFIER_ALL_CITIES_ATTACH_MODIFIER</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_LUXURY</ModifierId>
+			<ModifierType>MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD</ModifierType>
+			<SubjectRequirementSetId>REGLOSS_ICHIJOU_REQSET_PLOT_LUXURY</SubjectRequirementSetId>
+		</Row>
+	</Modifiers>
+
+	<ModifierArguments>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_ATTACH_BONUS</ModifierId>
+			<Name>ModifierId</Name>
+			<Value>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_BONUS</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_BONUS</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_GOLD</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_BONUS</ModifierId>
+			<Name>Amount</Name>
+			<Value>3</Value>
+		</Row>
+
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_ATTACH_STRATEGIC</ModifierId>
+			<Name>ModifierId</Name>
+			<Value>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_STRATEGIC</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_STRATEGIC</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_GOLD</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_STRATEGIC</ModifierId>
+			<Name>Amount</Name>
+			<Value>5</Value>
+		</Row>
+
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_ATTACH_LUXURY</ModifierId>
+			<Name>ModifierId</Name>
+			<Value>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_LUXURY</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_LUXURY</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_GOLD</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_LUXURY</ModifierId>
+			<Name>Amount</Name>
+			<Value>10</Value>
+		</Row>
+	</ModifierArguments>
+
+	<RequirementSets>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_REQSET_PLOT_BONUS" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_REQSET_PLOT_STRATEGIC" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_REQSET_PLOT_LUXURY" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+	</RequirementSets>
+
+	<Requirements>
+		<Row RequirementId="REGLOSS_ICHIJOU_REQ_PLOT_BONUS" RequirementType="REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES"/>
+		<Row RequirementId="REGLOSS_ICHIJOU_REQ_PLOT_STRATEGIC" RequirementType="REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES"/>
+		<Row RequirementId="REGLOSS_ICHIJOU_REQ_PLOT_LUXURY" RequirementType="REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES"/>
+	</Requirements>
+
+	<RequirementArguments>
+		<Row RequirementId="REGLOSS_ICHIJOU_REQ_PLOT_BONUS" Name="ResourceClassType" Value="RESOURCECLASS_BONUS"/>
+		<Row RequirementId="REGLOSS_ICHIJOU_REQ_PLOT_STRATEGIC" Name="ResourceClassType" Value="RESOURCECLASS_STRATEGIC"/>
+		<Row RequirementId="REGLOSS_ICHIJOU_REQ_PLOT_LUXURY" Name="ResourceClassType" Value="RESOURCECLASS_LUXURY"/>
+	</RequirementArguments>
+
+	<RequirementSetRequirements>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_REQSET_PLOT_BONUS" RequirementId="REGLOSS_ICHIJOU_REQ_PLOT_BONUS"/>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_REQSET_PLOT_STRATEGIC" RequirementId="REGLOSS_ICHIJOU_REQ_PLOT_STRATEGIC"/>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_REQSET_PLOT_LUXURY" RequirementId="REGLOSS_ICHIJOU_REQ_PLOT_LUXURY"/>
+	</RequirementSetRequirements>
+</GameData>

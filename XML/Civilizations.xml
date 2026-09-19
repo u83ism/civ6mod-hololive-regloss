@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameData>
-	<!-- Civilization / Leader / Trait / UniqueUnit records go here. -->
+	<Types>
+		<Row Type="CIVILIZATION_REGLOSS_ICHIJOU" Kind="KIND_CIVILIZATION"/>
+	</Types>
+
+	<Civilizations>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" Name="LOC_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Description="LOC_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION" Adjective="LOC_CIVILIZATION_REGLOSS_ICHIJOU_ADJECTIVE" StartingCivilizationLevelType="CIVILIZATION_LEVEL_FULL_CIV" RandomCityNameDepth="1"/>
+	</Civilizations>
+
+	<CivilizationLeaders>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" CapitalName="LOC_CITY_NAME_REGLOSS_ICHIJOU_HQ"/>
+	</CivilizationLeaders>
+
+	<!-- TODO: 都市名リストが1つしかない(暫定)。設計が固まったら追加する -->
+	<CityNames>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CityName="LOC_CITY_NAME_REGLOSS_ICHIJOU_HQ"/>
+	</CityNames>
 </GameData>

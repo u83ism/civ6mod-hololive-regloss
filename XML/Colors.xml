@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+	<Colors>
+		<Row Type="COLOR_PLAYER_REGLOSS_ICHIJOU_RIRIKA_PRIMARY" Color="238,85,139,255"/>
+		<Row Type="COLOR_PLAYER_REGLOSS_ICHIJOU_RIRIKA_SECONDARY" Color="255,255,255,255"/>
+	</Colors>
+
+	<PlayerColors>
+		<Row Type="LEADER_REGLOSS_ICHIJOU_RIRIKA" Usage="Unique" PrimaryColor="COLOR_PLAYER_REGLOSS_ICHIJOU_RIRIKA_PRIMARY" SecondaryColor="COLOR_PLAYER_REGLOSS_ICHIJOU_RIRIKA_SECONDARY"/>
+	</PlayerColors>
+</GameData>

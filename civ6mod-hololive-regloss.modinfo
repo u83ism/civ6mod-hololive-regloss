@@ -1,42 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="c4e7ca04-4806-47be-95a0-77f391e48d34" version="1">
+<Mod id="fb7b87a1-b33e-48a5-8e91-b952fdae6a6f" version="1">
 	<Properties>
-		<Name>LOC_MOD_HOLOLIVE_REGLOSS_NAME</Name>
-		<Teaser>LOC_MOD_HOLOLIVE_REGLOSS_TEASER</Teaser>
-		<Description>LOC_MOD_HOLOLIVE_REGLOSS_DESCRIPTION</Description>
+		<Name>Hololive ReGLOSS</Name>
+		<Teaser>Adds a new civilization inspired by hololive ReGLOSS.</Teaser>
+		<Description>Adds a new civilization inspired by hololive ReGLOSS.[NEWLINE][NEWLINE]hololive ReGLOSSをモチーフにした新しい文明を追加する。</Description>
 		<Authors>yu-yami</Authors>
-		<Package>Mod</Package>
-		<AffectsSavedGames>1</AffectsSavedGames>
+		<CompatibleVersions>1.2,2.0</CompatibleVersions>
 	</Properties>
 	<Dependencies>
-		<Mod id="8dbd0999-a99a-465a-a109-e409eb69630e" title="LOC_MODULE_STANDARD_NAME"/>
+		<Mod id="4873eb62-8ccc-4574-b784-dda455e74e68" title="Expansion: Gathering Storm" />
 	</Dependencies>
-	<ActionCriteria>
-		<Criteria id="AlwaysMet">
-			<AlwaysMet/>
-		</Criteria>
-	</ActionCriteria>
-	<ActionGroups>
-		<ActionGroup id="HololiveRegloss_Game" scope="game" criteria="AlwaysMet">
-			<Actions>
-				<UpdateDatabase>
-					<Item>XML/Civilizations.xml</Item>
-				</UpdateDatabase>
-				<UpdateText>
-					<Item>Text/en_US/Text.xml</Item>
-				</UpdateText>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="HololiveRegloss_Shell" scope="shell" criteria="AlwaysMet">
-			<Actions>
-				<UpdateText>
-					<Item>Text/en_US/Text.xml</Item>
-				</UpdateText>
-			</Actions>
-		</ActionGroup>
-	</ActionGroups>
+	<ActionCriteria />
+	<FrontEndActions>
+		<UpdateDatabase id="Config">
+			<File>XML/Config.xml</File>
+		</UpdateDatabase>
+		<UpdateColors id="ConfigColors">
+			<File>XML/Colors.xml</File>
+		</UpdateColors>
+		<UpdateText id="ConfigText">
+			<File>Text/en_US/Text.xml</File>
+			<File>Text/ja_JP/Text.xml</File>
+		</UpdateText>
+		<UpdateIcons id="ConfigIcons">
+			<File>Art/Icons/Icons.xml</File>
+		</UpdateIcons>
+	</FrontEndActions>
+	<InGameActions>
+		<UpdateDatabase id="Gameplay">
+			<File>XML/Civilizations.xml</File>
+			<File>XML/Leaders.xml</File>
+		</UpdateDatabase>
+		<UpdateColors id="Colors">
+			<File>XML/Colors.xml</File>
+		</UpdateColors>
+		<UpdateText id="Text">
+			<File>Text/en_US/Text.xml</File>
+			<File>Text/ja_JP/Text.xml</File>
+		</UpdateText>
+		<UpdateIcons id="Icons">
+			<File>Art/Icons/Icons.xml</File>
+		</UpdateIcons>
+	</InGameActions>
 	<Files>
 		<File>XML/Civilizations.xml</File>
+		<File>XML/Leaders.xml</File>
+		<File>XML/Colors.xml</File>
+		<File>XML/Config.xml</File>
 		<File>Text/en_US/Text.xml</File>
+		<File>Text/ja_JP/Text.xml</File>
+		<File>Art/Icons/Icons.xml</File>
+		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_22.png</File>
+		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_30.png</File>
+		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_32.png</File>
+		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_36.png</File>
+		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_44.png</File>
+		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_45.png</File>
+		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_48.png</File>
+		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_50.png</File>
+		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_64.png</File>
+		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_80.png</File>
+		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_128.png</File>
+		<File>Art/Icons/ICON_CIVILIZATION_REGLOSS_ICHIJOU_256.png</File>
+		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_32.png</File>
+		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_45.png</File>
+		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_48.png</File>
+		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_50.png</File>
+		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_55.png</File>
+		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_64.png</File>
+		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_80.png</File>
+		<File>Art/Icons/ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_256.png</File>
 	</Files>
 </Mod>

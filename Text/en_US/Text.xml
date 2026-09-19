@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameData>
 	<LocalizedText>
-		<Row Tag="LOC_MOD_HOLOLIVE_REGLOSS_NAME" Language="en_US">
-			<Text>[Working Title] ReGLOSS Civilization</Text>
+		<Row Tag="LOC_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="en_US">
+			<Text>Ichijou Corporation</Text>
 		</Row>
-		<Row Tag="LOC_MOD_HOLOLIVE_REGLOSS_TEASER" Language="en_US">
-			<Text>Adds a new civilization inspired by hololive ReGLOSS.</Text>
+		<Row Tag="LOC_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION" Language="en_US">
+			<Text>[Working Title] A civilization based on hololive ReGLOSS's Ichijou Ririka.</Text>
 		</Row>
-		<Row Tag="LOC_MOD_HOLOLIVE_REGLOSS_DESCRIPTION" Language="en_US">
-			<Text>Adds a new civilization inspired by hololive ReGLOSS.</Text>
+		<Row Tag="LOC_CIVILIZATION_REGLOSS_ICHIJOU_ADJECTIVE" Language="en_US">
+			<Text>Ichijou</Text>
+		</Row>
+
+		<Row Tag="LOC_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="en_US">
+			<Text>Ichijou Ririka</Text>
+		</Row>
+
+		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="en_US">
+			<Text>[Working Title] Resource Magnate</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION" Language="en_US">
+			<Text>Tiles with a Bonus resource provide an extra +3 [ICON_Gold] Gold. Tiles with a Strategic resource provide an extra +5 [ICON_Gold] Gold. Tiles with a Luxury resource provide an extra +10 [ICON_Gold] Gold.</Text>
+		</Row>
+
+		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="en_US">
+			<Text>[Working Title] (Not yet designed)</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION" Language="en_US">
+			<Text>[Working Title] This civilization's unique ability has not been designed yet.</Text>
+		</Row>
+
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_HQ" Language="en_US">
+			<Text>Ichijou Headquarters</Text>
 		</Row>
 	</LocalizedText>
 </GameData>
