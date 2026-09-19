@@ -1,0 +1,14 @@
+# ModBuddy / Visual Studio artifacts (kept out even if ModBuddy is touched occasionally)
+.vs/
+*.suo
+*.user
+*.modproj
+bin/
+obj/
+
+# Local playtest logs
+*.log
+
+# OS
+Thumbs.db
+.DS_Store

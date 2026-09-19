@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="c4e7ca04-4806-47be-95a0-77f391e48d34" version="1">
+	<Properties>
+		<Name>LOC_MOD_HOLOLIVE_REGLOSS_NAME</Name>
+		<Teaser>LOC_MOD_HOLOLIVE_REGLOSS_TEASER</Teaser>
+		<Description>LOC_MOD_HOLOLIVE_REGLOSS_DESCRIPTION</Description>
+		<Authors>yu-yami</Authors>
+		<Package>Mod</Package>
+		<AffectsSavedGames>1</AffectsSavedGames>
+	</Properties>
+	<Dependencies>
+		<Mod id="8dbd0999-a99a-465a-a109-e409eb69630e" title="LOC_MODULE_STANDARD_NAME"/>
+	</Dependencies>
+	<ActionCriteria>
+		<Criteria id="AlwaysMet">
+			<AlwaysMet/>
+		</Criteria>
+	</ActionCriteria>
+	<ActionGroups>
+		<ActionGroup id="HololiveRegloss_Game" scope="game" criteria="AlwaysMet">
+			<Actions>
+				<UpdateDatabase>
+					<Item>XML/Civilizations.xml</Item>
+				</UpdateDatabase>
+				<UpdateText>
+					<Item>Text/en_US/Text.xml</Item>
+				</UpdateText>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="HololiveRegloss_Shell" scope="shell" criteria="AlwaysMet">
+			<Actions>
+				<UpdateText>
+					<Item>Text/en_US/Text.xml</Item>
+				</UpdateText>
+			</Actions>
+		</ActionGroup>
+	</ActionGroups>
+	<Files>
+		<File>XML/Civilizations.xml</File>
+		<File>Text/en_US/Text.xml</File>
+	</Files>
+</Mod>

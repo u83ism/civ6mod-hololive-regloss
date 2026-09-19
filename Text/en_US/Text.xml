@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+	<LocalizedText>
+		<Row Tag="LOC_MOD_HOLOLIVE_REGLOSS_NAME" Language="en_US">
+			<Text>[Working Title] ReGLOSS Civilization</Text>
+		</Row>
+		<Row Tag="LOC_MOD_HOLOLIVE_REGLOSS_TEASER" Language="en_US">
+			<Text>Adds a new civilization inspired by hololive ReGLOSS.</Text>
+		</Row>
+		<Row Tag="LOC_MOD_HOLOLIVE_REGLOSS_DESCRIPTION" Language="en_US">
+			<Text>Adds a new civilization inspired by hololive ReGLOSS.</Text>
+		</Row>
+	</LocalizedText>
+</GameData>
