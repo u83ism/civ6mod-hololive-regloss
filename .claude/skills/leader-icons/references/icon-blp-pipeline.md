@@ -173,3 +173,21 @@ self.Controls.CivIcon:SetColor(frontColor);        -- アイコン本体をセ�
 - **なぜ「Major」汎用色プールが使われるのか**が次に追うべき本丸。`UI.GetPlayerColorValues(info.PlayerColor, info.PlayerColorIndex or 0)`(`PlayerSetupLogic.lua`851行目)や`UI.GetPlayerColors(m_pPlayer:GetID())`(`InGameTopOptionsMenu.lua`)が、うちの`PlayerColors.Type="LEADER_REGLOSS_ICHIJOU_RIRIKA"`エントリを見つけられず、Civ6標準のフォールバック(プレイヤー枠の並び順等でMajor色プールから自動割り当て)に落ちている可能性が高い。一方で全く同じ`UI.GetPlayerColors(playerID)`を使う外交パネル(`LeaderIcon.lua`)は正常にピンクを表示するので、**同じ関数でも呼び出し元によって解決結果が違う**(playerIDの解決タイミングか、Civilizations/Leadersテーブル側の何らかの登録漏れが影響している可能性)
 - パウズメニューのLuaに一時的なデバッグ用の上書き(`UI/Replacements/`相当の仕組みで`RefreshIconData`を再定義し、`m_primaryColor`/`m_secondaryColor`の実際の値を`print()`でLua.logに出力する)を仕込み、実際に何が返ってきているかを直接観測する。Civ6のUI Context上書きの仕組み自体をこのリポジトリでまだ使ったことがないため、そこから調べる必要がある
 - リーダー選択画面の能力アイコン(`PlayerSetupLogic.lua`849行目、`civAbility.Icon:SetIcon(info.CivilizationIcon)`)は`info.CivilizationAbilityIcon`ではなく`info.CivilizationIcon`(通常の文明バッジ)を見ている、という点は特定済み
+
+### 2026-09-20追記: リーダー選択画面の能力アイコンは「フォールバック割当」ではなく「サイレント失敗+使い回しインスタンスの色残留」の可能性が高い
+
+Sailor Cat's Modding Tutorial(英語ガイド)の内容自体はColors/PlayerColors/Jerseyシステムに一切触れておらず、**この不具合の直接の手がかりにはならなかった**。ただし照合作業のついでに、実機にインストール済みの本体ファイル(`Base/Assets/UI/FrontEnd/PlayerSetupLogic.lua`、`Base/Assets/UI/Colors/PlayerColors.xml`)を直接読んで以下を確認した:
+
+- `Base/Assets/UI/Colors/PlayerColors.xml`のバニラ実データでは、`LEADER_*`の各行は例外なく`<Usage>Unique</Usage>`+`Alt1〜3PrimaryColor/SecondaryColor`を子要素で持つ(本Modの`XML/Colors.xml`と構造が完全一致)。**Usage/Alt1〜3の形式自体は原因ではないとさらに裏付けが取れた**(3節「切り分け済み」の内容を実物データで再確認)
+- `PlayerSetupLogic.lua`849〜855行目(リーダー選択画面のツールチップ、`info.CivilizationAbility`がある場合のみ実行される能力バッジ描画部分)の実際のコード:
+  ```lua
+  civAbility.Icon:SetIcon(info.CivilizationIcon);
+  local backColor, frontColor = UI.GetPlayerColorValues(info.PlayerColor, info.PlayerColorIndex or 0);
+  if(backColor and frontColor and backColor ~= 0 and frontColor ~= 0) then
+      civAbility.Icon:SetColor(frontColor);
+      civAbility.IconBG:SetColor(backColor);
+  end
+  ```
+  **`if`の中でしか`SetColor`を呼んでいない**。つまり`UI.GetPlayerColorValues`(エンジン内蔵関数、Luaソース無し)がうちの`LEADER_REGLOSS_ICHIJOU_RIRIKA`の解決に失敗して`nil`/`0`を返した場合、**このコードは何もせず`SetColor`を呼ばずに抜ける**(「Major色プールへの自動フォールバック割当」のような能動的な代替処理はLua側には存在しない)。`civAbility.Icon`/`civAbility.IconBG`は`tooltipControls.CivHeaderIconIM:GetInstance()`(InstanceManagerの使い回しプール)から取得したインスタンスなので、**直前に別の文明のツールチップを表示した際に付いた色が、SetColorされないままそのインスタンスに残留して見えている**可能性が高い。観測された「オレンジ/紺色」は汎用色プールへの積極的な割当結果ではなく、**直前に表示した別リーダー(たまたまオレンジ/紺系の配色だった)の残り香**という解釈の方が、コードの実態と整合する
+  - `info.PlayerColor`自体は`row.PlayerColor or leader_type`(`PlayerSetupLogic.lua`527行目、`Config.Players.PlayerColor`列が無ければ`LeaderType`文字列をそのまま使う)なので、**`Config.xml`にPlayerColor列を明示しても・しなくても同じ文字列になる**。既存の「PlayerColor列を明示追加しても直らなかった」という実験結果と矛盾しない(そもそも変わりようがなかった)
+- **次の一手はこの仮説の検証**: `UI/Replacements/`相当の仕組みで`PlayerSetupLogic.lua`の該当関数を上書きし、`info.PlayerColor`・`info.PlayerColorIndex`・`backColor`・`frontColor`を`print()`でLua.logに出力する。`backColor`/`frontColor`が`nil`または`0`であれば「サイレント失敗」説が確定し、次は「なぜ`UI.GetPlayerColorValues`(ネイティブ関数)がFrontEnd DBから`LEADER_REGLOSS_ICHIJOU_RIRIKA`行を引けないのか」(FrontEnd用DBとInGame用DBのどちらを参照する関数なのか、`UpdateColors`アクションのタイミング等)を追うのが筋になる
