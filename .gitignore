@@ -8,7 +8,7 @@ bin/
 obj/
 
 # tools/IconBuild local test-deploy byproducts (not part of the shipped mod's <Files>;
-# regenerate via ModBuddy build / tools/png2dds/build-icons.js)
+# regenerate via ModBuddy build / npm run build-icons in tools/png2dds/)
 tools/IconBuild/RegLoss_IconBuild.dep
 tools/IconBuild/Textures/*.dds
 

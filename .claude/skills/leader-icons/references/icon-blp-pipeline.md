@@ -55,7 +55,7 @@ Development Assets(AppID `597260`, 7GB/展開27GB)は上記2-3節のコピー元
 - `<gameLibraries>`→`<LibraryDependencies>`(`libraryName`→`LibraryName`、`relativePackagePaths`→`PackageDependencies`)
 - 上記2つの間に`<ArtDefDependencies>`という、Art.xmlには無いセクションが追加される(ArtDef同士の依存関係グラフ。自前のArtDefを持たないなら空`<ArtDefDependencies/>`でよい)
 
-この変換をやってくれるのが`tools/png2dds/gen-dep.js`(`node gen-dep.js <Mod.Art.xml> <out.dep>`)。ModBuddyのビルドが`.dep`を生成してくれない場合はこれで自作し、`.modinfo`の`<Files>`に追加すればよい。
+この変換をやってくれるのが`tools/png2dds/gen-dep.ts`(`npm run gen-dep -- <Mod.Art.xml> <out.dep>`、実行にはTypeScript即時実行ツール`tsx`を使う。`tools/png2dds/`で`npm install`済みであること)。ModBuddyのビルドが`.dep`を生成してくれない場合はこれで自作し、`.modinfo`の`<Files>`に追加すればよい。
 
 civ6mod-hololive-regloss本体での実際の配線:
 - リポジトリ直下に`civ6mod-hololive-regloss.dep`(gen-dep.jsで生成、`Hololive ReGLOSS`名義・本体のGuidに書き換え済み)
@@ -63,7 +63,7 @@ civ6mod-hololive-regloss本体での実際の配線:
 - `.modinfo`の`FrontEndActions`/`InGameActions`双方に`<UpdateArt><File>civ6mod-hololive-regloss.dep</File></UpdateArt>`
 - `<Files>`に`.dep`と両プラットフォームの`.blp`を列挙
 
-アイコン画像自体のビルドパイプライン(`tools/IconBuild/`)は本体Modとは別のModBuddyプロジェクトとして分離してあり、本体の`.modinfo`(動作実績のあるスキーマ)をModBuddyに触らせないための隔離。`tools/png2dds/`の各スクリプト(`build-icons.js`→DDS生成、`gen-tex.js`→実物`.tex`テンプレート複製、`gen-xlp.js`→XLP生成、`gen-dep.js`→`.dep`生成)を順に実行→ModBuddyで`tools/IconBuild/RegLoss_IconBuild.civ6sln`を開いてBuild→`Documents/My Games/.../Mods/RegLoss_IconBuild/`に出力された`.blp`を本体にコピー、が一連の再生成手順。アイコン画像を差し替える際はこの流れを繰り返す。
+アイコン画像自体のビルドパイプライン(`tools/IconBuild/`)は本体Modとは別のModBuddyプロジェクトとして分離してあり、本体の`.modinfo`(動作実績のあるスキーマ)をModBuddyに触らせないための隔離。`tools/png2dds/`の各スクリプト(`npm run build-icons`→DDS生成、`npm run gen-tex`→実物`.tex`テンプレート複製、`npm run gen-xlp`→XLP生成、`npm run gen-dep --`→`.dep`生成。いずれもTypeScript+`tsx`製、初回は`tools/png2dds/`で`npm install`が必要)を順に実行→ModBuddyで`tools/IconBuild/RegLoss_IconBuild.civ6sln`を開いてBuild→`Documents/My Games/.../Mods/RegLoss_IconBuild/`に出力された`.blp`を本体にコピー、が一連の再生成手順。アイコン画像を差し替える際はこの流れを繰り返す。
 
 ビルド確認用に`Documents/My Games/.../Mods/RegLoss_IconBuild/`が独立した空Modとして残るが、これは単なるModBuddyのローカルデプロイ先(Civ6が起動時に毎回スキャンするだけの場所)なので、ModBuddy側で何か「登録解除」する必要はなく、フォルダを直接削除するだけでMod一覧から消える。
 

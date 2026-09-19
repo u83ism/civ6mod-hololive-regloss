@@ -2,9 +2,22 @@
   "name": "png2dds",
   "private": true,
   "version": "1.0.0",
-  "description": "Convert RGBA PNG icon sources into uncompressed BGRA DDS for Civ6 loose-file IconTextureAtlases.",
-  "main": "png2dds.js",
+  "type": "module",
+  "description": "Convert RGBA PNG icon sources into uncompressed BGRA DDS for Civ6 loose-file IconTextureAtlases, and generate the sidecar .tex/.xlp/.dep files ModBuddy's Art pipeline needs.",
+  "scripts": {
+    "build-icons": "tsx build-icons.ts",
+    "gen-tex": "tsx gen-tex.ts",
+    "gen-xlp": "tsx gen-xlp.ts",
+    "gen-dep": "tsx gen-dep.ts",
+    "typecheck": "tsc --noEmit"
+  },
   "dependencies": {
     "pngjs": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "@types/pngjs": "^6.0.5",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
   }
 }
