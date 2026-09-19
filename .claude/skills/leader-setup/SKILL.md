@@ -56,7 +56,7 @@ TRAIT_LEADER_REGLOSS_<キャラ名ローマ字>
    - MODは有効化されるのに指導者選択画面に出ない・`Modding.log`に自分のファイルへの言及が皆無 → 2節のmodinfoスキーマ問題
    - `Database.log`に`NOT NULL constraint failed: Players.X` → `Config.xml`にXフィールドの仮値を追加(3節)。1つ直すとまた次のフィールドで同じエラーが出ることが多いので、`assets/Config.xml.template`を最初から使う方が早い
    - `Database.log`に`UNIQUE constraint failed: LocalizedText...`または`Colors.Type` → 同じText.xml/Colors.xmlを複数箇所(modinfoトップレベルの`<LocalizedText>`と`FrontEndActions`/`InGameActions`の`<UpdateText>`/`<UpdateColors>`)から重複参照していないか確認。XMLのINSERT操作はINSERT OR REPLACEではなく素朴なINSERTなので、同じ(Language,Tag)や同じColor Typeを2回読み込むと2回目が失敗する
-5. **変更のたびに実フォルダへ再コピーしてから完全に再起動する。** シンボリックリンク/ジャンクション自体は今回の検証では無罪だったが、Mod一覧画面への再入場だけでは変更が反映されないことがあるので、**modinfoやファイル追加を変更したら必ずゲームを完全終了→再起動**する
+5. **変更を加えたら必ずゲームを完全終了→再起動する。** ローカルテストは`mod-setup`Skillの通りジャンクション運用でよい(ジャンクション自体は動作確認済みで無罪。ただしリポジトリ内に`.modinfo`拡張子のファイルを迷子で残すとジャンクション経由で誤って別Modとして読み込まれるので、詳細は`mod-setup`Skill手順6を参照)。Mod一覧画面への再入場だけでは変更が反映されないことがあるので、**modinfoやファイル追加を変更したら必ずゲームを完全終了→再起動**する
 
 ## 6. 参考実装パターン: 資源クラス別の産出量ボーナス
 
