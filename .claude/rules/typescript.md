@@ -9,6 +9,7 @@
 - exportする関数には明示的な戻り値型を付ける。
 - 呼び出し側が変更しない値には`readonly`を付ける(オブジェクト/配列のフィールド・引数)。
 - `enum`よりユニオン型を優先する。
+- `interface`は使わない。常に`type`エイリアスを使う(本人の強い好み。`interface`の宣言マージ等の機能は使わない前提)。
 - 分岐ロジックには判別可能ユニオン(`type`/`kind`フィールド)を使う。型キャストや`instanceof`チェーンは避ける。
 - `verbatimModuleSyntax`がonの前提: type-onlyなimport/re-exportには`import type`/`export type`を使う。
 - 相対importはNodeNext解決に従い、実体が`.ts`でも`.js`拡張子で書く(例: `import { foo } from "./bar.js";`)。
