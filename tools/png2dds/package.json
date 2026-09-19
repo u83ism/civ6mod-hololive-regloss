@@ -5,6 +5,7 @@
   "type": "module",
   "description": "Convert RGBA PNG icon sources into uncompressed BGRA DDS for Civ6 loose-file IconTextureAtlases, and generate the sidecar .tex/.xlp/.dep files ModBuddy's Art pipeline needs.",
   "scripts": {
+    "gen-icon-sources": "tsx gen-icon-sources.ts",
     "build-icons": "tsx build-icons.ts",
     "gen-tex": "tsx gen-tex.ts",
     "gen-xlp": "tsx gen-xlp.ts",

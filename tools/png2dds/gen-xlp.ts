@@ -2,14 +2,9 @@
 // Civ6 SDK Assets pantry/XLPs/Icons.xlp, with only our own icon entries.
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { civilizationIconName, civilizationIconSizes, leaderIconName, leaderIconSizes } from "./icon-manifest.js";
 
-const civilizationIconSizes = [22, 30, 32, 36, 44, 45, 48, 50, 64, 80, 128, 256];
-const leaderIconSizes = [32, 45, 48, 50, 55, 64, 80, 256];
-
-const entries = [
-  ...civilizationIconSizes.map((size) => `ICON_CIVILIZATION_REGLOSS_ICHIJOU_${size}`),
-  ...leaderIconSizes.map((size) => `ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_${size}`),
-];
+const entries = [...civilizationIconSizes.map(civilizationIconName), ...leaderIconSizes.map(leaderIconName)];
 
 const elements = entries
   .map((name) => `\t\t<Element>\n\t\t\t<m_EntryID text="${name}"/>\n\t\t\t<m_ObjectName text="${name}"/>\n\t\t</Element>`)

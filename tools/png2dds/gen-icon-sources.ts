@@ -1,0 +1,128 @@
+// Regenerate Art/Icons/ICON_*.png at every required size from the master source art in
+// Art/Source/. Master art must be square and at least as large as the biggest required size.
+// Usage: tsx gen-icon-sources.ts
+import { readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { PNG } from "pngjs";
+import { civilizationIconName, civilizationIconSizes, leaderIconName, leaderIconSizes } from "./icon-manifest.js";
+
+interface RgbaImage {
+  readonly data: Buffer;
+  readonly width: number;
+  readonly height: number;
+}
+
+// Alpha-weighted (premultiplied) box-filter downsample: averaging without premultiplying
+// by alpha first would bleed fully-transparent background color into the resized edge
+// pixels, producing a faint fringe around the icon silhouette.
+function downsampleImage(source: RgbaImage, targetWidth: number, targetHeight: number): RgbaImage {
+  const destinationData = Buffer.alloc(targetWidth * targetHeight * 4);
+  const scaleX = source.width / targetWidth;
+  const scaleY = source.height / targetHeight;
+  for (let destinationY = 0; destinationY < targetHeight; destinationY++) {
+    const sourceTop = Math.floor(destinationY * scaleY);
+    const sourceBottom = Math.max(sourceTop + 1, Math.floor((destinationY + 1) * scaleY));
+    for (let destinationX = 0; destinationX < targetWidth; destinationX++) {
+      const sourceLeft = Math.floor(destinationX * scaleX);
+      const sourceRight = Math.max(sourceLeft + 1, Math.floor((destinationX + 1) * scaleX));
+
+      let redSum = 0;
+      let greenSum = 0;
+      let blueSum = 0;
+      let alphaSum = 0;
+      let sampleCount = 0;
+      for (let sourceY = sourceTop; sourceY < sourceBottom; sourceY++) {
+        for (let sourceX = sourceLeft; sourceX < sourceRight; sourceX++) {
+          const sourceIndex = (sourceY * source.width + sourceX) * 4;
+          const alpha = source.data[sourceIndex + 3]!;
+          redSum += source.data[sourceIndex]! * alpha;
+          greenSum += source.data[sourceIndex + 1]! * alpha;
+          blueSum += source.data[sourceIndex + 2]! * alpha;
+          alphaSum += alpha;
+          sampleCount++;
+        }
+      }
+
+      const destinationIndex = (destinationY * targetWidth + destinationX) * 4;
+      destinationData[destinationIndex + 3] = Math.round(alphaSum / sampleCount);
+      if (alphaSum > 0) {
+        destinationData[destinationIndex] = Math.round(redSum / alphaSum);
+        destinationData[destinationIndex + 1] = Math.round(greenSum / alphaSum);
+        destinationData[destinationIndex + 2] = Math.round(blueSum / alphaSum);
+      }
+    }
+  }
+  return { data: destinationData, width: targetWidth, height: targetHeight };
+}
+
+// Leader portrait badges are displayed inside a circular frame; the master face art fills
+// its full square canvas (hair/shoulders reach past the inscribed circle), so without this
+// mask that content pokes out past the frame in-game. Coverage fades over the last half
+// pixel from the radius instead of a hard cutoff, so the downsampled sizes keep a clean edge.
+function maskToInscribedCircle(image: RgbaImage): RgbaImage {
+  const radius = image.width / 2;
+  const centerX = image.width / 2;
+  const centerY = image.height / 2;
+  const maskedData = Buffer.from(image.data);
+  for (let y = 0; y < image.height; y++) {
+    for (let x = 0; x < image.width; x++) {
+      const distanceFromCenter = Math.hypot(x + 0.5 - centerX, y + 0.5 - centerY);
+      const edgeCoverage = Math.min(1, Math.max(0, radius - distanceFromCenter + 0.5));
+      const alphaIndex = (y * image.width + x) * 4 + 3;
+      maskedData[alphaIndex] = Math.round(maskedData[alphaIndex]! * edgeCoverage);
+    }
+  }
+  return { data: maskedData, width: image.width, height: image.height };
+}
+
+function readRgbaImage(path: string): RgbaImage {
+  const png = PNG.sync.read(readFileSync(path));
+  if (png.width !== png.height) {
+    throw new Error(`${path}: master source must be square (got ${png.width}x${png.height})`);
+  }
+  return { data: png.data, width: png.width, height: png.height };
+}
+
+function writeIconPng(image: RgbaImage, outputPath: string): void {
+  const png = new PNG({ width: image.width, height: image.height });
+  image.data.copy(png.data);
+  writeFileSync(outputPath, PNG.sync.write(png));
+  console.log(`${outputPath}: ${image.width}x${image.height}`);
+}
+
+interface IconSourceSpec {
+  readonly masterFileName: string;
+  readonly sizes: readonly number[];
+  readonly nameForSize: (size: number) => string;
+  readonly clipToCircle: boolean;
+}
+
+const sourceDirectory = join(import.meta.dirname, "..", "..", "Art", "Source");
+const outputDirectory = join(import.meta.dirname, "..", "..", "Art", "Icons");
+
+const iconSources: readonly IconSourceSpec[] = [
+  {
+    masterFileName: "ichijou-corporation-logo-circle.png",
+    sizes: civilizationIconSizes,
+    nameForSize: civilizationIconName,
+    clipToCircle: false, // already designed to fit the inscribed circle
+  },
+  {
+    masterFileName: "ichijou-ririka-face.png",
+    sizes: leaderIconSizes,
+    nameForSize: leaderIconName,
+    clipToCircle: true,
+  },
+];
+
+for (const { masterFileName, sizes, nameForSize, clipToCircle } of iconSources) {
+  const rawMaster = readRgbaImage(join(sourceDirectory, masterFileName));
+  const master = clipToCircle ? maskToInscribedCircle(rawMaster) : rawMaster;
+  for (const size of sizes) {
+    if (size > master.width) {
+      throw new Error(`${masterFileName}: master is ${master.width}px, too small to produce a ${size}px icon`);
+    }
+    const resized = size === master.width ? master : downsampleImage(master, size, size);
+    writeIconPng(resized, join(outputDirectory, `${nameForSize(size)}.png`));
+  }
+}
