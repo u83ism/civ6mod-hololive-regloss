@@ -2,6 +2,8 @@
 
 Civilization VI の新規文明追加Mod。hololive ReGLOSSをモチーフにした文明を実装する。
 
+詳細な設計・調査メモは[docs/design.md](docs/design.md)を参照。
+
 ## 現状
 
 スケルトンのみ。Civilization / Leader / Trait 等の具体的な設計は未着手。
