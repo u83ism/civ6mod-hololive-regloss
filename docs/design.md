@@ -35,7 +35,7 @@ Civ6 Modding全般の基礎知識(ファイル構造、modinfoの正しいスキ
 
 ### 一条莉々華: 確定した能力(2026-09-19)
 
-**資源クラス別ゴールドボーナス** — 通常の産出に加えて、所有する資源の数に応じてゴールドを追加で得る(暫定値、要バランス調整):
+**資源クラス別ゴールドボーナス**(文明固有能力「秘書見習い達の奮闘」) — 通常の産出に加えて、所有する資源の数に応じてゴールドを追加で得る(暫定値、要バランス調整):
 
 | 資源クラス | 追加ゴールド(資源1つあたり) |
 |---|---|
@@ -43,7 +43,7 @@ Civ6 Modding全般の基礎知識(ファイル構造、modinfoの正しいスキ
 | 戦略資源 | +5 |
 | 高級資源 | +10 |
 
-実装方式は「実装状況」節を参照(`MODIFIER_ALL_CITIES_ATTACH_MODIFIER`+`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`+`REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`の組み合わせ、ベースゲームのみで完結・Lua不要)。
+実装方式は「実装状況」節を参照(`MODIFIER_ALL_CITIES_ATTACH_MODIFIER`+`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`+`REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`の組み合わせ、ベースゲームのみで完結・Lua不要)。当初は指導者固有能力(LeaderTrait)として実装したが、2026-09-19に文明固有能力(CivilizationTrait)へ移設した。指導者固有能力の中身は改めて別途設計する(現状はプレースホルダー、指導者能力名のみ「かわいい！ポジティブ！ジーニアス！」で確定・実機確認済み)。
 
 ### 保留中の追加アイデア(技術検証済み・未実装)
 
@@ -66,18 +66,18 @@ TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA
 
 ## 実装状況(2026-09-19)
 
-莉々華の資源特化Trait(資源クラス別ゴールドボーナス)をXMLに実装済み。
+莉々華の資源特化Trait(資源クラス別ゴールドボーナス)をXMLに実装済み。当初はLeaderTraitとして実装したが、同日中に文明固有能力(CivilizationTrait)へ移設した。
 
-- `XML/Leaders.xml` — Leader/Trait本体。`MODIFIER_ALL_CITIES_ATTACH_MODIFIER`で`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`(+`REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`)を自国の全都市に付与する構造。Firaxis公式信仰"Religious Idols"と同じパターンで、ベースゲームのみで完結(拡張パック依存なし)
+- `XML/Leaders.xml` — Leader/Trait本体(器のみ)。`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`はName/Description参照のみ持ち、効果(Modifier)は無し。指導者固有能力は未設計
+- `XML/Civilizations.xml` — Civilization本体、CivilizationLeaders、CityNames(暫定で1件のみ)、および`TRAIT_CIVILIZATION_REGLOSS_ICHIJOU`(資源特化Trait本体)。`MODIFIER_ALL_CITIES_ATTACH_MODIFIER`で`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`(+`REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`)を自国の全都市に付与する構造。Firaxis公式信仰"Religious Idols"と同じパターンで、ベースゲームのみで完結(拡張パック依存なし)
   - 当初案(`MODIFIER_PLAYER_CITIES_ADJUST_RESOURCE_YIELD_BY_COUNT`、エチオピア方式)は資源クラスでの絞り込みができない(Subjectが都市でありタイルでないため)ことが実装直前に判明し、上記方式に変更した
-- `XML/Civilizations.xml` — Civilization本体、CivilizationLeaders、CityNames(暫定で1件のみ)
 - `XML/Colors.xml` — Colors/PlayerColors
-- `XML/Config.xml` — リーダー選択画面(フロントエンド)用の登録。Icon/Portrait/CivilizationAbilityはArt未着手・CivilizationTrait未設計のため未指定
-- `Text/en_US/Text.xml`・`Text/ja_JP/Text.xml` — 文明名・指導者名・Trait名/説明・都市名1件
+- `XML/Config.xml` — リーダー選択画面(フロントエンド)用の登録。Icon/PortraitはArt未着手のため未指定。CivilizationAbility名/説明はCivilizationTrait実装済みのLOCキーを参照
+- `Text/en_US/Text.xml`・`Text/ja_JP/Text.xml` — 文明名/説明、指導者名、指導者/文明Trait名・説明、都市名1件。いずれも本文確定済み(指導者固有能力の効果テキストのみ「未設計」のプレースホルダーが残る)
 
 ## 実機デバッグ記録
 
-2026-09-19、リーダー選択画面への表示・実ゲームでの資源特化Trait動作(高級資源タイルのゴールド産出増加)を確認済み。MODの基本的な骨格(文明・指導者・Trait)は動作するところまで到達した。
+2026-09-19、リーダー選択画面への表示・実ゲームでの資源特化Trait動作(高級資源タイルのゴールド産出増加)を確認済み。LeaderTrait→CivilizationTraitへの移設後も文明能力としての発動を再確認済み。指導者能力名(「かわいい！ポジティブ！ジーニアス！」)もリーダー選択画面でぎりぎり表示崩れなしを確認。MODの基本的な骨格(文明・指導者・Trait)は動作するところまで到達した。
 
 デバッグで踏んだ罠(modinfoスキーマの選択ミス、`Players`テーブルのNOT NULL地獄、LocalizedText/Colorsの重複INSERT、ログの有効化方法と2種類のログの見方)は汎用知識として`.claude/skills/leader-setup`に切り出し済み。次にModが読み込まれない系の問題が起きたら、まずそちらを参照する。
 
@@ -85,9 +85,9 @@ TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA
 
 ## 保留・未着手のTODO
 - [ ] 上記の`UNIQUE constraint failed`警告の整理(実害確認の上で、Text/Colorsの参照重複を解消する)
-- [ ] Trait名("[仮題] 資源王")・文明説明文・文明固有能力("未設計"のプレースホルダー)などの本文確定
+- [ ] 指導者固有能力(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)の中身の設計(現状は名前「かわいい！ポジティブ！ジーニアス！」のみ確定、効果は"[仮題] 未設計"のプレースホルダー)
 - [ ] 都市名リストの拡充(現状1件のみ)
 - [ ] Art本制作: `Art/Source/`に絵師(X上で公開)からのアイコン加工元画像(`ichijou-corporation-logo1〜3.jpg`、複数パターンが1枚にまとまっており切り出しが必要)、および`ichijou-ririka-stand.webp`(2000x2000、リーダーポートレート素材候補)を配置済み。現状`Art/Icons/`のバッジアイコンは、これらとは別の暫定ロゴ(32x32・低解像度、既に削除済み)から自動生成したものなので、上記素材から切り出した本番アイコンに差し替えが必要。リーダー選択画面の全身ポートレート(`IMG_LEADER_..._FOREGROUND/BACKGROUND`)はArtDef+XLP+ModBuddyのAsset Manager経由のコンパイルが必要そうで、PNG直置きの簡易ルートが見当たらなかった(要ModBuddy、ただしテキスト絡みの文字化け問題とは無関係なのでArt制作だけModBuddyを使う手はある)
-- [ ] UniqueUnit / UniqueBuilding / CivilizationTrait の設計
+- [ ] UniqueUnit / UniqueBuilding の設計(CivilizationTraitは資源特化Traitとして設計・実装済み)
 - [ ] 保留中の追加アイデア(独占/大企業モード連動ボーナス、コミュ力によるGrievance減衰)の実装要否再検討
 - [ ] 必要ならLua実装(該当するGameEventsが存在するか先に確認)
