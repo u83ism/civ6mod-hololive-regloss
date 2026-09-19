@@ -123,15 +123,18 @@ self.Controls.CivIcon:SetColor(frontColor);        -- アイコン本体をセ�
 
 ### 症状(ソース素材のパターンごと)
 
-- **白シルエット版(45px以外を`toWhiteSilhouette`で白+透過化、今は撤回済み)**: リーダー選択画面の文明能力アイコンが、**指導者を切り替えるたびに色が変わる**(プレイヤーカラーで正しく着色される場合とそうでない場合が混在する不安定な挙動)
-- **フルカラー版(現行、全サイズ`ichijou-corporation-logo-circle.png`)**: リーダー選択画面の文明能力アイコンの色が変(フィルターがかかったような発色になる)。**加えて、パウズメニュー(ESCメニュー)の文明バッジが真っ黒になる**
+- **白シルエット版(45px以外を`toWhiteSilhouette`で白+透過化)**: リーダー選択画面の文明能力アイコンとパウズメニューのバッジが、**うちのピンクではなく常にオレンジ/紺色系になる**
+- **フルカラー版(全サイズ`ichijou-corporation-logo-circle.png`)**: リーダー選択画面の文明能力アイコンの色が変(フィルターがかかったような発色)。パウズメニューは真っ黒
 
 どちらのパターンでも「外交パネル/プレイヤーリストのバッジ」「文明選択画面のバッジ(45px)」は正常。**リーダー選択画面の能力アイコンとパウズメニューの2箇所だけ**が問題を起こす。
+
+**重要な手がかり**: 白シルエット版で出る「オレンジ/紺色」は、バニラの`Base/Assets/UI/Colors/PlayerColors.xml`に実在する汎用色プール(`Usage="Major"`)の`PLAYERCOLOR_ORANGE`(オレンジ+白)・`PLAYERCOLOR_DARK_BLUE`(紺+白)と一致する。うちの`PlayerColors`エントリ(`LEADER_REGLOSS_ICHIJOU_RIRIKA`、ピンク+白)ではない。**つまりこの2箇所は、そもそもうちの`PlayerColors`エントリを見ておらず、プレイヤー枠に自動割り当てされる汎用色プールから色を取っている**可能性が高い。フルカラー版で見える「フィルターがかかったような色」「黒」も、同じ汎用色による着色(オレンジ/紺をフルカラー画像に掛け合わせた結果、パウズメニューでは暗い色同士の掛け合わせでほぼ黒に見えている)である可能性がある。
 
 ### 切り分け済み(原因ではないと確認できたこと)
 
 - **文明アイコンのサイズ一覧の過不足** ではない(本ファイル冒頭の12/8サイズは正しい)
 - **`PlayerColors`にAlt1〜Alt3(Gathering Stormの「Jersey System」、同じ文明が複数プレイヤーで重複した際の代替色。未設定だと一部UIで色解決が失敗するとされる既知の仕様)を追加しても直らない**。追加自体はGitHub公開されている完成度の高い指導者Mod2本(`KevinLiuxy/Senren-Banka-Murasame-Civilization-6`、`dwughjsd/LandsolYuni_civ6mod`)と比較して構造的な差分なし(どちらもAlt1〜3を設定し、`Config.xml`相当に`PlayerColor`列を明示していない、という同じパターン)
+- **Alt1〜3を属性(`<Row Type="..." Alt1PrimaryColor="..."/>`)ではなく子要素(`<Row><Type>...</Type><Alt1PrimaryColor>...</Alt1PrimaryColor></Row>`)で書いても直らない**。DLC本体(`Expansion2_PlayerColors.xml`)や他Modの実例は子要素形式だったため試したが、症状(オレンジ/紺色)は変わらなかった
 - **`Config.xml`のPlayersテーブルに`PlayerColor`列を明示追加しても直らない**(このテーブルはフロントエンド選択画面専用で、実ゲーム内のプレイヤーカラー解決とは別経路の可能性がある)
 - **Mod競合ではない**: 他のHololive Mod群を全部無効化し、本Mod単体(+依存先のGathering Storm)の新規ゲームでもパウズメニューは黒いまま
 - **ゲーム開始直後のタイミング問題でもなさそう**: 他Mod(フルカラーのみの素材)は新規ゲーム開始直後からパウズメニューで正しく表示される(「1パターン固定」=着色されず素材そのままの色で表示されている可能性が高い)ため、うちだけがタイミングで遅延して直る、という仮説は他Modとの比較で弱い
@@ -140,5 +143,6 @@ self.Controls.CivIcon:SetColor(frontColor);        -- アイコン本体をセ�
 
 ### 未検証の残った方向性
 
+- **なぜ「Major」汎用色プールが使われるのか**が次に追うべき本丸。`UI.GetPlayerColorValues(info.PlayerColor, info.PlayerColorIndex or 0)`(`PlayerSetupLogic.lua`851行目)や`UI.GetPlayerColors(m_pPlayer:GetID())`(`InGameTopOptionsMenu.lua`)が、うちの`PlayerColors.Type="LEADER_REGLOSS_ICHIJOU_RIRIKA"`エントリを見つけられず、Civ6標準のフォールバック(プレイヤー枠の並び順等でMajor色プールから自動割り当て)に落ちている可能性が高い。一方で全く同じ`UI.GetPlayerColors(playerID)`を使う外交パネル(`LeaderIcon.lua`)は正常にピンクを表示するので、**同じ関数でも呼び出し元によって解決結果が違う**(playerIDの解決タイミングか、Civilizations/Leadersテーブル側の何らかの登録漏れが影響している可能性)
 - パウズメニューのLuaに一時的なデバッグ用の上書き(`UI/Replacements/`相当の仕組みで`RefreshIconData`を再定義し、`m_primaryColor`/`m_secondaryColor`の実際の値を`print()`でLua.logに出力する)を仕込み、実際に何が返ってきているかを直接観測する。Civ6のUI Context上書きの仕組み自体をこのリポジトリでまだ使ったことがないため、そこから調べる必要がある
-- リーダー選択画面の能力アイコン(`PlayerSetupLogic.lua`849行目、`civAbility.Icon:SetIcon(info.CivilizationIcon)`)は`info.CivilizationAbilityIcon`ではなく`info.CivilizationIcon`(通常の文明バッジ)を見ている、という点は特定済み。同じファイル851行目の`UI.GetPlayerColorValues(info.PlayerColor, info.PlayerColorIndex or 0)`(2引数版)が期待通りの色を返せていない可能性が高いが、なぜ莉々華だけ2引数版が失敗するのかは未解明
+- リーダー選択画面の能力アイコン(`PlayerSetupLogic.lua`849行目、`civAbility.Icon:SetIcon(info.CivilizationIcon)`)は`info.CivilizationAbilityIcon`ではなく`info.CivilizationIcon`(通常の文明バッジ)を見ている、という点は特定済み
