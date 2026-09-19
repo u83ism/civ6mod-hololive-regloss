@@ -60,6 +60,9 @@ const downsampleImage = (source: RgbaImage, targetWidth: number, targetHeight: n
 // white silhouette (RGB=255,255,255) carrying only the shape in its alpha channel. The 45px
 // size is the one documented exception: it is displayed as-is without tinting (civics/tech
 // tree), so it must stay full color. Verified against vanilla CivAztec22/32/45.dds pixel data.
+// See icon-blp-pipeline.md's "白シルエット化" section for the full story (this was tried,
+// reverted to full-color-everywhere because of a still-unresolved leader-picker/pause-menu
+// color bug, and is now being re-tried).
 const toWhiteSilhouette = (image: RgbaImage): RgbaImage => {
   const silhouetteData = Buffer.from(image.data);
   for (let pixelIndex = 0; pixelIndex < silhouetteData.length; pixelIndex += 4) {

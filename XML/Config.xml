@@ -14,6 +14,7 @@
 			<Domain>Players:StandardPlayers</Domain>
 			<CivilizationType>CIVILIZATION_REGLOSS_ICHIJOU</CivilizationType>
 			<LeaderType>LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderType>
+			<PlayerColor>LEADER_REGLOSS_ICHIJOU_RIRIKA</PlayerColor>
 			<CivilizationName>LOC_CIVILIZATION_REGLOSS_ICHIJOU_NAME</CivilizationName>
 			<LeaderName>LOC_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME</LeaderName>
 			<CivilizationIcon>ICON_CIVILIZATION_REGLOSS_ICHIJOU</CivilizationIcon>
@@ -31,6 +32,7 @@
 			<Domain>Players:Expansion1_Players</Domain>
 			<CivilizationType>CIVILIZATION_REGLOSS_ICHIJOU</CivilizationType>
 			<LeaderType>LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderType>
+			<PlayerColor>LEADER_REGLOSS_ICHIJOU_RIRIKA</PlayerColor>
 			<CivilizationName>LOC_CIVILIZATION_REGLOSS_ICHIJOU_NAME</CivilizationName>
 			<LeaderName>LOC_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME</LeaderName>
 			<CivilizationIcon>ICON_CIVILIZATION_REGLOSS_ICHIJOU</CivilizationIcon>
@@ -48,6 +50,7 @@
 			<Domain>Players:Expansion2_Players</Domain>
 			<CivilizationType>CIVILIZATION_REGLOSS_ICHIJOU</CivilizationType>
 			<LeaderType>LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderType>
+			<PlayerColor>LEADER_REGLOSS_ICHIJOU_RIRIKA</PlayerColor>
 			<CivilizationName>LOC_CIVILIZATION_REGLOSS_ICHIJOU_NAME</CivilizationName>
 			<LeaderName>LOC_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME</LeaderName>
 			<CivilizationIcon>ICON_CIVILIZATION_REGLOSS_ICHIJOU</CivilizationIcon>

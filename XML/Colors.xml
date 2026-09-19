@@ -6,6 +6,24 @@
 	</Colors>
 
 	<PlayerColors>
-		<Row Type="LEADER_REGLOSS_ICHIJOU_RIRIKA" Usage="Unique" PrimaryColor="COLOR_PLAYER_REGLOSS_ICHIJOU_RIRIKA_PRIMARY" SecondaryColor="COLOR_PLAYER_REGLOSS_ICHIJOU_RIRIKA_SECONDARY"/>
+		<!--
+			GatheringStormの「Jersey System」(同じ文明が複数プレイヤーで重複した際の代替色)用に
+			Alt1〜Alt3を明示登録する。未設定だとUI.GetPlayerColorValues/GetPlayerColorsがnilを返し、
+			パウズメニュー等のアイコンが着色されず黒く見えるバグがあるため、通常色をそのまま流用する。
+			Alt1〜3は属性ではなく子要素で書く(DLC本体のExpansion2_PlayerColors.xmlや他Mod実例が
+			この形式だったため、属性形式で読み込まれない事例が過去にあった可能性を考慮)。
+		-->
+		<Row>
+			<Type>LEADER_REGLOSS_ICHIJOU_RIRIKA</Type>
+			<Usage>Unique</Usage>
+			<PrimaryColor>COLOR_PLAYER_REGLOSS_ICHIJOU_RIRIKA_PRIMARY</PrimaryColor>
+			<SecondaryColor>COLOR_PLAYER_REGLOSS_ICHIJOU_RIRIKA_SECONDARY</SecondaryColor>
+			<Alt1PrimaryColor>COLOR_PLAYER_REGLOSS_ICHIJOU_RIRIKA_PRIMARY</Alt1PrimaryColor>
+			<Alt1SecondaryColor>COLOR_PLAYER_REGLOSS_ICHIJOU_RIRIKA_SECONDARY</Alt1SecondaryColor>
+			<Alt2PrimaryColor>COLOR_PLAYER_REGLOSS_ICHIJOU_RIRIKA_PRIMARY</Alt2PrimaryColor>
+			<Alt2SecondaryColor>COLOR_PLAYER_REGLOSS_ICHIJOU_RIRIKA_SECONDARY</Alt2SecondaryColor>
+			<Alt3PrimaryColor>COLOR_PLAYER_REGLOSS_ICHIJOU_RIRIKA_PRIMARY</Alt3PrimaryColor>
+			<Alt3SecondaryColor>COLOR_PLAYER_REGLOSS_ICHIJOU_RIRIKA_SECONDARY</Alt3SecondaryColor>
+		</Row>
 	</PlayerColors>
 </GameData>
