@@ -1,0 +1,44 @@
+---
+name: mod-setup
+description: Hololive系リーダーMod(ReGLOSSシリーズの姉妹リポジトリ)を新規リポジトリとしてゼロから立ち上げる時に使う。「次のReGLOSSメンバーのModを始める」「新しいModリポジトリを作る」「姉妹リポジトリを立ち上げる」と言われたとき、または実際に新しい空リポジトリが作成された直後に必ず使うこと。leader-setup skillの前段にあたる(こちらはリポジトリの雛形、そちらはCivilization/Leader本体の実装)。
+---
+
+# Civ6新Modリポジトリの立ち上げ
+
+このSkillは`civ6mod-hololive-regloss`(一条莉々華Mod)を作った際の実際の試行錯誤から得られた、動作確認済みの雛形を再利用するためのもの。特にmodinfoのスキーマ選択は、一見動きそうに見える形式(`<ActionGroups>`)が実際には**MODが有効化リストに載るのに中身が一切適用されない**という、エラーも出ない厄介な不具合を踏んだ末に判明したものなので、必ずこの雛形をベースにすること(ゼロから書き直さない)。
+
+## 手順
+
+1. **リポジトリ作成**: `civ6mod-hololive-<member>`のような命名でGitリポジトリを作成、`git init`
+2. **フォルダ構成を作る**:
+   ```
+   <repo>/
+     <mod-name>.modinfo
+     XML/
+     Text/en_US/
+     Text/ja_JP/
+     Lua/.gitkeep
+     Art/Source/.gitkeep
+     Art/Icons/.gitkeep
+     docs/design.md
+     README.md
+     .gitignore
+     .claude/skills/mod-setup/     (このSkillごとコピーする)
+     .claude/skills/leader-setup/  (次のSkillごとコピーする)
+   ```
+   `.claude/skills/`配下の2つのSkillは、civ6mod-hololive-regloss(このMod)から**フォルダごとコピー**すること。個人グローバルのSkillフォルダには置かない(このMod系列固有の知見であり、ユーザーの全プロジェクトに影響を与えるべきではないため)
+3. **modinfo雛形を作る**: `assets/template.modinfo`をコピーし、以下を置換する
+   - `{{MOD_GUID}}`: 新しいGUIDを発行(PowerShellなら`[guid]::NewGuid().ToString()`)
+   - `{{MOD_NAME}}`: Mod名(例: "Hololive Todoroki Hajime")。**LOCキーではなくリテラル文字列でよい** — HktkNban氏・Neox氏の実働Modは両方ともProperties.Name/Teaser/Descriptionを生文字列にしており、これによりMod名解決専用のLocalizedTextブロックが不要になり、後述の重複INSERT問題を未然に回避できる
+   - ファイル参照(`XML/Civilizations.xml`等)はそのまま使ってよい
+4. **空のXML/Text雛形を作る**:
+   - `XML/Civilizations.xml`: `<?xml version="1.0" encoding="utf-8"?><GameData></GameData>`
+   - `Text/en_US/Text.xml`・`Text/ja_JP/Text.xml`: `<GameData><LocalizedText></LocalizedText></GameData>`
+5. **README.md / docs/design.md**: `assets/design.md.template`を参考に、経緯・参考資料・TODOの骨格を作る。civ6mod-hololive-reglossのdocs/design.mdを実例として直接参照してよい
+6. **ローカルテスト用のセットアップ**: `Documents\My Games\Sid Meier's Civilization VI\Mods\`に配置する。**シンボリックリンク/ジャンクションは避け、実フォルダとして配置するか、変更のたびにコピーする運用にする**(今回の一条莉々華Modのデバッグで、ジャンクション自体は無罪と判明したが、切り分けに時間を溶かした教訓として、最初から実体コピー運用にしておいた方が余計な疑いを持たずに済む)
+7. **ここまでできたら`leader-setup` Skillに進み、実際のCivilization/Leader/Traitを実装する**
+
+## 参考資料
+
+- 動作確認済みの実例: `civ6mod-hololive-regloss`リポジトリ全体(特に`civ6mod-hololive-regloss.modinfo`と`docs/design.md`)
+- 他作者の実働Mod(ローカルにインストール済みなら参照可能): `Documents\My Games\Sid Meier's Civilization VI\Mods\`配下のHktkNban氏シリーズ、`steamapps\workshop\content\289070\`配下のHoloEN/HoloID(Neox/Keniisu氏)

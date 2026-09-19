@@ -6,23 +6,15 @@
 
 Civilization VIの新文明追加Modを作りたい。テーマはhololive ReGLOSSをモチーフにした文明。既に他作者Modの改変(SQLファイル編集)経験はある。1本目としてこのMod、以降複数Modの構想あり。
 
-## Modding基礎知識(調査結果)
+## Modding基礎知識・実装手順
 
-- **開発ツール**: Steam版Dev Tools(ModBuddy)。Windows専用。ただしXML/SQL/Lua編集自体はテキストエディタで完結でき、ModBuddyが必須なのはSteam Workshopへの直接アップロード機能のみ
-- **ファイル構造**:
-  - `.modinfo` — Modのエントリポイント。`ActionGroups`で参照するファイルは`Files`にも列挙が必要
-  - `XML/` — Civilization / Leader / Trait / UniqueUnit等のDB定義(XML/SQL)
-  - `Text/` — ローカライズテキスト
-  - `Lua/` — GameEventsフック等のスクリプト
-  - `Art/` — アイコン・リーダーシーン等のアセット
-- **デバッグ**: ログフォルダの`database.log`(XML/SQL構文・DBエラー)、`lua.log`(Luaエラー)を見る
-- **新文明追加の最低構成**: Civilization, Leader, Trait(ユニーク能力の本体。`TraitType`経由でユニット・建物等に紐付ける), UniqueUnit, (任意で)UniqueBuilding/UniqueDistrict, アイコン等Art。`Players`テーブルへのリーダー登録も必要
-- **XML/SQLで足りる範囲**: 数値変更・既存ユニット置き換えなど、Traitシステムで表現できるもの
-- **Luaが必要になる境界**: 「〜するたびに」のような条件トリガー型の挙動は、GameEvents(例: `GameEvents.CityCaptureComplete`、`SerialEventCityCreated`等)をフックする形でしか実装できない。Lua側から任意にゲーム内部を触れるわけではなく、**用意されたイベントに反応する形のみ**。実装したい能力が既存のGameEventsでカバーされているか先に確認するのが肝心
+Civ6 Modding全般の基礎知識(ファイル構造、modinfoの正しいスキーマ、Config.xmlの必須項目、Icon/Portraitの作法)と実機デバッグ手順は、**このMod系列共通のSkillとして`.claude/skills/mod-setup`・`.claude/skills/leader-setup`に切り出した**(次のReGLOSSメンバーMod立ち上げ時にフォルダごとコピーして使う想定)。このdesign.mdには一条莉々華固有の設計判断だけを書く。
+
+- **Luaが必要になる境界**(Skillに含めていない一般知識): 「〜するたびに」のような条件トリガー型の挙動は、GameEvents(例: `GameEvents.CityCaptureComplete`、`SerialEventCityCreated`等)をフックする形でしか実装できない。Lua側から任意にゲーム内部を触れるわけではなく、**用意されたイベントに反応する形のみ**。実装したい能力が既存のGameEventsでカバーされているか先に確認するのが肝心
 
 ## 開発方針の決定事項
 
-- **ModBuddyを避ける**: 日本語エンコーディングで文字化けが起きやすい(過去の他作者Mod改変経験より)。普段の編集はテキストエディタ(UTF-8固定)で行い、ModBuddyはSteam Workshop公開時のみ使う想定。BOM有無がCiv6側パーサに影響するかは未検証 — 最初の日本語テキストを含むファイルで実機ロード確認が必要
+- **ModBuddyを避ける**: 日本語エンコーディングで文字化けが起きやすい(過去の他作者Mod改変経験より)。普段の編集はテキストエディタ(UTF-8固定)で行い、ModBuddyはSteam Workshop公開時・Art資産コンパイル時のみ使う想定
 - **リポジトリはMod単位で分割**: 複数Mod構想があるが、Civ6のWorkshop配布単位(Mod=1パッケージ・固有ID・独立バージョニング)と、ideaリポジトリの既存運用(1アイデア=1実装リポジトリ)に合わせ、Mod単位でリポジトリを分ける方針。Lua共通処理の重複が実際に見えてきたら、その時点で共通ライブラリ化を検討する
 
 ## 参考資料
@@ -51,10 +43,7 @@ Civilization VIの新文明追加Modを作りたい。テーマはhololive ReGLO
 | 戦略資源 | +5 |
 | 高級資源 | +10 |
 
-実装方式(実機のCiv6インストール先ファイルで実例を確認済み):
-- `MODIFIER_PLAYER_CITIES_ADJUST_RESOURCE_YIELD_BY_COUNT`(`EFFECT_ADJUST_RESOURCE_YIELD_BY_COUNT`、`CollectionType=COLLECTION_PLAYER_CITIES`) — エチオピア文明固有能力`TRAIT_FAITH_RESOURCES`が実際に使っている仕組み。引数は`YieldType`(今回は全て`YIELD_GOLD`)と`Amount`のみ
-- 上記だけだと資源クラスを区別しないため、`REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`(`ResourceClassType`引数に`RESOURCECLASS_BONUS`/`RESOURCECLASS_LUXURY`/`RESOURCECLASS_STRATEGIC`を指定)をSubjectRequirementSetとして組み合わせる。この組み合わせは`Beliefs.xml`内の宗教信仰(資源クラス別にMineボーナスを変える信仰)で実際に使われている前例あり
-- Modifierを3つ(ボーナス用/戦略用/高級用)作り、同じTraitに`TraitModifiers`で紐付ければ完成。**Lua不要、XML(SQL)のみで完結**
+実装方式は「実装状況」節を参照(`MODIFIER_ALL_CITIES_ATTACH_MODIFIER`+`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`+`REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`の組み合わせ、ベースゲームのみで完結・Lua不要)。
 
 ### 保留中の追加アイデア(技術検証済み・未実装)
 
@@ -86,23 +75,16 @@ TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA
 - `XML/Config.xml` — リーダー選択画面(フロントエンド)用の登録。Icon/Portrait/CivilizationAbilityはArt未着手・CivilizationTrait未設計のため未指定
 - `Text/en_US/Text.xml`・`Text/ja_JP/Text.xml` — 文明名・指導者名・Trait名/説明・都市名1件
 
-## 実機デバッグ記録(2026-09-19)
+## 実機デバッグ記録
 
-- ログ出力はデフォルト無効。`%LOCALAPPDATA%\Firaxis Games\Sid Meier's Civilization VI\AppOptions.txt`に`LoggingEnabled 1`を書けば有効化できる(`Documents\My Games\...\Logs`ではなく`%LOCALAPPDATA%\Firaxis Games\...\Logs`に出力される点に注意。READMEの想定と違うので追記要)
-- Modが有効化されても、`Modding.log`にファイル読み込みの形跡が一切出ない(エラーも出ない)という状態が発生した。原因は`Modding.log`ではなく**`Database.log`側**に出ていた: `ERROR: UNIQUE constraint failed: LocalizedText.Language, LocalizedText.Tag`
-  - 原因: `Text/en_US/Text.xml`・`Text/ja_JP/Text.xml`を、modinfoトップレベルの`<LocalizedText>`(Modブラウザの名前解決用)と、`ActionGroups`の`<UpdateText>`(shell/game両方)の3箇所で重複ロードしていた。同じ(Language, Tag)を2重INSERTしてトランザクション失敗 → そのMODの適用が丸ごとロールバックされ、他のMODは正常なのにうちのMODだけ何も反映されないという状態になっていた
-  - 対策: Mod名/Teaser/Description専用の`Text/en_US/PackageText.xml`・`Text/ja_JP/PackageText.xml`を分離し、トップレベル`<LocalizedText>`はこちらだけを参照するようにした(Firaxis公式モドと同じ分割パターン)
-- ディレクトリジャンクション経由でのMod配置も疑ったが、実フォルダコピーに変えても症状は変わらなかった(ジャンクションは無罪と判明)
-- **真因(最終的に判明)**: PackageText分離後もMODが有効化リストには入るのに`Modding.log`にファイル読み込みの形跡が一切出ない状態が続いた。原因はmodinfoのスキーマ選択そのもの — `<ActionGroups><ActionGroup scope="game/shell" criteria="...">`形式(Firaxis公式のDLC全般が使っている新しめの形式)を使っていたが、この環境では**MOD自体が有効化リストに載るのに中身の適用処理が一切トリガーされず、エラーも出ないまま素通りされる**という状態になった
-  - 修正: HktkNban系・Neox系(HoloEN/HoloID)がどちらも使っている**`<ActionCriteria />`(空)+`<FrontEndActions>`/`<InGameActions>`直下にアクション羅列**という一段古い形式に全面書き換えたところ、`ModdingUpdateConfigurationDatabase - Loading XML/Config.xml`のようなログが初めて出るようになった
-  - 教訓: 新しいDLCのソースが動いているからといって、そのスキーマ形式がコミュニティMod環境でも同様に動くとは限らない。既存の**実際に動作実績のあるMod**の構造に合わせるのが一番安全
-- 上記修正後、`Players`テーブルの大半の列がNOT NULL制約であることが芋づる式に判明(`LeaderIcon`→`LeaderAbilityIcon`→`CivilizationAbilityName`→おそらく`Portrait`/`PortraitBackground`も同様、と1つ直すたびに次のエラーが出る形で発覚)。Art未着手でも仮のType文字列を全項目に入れることで解決
-- 教訓: Mod内で同じテキストファイルを複数箇所から参照する際は、キーの重複に注意。`database.log`と`Modding.log`は別々に確認する必要がある(片方にしかエラーが出ないケースがある)
+2026-09-19、リーダー選択画面への表示・実ゲームでの資源特化Trait動作(高級資源タイルのゴールド産出増加)を確認済み。MODの基本的な骨格(文明・指導者・Trait)は動作するところまで到達した。
 
-**2026-09-19時点でリーダー選択画面への表示、および実ゲームでの資源特化Trait動作(高級資源タイルのゴールド産出増加)を確認済み。** MODの基本的な骨格(文明・指導者・Trait)は動作するところまで到達した。
+デバッグで踏んだ罠(modinfoスキーマの選択ミス、`Players`テーブルのNOT NULL地獄、LocalizedText/Colorsの重複INSERT、ログの有効化方法と2種類のログの見方)は汎用知識として`.claude/skills/leader-setup`に切り出し済み。次にModが読み込まれない系の問題が起きたら、まずそちらを参照する。
+
+未解決で残っているもの: `Text.xml`/`Colors.xml`をFrontEndActions/InGameActions両方から重複読み込みしている影響と思われる`UNIQUE constraint failed`警告(Database.log)が出続けている。動作に実害は無さそうだが未整理。
 
 ## 保留・未着手のTODO
-- [ ] `Text.xml`/`Colors.xml`をFrontEndActions/InGameActions両方から重複読み込みしている影響で出ている`UNIQUE constraint failed`警告(Database.log)の実害有無を確認し、必要なら整理する
+- [ ] 上記の`UNIQUE constraint failed`警告の整理(実害確認の上で、Text/Colorsの参照重複を解消する)
 - [ ] Trait名("[仮題] 資源王")・文明説明文・文明固有能力("未設計"のプレースホルダー)などの本文確定
 - [ ] 都市名リストの拡充(現状1件のみ)
 - [ ] Art本制作: `Art/Source/`に絵師(X上で公開)からのアイコン加工元画像(`ichijou-corporation-logo1〜3.jpg`、複数パターンが1枚にまとまっており切り出しが必要)、および`ichijou-ririka-stand.webp`(2000x2000、リーダーポートレート素材候補)を配置済み。現状`Art/Icons/`のバッジアイコンは、これらとは別の暫定ロゴ(32x32・低解像度、既に削除済み)から自動生成したものなので、上記素材から切り出した本番アイコンに差し替えが必要。リーダー選択画面の全身ポートレート(`IMG_LEADER_..._FOREGROUND/BACKGROUND`)はArtDef+XLP+ModBuddyのAsset Manager経由のコンパイルが必要そうで、PNG直置きの簡易ルートが見当たらなかった(要ModBuddy、ただしテキスト絡みの文字化け問題とは無関係なのでArt制作だけModBuddyを使う手はある)
