@@ -110,21 +110,34 @@ type IconSourceSpec = {
   readonly sizes: readonly number[];
   readonly nameForSize: (size: number) => string;
   readonly clipToCircle: boolean;
-  readonly isFullColorSize: (size: number) => boolean;
+  readonly isFullColor: boolean;
 };
 
 const sourceDirectory = join(import.meta.dirname, "..", "..", "Art", "Source");
 const outputDirectory = join(import.meta.dirname, "..", "..", "Art", "Icons");
 
+const civilizationFullColorSizes = civilizationIconSizes.filter((size) => size === 45);
+const civilizationSilhouetteSizes = civilizationIconSizes.filter((size) => size !== 45);
+
 const iconSources: readonly IconSourceSpec[] = [
   {
+    // Civ6 displays this one size as-is (civics/tech tree) instead of tinting it at
+    // runtime, so it's the only civilization badge size that stays full color.
     masterFileName: "ichijou-corporation-logo-circle.png",
-    sizes: civilizationIconSizes,
+    sizes: civilizationFullColorSizes,
     nameForSize: civilizationIconName,
-    clipToCircle: false, // already designed to fit the inscribed circle
-    // Civ6 tints every civilization badge size at runtime via SetColor(playerColor) except
-    // 45px, which civics/tech tree display as-is (see toWhiteSilhouette above).
-    isFullColorSize: (size) => size === 45,
+    clipToCircle: true, // math-precise circle edge, matching the leader portrait treatment
+    isFullColor: true,
+  },
+  {
+    // Every other civilization badge size is tinted at runtime via SetColor(playerColor),
+    // so the source must already be a white-on-transparent silhouette (see toWhiteSilhouette
+    // above): white background made transparent, only the logo mark left opaque.
+    masterFileName: "ichijou-corporation-logo-circle-for-transparent.png",
+    sizes: civilizationSilhouetteSizes,
+    nameForSize: civilizationIconName,
+    clipToCircle: false,
+    isFullColor: false,
   },
   {
     masterFileName: "ichijou-ririka-face.png",
@@ -132,11 +145,11 @@ const iconSources: readonly IconSourceSpec[] = [
     nameForSize: leaderIconName,
     clipToCircle: true,
     // Leader portraits are never tinted by the game, so they stay full color at every size.
-    isFullColorSize: () => true,
+    isFullColor: true,
   },
 ];
 
-for (const { masterFileName, sizes, nameForSize, clipToCircle, isFullColorSize } of iconSources) {
+for (const { masterFileName, sizes, nameForSize, clipToCircle, isFullColor } of iconSources) {
   const rawMaster = readRgbaImage(join(sourceDirectory, masterFileName));
   const master = clipToCircle ? maskToInscribedCircle(rawMaster) : rawMaster;
   for (const size of sizes) {
@@ -144,7 +157,7 @@ for (const { masterFileName, sizes, nameForSize, clipToCircle, isFullColorSize }
       throw new Error(`${masterFileName}: master is ${master.width}px, too small to produce a ${size}px icon`);
     }
     const resized = size === master.width ? master : downsampleImage(master, size, size);
-    const finalImage = isFullColorSize(size) ? resized : toWhiteSilhouette(resized);
+    const finalImage = isFullColor ? resized : toWhiteSilhouette(resized);
     writeIconPng(finalImage, join(outputDirectory, `${nameForSize(size)}.png`));
   }
 }
