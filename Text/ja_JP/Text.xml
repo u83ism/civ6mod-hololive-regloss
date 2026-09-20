@@ -45,7 +45,7 @@
 			<Text>秘書見習い達の奮闘</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION" Language="ja_JP">
-			<Text>タイルにボーナス資源がある場合は [ICON_Gold] ゴールド+3、戦略資源の場合は+5、高級資源の場合は+10。</Text>
+			<Text>資源タイルが開発済みの場合、ボーナス資源は [ICON_Gold] ゴールド+3、戦略資源は+5、高級資源は+10。</Text>
 		</Row>
 
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_HQ" Language="ja_JP">

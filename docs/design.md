@@ -35,7 +35,7 @@ Civ6 Modding全般の基礎知識(ファイル構造、modinfoの正しいスキ
 
 ### 一条莉々華: 確定した能力(2026-09-19)
 
-**資源クラス別ゴールドボーナス**(文明固有能力「秘書見習い達の奮闘」) — 通常の産出に加えて、所有する資源の数に応じてゴールドを追加で得る(暫定値、要バランス調整):
+**資源クラス別ゴールドボーナス**(文明固有能力「秘書見習い達の奮闘」) — 通常の産出に加えて、所有する資源のうち改善(施設)を建てて開発済みのものの数に応じてゴールドを追加で得る(未改善タイルはボーナス無し。暫定値、要バランス調整):
 
 | 資源クラス | 追加ゴールド(資源1つあたり) |
 |---|---|
@@ -43,7 +43,7 @@ Civ6 Modding全般の基礎知識(ファイル構造、modinfoの正しいスキ
 | 戦略資源 | +5 |
 | 高級資源 | +10 |
 
-実装方式は「実装状況」節を参照(`MODIFIER_ALL_CITIES_ATTACH_MODIFIER`+`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`+`REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`の組み合わせ、ベースゲームのみで完結・Lua不要)。当初は指導者固有能力(LeaderTrait)として実装したが、2026-09-19に文明固有能力(CivilizationTrait)へ移設した。指導者固有能力の中身は改めて別途設計する(現状はプレースホルダー、指導者能力名のみ「かわいい！ポジティブ！ジーニアス！」で確定・実機確認済み)。
+実装方式は「実装状況」節を参照(`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`+`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`+`REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`の組み合わせ、ベースゲームのみで完結・Lua不要)。当初は指導者固有能力(LeaderTrait)として実装したが、2026-09-19に文明固有能力(CivilizationTrait)へ移設した。指導者固有能力の中身は改めて別途設計する(現状はプレースホルダー、指導者能力名のみ「かわいい！ポジティブ！ジーニアス！」で確定・実機確認済み)。
 
 ### 保留中の追加アイデア(技術検証済み・未実装)
 
@@ -74,7 +74,7 @@ TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA  (アジェンダ紐付け用Trait)
 2026-09-20、ユニークアジェンダ「かわいい！ポジティブ！ジーニアス！」(`AGENDA_REGLOSS_ICHIJOU_RIRIKA`)を実装。指導者固有能力(`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`)の名前として確定していた「かわいい！ポジティブ！ジーニアス！」を、アジェンダ側の名前として付け替えた(指導者固有能力は名前も含めて完全にプレースホルダーへ戻った)。アレクサンドロス3世のユニークアジェンダ`AGENDA_SHORT_LIFE_GLORY`(実機データで確認済み: [基礎情報](#基礎情報2026-09-19確定)参照)を土台に着手したが、当初実装(莉々華自身との戦争状態のみを見る)は本人の意図(都市国家攻撃も含めた一般的な好戦性を見たい)と食い違っていたため、同日中にWarmonger判定ベースに変更した(好み=好戦的でない文明、嫌い=好戦的な文明)。不平(Grievance)減衰速度2倍(`MODIFIER_PLAYER_ADJUST_GRIEVANCE_DECAY`、`Amount=100`)は変更せず継承。
 
 - `XML/Leaders.xml` — Leader/Trait本体に加え、`Agendas`/`AgendaTraits`/`HistoricalAgendas`でユニークアジェンダを実装。好み/嫌いの判定は汎用の`MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER`+`REQUIREMENT_PLAYER_IS_NOT_WARMONGER`で組んでいる(バニラの専用ハードコードModifierType、例: `MODIFIER_PLAYER_DIPLOMACY_AGENDA_SHORT_LIFE_GLORY`、はModからは新規追加できないため代替)。好み側はバニラの`PLAYER_NOT_WARMONGER_SUBJECT`(`TRAIT_AGENDA_PEACEKEEPER`というRandom Agendaで実際に使われている生きたRequirementSet)を再利用、嫌い側の対になる`PLAYER_IS_WARMONGER_SUBJECT`はバニラの`AGENDA_MODIFIER_WARMONGER`が参照しているのに定義(RequirementSetRequirements)が丸ごと存在しない(バニラ側の未完成データの疑い)ため自前でInverse版を定義した。`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`はName/Description参照のみ持ち、効果(Modifier)は無し。指導者固有能力の中身は未設計
-- `XML/Civilizations.xml` — Civilization本体、CivilizationLeaders、CityNames(暫定で1件のみ)、および`TRAIT_CIVILIZATION_REGLOSS_ICHIJOU`(資源特化Trait本体)。`MODIFIER_ALL_CITIES_ATTACH_MODIFIER`で`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`(+`REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`)を自国の全都市に付与する構造。Firaxis公式信仰"Religious Idols"と同じパターンで、ベースゲームのみで完結(拡張パック依存なし)
+- `XML/Civilizations.xml` — Civilization本体、CivilizationLeaders、CityNames(暫定で1件のみ)、および`TRAIT_CIVILIZATION_REGLOSS_ICHIJOU`(資源特化Trait本体)。`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`で`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`(+`REQUIREMENT_PLOT_IMPROVED_RESOURCE_CLASS_TYPE_MATCHES`、資源クラス一致かつ改善済みのタイルのみ)を自国の全都市に付与する構造。Firaxis公式信仰"Religious Idols"と似たパターンだが、外側ModifierTypeはReligious Idols本体の`MODIFIER_ALL_CITIES_ATTACH_MODIFIER`(全プレイヤーの全都市が対象)ではなく自国限定の`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`を使う必要がある(下記「実機デバッグ記録」参照)。ベースゲームのみで完結を目指しているが、`REQUIREMENT_PLOT_IMPROVED_RESOURCE_CLASS_TYPE_MATCHES`の拡張パック依存有無は未検証(下記「実機デバッグ記録」参照)
   - 当初案(`MODIFIER_PLAYER_CITIES_ADJUST_RESOURCE_YIELD_BY_COUNT`、エチオピア方式)は資源クラスでの絞り込みができない(Subjectが都市でありタイルでないため)ことが実装直前に判明し、上記方式に変更した
 - `XML/Colors.xml` — Colors/PlayerColors
 - `XML/Config.xml` — リーダー選択画面(フロントエンド)用の登録。Icon/PortraitはArt未着手のため未指定。CivilizationAbility名/説明はCivilizationTrait実装済みのLOCキーを参照
@@ -99,6 +99,20 @@ TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA  (アジェンダ紐付け用Trait)
 デバッグで踏んだ罠(modinfoスキーマの選択ミス、`Players`テーブルのNOT NULL地獄、LocalizedText/Colorsの重複INSERT、ログの有効化方法と2種類のログの見方)は汎用知識として`.claude/skills/leader-bootstrap`に切り出し済み。次にModが読み込まれない系の問題が起きたら、まずそちらを参照する。
 
 未解決で残っているもの: `Text.xml`/`Colors.xml`をFrontEndActions/InGameActions両方から重複読み込みしている影響と思われる`UNIQUE constraint failed`警告(Database.log)が出続けている。動作に実害は無さそうだが未整理。
+
+**2026-09-20、実機プレイで資源特化Traitの重大バグを発見・修正(3件)**。いずれも一次情報(Civ6本体の`Base/Assets/Gameplay/Data/Modifiers.xml`/`Beliefs.xml`、`DLC/Expansion1/Data/Expansion1_Civilizations_Major.xml`、`DLC/CatherineDeMedici/Data/CatherineDeMedici_Leaders.xml`、`DLC/Expansion2/Data/Expansion2_Beliefs.xml`)で原因を裏取りした上で修正した(`civ6-mod-research` Skill手順に従い、SDK同梱ではなくゲーム本体のインストール先XMLを直接調査):
+
+1. **敵文明の都市にも効果が出るバグ**: 外側Modifierの`MODIFIER_ALL_CITIES_ATTACH_MODIFIER`は`CollectionType=COLLECTION_ALL_CITIES`(`Modifiers.xml`で確認)であり、名前に反して**ゲーム内の全プレイヤーの全都市が対象**。Religious Idolsが絞り込み無しで問題ないのは、信仰ベリーフが本来「そのベリーフの宗教が多数派の都市ならどの文明でも効く」仕様だから。文明固有Trait(自国限定であるべき)にそのまま流用すると他文明の都市にも波及してしまう。自国の都市だけに絞る`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`(`CollectionType=COLLECTION_PLAYER_CITIES`)に変更して解消(公式のToqui/Mapuche文明トレイトが同じ絞り込みを使用しているのを確認)。
+2. **未発見の戦略資源タイル(一見空き地)にもボーナスが出るバグ**: `REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`は資源クラスの一致しか見ておらず、プレイヤーにまだ発見(可視化)されているかは問わない。当初は公式の`PLOT_HAS_STRATEGIC_MINE_REQUIREMENTS`(Beliefs.xml)に倣い`REQUIREMENT_PLOT_RESOURCE_VISIBLE`を`REGLOSS_ICHIJOU_REQSET_PLOT_STRATEGIC`にAND追加して解消したが、3番目の変更で後述の`REQUIREMENT_PLOT_IMPROVED_RESOURCE_CLASS_TYPE_MATCHES`に置き換わり、この可視性チェック自体は不要になり削除した。
+3. **未開発(未改善)のタイルにもボーナスが出る仕様変更依頼**: 「資源タイルを改善(施設を建てる)して開発しないとボーナスが出ないようにしたい。ただし無関係な改善(例: 資源なし丘陵の鉱山)には付けたくない」という要望を受け、`REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`(資源クラス一致のみ判定)を`REQUIREMENT_PLOT_IMPROVED_RESOURCE_CLASS_TYPE_MATCHES`(資源クラス一致+正しい改善が建っていることを1つで判定)に置き換えた。Catherine de Medici指導者固有能力(`RESOURCECLASS_LUXURY`)・Gathering Storm信仰"Work Ethic"(`RESOURCECLASS_STRATEGIC`)で実例確認。資源クラスとの一致が前提のため無関係な改善では発火せず、改善済みなら発見済みでもあるため上記2の可視性チェックも自然に不要になった。**未検証の懸念**: この`RequirementType`のデータ上の使用例はいずれも拡張パック関連ファイルにしかなく、`RESOURCECLASS_BONUS`での使用例も未確認(`STRATEGIC`/`LUXURY`のみ)。Catherine de Mediciの`.modinfo`は拡張パック無しロースター(`Players:StandardPlayers`)でも読み込まれる条件になっており拡張パック限定ではない可能性が高いが、実機(拡張パック無し環境)での動作未確認。
+
+この3点は`.claude/skills/leader-abilities/SKILL.md`にも罠として反映済み。
+
+**2026-09-20、`REQUIREMENT_PLOT_IMPROVED_RESOURCE_CLASS_TYPE_MATCHES`の「改善済み」判定の実機挙動を2パターン確認(REGLOSSの資源特化Traitで検証)**:
+- **都市中心(City Center)の下に資源がある場合 → 改善済み扱いにならず、ボーナス不発火**(実機確認済み)。資源タイルに直接都市を建てると資源へのアクセス自体は維持される(Civ6の既知の仕様)が、それとは別に「改善済み」判定は満たさない。都市中心は`Improvement`ではなく`District`(`DISTRICT_CITY_CENTER`)なので「`Improvement`オブジェクトの有無」を見ている可能性が高いと予想したのは、この点では正しかった
+- **産業区域(Industrial Zone)の下に資源がある場合 → 改善済み扱いになり、ボーナス発火**(実機確認済み)。区域は`Improvement`ではなく`District`という点は都市中心と同じカテゴリだが、実際には都市中心と異なり改善済み判定を満たした。「`District`か`Improvement`か」という単純な二分では説明が付かないため、判定ロジックの詳細は依然不明(都市中心だけが特別扱いされている可能性が高い)。産業区域以外の区域(聖地・キャンパス等)でも同様に改善済み扱いになるかは未検証
+
+この2点も同じ`RequirementType`を使う限りカトリーヌ・ド・メディシスの能力(`TRAIT_LEADER_MAGNIFICENCES`)にも同様に当てはまるはずだが、そちらは未検証。
 
 ## 保留・未着手のTODO
 - [ ] 上記の`UNIQUE constraint failed`警告の整理(実害確認の上で、Text/Colorsの参照重複を解消する)

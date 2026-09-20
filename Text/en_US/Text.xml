@@ -45,7 +45,7 @@
 			<Text>The Junior Secretaries' Hustle</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION" Language="en_US">
-			<Text>Tiles provide +3 [ICON_Gold] Gold for a Bonus resource, +5 for a Strategic resource, and +10 for a Luxury resource.</Text>
+			<Text>Tiles with an improved resource provide +3 [ICON_Gold] Gold for a Bonus resource, +5 for a Strategic resource, and +10 for a Luxury resource.</Text>
 		</Row>
 
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_HQ" Language="en_US">
