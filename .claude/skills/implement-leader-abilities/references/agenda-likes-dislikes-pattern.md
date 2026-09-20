@@ -23,4 +23,4 @@ ModifierArguments: InitialValue(好み=正の値、嫌い=負の値)/StatementKe
 
 自分自身(Owner)は`REQUIRES_MAJOR_CIV_OPPONENT`を満たせないため、Subject候補には数えられるがカウントには入らない(1vs1なら「対象1件」が自動的に相手プレイヤーになる)。**このAgendaはAIが操作している時だけ機能する**(人間が操作する文明自身のAgendaは、他者からの評価に一切使われない。外交画面の「相手が自分をどう思っているか」は常に相手側=AIのDiplomaticAIが自分のAgendaを使って計算するもので、人間側のAgendaが誰かの意見として表示される画面は存在しない)。
 
-デバッグにはFireTuner(`leader-bootstrap/references/firetuner.md`参照)の`Diplomacy.ltp`パネルが有効。`GameEffects.GetModifiers()`でModifierインスタンスのOwner/Subject数(`# Subjects/Tracked`)/Activeを直接見られるので、Opinion画面に反映される前に「そもそも発火しているか」を切り分けられる。
+デバッグにはFireTuner(`bootstrap-leader/references/firetuner.md`参照)の`Diplomacy.ltp`パネルが有効。`GameEffects.GetModifiers()`でModifierインスタンスのOwner/Subject数(`# Subjects/Tracked`)/Activeを直接見られるので、Opinion画面に反映される前に「そもそも発火しているか」を切り分けられる。

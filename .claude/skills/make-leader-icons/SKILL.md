@@ -1,13 +1,13 @@
 ---
 name: make-leader-icons
-description: Civ6 Modで文明/指導者のバッジアイコン(`ICON_CIVILIZATION_*`/`ICON_LEADER_*`)を、キャラクター元絵から実際に生成する時に使う。「アイコンを作る」「バッジアイコンを差し替える」「選択画面が？のまま」「BLPをビルドする」「XLP/.texを書く」と言われたとき、または`tools/png2dds/gen-icon-sources.ts`・`build-icons.ts`・`gen-tex.ts`・`gen-xlp.ts`を新規に書く/実機デバッグする場面で使う。`FALLBACK_NEUTRAL_*`/`LEADER_*_NEUTRAL`/`LEADER_*_BACKGROUND`(外交交渉画面・ローディング画面)は`make-fallback-portrait` Skillの範囲。`leader-bootstrap`で指導者が選択画面に出るところまで終わった後、または並行して使う独立作業。
+description: Civ6 Modで文明/指導者のバッジアイコン(`ICON_CIVILIZATION_*`/`ICON_LEADER_*`)を、キャラクター元絵から実際に生成する時に使う。「アイコンを作る」「バッジアイコンを差し替える」「選択画面が？のまま」「BLPをビルドする」「XLP/.texを書く」と言われたとき、または`tools/png2dds/gen-icon-sources.ts`・`build-icons.ts`・`gen-tex.ts`・`gen-xlp.ts`を新規に書く/実機デバッグする場面で使う。`FALLBACK_NEUTRAL_*`/`LEADER_*_NEUTRAL`/`LEADER_*_BACKGROUND`(外交交渉画面・ローディング画面)は`make-fallback-portrait` Skillの範囲。`bootstrap-leader`で指導者が選択画面に出るところまで終わった後、または並行して使う独立作業。
 ---
 
 # バッジアイコンの制作手順
 
 一条莉々華Mod(civ6mod-hololive-regloss)で確立した、キャラクター元絵からバッジアイコン(文明/指導者の丸いバッジ、選択画面・外交パネル・技術/社会制度ツリー等で使われる)を作る一連の手順。**ここに書く内容はすべて実機で確認済みの事実**。
 
-Civ/Leaderの選択画面自体は`leader-bootstrap` Skillの範囲で(アイコンが未着手の「？」フォールバックのままでも)動作するようになる。アイコンの実装はそこから独立して進められる別作業だが、**GUIツール(ModBuddy)を介した手作業が多く工数が重いので、着手前に`references/icon-blp-pipeline.md`を一通り読んでから始めること**。
+Civ/Leaderの選択画面自体は`bootstrap-leader` Skillの範囲で(アイコンが未着手の「？」フォールバックのままでも)動作するようになる。アイコンの実装はそこから独立して進められる別作業だが、**GUIツール(ModBuddy)を介した手作業が多く工数が重いので、着手前に`references/icon-blp-pipeline.md`を一通り読んでから始めること**。
 
 **断片情報から仮説を積み上げがちな調査が必要になったら、先に`research-mod` Skillに従って一次情報を洗うこと。**
 

@@ -1,6 +1,6 @@
 ---
 name: research-mod
-description: Civ6 Mod制作に関わる調べ物をする時は、詰まる前・仮説を立てる前の時点で真っ先に必ず使う(「詰まったら使う」ではない)。ModBuddy/Art/Icon/XLP/ArtDef/BLPなど公式ドキュメントが薄い領域はもちろん、Civ6 Modding全般(XML/Lua実装、ゲーム仕様確認、数値・サイズ等の裏取り)が対象。「これってどうなってるんだっけ」「Civ6 modで◯◯できる?」「なんで動かないか調べて」「(仕様/数値/サイズ)を確認して」と言われたとき、または断片的な情報だけで仮説を立てて試行錯誤しそうになった場面で使う。バイナリ解析や汎用WebSearchに自己判断で進む前に、まずこのSkillの優先順位に従うこと。leader-bootstrap/mod-bootstrap skillの実装作業中の調査手順としても使う。
+description: Civ6 Mod制作に関わる調べ物をする時は、詰まる前・仮説を立てる前の時点で真っ先に必ず使う(「詰まったら使う」ではない)。ModBuddy/Art/Icon/XLP/ArtDef/BLPなど公式ドキュメントが薄い領域はもちろん、Civ6 Modding全般(XML/Lua実装、ゲーム仕様確認、数値・サイズ等の裏取り)が対象。「これってどうなってるんだっけ」「Civ6 modで◯◯できる?」「なんで動かないか調べて」「(仕様/数値/サイズ)を確認して」と言われたとき、または断片的な情報だけで仮説を立てて試行錯誤しそうになった場面で使う。バイナリ解析や汎用WebSearchに自己判断で進む前に、まずこのSkillの優先順位に従うこと。bootstrap-leader/bootstrap-mod skillの実装作業中の調査手順としても使う。
 ---
 
 # Civ6 Modding調べ物の作法
@@ -16,8 +16,8 @@ Civ6のModBuddy/Art Pipeline周りは公式ドキュメントが薄く、英語�
    - `make-fallback-portrait/references/fallback-and-loading-schema.md`(外交交渉画面フォールバック・ローディング画面、実機確認済み)/`docs/civ6-research/diplomacy-background-and-leader-select-portrait.md`(外交交渉画面の背景・リーダー選択画面ポートレート、未検証)
    - `docs/civ6-research/trait-and-identity-patterns.md`(文明特性・指導者特性・文明カラー・AIの好み・多言語対応、未検証)
    - `docs/civ6-research/unique-content-patterns.md`(固有ユニット/区域/施設/建造物=UU/UD/UI/UB、未検証)
-   - `docs/civ6-research/leader-bootstrap-troubleshooting.md`(LeaderCriteriaクラッシュ対処・DLC対応、未検証)
-   - `leader-bootstrap/references/firetuner.md`(FireTunerによる実機Live操作・God Mode的デバッグ、実機確認済み)
+   - `docs/civ6-research/bootstrap-leader-troubleshooting.md`(LeaderCriteriaクラッシュ対処・DLC対応、未検証)
+   - `bootstrap-leader/references/firetuner.md`(FireTunerによる実機Live操作・God Mode的デバッグ、実機確認済み)
 2. **GSLeaderTemplate・実際に動くModサンプル(サンプル・テンプレート)**。詳細は3節参照。実際に動作するModBuddyプロジェクトファイル一式で、スキーマの実例として非常に有用
 3. **実機にインストール済みの参考Mod**(`Documents/My Games/Sid Meier's Civilization VI/Mods/`配下)。実際に動いている他ModのXML/modinfoは伝聞より確実な一次情報。複数の独立したMod(できれば作者違い)で同じパターンが確認できれば、それはほぼ確定的な事実として扱ってよい
 4. **Civ6 SDK同梱ドキュメント/サンプル**(`Sid Meier's Civilization VI SDK/Documentation/Civ6Docs.html`、`Examples/Example Art Mod/`)。公式だが英語かつ量が多いので、上記1-3で仮説が立った後の裏取りに向く
@@ -47,8 +47,8 @@ Civ6のModBuddy/Art Pipeline周りは公式ドキュメントが薄く、英語�
 
 | ページ名 | 収録先 |
 | --- | --- |
-| 指導者の定義を変えるとクラッシュする場合の対処 | `docs/civ6-research/leader-bootstrap-troubleshooting.md` |
-| DLC対応 | `docs/civ6-research/leader-bootstrap-troubleshooting.md` |
+| 指導者の定義を変えるとクラッシュする場合の対処 | `docs/civ6-research/bootstrap-leader-troubleshooting.md` |
+| DLC対応 | `docs/civ6-research/bootstrap-leader-troubleshooting.md` |
 | 多言語対応(日本語化) | `docs/civ6-research/trait-and-identity-patterns.md` |
 | **各種ログの出力** | 未収録 |
 | **LEADER_JASPER_KITTYの罠** | 未収録(SDKサンプルCiv `LEADER_JASPER_KITTY`を参考にする際の落とし穴。3節のSDK Example Art Modに関連) |
@@ -61,7 +61,7 @@ Civ6のModBuddy/Art Pipeline周りは公式ドキュメントが薄く、英語�
 `https://brokenhumanoid.oops.jp/public/mdwiki/#!<ページ名>.md`(MDwiki形式のSPAなので、WebFetchでは中身が取れない。`curl -s -A "Mozilla/5.0" "https://brokenhumanoid.oops.jp/public/mdwiki/<ページ名>.md"`で生Markdownを直接取得すること)。ナビゲーション(`navigation.md`)に載っている全ページ:
 
 - Tutorial: `ModBuddy.md`(環境設定) / `CreateVanilla.md`(プロジェクト作成) / `initialize.md`(最初にやること) / `LeaderTraits.md`(指導者特性) / `MiscLeaders.md`(アジェンダ・好む宗教・AIの設定) / `CivilizationTraits.md`(文明特性) / `MiscCiv.md`(都市名・市民名・開始地点補正) / `ChangeCivColors.md`(文明カラー) / `UniqueUnits.md` / `UniqueDistricts.md` / `UniqueBuildings.md` / `UniqueImprovements.md`(固有UU/UD/UB/UI) / `mod_uniqued.md`(MODの固有化)
-- Tips: `TipsCombatBonus1.md`(相手の状態による戦闘力増加特性) / `TipsCombatBonus2.md`(自軍の状態による戦闘力増加特性) / `ChangeModifiers.md`(Modifierの効果範囲を変える) / `ChangeMusic.md`(音楽の変更) / `Wwise.md`(サウンド追加) / `FireTuner.md`(→`leader-bootstrap/references/firetuner.md`に収録済み)
+- Tips: `TipsCombatBonus1.md`(相手の状態による戦闘力増加特性) / `TipsCombatBonus2.md`(自軍の状態による戦闘力増加特性) / `ChangeModifiers.md`(Modifierの効果範囲を変える) / `ChangeMusic.md`(音楽の変更) / `Wwise.md`(サウンド追加) / `FireTuner.md`(→`bootstrap-leader/references/firetuner.md`に収録済み)
 - コメントアウトされ未執筆(存在しない): エラーログ/Workshop公開/DLC参照/指導者・背景画像変更/アイコン作成/河川湖山脈砂漠の名前/ユニークプロジェクト/固有総督/Lua Script。リンクをたどっても404なので深追いしない
 
 civ6wiki.infoと内容が重なる項目(指導者特性・文明特性・文明カラー・UU/UD/UB/UI等)も多いが、著者の別解説として食い違いがあれば両方読んで判断すること。
@@ -102,4 +102,4 @@ ModBuddyプロジェクトのテンプレート一式。`GSLeaderTemplate/GSLead
 
 ## 5. 判断に迷ったら実機ログより先にここを見る
 
-`leader-bootstrap` Skill 5節の実機デバッグ手順(Modding.log/Database.log確認)は「配線が正しく見えるのに動かない」時の一番強い証拠だが、**そもそもの手順自体が根本的に間違っている**(例: BLPコンパイルが必須なのにXMLの書き方だけ疑っている)場合はログを何度見ても手がかりが出ない。ログ調査で埒が明かない、かつ触っている領域がArt/Icon/ModBuddyなら、ログの深掘りを続ける前に本Skillの1節に戻ること。
+`bootstrap-leader` Skill 5節の実機デバッグ手順(Modding.log/Database.log確認)は「配線が正しく見えるのに動かない」時の一番強い証拠だが、**そもそもの手順自体が根本的に間違っている**(例: BLPコンパイルが必須なのにXMLの書き方だけ疑っている)場合はログを何度見ても手がかりが出ない。ログ調査で埒が明かない、かつ触っている領域がArt/Icon/ModBuddyなら、ログの深掘りを続ける前に本Skillの1節に戻ること。

@@ -4,7 +4,7 @@
 
 ## これは何か
 
-Civ6 SDKに同梱されている開発者向けツール。稼働中のCiv6にLive接続し、文明のゴールド付与・テクノロジー強制解禁・都市への生産力注入・外交状態の確認/操作などをその場で行える。`Modding.log`/`Database.log`(`leader-bootstrap` Skill5節)が「後から読むログ」なのに対し、FireTunerは「今動いているゲームの状態を直接いじる」ツールなので、Trait/Modifierの効果やAIの反応(Opinion/Agenda等)をログに出る前にその場で確認・誘発したいときに向いている。実績解除には使えない(開発者ツール扱いのため)。
+Civ6 SDKに同梱されている開発者向けツール。稼働中のCiv6にLive接続し、文明のゴールド付与・テクノロジー強制解禁・都市への生産力注入・外交状態の確認/操作などをその場で行える。`Modding.log`/`Database.log`(`bootstrap-leader` Skill5節)が「後から読むログ」なのに対し、FireTunerは「今動いているゲームの状態を直接いじる」ツールなので、Trait/Modifierの効果やAIの反応(Opinion/Agenda等)をログに出る前にその場で確認・誘発したいときに向いている。実績解除には使えない(開発者ツール扱いのため)。
 
 ## 有効化(初回のみ)
 
@@ -16,7 +16,7 @@ Civ6 SDKに同梱されている開発者向けツール。稼働中のCiv6にLi
 EnableTuner 0
 ```
 
-`EnableTuner 1`に書き換えてCiv6を完全終了→再起動する(`leader-bootstrap` Skill5節の「変更を加えたら必ず完全終了→再起動」と同じ注意)。すぐ下に`EnableDebugMenu 0`(ゲーム内デバッグメニュー)もあるが、これは別機能で今回は未検証・未使用。
+`EnableTuner 1`に書き換えてCiv6を完全終了→再起動する(`bootstrap-leader` Skill5節の「変更を加えたら必ず完全終了→再起動」と同じ注意)。すぐ下に`EnableDebugMenu 0`(ゲーム内デバッグメニュー)もあるが、これは別機能で今回は未検証・未使用。
 
 ## 起動方法
 

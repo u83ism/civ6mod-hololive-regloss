@@ -6,7 +6,7 @@
 
 `Documents/My Games/Sid Meier's Civilization VI/Mods/`配下の実働Mod(HktkNban/Neox氏系のHololive 1st〜5th Generation、Hololive GAMERS、Uruha Rushia、計7Mod)を全部調べたところ、例外なく`Platforms/{Windows,MacOS}/BLPs/UI/Icons.blp`(ModBuddyコンパイル済みバイナリ)を持ち、loose png/ddsは1つも無かった。`IconTextureAtlases`の`Filename`属性(例: `ICON_CIV_AKAI_HEART_128.dds`)は実ファイルパスではなく、**XLP内のEntryID(シンボル名)**を指しているだけで、実体ピクセルは`.blp`の中にある。
 
-ログでの見え方: `%LOCALAPPDATA%\Firaxis Games\Sid Meier's Civilization VI\Logs\`の`Modding.log`(`UpdateIcons - Loading ...`は出る=XMLは読めている)、`Database.log`(NOT NULL/UNIQUE等のエラー無し=DBインサートは成功している)、`UserInterface.log`(他Modの壊れたアイコンは`[DataError] IconManager is unable to find the icon "..."`と出るのに、こちらは該当ログ行自体が皆無)——**DB登録は成功しているのにUI層への問い合わせ痕跡が一切無い**まま「？」になる。このパターンはmodinfoスキーマ問題(`leader-bootstrap/SKILL.md` 2節)と類似するので混同注意。
+ログでの見え方: `%LOCALAPPDATA%\Firaxis Games\Sid Meier's Civilization VI\Logs\`の`Modding.log`(`UpdateIcons - Loading ...`は出る=XMLは読めている)、`Database.log`(NOT NULL/UNIQUE等のエラー無し=DBインサートは成功している)、`UserInterface.log`(他Modの壊れたアイコンは`[DataError] IconManager is unable to find the icon "..."`と出るのに、こちらは該当ログ行自体が皆無)——**DB登録は成功しているのにUI層への問い合わせ痕跡が一切無い**まま「？」になる。このパターンはmodinfoスキーマ問題(`bootstrap-leader/SKILL.md` 2節)と類似するので混同注意。
 
 ## 正しい手順(civ6wiki.infoで確認済み)
 

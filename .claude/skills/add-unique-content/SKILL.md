@@ -1,11 +1,11 @@
 ---
-name: leader-unique-content
-description: Civ6 Modで固有ユニット/区域/施設/建造物(UU/UD/UI/UB)を追加する時に使う。「ユニークユニットを追加する」「固有区域を作る」「固有施設・改善を実装する」「固有建造物を実装する」と言われたとき、または`UnitReplaces`/`DistrictReplaces`等の置換要素を新規に書く場面で使う。leader-bootstrapで指導者が選択画面に出るところまで終わった後に使う。
+name: add-unique-content
+description: Civ6 Modで固有ユニット/区域/施設/建造物(UU/UD/UI/UB)を追加する時に使う。「ユニークユニットを追加する」「固有区域を作る」「固有施設・改善を実装する」「固有建造物を実装する」と言われたとき、または`UnitReplaces`/`DistrictReplaces`等の置換要素を新規に書く場面で使う。bootstrap-leaderで指導者が選択画面に出るところまで終わった後に使う。
 ---
 
 # 固有ユニット・区域・施設・建造物(UU/UD/UI/UB)の実装
 
-一条莉々華Mod(civ6mod-hololive-regloss)ではまだ未着手の領域。**このSKILL.md自体、まだ実機で何も検証していない**(civ6wiki.infoの未検証要約しか材料が無いため)。着手時は`docs/civ6-research/unique-content-patterns.md`(civ6wiki.info要約、2017〜2022年執筆、SDKサンプル`LEADER_JASPER_KITTY`/`CIVILIZATION_FELINE`を素材にした写経チュートリアル)を先に読むこと。実装しながら食い違いが見つかったら実機での挙動を優先し、**確認できたパターンをこのSKILL.mdに直接書き足していく**(このSkillは着手後、`make-fallback-portrait`のような実機確認済みの「作る手順」Skillへ育てていく前提)。`leader-bootstrap`/`make-leader-icons`双方とも整合を取ること。
+一条莉々華Mod(civ6mod-hololive-regloss)ではまだ未着手の領域。**このSKILL.md自体、まだ実機で何も検証していない**(civ6wiki.infoの未検証要約しか材料が無いため)。着手時は`docs/civ6-research/unique-content-patterns.md`(civ6wiki.info要約、2017〜2022年執筆、SDKサンプル`LEADER_JASPER_KITTY`/`CIVILIZATION_FELINE`を素材にした写経チュートリアル)を先に読むこと。実装しながら食い違いが見つかったら実機での挙動を優先し、**確認できたパターンをこのSKILL.mdに直接書き足していく**(このSkillは着手後、`make-fallback-portrait`のような実機確認済みの「作る手順」Skillへ育てていく前提)。`bootstrap-leader`/`make-leader-icons`双方とも整合を取ること。
 
 ## 要点だけ先に(未検証)
 

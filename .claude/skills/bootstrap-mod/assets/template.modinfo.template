@@ -54,6 +54,6 @@
 		<File>Text/en_US/Text.xml</File>
 		<File>Text/ja_JP/Text.xml</File>
 		<File>Art/Icons/Icons.xml</File>
-		<!-- Art/Icons配下の各サイズPNGもここに追加していく(leader-bootstrap Skill参照) -->
+		<!-- Art/Icons配下の各サイズPNGもここに追加していく(bootstrap-leader Skill参照) -->
 	</Files>
 </Mod>

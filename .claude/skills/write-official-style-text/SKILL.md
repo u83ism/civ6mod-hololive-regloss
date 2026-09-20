@@ -1,11 +1,11 @@
 ---
 name: write-official-style-text
-description: Civ6 Mod向けにゲーム内テキスト(文明/指導者Traitの`_NAME`・`_DESCRIPTION`、ユニット/建造物/Civilopedia等の説明文)を公式の文体に合わせて書く時に使う。「能力の説明文を書く」「Trait名を考える」「説明文を日本語で書く」「多言語化する」「公式っぽい言い回しにして」と言われたとき、またはLOCテキストを新規に書く/レビューする場面で使う。Trait名限定のSkillではない。Modifier/RequirementのXML実装自体は`leader-abilities`等の各実装Skillの範囲(そちらは効果の実装、こちらはテキストの文体)。
+description: Civ6 Mod向けにゲーム内テキスト(文明/指導者Traitの`_NAME`・`_DESCRIPTION`、ユニット/建造物/Civilopedia等の説明文)を公式の文体に合わせて書く時に使う。「能力の説明文を書く」「Trait名を考える」「説明文を日本語で書く」「多言語化する」「公式っぽい言い回しにして」と言われたとき、またはLOCテキストを新規に書く/レビューする場面で使う。Trait名限定のSkillではない。Modifier/RequirementのXML実装自体は`implement-leader-abilities`等の各実装Skillの範囲(そちらは効果の実装、こちらはテキストの文体)。
 ---
 
 # Civ6公式スタイルのゲーム内テキストを書く
 
-一条莉々華Mod(civ6mod-hololive-regloss)の実装で確立した、ゲーム内テキストを公式の文体に揃えるためのガイド。効果(Modifier/Requirement)自体の実装は範囲外(`leader-abilities`等の各実装Skillを使う)。
+一条莉々華Mod(civ6mod-hololive-regloss)の実装で確立した、ゲーム内テキストを公式の文体に揃えるためのガイド。効果(Modifier/Requirement)自体の実装は範囲外(`implement-leader-abilities`等の各実装Skillを使う)。
 
 新しいテキストを日本語で書く前に、`references/official-text-style.md`を読むこと。公式Trait説明文422件(バニラ〜Leader Pass、全DLC)をen_US/ja_JP対訳でリリース時期別に調査した結果、**半角/全角のルール、`[ICON_XXX] 効果+数値`の詰め方、鉤括弧「」を付ける固有名詞の範囲**などは時期を問わずほぼ完全に一貫している(逸脱は単発のtypoのみ)。要点だけ書くと:
 

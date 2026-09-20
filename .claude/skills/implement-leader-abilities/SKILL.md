@@ -1,6 +1,6 @@
 ---
-name: leader-abilities
-description: Civ6 Modで文明能力/指導者能力(Trait)の効果を実装する時に使う。「文明能力を実装する」「指導者特性の効果を書く」「Modifierの書き方」「AIの好みを設定する」「文明カラーを設定する」「ゲームモードで能力を切り替える」と言われたとき、または`Traits`/`Modifiers`/`Requirements`系のXMLを新規に書く場面で使う。説明文(`_NAME`/`_DESCRIPTION`)の文体自体は`write-official-style-text` Skillの範囲(そちらを合わせて使うこと)。leader-bootstrapで指導者が選択画面に出るところまで終わった後に使う。
+name: implement-leader-abilities
+description: Civ6 Modで文明能力/指導者能力(Trait)の効果を実装する時に使う。「文明能力を実装する」「指導者特性の効果を書く」「Modifierの書き方」「AIの好みを設定する」「文明カラーを設定する」「ゲームモードで能力を切り替える」と言われたとき、または`Traits`/`Modifiers`/`Requirements`系のXMLを新規に書く場面で使う。説明文(`_NAME`/`_DESCRIPTION`)の文体自体は`write-official-style-text` Skillの範囲(そちらを合わせて使うこと)。bootstrap-leaderで指導者が選択画面に出るところまで終わった後に使う。
 ---
 
 # 文明能力・指導者能力(Trait)の実装

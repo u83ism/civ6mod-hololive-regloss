@@ -1,6 +1,6 @@
 ---
-name: mod-bootstrap
-description: Hololive系リーダーMod(ReGLOSSシリーズの姉妹リポジトリ)を新規リポジトリとしてゼロから立ち上げる時に使う。「次のReGLOSSメンバーのModを始める」「新しいModリポジトリを作る」「姉妹リポジトリを立ち上げる」と言われたとき、または実際に新しい空リポジトリが作成された直後に必ず使うこと。leader-bootstrap skillの前段にあたる(こちらはリポジトリの雛形、そちらはCivilization/Leader本体の実装)。
+name: bootstrap-mod
+description: Hololive系リーダーMod(ReGLOSSシリーズの姉妹リポジトリ)を新規リポジトリとしてゼロから立ち上げる時に使う。「次のReGLOSSメンバーのModを始める」「新しいModリポジトリを作る」「姉妹リポジトリを立ち上げる」と言われたとき、または実際に新しい空リポジトリが作成された直後に必ず使うこと。bootstrap-leader skillの前段にあたる(こちらはリポジトリの雛形、そちらはCivilization/Leader本体の実装)。
 ---
 
 # Civ6新Modリポジトリの立ち上げ
@@ -23,8 +23,8 @@ description: Hololive系リーダーMod(ReGLOSSシリーズの姉妹リポジト
      docs/design.md
      README.md
      .gitignore
-     .claude/skills/mod-bootstrap/     (このSkillごとコピーする)
-     .claude/skills/leader-bootstrap/  (次のSkillごとコピーする)
+     .claude/skills/bootstrap-mod/     (このSkillごとコピーする)
+     .claude/skills/bootstrap-leader/  (次のSkillごとコピーする)
    ```
    `.claude/skills/`配下の2つのSkillは、civ6mod-hololive-regloss(このMod)から**フォルダごとコピー**すること。個人グローバルのSkillフォルダには置かない(このMod系列固有の知見であり、ユーザーの全プロジェクトに影響を与えるべきではないため)
 3. **modinfo雛形を作る**: `assets/template.modinfo.template`を`<mod-name>.modinfo`としてコピーし、以下を置換する
@@ -37,7 +37,7 @@ description: Hololive系リーダーMod(ReGLOSSシリーズの姉妹リポジト
 5. **README.md / docs/design.md**: `assets/design.md.template`を参考に、経緯・参考資料・TODOの骨格を作る。civ6mod-hololive-reglossのdocs/design.mdを実例として直接参照してよい
 6. **ローカルテスト用のセットアップ**: `Documents\My Games\Sid Meier's Civilization VI\Mods\<mod-name>`をリポジトリルートへのジャンクションにする(`New-Item -ItemType Junction -Path <Mods配下のパス> -Target <リポジトリルート>`)。実機でのリーダー選択画面表示・実プレイ動作、および編集がコピーし直さず即反映されることを確認済み(一条莉々華Mod、2026-09-19)
    - **注意: Civ6のMod読み込みは`Mods`配下を深さ制限なく再帰し、拡張子`.modinfo`のファイルを片っ端から読み込む。** リポジトリ内に(スキルのassetsなど)`.modinfo`拡張子のテンプレート/サンプルファイルを置くと、ジャンクション経由で「空の名無しのMOD」として誤検出される(`Modding.log`に`Loading Mod - .../assets/xxx.modinfo`と出て、参照先ファイルの`Unable to load`警告が続く)。テンプレート類は`Config.xml.template`と同じ命名規則(実ファイル名+`.template`サフィックス)にして、拡張子を絶対に`.modinfo`で終わらせないこと
-7. **ここまでできたら`leader-bootstrap` Skillに進み、実際のCivilization/Leader/Traitを実装する**
+7. **ここまでできたら`bootstrap-leader` Skillに進み、実際のCivilization/Leader/Traitを実装する**
 
 ## 参考資料
 
