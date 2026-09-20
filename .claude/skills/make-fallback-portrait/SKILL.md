@@ -1,13 +1,13 @@
 ---
 name: make-fallback-portrait
-description: Civ6 Modで、キャラクター立ち絵から静止画ベースのCiv6アセット(外交交渉画面フォールバック`FALLBACK_NEUTRAL_*`、ローディング画面ポートレート`LEADER_*_NEUTRAL`、ローディング画面背景`LEADER_*_BACKGROUND`)を実際に生成する時に使う。「フォールバックポートレートを作る」「FALLBACK_NEUTRAL/LEADER_*_NEUTRALを作る/差し替える」「外交画面・ロード画面用の立ち絵を用意する」「ロード画面の背景を作る」「膝下トリミング」「上部余白・下部フェードを付ける/調整する」と言われたとき、または`tools/png2dds/gen-leader-fallback.ts`・`gen-loading-portrait.ts`・`gen-loading-background.ts`を新規に書く/パラメータ調整する場面で使う。**`PORTRAIT_*`(リーダー選択画面の全身ポートレート、名称含め未検証)は対象外**、バッジアイコン(`ICON_*`)もスコープ外(そちらは`leader-icons` Skill)。Civ6側の`FallbackLeaders.artdef`/`LoadingInfo`テーブルのスキーマ・実機裏取りの詳細は`leader-icons` Skillの`references/loading-and-diplomacy-screen.md`を参照(本Skillは「作る手順」、そちらは「Civ6側の仕様・裏取り根拠」の置き場)。
+description: Civ6 Modで、キャラクター立ち絵から静止画ベースのCiv6アセット(外交交渉画面フォールバック`FALLBACK_NEUTRAL_*`、ローディング画面ポートレート`LEADER_*_NEUTRAL`、ローディング画面背景`LEADER_*_BACKGROUND`)を実際に生成する時に使う。「フォールバックポートレートを作る」「FALLBACK_NEUTRAL/LEADER_*_NEUTRALを作る/差し替える」「外交画面・ロード画面用の立ち絵を用意する」「ロード画面の背景を作る」「膝下トリミング」「上部余白・下部フェードを付ける/調整する」と言われたとき、または`tools/png2dds/gen-leader-fallback.ts`・`gen-loading-portrait.ts`・`gen-loading-background.ts`を新規に書く/パラメータ調整する場面で使う。**`PORTRAIT_*`(リーダー選択画面の全身ポートレート、名称含め未検証。着手前に`docs/civ6-research/diplomacy-background-and-leader-select-portrait.md`を読むこと)は対象外**、バッジアイコン(`ICON_*`)もスコープ外(そちらは`make-leader-icons` Skill)。Civ6側の`FallbackLeaders.artdef`/`LoadingInfo`テーブルのスキーマ・実機裏取りの詳細は`references/fallback-and-loading-schema.md`を参照(本SKILL.mdは「作る手順」、そちらは「Civ6側の仕様・裏取り根拠」の置き場)。
 ---
 
 # キャラクター立ち絵ベースの静止画アセットの制作手順
 
 一条莉々華Mod(civ6mod-hololive-regloss)で確立した、キャラクター元絵(+ロード画面背景用の環境イラスト)から静止画ベースのCiv6アセットを作る一連の手順。**ここに書く内容はすべて実機で確認済みの事実**(2026-09-21、莉々華で実装・実機確認済み)。
 
-このMod自体がまだクレオパトラのプレースホルダーになっている等の根本原因調査は`leader-icons` Skillの範囲。本Skillは「元絵とキャラ名さえあれば、その先の画像加工〜ファイル生成をどう自動化するか」という制作ワークフローに専心する。
+本Skillは「元絵とキャラ名さえあれば、その先の画像加工〜ファイル生成をどう自動化するか」という制作ワークフローに専心する。Civ6側の仕様・裏取り根拠は`references/fallback-and-loading-schema.md`を参照。
 
 対象は3種類、うち2種類(`FALLBACK_NEUTRAL_*`/`LEADER_*_NEUTRAL`)は**同じ画像加工ロジックを共有**(`leader-fallback-compositing.ts`)。表にまとめる:
 
@@ -32,7 +32,7 @@ description: Civ6 Modで、キャラクター立ち絵から静止画ベース�
 
 1. **透明余白のトリム**(`sharp().trim()`)
 2. **膝下クロップ**(`KNEE_CROP_FRACTION`、既定0.25): トリム後の全身高さの下25%をカットし、膝のちょい下までにする。公式リーダーおよび他言語版Hololive Mod(EN/ID)は全身ではなくこの高さまでしか描いていないため、それに合わせている
-3. **高さを対象サイズにリサイズ**(`FALLBACK_NEUTRAL_*`は1080、`LEADER_*_NEUTRAL`は1024)。公式データは両方とも「全リーダー高さ固定・幅はキャラのシルエットに応じて可変」という実測結果に合わせている(詳細根拠は`leader-icons`Skillの参考資料)
+3. **高さを対象サイズにリサイズ**(`FALLBACK_NEUTRAL_*`は1080、`LEADER_*_NEUTRAL`は1024)。公式データは両方とも「全リーダー高さ固定・幅はキャラのシルエットに応じて可変」という実測結果に合わせている(詳細根拠は`references/fallback-and-loading-schema.md`)
 4. **上部に透明マージンを追加**(`TOP_MARGIN_FRACTION`、既定0.10): 公式データの実測(5〜15%、平均10%)に基づく。キャラを画像下端に詰め、上に余白を作る(`leader-fallback-compositing.ts`の`padTopMargin`)
 5. **下端に向けてRGBを黒へ線形フェード**(`BOTTOM_FADE_START_FRACTION`、既定0.75=高さの下から25%地点からフェード開始): アルファは不変(公式データもほぼ不透明のまま)、色だけを黒へブレンドする(`applyBottomFade`)。**透過フェードではない**点に注意
 6. DDS化(フルミップチェーン、`convertPngToDds`)→`.tex`(対応する公式`.tex`をコピーして幅/高さ/ミップ数を差し替え)→`.xlp`→(`FALLBACK_NEUTRAL_*`のみ)`FallbackLeaders.artdef`
@@ -75,7 +75,7 @@ description: Civ6 Modで、キャラクター立ち絵から静止画ベース�
 
 ## 5. 初回のみ: Mod側の配線(新規リーダーで初めて導入する場合)
 
-画像生成スクリプト自体は自動でファイルを作るが、以下はスクリプトの範囲外で1回だけ手動配線が要る(詳細根拠・実際の変更箇所は`leader-icons`Skillの参考資料を参照):
+画像生成スクリプト自体は自動でファイルを作るが、以下はスクリプトの範囲外で1回だけ手動配線が要る(詳細根拠・実際の変更箇所は`references/fallback-and-loading-schema.md`を参照):
 
 - `tools/IconBuild/RegLoss_IconBuild.civ6proj`にDDS/tex/XLP(/`FALLBACK_NEUTRAL_*`のみArtDef)を`Content`として登録
 - `tools/IconBuild/RegLoss_IconBuild.Art.xml`を配線: `FALLBACK_NEUTRAL_*`は`LeaderFallback`コンシューマ(`relativeArtDefPaths`)とライブラリ(`relativePackagePaths`)、`LEADER_*_NEUTRAL`/`LEADER_*_BACKGROUND`は`UITexture`ライブラリの`relativePackagePaths`に自分のXLPパッケージ名(`.blp`)を追加するだけ

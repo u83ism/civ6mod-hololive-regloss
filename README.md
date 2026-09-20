@@ -10,8 +10,9 @@ Civilization VI の新規文明追加Mod。hololive ReGLOSSをモチーフにし
 
 - 文明・指導者・文明固有能力(資源クラス別ゴールドボーナス)を実装し、リーダー選択画面・実ゲームでの動作を確認済み
 - 文明/指導者のバッジアイコン(外交パネル・プレイヤーリスト等)を実装・実機確認済み
-- 指導者固有能力・固有ユニット/区域/施設・全身ポートレートは未着手
-- 既知の未解決問題: リーダー選択画面の文明能力アイコンとパウズメニューのバッジが、本Modの`PlayerColors`ではなくバニラの汎用色プールで着色されてしまう(詳細は`.claude/skills/leader-icons/references/icon-blp-pipeline.md`)
+- 外交交渉画面のクレオパトラ対策(フォールバック静止画)、ローディング画面(ポートレート・背景)を実装・実機確認済み
+- 指導者固有能力・固有ユニット/区域/施設、外交交渉画面の背景、リーダー選択画面の全身ポートレートは未着手
+- 既知の未解決問題: リーダー選択画面の文明能力アイコンとパウズメニューのバッジが、本Modの`PlayerColors`ではなくバニラの汎用色プールで着色されてしまう(詳細は`docs/civ6-icon-color-bug-investigation.md`)
 
 ## 構成
 
@@ -27,12 +28,12 @@ Civilization VI の新規文明追加Mod。hololive ReGLOSSをモチーフにし
 
 - ModBuddyは日本語エンコーディングで文字化けが起きやすいため、通常の編集はテキストエディタ(UTF-8固定)で行う。ModBuddyはアイコン等Artアセットのビルド時のみ使う
 - ローカルテストは `Documents\My Games\Sid Meier's Civilization VI\Mods\` にこのフォルダをシンボリックリンクして行う
-- `tools/`配下のTypeScript/Node.jsコードは`.claude/rules/`のコーディング規約に従う。Civ6 Modding固有の知識・手順は`.claude/skills/`を参照(`mod-bootstrap`→`leader-bootstrap`→`leader-icons`/`leader-abilities`/`leader-unique-content`の順)
+- `tools/`配下のTypeScript/Node.jsコードは`.claude/rules/`のコーディング規約に従う。Civ6 Modding固有の知識・手順は`.claude/skills/`を参照(`mod-bootstrap`→`leader-bootstrap`→`make-leader-icons`/`make-fallback-portrait`/`leader-abilities`/`leader-unique-content`の順)。未検証のciv6wiki.info要約等は`docs/civ6-research/`に分離してある
 
 ## TODO
 
 - [ ] リーダー選択画面の能力アイコン/パウズメニューの色不具合の原因特定
 - [ ] 指導者固有能力(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)の設計
 - [ ] UniqueUnit / UniqueBuilding の設計
-- [ ] リーダー選択画面の全身ポートレート(ArtDef+XLP+ModBuddy)
+- [ ] 外交交渉画面の背景・リーダー選択画面の全身ポートレート(`PORTRAIT_*`、名称含め未検証)
 - [ ] 必要ならLuaでのGameEventsフック実装

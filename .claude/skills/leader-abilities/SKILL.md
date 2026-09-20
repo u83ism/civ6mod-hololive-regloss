@@ -25,9 +25,9 @@ description: Civ6 Modで文明能力/指導者能力(Trait)の効果を実装す
 
 詳細(Requirementの使い分け・デバッグ手順)は`references/agenda-likes-dislikes-pattern.md`を読むこと。実例は`XML/Leaders.xml`。
 
-## civ6wiki.info要約: Trait/Modifierの基本構造、文明カラー・AIの好み、多言語化
+## civ6wiki.info要約: Trait/Modifierの基本構造、文明カラー・AIの好み、多言語化(未検証)
 
-まだ着手していないTrait実装パターンに手を付けるときは、先に`references/trait-and-identity-patterns.md`を読むこと。文明特性・指導者特性のXML構造(`TraitModifiers`→`Modifiers`→`ModifierArguments`、地形条件の`RequirementSets`系)、文明カラー(`Colors`/`PlayerColors`)、AIの好み(`AiListTypes`/`AiLists`/`AiFavoredItems`)、多言語対応(`LocalizedText`への変換手順)、Civilopedia/都市名ランダム化などの細部調整をciv6wiki.info(2017〜2020年執筆、SDKサンプルを素材にした写経チュートリアル)から要約してある。**このリポジトリで実機確認した事実ではない**ので、上記の実機確認済みパターンと矛盾したらそちらを優先する。
+まだ着手していないTrait実装パターンに手を付けるときは、先に`docs/civ6-research/trait-and-identity-patterns.md`を読むこと。文明特性・指導者特性のXML構造(`TraitModifiers`→`Modifiers`→`ModifierArguments`、地形条件の`RequirementSets`系)、文明カラー(`Colors`/`PlayerColors`)、AIの好み(`AiListTypes`/`AiLists`/`AiFavoredItems`)、多言語対応(`LocalizedText`への変換手順)、Civilopedia/都市名ランダム化などの細部調整をciv6wiki.info(2017〜2020年執筆、SDKサンプルを素材にした写経チュートリアル)から要約してある。**このリポジトリで実機確認した事実ではない**ので、上記の実機確認済みパターンと矛盾したらそちらを優先する。実機確認できたらこのSKILL.mdへ確認済みパターンとして書き足すこと。
 
 ## 説明文(`_NAME`/`_DESCRIPTION`)を書くときは
 

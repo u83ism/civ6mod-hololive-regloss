@@ -1,6 +1,8 @@
-# ブートストラップ期のトラブルシューティング要約(civ6wiki.info)
+# ブートストラップ期のトラブルシューティング要約(civ6wiki.info、未検証)
 
-出典: `https://civ6wiki.info/?MOD/作成方法/その他/*`(著者yosxpeee)。`research-mod` Skillの優先順位に従い、都度WebFetchし直す代わりにここへ要約を置く。**このリポジトリで実機確認した事実ではない**ので、`SKILL.md`本文(1〜5節)の実機確認済み事実と矛盾したらそちらを優先すること。
+> このファイルは`.claude/skills/leader-bootstrap/references/`から移動した。**Skillの行動指示ではなく、civ6wiki.info(2017〜2020年執筆)の未検証な要約**であるため、実機確認済みの行動指示を書く`.claude/skills/`ではなく`docs/civ6-research/`に置く。着手して実機確認できたら、確認済みの事実として`leader-bootstrap` Skillの本文に書き足すこと。
+
+出典: `https://civ6wiki.info/?MOD/作成方法/その他/*`(著者yosxpeee)。`research-mod` Skillの優先順位に従い、都度WebFetchし直す代わりにここへ要約を置く。**このリポジトリで実機確認した事実ではない**ので、`leader-bootstrap` SKILL.md本文(1〜5節)の実機確認済み事実と矛盾したらそちらを優先すること。
 
 ## 指導者定義変更時のクラッシュ対処(LeaderCriteria)
 

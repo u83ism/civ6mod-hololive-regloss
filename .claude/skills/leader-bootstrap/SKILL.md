@@ -1,13 +1,13 @@
 ---
 name: leader-bootstrap
-description: Civ6 Modリポジトリ内でCivilization/Leader本体をゼロからブートストラップし、選択画面に出て最低限プレイ可能になるまでを実装・デバッグする時に使う。「指導者を実装する」「新しい文明を追加する」「Config.xmlを書く」「MODが有効化されるのにリーダー選択画面に出てこない」「NOT NULL constraint」「Civ6 modが読み込まれない・反映されない」「modinfoのスキーマ」と言われたとき、または`.modinfo`・`Leaders.xml`・`Civilizations.xml`・`Config.xml`を新規に書く/実機テストする場面で必ず使うこと。mod-bootstrap skillの後段、`leader-icons`/`leader-abilities`/`leader-unique-content` skillの前段にあたる(アイコン・Trait効果・固有ユニット等はそれぞれ別Skillの範囲)。
+description: Civ6 Modリポジトリ内でCivilization/Leader本体をゼロからブートストラップし、選択画面に出て最低限プレイ可能になるまでを実装・デバッグする時に使う。「指導者を実装する」「新しい文明を追加する」「Config.xmlを書く」「MODが有効化されるのにリーダー選択画面に出てこない」「NOT NULL constraint」「Civ6 modが読み込まれない・反映されない」「modinfoのスキーマ」と言われたとき、または`.modinfo`・`Leaders.xml`・`Civilizations.xml`・`Config.xml`を新規に書く/実機テストする場面で必ず使うこと。mod-bootstrap skillの後段、`make-leader-icons`/`make-fallback-portrait`/`leader-abilities`/`leader-unique-content` skillの前段にあたる(アイコン・Trait効果・固有ユニット等はそれぞれ別Skillの範囲)。
 ---
 
 # 指導者・文明のブートストラップとデバッグ
 
 一条莉々華Mod(civ6mod-hololive-regloss)の実装で、動くまでに大量の試行錯誤が必要だった。ここに書く内容はすべて**実機で確認済みの事実**。同じ回り道を繰り返さないために、まずここを読んでから書き始めること。
 
-**スコープ**: 指導者/文明が選択画面に出て最低限プレイ可能になるまで(命名規則・modinfoスキーマ・Config.xmlの必須項目・実機デバッグ)。バッジアイコン/ポートレートの作り込みは`leader-icons`、文明能力/指導者能力の効果実装は`leader-abilities`、固有ユニット/区域/施設/建造物は`leader-unique-content` Skillを使うこと(いずれもこのSkillの後、または並行して着手する独立作業)。
+**スコープ**: 指導者/文明が選択画面に出て最低限プレイ可能になるまで(命名規則・modinfoスキーマ・Config.xmlの必須項目・実機デバッグ)。バッジアイコンの作り込みは`make-leader-icons`、外交交渉/ローディング画面のポートレートは`make-fallback-portrait`、文明能力/指導者能力の効果実装は`leader-abilities`、固有ユニット/区域/施設/建造物は`leader-unique-content` Skillを使うこと(いずれもこのSkillの後、または並行して着手する独立作業)。
 
 **Art/Icon/ModBuddy周りなど、断片情報から仮説を積み上げがちな調査が必要になったら、先に`research-mod` Skillに従って一次情報を洗うこと。**
 
@@ -42,7 +42,7 @@ TRAIT_LEADER_REGLOSS_<キャラ名ローマ字>
 
 ## 4. アイコン/ポートレートは別Skillの範囲
 
-Config.xmlの`CivilizationIcon`/`LeaderIcon`/`Portrait`等は3節の通りプレースホルダー値で登録さえしておけば、指導者は「？」アイコンのまま選択画面に出て**動くには動く**。実際のバッジアイコン・ポートレート画像の作り込み(ModBuddy/BLPパイプライン)は工数が重く独立した作業なので`leader-icons` Skillを使うこと。
+Config.xmlの`CivilizationIcon`/`LeaderIcon`/`Portrait`等は3節の通りプレースホルダー値で登録さえしておけば、指導者は「？」アイコンのまま選択画面に出て**動くには動く**。実際のバッジアイコン・ポートレート画像の作り込み(ModBuddy/BLPパイプライン)は工数が重く独立した作業なので`make-leader-icons`/`make-fallback-portrait` Skillを使うこと。
 
 ## 5. 実機デバッグの手順
 
@@ -59,14 +59,14 @@ Config.xmlの`CivilizationIcon`/`LeaderIcon`/`Portrait`等は3節の通りプレ
 5. **変更を加えたら必ずゲームを完全終了→再起動する。** ローカルテストは`mod-bootstrap`Skillの通りジャンクション運用でよい(ジャンクション自体は動作確認済みで無罪。ただしリポジトリ内に`.modinfo`拡張子のファイルを迷子で残すとジャンクション経由で誤って別Modとして読み込まれるので、詳細は`mod-bootstrap`Skill手順6を参照)。Mod一覧画面への再入場だけでは変更が反映されないことがあるので、**modinfoやファイル追加を変更したら必ずゲームを完全終了→再起動**する
 6. **ログだけでなく稼働中のゲームを直接いじりたいときはFireTunerを使う。** SDK同梱の公式デバッグツールで、ゴールド付与・テクノロジー強制解禁・外交状態の確認/操作などをLiveで行える(いわゆる「God Mode」的な用途)。デフォルト無効(`AppOptions.txt`の`EnableTuner 0`)なので`1`に書き換えて再起動する。詳細な起動手順・パネル一覧は`references/firetuner.md`を参照
 
-## 7. ブートストラップ期のトラブルシューティング(civ6wiki.info要約)
+## 7. ブートストラップ期のトラブルシューティング(civ6wiki.info要約、未検証)
 
-指導者定義を後から変更してクラッシュする場合の対処(`LeaderCriteria`)、拡張パック(RaF/GS)対応の3ドメイン登録手順は`references/bootstrap-troubleshooting.md`にciv6wiki.info要約として置いてある。**このリポジトリで実機確認した事実ではない**(1〜6節とは信頼度が異なる)。
+指導者定義を後から変更してクラッシュする場合の対処(`LeaderCriteria`)、拡張パック(RaF/GS)対応の3ドメイン登録手順は`docs/civ6-research/leader-bootstrap-troubleshooting.md`にciv6wiki.info要約として置いてある。**このリポジトリで実機確認した事実ではない**(1〜6節とは信頼度が異なる。実機確認できたらこのSKILL.mdへ確認済み事実として書き足すこと)。
 
 ## 8. この先の作業は別Skillへ
 
 指導者/文明が選択画面に出て最低限プレイ可能になったら、以下は別Skillの範囲になる:
 
-- バッジアイコン/ポートレートの作り込み → `leader-icons`
+- バッジアイコンの作り込み → `make-leader-icons`、外交交渉/ローディング画面のポートレート → `make-fallback-portrait`
 - 文明能力/指導者能力(Trait/Modifier)の効果実装、文明カラー・AIの好み、説明文スタイル、多言語対応 → `leader-abilities`
 - 固有ユニット/区域/施設/建造物(UU/UD/UI/UB) → `leader-unique-content`

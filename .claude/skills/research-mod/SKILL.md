@@ -12,11 +12,12 @@ Civ6のModBuddy/Art Pipeline周りは公式ドキュメントが薄く、英語�
 断片情報から仮説を積み上げる前に、必ずこの順で一次情報を確認する:
 
 1. **civ6wiki.info・brokenhumanoid mdwiki(日本語の参考資料)**。詳細ページ索引は2節参照。特にArt/Icon/ModBuddy関連は「指導者アイコンの作り方」「文明アイコン」「ローディング画面・リザルト」ページに`.tex`/`.xlp`の具体的な書き換え手順・ビルド後のフォルダ構成・`cooker.log`の見方まで載っている。**「新文明・指導者」配下と「その他」配下の主要ページはすでに以下へ要約済み**なので、これらのトピックは都度WebFetchし直さず先に読むこと。未収録のページ(2節の一覧で「未収録」と付いているもの)だけ改めて取得すればよい:
-   - `leader-icons/references/icon-blp-pipeline.md`(指導者/文明アイコン)、`leader-icons/references/loading-and-diplomacy-screen.md`(ローディング画面・外交交渉画面・クレオパトラ対策)
-   - `leader-abilities/references/trait-and-identity-patterns.md`(文明特性・指導者特性・文明カラー・AIの好み・多言語対応)
-   - `leader-unique-content/references/unique-content-patterns.md`(固有ユニット/区域/施設/建造物=UU/UD/UI/UB)
-   - `leader-bootstrap/references/bootstrap-troubleshooting.md`(LeaderCriteriaクラッシュ対処・DLC対応)
-   - `leader-bootstrap/references/firetuner.md`(FireTunerによる実機Live操作・God Mode的デバッグ)
+   - `make-leader-icons/references/icon-blp-pipeline.md`(指導者/文明アイコン、実機確認済み)
+   - `make-fallback-portrait/references/fallback-and-loading-schema.md`(外交交渉画面フォールバック・ローディング画面、実機確認済み)/`docs/civ6-research/diplomacy-background-and-leader-select-portrait.md`(外交交渉画面の背景・リーダー選択画面ポートレート、未検証)
+   - `docs/civ6-research/trait-and-identity-patterns.md`(文明特性・指導者特性・文明カラー・AIの好み・多言語対応、未検証)
+   - `docs/civ6-research/unique-content-patterns.md`(固有ユニット/区域/施設/建造物=UU/UD/UI/UB、未検証)
+   - `docs/civ6-research/leader-bootstrap-troubleshooting.md`(LeaderCriteriaクラッシュ対処・DLC対応、未検証)
+   - `leader-bootstrap/references/firetuner.md`(FireTunerによる実機Live操作・God Mode的デバッグ、実機確認済み)
 2. **GSLeaderTemplate・実際に動くModサンプル(サンプル・テンプレート)**。詳細は3節参照。実際に動作するModBuddyプロジェクトファイル一式で、スキーマの実例として非常に有用
 3. **実機にインストール済みの参考Mod**(`Documents/My Games/Sid Meier's Civilization VI/Mods/`配下)。実際に動いている他ModのXML/modinfoは伝聞より確実な一次情報。複数の独立したMod(できれば作者違い)で同じパターンが確認できれば、それはほぼ確定的な事実として扱ってよい
 4. **Civ6 SDK同梱ドキュメント/サンプル**(`Sid Meier's Civilization VI SDK/Documentation/Civ6Docs.html`、`Examples/Example Art Mod/`)。公式だが英語かつ量が多いので、上記1-3で仮説が立った後の裏取りに向く
@@ -32,23 +33,23 @@ Civ6のModBuddy/Art Pipeline周りは公式ドキュメントが薄く、英語�
 
 | ページ名 | 収録先 |
 | --- | --- |
-| 指導者アイコンの作り方 | `leader-icons/references/icon-blp-pipeline.md` |
-| 文明アイコン | `leader-icons/references/icon-blp-pipeline.md` |
-| ローディング画面・リザルト | `leader-icons/references/loading-and-diplomacy-screen.md` |
-| 勝手に出てくるクレオパトラを消す方法 | `leader-icons/references/loading-and-diplomacy-screen.md` |
-| 指導者特性 | `leader-abilities/references/trait-and-identity-patterns.md` |
-| 文明特性 | `leader-abilities/references/trait-and-identity-patterns.md` |
-| 文明カラー・AIの好み | `leader-abilities/references/trait-and-identity-patterns.md` |
-| UU / UD / UI / UB(4ページ) | `leader-unique-content/references/unique-content-patterns.md` |
+| 指導者アイコンの作り方 | `make-leader-icons/references/icon-blp-pipeline.md` |
+| 文明アイコン | `make-leader-icons/references/icon-blp-pipeline.md` |
+| ローディング画面・リザルト | `make-fallback-portrait/references/fallback-and-loading-schema.md`(検証済み部分)+`docs/civ6-research/diplomacy-background-and-leader-select-portrait.md`(未検証部分) |
+| 勝手に出てくるクレオパトラを消す方法 | `make-fallback-portrait/references/fallback-and-loading-schema.md` |
+| 指導者特性 | `docs/civ6-research/trait-and-identity-patterns.md` |
+| 文明特性 | `docs/civ6-research/trait-and-identity-patterns.md` |
+| 文明カラー・AIの好み | `docs/civ6-research/trait-and-identity-patterns.md` |
+| UU / UD / UI / UB(4ページ) | `docs/civ6-research/unique-content-patterns.md` |
 | **その他細かい部分** | 未収録 |
 
 **その他(6ページ)**
 
 | ページ名 | 収録先 |
 | --- | --- |
-| 指導者の定義を変えるとクラッシュする場合の対処 | `leader-bootstrap/references/bootstrap-troubleshooting.md` |
-| DLC対応 | `leader-bootstrap/references/bootstrap-troubleshooting.md` |
-| 多言語対応(日本語化) | `leader-abilities/references/trait-and-identity-patterns.md` |
+| 指導者の定義を変えるとクラッシュする場合の対処 | `docs/civ6-research/leader-bootstrap-troubleshooting.md` |
+| DLC対応 | `docs/civ6-research/leader-bootstrap-troubleshooting.md` |
+| 多言語対応(日本語化) | `docs/civ6-research/trait-and-identity-patterns.md` |
 | **各種ログの出力** | 未収録 |
 | **LEADER_JASPER_KITTYの罠** | 未収録(SDKサンプルCiv `LEADER_JASPER_KITTY`を参考にする際の落とし穴。3節のSDK Example Art Modに関連) |
 | **modinfo** | 未収録 |
