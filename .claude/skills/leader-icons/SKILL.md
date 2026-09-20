@@ -24,6 +24,11 @@ Civ/Leaderの選択画面自体は`leader-bootstrap` Skillの範囲で(アイコ
 
 ## ローディング画面・外交交渉画面・クレオパトラ対策
 
-**外交交渉画面のクレオパトラ対策は実機確認済み(2026-09-21)**。`Leaders.artdef`(3Dモデル参照を空文字に)と`FallbackLeaders.artdef`(`FALLBACK_NEUTRAL_*`フォールバック静止画、`LeaderFallback`ライブラリ)の両方が揃って初めて解消することを確認した。手順・スキーマの詳細と、公式SDK Assetsの実物データ(`FallbackLeaders.artdef`/`Leaders.artdef`/`.tex`/`.dds`)で裏取りした確定事項は`references/loading-and-diplomacy-screen.md`。**サイズ・ミップマップ有無に関するciv6wiki.infoの記述は誤りだったことが公式データで判明済み**(詳細は同ファイル)。
+**外交交渉画面のクレオパトラ対策・ローディング画面ともに実機確認済み(2026-09-21)**。
 
-**未着手のまま**: ローディング画面(`hogehoge_LoadingInfo_*`)、外交交渉画面の背景、リーダー選択画面の全身ポートレート(`PORTRAIT_hogehoge`)。これらはクレオパトラ対策とは独立した別作業で、`references/loading-and-diplomacy-screen.md`末尾に着手時の参照先をまとめてある。
+- クレオパトラ対策: `Leaders.artdef`(3Dモデル参照を空文字に)と`FallbackLeaders.artdef`(`FALLBACK_NEUTRAL_*`フォールバック静止画、`LeaderFallback`ライブラリ)の両方が揃って初めて解消することを確認した
+- ローディング画面: `LoadingInfo`テーブル(`XML/Leaders.xml`)+`<LeaderType>_NEUTRAL`(ポートレート)/`<LeaderType>_BACKGROUND`(背景、キャラなしでよい)の2枚。civ6wiki.infoの画像名(`hogehoge_LoadingInfo_*`)・XLP名(`UILeaders.xlp`)は架空だったと判明、`LoadScreen.lua`と公式DLC実データで裏取り済み
+
+手順・スキーマの詳細と、公式データ(SDK Assets実物ファイル・ゲーム本体のスキーマSQL/Lua/XML)で裏取りした確定事項は`references/loading-and-diplomacy-screen.md`。**サイズ・ミップマップ有無・画像/XLP名に関するciv6wiki.infoの記述は複数箇所で誤りだったことが判明済み**(詳細は同ファイル)。
+
+**未着手のまま**: 外交交渉画面の背景、リーダー選択画面の全身ポートレート(`PORTRAIT_*`、名称含め未検証)。`references/loading-and-diplomacy-screen.md`末尾に着手時の注意点をまとめてある。
