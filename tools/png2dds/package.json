@@ -11,6 +11,8 @@
     "gen-xlp": "tsx gen-xlp.ts",
     "gen-dep": "tsx gen-dep.ts",
     "gen-leader-fallback": "tsx gen-leader-fallback.ts",
+    "gen-loading-background": "tsx gen-loading-background.ts",
+    "gen-loading-portrait": "tsx gen-loading-portrait.ts",
     "preview-fallback-dark-bg": "tsx preview-fallback-dark-bg.ts",
     "typecheck": "tsc --noEmit"
   },

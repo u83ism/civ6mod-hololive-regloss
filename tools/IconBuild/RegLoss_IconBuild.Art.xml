@@ -548,6 +548,8 @@
 			<libraryName text="UITexture"/>
 			<relativePackagePaths>
 				<Element text="UI/RegLoss_Icons.blp"/>
+				<Element text="UI/RegLoss_Loading.blp"/>
+				<Element text="UI/RegLoss_LoadingPortrait.blp"/>
 			</relativePackagePaths>
 		</Element>
 		<Element>

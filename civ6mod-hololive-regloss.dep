@@ -564,6 +564,8 @@
 			<LibraryName text="UITexture"/>
 			<PackageDependencies>
 				<Element text="UI/RegLoss_Icons.blp"/>
+				<Element text="UI/RegLoss_Loading.blp"/>
+				<Element text="UI/RegLoss_LoadingPortrait.blp"/>
 			</PackageDependencies>
 		</Element>
 		<Element>

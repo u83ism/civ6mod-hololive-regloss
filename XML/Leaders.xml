@@ -164,5 +164,14 @@
 		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_IS_WARMONGER" RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_IS_WARMONGER"/>
 	</RequirementSetRequirements>
 
+	<!--
+		ローディング画面(LoadingInfo)。LoadScreen.luaの実機コード上、ForegroundImage/BackgroundImage未指定時の
+		フォールバック名がそもそも<LeaderType>_NEUTRAL/<LeaderType>_BACKGROUNDなので、この行自体は省略しても
+		同じテクスチャに解決されるはずだが、公式データ(Expansion1_LoadingInfo.xml)もこの通り明示している。
+	-->
+	<LoadingInfo>
+		<Row LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" ForegroundImage="LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL" BackgroundImage="LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND"/>
+	</LoadingInfo>
+
 	<!-- 資源クラス別ゴールドボーナスは文明固有能力(TRAIT_CIVILIZATION_REGLOSS_ICHIJOU)に移設した。詳細はXML/Civilizations.xmlを参照。「かわいい！ポジティブ！ジーニアス！」の名前はユニークアジェンダ側に移設した。指導者固有能力は独占/大企業モードの有無でTraitTypeごと切り替わる構成にした(名前のみ確定、効果はまだダミー)。モードOFF側(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)の名前はここ、ON側(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES)への切り替えはXML/Leaders_Monopolies.xmlを参照。 -->
 </GameData>

@@ -76,5 +76,9 @@
 		<File>Platforms/MacOS/BLPs/UI/RegLoss_Icons.blp</File>
 		<File>Platforms/Windows/BLPs/LeaderFallbackImages.blp</File>
 		<File>Platforms/MacOS/BLPs/LeaderFallbackImages.blp</File>
+		<File>Platforms/Windows/BLPs/UI/RegLoss_Loading.blp</File>
+		<File>Platforms/MacOS/BLPs/UI/RegLoss_Loading.blp</File>
+		<File>Platforms/Windows/BLPs/UI/RegLoss_LoadingPortrait.blp</File>
+		<File>Platforms/MacOS/BLPs/UI/RegLoss_LoadingPortrait.blp</File>
 	</Files>
 </Mod>
