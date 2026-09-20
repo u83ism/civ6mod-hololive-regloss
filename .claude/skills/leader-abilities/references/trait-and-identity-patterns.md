@@ -1,6 +1,6 @@
 # Trait実装・文明アイデンティティ要約(civ6wiki.info)
 
-出典: `https://civ6wiki.info/?MOD/作成方法/新文明・指導者/*`および`.../その他/*`(著者yosxpeee、2017〜2020年執筆、SDKサンプル`LEADER_JASPER_KITTY`/`CIVILIZATION_FELINE`を素材にした写経チュートリアル)。`civ6-mod-research` Skillの優先順位に従い、都度WebFetchし直す代わりにここへ要約を置く。**このリポジトリで実機確認した事実ではない**ので、`SKILL.md`本文の実機確認済みパターンと矛盾したらそちらを優先すること。
+出典: `https://civ6wiki.info/?MOD/作成方法/新文明・指導者/*`および`.../その他/*`(著者yosxpeee、2017〜2020年執筆、SDKサンプル`LEADER_JASPER_KITTY`/`CIVILIZATION_FELINE`を素材にした写経チュートリアル)。`research-mod` Skillの優先順位に従い、都度WebFetchし直す代わりにここへ要約を置く。**このリポジトリで実機確認した事実ではない**ので、`SKILL.md`本文の実機確認済みパターンと矛盾したらそちらを優先すること。
 
 ## 文明特性・指導者特性のXML構造
 

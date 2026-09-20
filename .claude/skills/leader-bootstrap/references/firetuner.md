@@ -1,6 +1,6 @@
 # FireTuner(実機で稼働中のゲームをLive操作するデバッグツール)
 
-出典: `https://brokenhumanoid.oops.jp/public/mdwiki/#!FireTuner.md`(著者yosxpeee)の要約に、このリポジトリで実機確認した具体的なパス・設定値を追記したもの。`civ6-mod-research` Skillの優先順位に従い、都度取得し直す代わりにここへ要約を置く。
+出典: `https://brokenhumanoid.oops.jp/public/mdwiki/#!FireTuner.md`(著者yosxpeee)の要約に、このリポジトリで実機確認した具体的なパス・設定値を追記したもの。`research-mod` Skillの優先順位に従い、都度取得し直す代わりにここへ要約を置く。
 
 ## これは何か
 

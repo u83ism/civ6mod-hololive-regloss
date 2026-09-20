@@ -20,7 +20,7 @@ UU(ユニット)/UD(区域)/UI(地形改善)/UB(建造物)は全て同じ8手順
 - **UU(ユニット)**: `TraitType`で紐付け。Flag/Portraitアイコンは256/80/50/38/32/22等サイズ違いに加え、民族差分(Asian/Mediterranean/South American/African)込みで命名規則が細かい(`ICON_[ユニット名]`/`_FOW`/`_WHITE`/`_BLACK`、Portraitは`_PORTRAIT`+`ICON_ETHNICITY_*_..._PORTRAIT`)。既存ユニットの丸ごと置換は`UnitReplaces`(`CivUniqueUnitType`/`ReplacesUnitType`)。置換先の技術レベルとバランスが取れているか確認すること
 - **UD(区域)**: `DistrictReplaces`で置換元指定。`RequiresPlacement`/`RequiresPopulation`/`OnePerCity`/`Aqueduct`/`NoAdjacentCity`/`ZOC`/`CaptureRemovesBuildings`等のフラグはバニラ区域の性質を参考にする。**傑作枠のある建造物が建つ区域(劇場広場等)を置換する場合、`FontIcons.xml`のIndex登録を追加しないと、スパイの「傑作を盗む」選択肢が長い文字列のまま壊れる**
 - **UI(地形改善)**: `Improvement_YieldChanges`に登録していない産出物には`Improvement_BonusYieldChanges`で追加ボーナスを付けられない。先に該当産出物を`+0`で基礎ボーナスとして明示登録しておく必要がある
-- **UB(建造物)**: ⚠️**Wiki記載のBuildings/Landmarks artdefサンプルは2017年(無印発売当初)のものであり、その後のアップデート・DLC追加で仕様変更が入ったため現在は動作しない、と著者自身が明記している。** Artdefを新規に書く必要が出た場合は、Wikiのサンプルをそのまま写経せず、Steam Workshopで公開されている実働の文明/建造物追加Modを解析する方が確実(`civ6-mod-research` Skillの優先順位2〜3節と同じ結論)。また、SDKサンプル同梱の`BUILDING_LITTER_BOX`を改変して作る場合、**建物のある都市が陥落するとCiv6が強制終了する不具合**が引き継がれる可能性がある(`SKILL.md`参照)。回避策は文明非依存の共通建造物の置換として実装すること
+- **UB(建造物)**: ⚠️**Wiki記載のBuildings/Landmarks artdefサンプルは2017年(無印発売当初)のものであり、その後のアップデート・DLC追加で仕様変更が入ったため現在は動作しない、と著者自身が明記している。** Artdefを新規に書く必要が出た場合は、Wikiのサンプルをそのまま写経せず、Steam Workshopで公開されている実働の文明/建造物追加Modを解析する方が確実(`research-mod` Skillの優先順位2〜3節と同じ結論)。また、SDKサンプル同梱の`BUILDING_LITTER_BOX`を改変して作る場合、**建物のある都市が陥落するとCiv6が強制終了する不具合**が引き継がれる可能性がある(`SKILL.md`参照)。回避策は文明非依存の共通建造物の置換として実装すること
 
 ## 参照元URL一覧(再取得用)
 

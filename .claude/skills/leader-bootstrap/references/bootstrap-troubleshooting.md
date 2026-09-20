@@ -1,6 +1,6 @@
 # ブートストラップ期のトラブルシューティング要約(civ6wiki.info)
 
-出典: `https://civ6wiki.info/?MOD/作成方法/その他/*`(著者yosxpeee)。`civ6-mod-research` Skillの優先順位に従い、都度WebFetchし直す代わりにここへ要約を置く。**このリポジトリで実機確認した事実ではない**ので、`SKILL.md`本文(1〜5節)の実機確認済み事実と矛盾したらそちらを優先すること。
+出典: `https://civ6wiki.info/?MOD/作成方法/その他/*`(著者yosxpeee)。`research-mod` Skillの優先順位に従い、都度WebFetchし直す代わりにここへ要約を置く。**このリポジトリで実機確認した事実ではない**ので、`SKILL.md`本文(1〜5節)の実機確認済み事実と矛盾したらそちらを優先すること。
 
 ## 指導者定義変更時のクラッシュ対処(LeaderCriteria)
 

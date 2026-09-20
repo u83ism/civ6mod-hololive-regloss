@@ -9,7 +9,7 @@ description: Civ6 Modリポジトリ内でCivilization/Leader本体をゼロか�
 
 **スコープ**: 指導者/文明が選択画面に出て最低限プレイ可能になるまで(命名規則・modinfoスキーマ・Config.xmlの必須項目・実機デバッグ)。バッジアイコン/ポートレートの作り込みは`leader-icons`、文明能力/指導者能力の効果実装は`leader-abilities`、固有ユニット/区域/施設/建造物は`leader-unique-content` Skillを使うこと(いずれもこのSkillの後、または並行して着手する独立作業)。
 
-**Art/Icon/ModBuddy周りなど、断片情報から仮説を積み上げがちな調査が必要になったら、先に`civ6-mod-research` Skillに従って一次情報を洗うこと。**
+**Art/Icon/ModBuddy周りなど、断片情報から仮説を積み上げがちな調査が必要になったら、先に`research-mod` Skillに従って一次情報を洗うこと。**
 
 ## 1. 命名規則
 

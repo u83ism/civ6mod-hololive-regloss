@@ -1,6 +1,6 @@
 ---
-name: civ6-mod-research
-description: Civ6 Modding(ModBuddy/Art/Icon/XLP/ArtDef/BLPなど、公式ドキュメントが薄い領域)について調べ物をする時に使う。「これってどうなってるんだっけ」「Civ6 modで◯◯できる?」「なんで動かないか調べて」と言われたとき、または断片的なフォーラム情報だけで仮説を立てて試行錯誤しそうになった場面で必ず使うこと。leader-bootstrap/mod-bootstrap skillの実装作業中に技術的に詰まった時の調査手順としても使う。
+name: research-mod
+description: Civ6 Mod制作に関わる調べ物をする時は、詰まる前・仮説を立てる前の時点で真っ先に必ず使う(「詰まったら使う」ではない)。ModBuddy/Art/Icon/XLP/ArtDef/BLPなど公式ドキュメントが薄い領域はもちろん、Civ6 Modding全般(XML/Lua実装、ゲーム仕様確認、数値・サイズ等の裏取り)が対象。「これってどうなってるんだっけ」「Civ6 modで◯◯できる?」「なんで動かないか調べて」「(仕様/数値/サイズ)を確認して」と言われたとき、または断片的な情報だけで仮説を立てて試行錯誤しそうになった場面で使う。バイナリ解析や汎用WebSearchに自己判断で進む前に、まずこのSkillの優先順位に従うこと。leader-bootstrap/mod-bootstrap skillの実装作業中の調査手順としても使う。
 ---
 
 # Civ6 Modding調べ物の作法

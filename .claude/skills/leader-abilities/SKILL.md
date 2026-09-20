@@ -33,4 +33,4 @@ description: Civ6 Modで文明能力/指導者能力(Trait)の効果を実装す
 
 このSkillの範囲外。`write-official-style-text` Skillを使うこと(公式Trait説明文422件の文体調査に基づくスタイルガイド)。
 
-**断片情報から仮説を積み上げがちな調査が必要になったら、先に`civ6-mod-research` Skillに従って一次情報を洗うこと。**
+**断片情報から仮説を積み上げがちな調査が必要になったら、先に`research-mod` Skillに従って一次情報を洗うこと。**

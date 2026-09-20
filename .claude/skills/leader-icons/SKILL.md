@@ -9,7 +9,7 @@ description: Civ6 Modで指導者/文明のバッジアイコン・ポートレ�
 
 Civ/Leaderの選択画面自体は`leader-bootstrap` Skillの範囲で(アイコンが未着手の「？」フォールバックのままでも)動作するようになる。アイコン/ポートレートの実装はそこから独立して進められる別作業だが、**GUIツール(ModBuddy/AssetEditor)を介した手作業が多く工数が重いので、着手前に本Skillの内容を一通り読んでから始めること**。
 
-**断片情報から仮説を積み上げがちな調査が必要になったら、先に`civ6-mod-research` Skillに従って一次情報を洗うこと。**
+**断片情報から仮説を積み上げがちな調査が必要になったら、先に`research-mod` Skillに従って一次情報を洗うこと。**
 
 ## バッジアイコン(CivilizationIcon/LeaderIcon等)・ポートレートの実装
 

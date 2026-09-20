@@ -109,7 +109,7 @@ TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA  (アジェンダ紐付け用Trait)
 
 未解決で残っているもの: `Text.xml`/`Colors.xml`をFrontEndActions/InGameActions両方から重複読み込みしている影響と思われる`UNIQUE constraint failed`警告(Database.log)が出続けている。動作に実害は無さそうだが未整理。
 
-**2026-09-20、実機プレイで資源特化Traitの重大バグを発見・修正(3件)**。いずれも一次情報(Civ6本体の`Base/Assets/Gameplay/Data/Modifiers.xml`/`Beliefs.xml`、`DLC/Expansion1/Data/Expansion1_Civilizations_Major.xml`、`DLC/CatherineDeMedici/Data/CatherineDeMedici_Leaders.xml`、`DLC/Expansion2/Data/Expansion2_Beliefs.xml`)で原因を裏取りした上で修正した(`civ6-mod-research` Skill手順に従い、SDK同梱ではなくゲーム本体のインストール先XMLを直接調査):
+**2026-09-20、実機プレイで資源特化Traitの重大バグを発見・修正(3件)**。いずれも一次情報(Civ6本体の`Base/Assets/Gameplay/Data/Modifiers.xml`/`Beliefs.xml`、`DLC/Expansion1/Data/Expansion1_Civilizations_Major.xml`、`DLC/CatherineDeMedici/Data/CatherineDeMedici_Leaders.xml`、`DLC/Expansion2/Data/Expansion2_Beliefs.xml`)で原因を裏取りした上で修正した(`research-mod` Skill手順に従い、SDK同梱ではなくゲーム本体のインストール先XMLを直接調査):
 
 1. **敵文明の都市にも効果が出るバグ**: 外側Modifierの`MODIFIER_ALL_CITIES_ATTACH_MODIFIER`は`CollectionType=COLLECTION_ALL_CITIES`(`Modifiers.xml`で確認)であり、名前に反して**ゲーム内の全プレイヤーの全都市が対象**。Religious Idolsが絞り込み無しで問題ないのは、信仰ベリーフが本来「そのベリーフの宗教が多数派の都市ならどの文明でも効く」仕様だから。文明固有Trait(自国限定であるべき)にそのまま流用すると他文明の都市にも波及してしまう。自国の都市だけに絞る`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`(`CollectionType=COLLECTION_PLAYER_CITIES`)に変更して解消(公式のToqui/Mapuche文明トレイトが同じ絞り込みを使用しているのを確認)。
 2. **未発見の戦略資源タイル(一見空き地)にもボーナスが出るバグ**: `REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`は資源クラスの一致しか見ておらず、プレイヤーにまだ発見(可視化)されているかは問わない。当初は公式の`PLOT_HAS_STRATEGIC_MINE_REQUIREMENTS`(Beliefs.xml)に倣い`REQUIREMENT_PLOT_RESOURCE_VISIBLE`を`REGLOSS_ICHIJOU_REQSET_PLOT_STRATEGIC`にAND追加して解消したが、3番目の変更で後述の`REQUIREMENT_PLOT_IMPROVED_RESOURCE_CLASS_TYPE_MATCHES`に置き換わり、この可視性チェック自体は不要になり削除した。
