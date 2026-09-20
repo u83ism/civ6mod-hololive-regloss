@@ -24,4 +24,6 @@ Civ/Leaderの選択画面自体は`leader-bootstrap` Skillの範囲で(アイコ
 
 ## ローディング画面・外交交渉画面・クレオパトラ対策
 
-まだ未着手の領域。`references/loading-and-diplomacy-screen.md`にciv6wiki.info要約(2017年執筆、SDKサンプル`LEADER_JASPER_KITTY`を素材にした写経チュートリアル)を置いてある。**このリポジトリで実機確認した事実ではない**ので、`icon-blp-pipeline.md`の実機検証結果と矛盾する記述があれば実機検証済みの方を優先すること。
+**外交交渉画面のクレオパトラ対策は実機確認済み(2026-09-21)**。`Leaders.artdef`(3Dモデル参照を空文字に)と`FallbackLeaders.artdef`(`FALLBACK_NEUTRAL_*`フォールバック静止画、`LeaderFallback`ライブラリ)の両方が揃って初めて解消することを確認した。手順・スキーマの詳細と、公式SDK Assetsの実物データ(`FallbackLeaders.artdef`/`Leaders.artdef`/`.tex`/`.dds`)で裏取りした確定事項は`references/loading-and-diplomacy-screen.md`。**サイズ・ミップマップ有無に関するciv6wiki.infoの記述は誤りだったことが公式データで判明済み**(詳細は同ファイル)。
+
+**未着手のまま**: ローディング画面(`hogehoge_LoadingInfo_*`)、外交交渉画面の背景、リーダー選択画面の全身ポートレート(`PORTRAIT_hogehoge`)。これらはクレオパトラ対策とは独立した別作業で、`references/loading-and-diplomacy-screen.md`末尾に着手時の参照先をまとめてある。
