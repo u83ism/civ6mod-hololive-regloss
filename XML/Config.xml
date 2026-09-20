@@ -65,4 +65,44 @@
 			<PortraitBackground>IMG_LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND</PortraitBackground>
 		</Row>
 	</Players>
+
+	<!--
+		リーダー選択画面(フロントエンド)は.modinfoのActionCriteria(Monopolies_Mode等)を評価しない
+		(FrontEndActionsはゲーム開始前のロビー画面用で、ゲーム設定のモードON/OFFに応じて動的に再評価される
+		わけではないため)。代わりにGameModePlayerInfoOverridesテーブル(GameModeType列を持つ)を使うが、
+		**このテーブル単体は一切参照されない**(`Base/Assets/Configuration/Data/Schema/AdditionalTables.sql`の
+		コメント通り、"not referenced directly but rather by a 'Query'")。実際のリーダー選択画面ロジック本体
+		(`Base/Assets/UI/FrontEnd/PlayerSetupLogic.lua`のSyncPlayerOverrides関数、2026-09-21実機ファイルで確認)
+		を読むと、Queries/QueryCriteria/PlayerInfoOverrideQueriesの3テーブルで「このゲームモードがON時にこの
+		SQLを実行する」という登録をしない限り、GameModePlayerInfoOverridesの行は一切拾われないことが判明した。
+
+		Firaxis公式Babylon DLC(GAMEMODE_HEROES、ギルガメシュ)はこの3テーブルを自前で登録している:
+		PlayerInfoOverrideQueries(QueryId登録)→Queries(QueryIdに対しSQL本体を定義、
+		"SELECT * FROM GameModePlayerInfoOverrides WHERE GameModeType = '...'")→QueryCriteria
+		(QueryIdに対し.modinfoのActionCriteriaと同種のConfigurationValue判定を追加)。
+
+		**独占/大企業モード(GAMEMODE_MONOPOLIES)側にはこの3テーブルの登録がゲーム全体のどこにも存在しない**
+		(`DLC/KublaiKhan_Vietnam/Data/KublaiKhan_Vietnam_ConfigData.xml`を確認したが無い。Firaxis自身の
+		クビライ・カン/レディ・チュウにもこのモードでの選択画面プレビュー切替が実装されていない、Firaxis側の
+		漏れの可能性が高い)。そのためこのMod自身で3テーブルとも登録する必要がある(2026-09-21、
+		「ギルガメシュは選択画面でモード切替に追従するのに莉々華は追従していない」という本人指摘を受けて
+		PlayerSetupLogic.luaを直接読んで判明)。
+	-->
+	<GameModePlayerInfoOverrides>
+		<Row GameModeType="GAMEMODE_MONOPOLIES" Domain="Players:StandardPlayers" CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" LeaderAbilityName="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_NAME" LeaderAbilityDescription="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION"/>
+		<Row GameModeType="GAMEMODE_MONOPOLIES" Domain="Players:Expansion1_Players" CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" LeaderAbilityName="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_NAME" LeaderAbilityDescription="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION"/>
+		<Row GameModeType="GAMEMODE_MONOPOLIES" Domain="Players:Expansion2_Players" CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" LeaderAbilityName="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_NAME" LeaderAbilityDescription="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION"/>
+	</GameModePlayerInfoOverrides>
+
+	<PlayerInfoOverrideQueries>
+		<Row QueryId="ReglossIchijouRirikaMonopoliesPlayerInfoOverrides"/>
+	</PlayerInfoOverrideQueries>
+
+	<Queries>
+		<Row QueryId="ReglossIchijouRirikaMonopoliesPlayerInfoOverrides" SQL="SELECT * FROM GameModePlayerInfoOverrides WHERE GameModeType = 'GAMEMODE_MONOPOLIES'"/>
+	</Queries>
+
+	<QueryCriteria>
+		<Row QueryId="ReglossIchijouRirikaMonopoliesPlayerInfoOverrides" ConfigurationGroup="Game" ConfigurationId="GAMEMODE_MONOPOLIES" Operator="Equals" ConfigurationValue="1"/>
+	</QueryCriteria>
 </GameData>

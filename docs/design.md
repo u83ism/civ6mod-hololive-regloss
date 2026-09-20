@@ -43,13 +43,16 @@ Civ6 Modding全般の基礎知識(ファイル構造、modinfoの正しいスキ
 | 戦略資源 | +5 |
 | 高級資源 | +10 |
 
-実装方式は「実装状況」節を参照(`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`+`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`+`REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`の組み合わせ、ベースゲームのみで完結・Lua不要)。当初は指導者固有能力(LeaderTrait)として実装したが、2026-09-19に文明固有能力(CivilizationTrait)へ移設した。指導者固有能力の中身は改めて別途設計する(現状はプレースホルダー、指導者能力名のみ「かわいい！ポジティブ！ジーニアス！」で確定・実機確認済み)。
+実装方式は「実装状況」節を参照(`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`+`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`+`REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`の組み合わせ、ベースゲームのみで完結・Lua不要)。当初は指導者固有能力(LeaderTrait)として実装したが、2026-09-19に文明固有能力(CivilizationTrait)へ移設した。
 
-### 保留中の追加アイデア(技術検証済み・未実装)
+### 一条莉々華: 指導者固有能力「大天才」(独占/大企業モードON時、2026-09-21確定)
 
-以下は莉々華の能力候補として出たが、今回は資源Traitを優先して一旦確定・保留とした。技術的な実装可否は調査済み:
+独占/大企業モード(`GAMEMODE_MONOPOLIES`)ON時の指導者固有能力(`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES`、名前「大天才」)の中身。モードOFF時は「推し事お疲れ様でした～」(効果は未設計のまま):
 
-- **独占/大企業モードON時の追加ボーナス**: モードのON/OFF判定・条件付きファイルロードの骨格自体は2026-09-20に着手した(下記「実装状況」参照)。モノポリー/コーポレーション専用のEffect/RequirementタイプはDB上に存在しない(倍率計算はエンジン内部でハードコード)ため、直接フックはできない。コーポレーション本社の産出や設立コストなど周辺要素への一般的なModifierで代替する必要がある(中身はまだ未設計)
+- **「産業」/「大企業」改善+2文化力/+2科学力**: 「産業」(`IMPROVEMENT_INDUSTRY`)は区域ではなく`Kind="KIND_IMPROVEMENT"`の改善(当初「産業区域」=`DISTRICT_INDUSTRIAL_ZONE`だと誤解していたが、本人指摘により2026-09-21に訂正)。同種の高級資源2つに改善(鉱山/採石場/プランテーション等)を作った後、労働者で創出でき、「経済学」研究後は大商人で上位互換の「大企業」(`IMPROVEMENT_CORPORATION`)にアップグレードできる。うちの資源特化Trait(`TRAIT_CIVILIZATION_REGLOSS_ICHIJOU`)と同じ`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`→`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`構造で実装し、絞り込みは`REQUIREMENT_PLOT_IMPROVEMENT_TYPE_MATCHES`(引数`ImprovementType`、モノポリーMODE自身が実際に使っている`REQUIREMENT_CITY_GROWTH_INDUSTRY`で実例確認)を`REQUIREMENTSET_TEST_ANY`で「産業」「大企業」両方に対して判定する
+- **商品プロジェクトの生産力+100%**: `MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION`(`EFFECT_ADJUST_PROJECT_PRODUCTION`)を対象資源27種(標準ルールセット24種+文明勃興モード追加3種: 琥珀/オリーブ/亀。GranColombia_Maya限定の蜂蜜は対象外)の`ProjectType=PROJECT_CREATE_CORPORATION_PRODUCT_<資源>`ごとに複製。Cost値自体を減らす仕組みはゲーム全体に存在しない(`*_PROJECT*_COST`系のModifier/Effectは本体+全DLC検索で0件)ため、「コストを半減」の実体は生産力+100%(2倍速、実質ターン数半分)とした
+
+詳細は「実装状況」節を参照。実装は`.claude/skills/implement-leader-abilities/SKILL.md`の「ゲームモードの有無で能力を切り替える」節・パターンAに従う。
 - **コミュ力による外交関係値補正**: 任意の相手へのOpinion数値を直接動かす汎用効果は存在しない(Opinionはアジェンダごとにハードコードされた専用ModifierType、例: `MODIFIER_PLAYER_DIPLOMACY_AGENDA_SHORT_LIFE_GLORY`)。`EFFECT_ADJUST_PLAYER_GRIEVANCE_DECAY`(`ModifierType=MODIFIER_PLAYER_ADJUST_GRIEVANCE_DECAY`、`Amount`引数あり、`CollectionType=COLLECTION_OWNER`)でGrievance(外交不満)の減衰速度を上げることは可能。ゴルゴ(`TRAIT_AGENDA_WITH_SHIELD`、Expansion2で追加)・アレクサンドロス3世(`TRAIT_AGENDA_SHORT_LIFE_GLORY`、同じくExpansion2で追加)の実装で前例あり(`Amount=100`=減衰速度2倍)。2026-09-20に実機データ(`Expansion2_Leaders.xml`/`Macedonia_Persia_Expansion2.xml`)で再確認・リーダー名の誤記を修正(旧: アレクサンダー/キュロスと誤記していた)。
   **効果の向きに注意**: `CollectionType=COLLECTION_OWNER`は「他文明が自分に対して持つGrievance」ではなく**「自分(Owner)自身が他文明に対して持つGrievance」の減衰**を早める効果だと2026-09-20に実機検証で確定した(下記「実装状況」参照)。当初「自分に対する他文明のGrievance」と誤って記述していたが訂正
 
@@ -79,14 +82,16 @@ TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA  (アジェンダ紐付け用Trait)
 
 なお、公式データにはTraitTypeを分けず「同じTraitTypeのまま`<Traits><Update><Where/><Set>`でDescription(理屈上はNameも)だけ差し替える」パターンBも存在する(シュメールの文明能力「伝説の勇者」`TRAIT_CIVILIZATION_FIRST_CIVILIZATION`、蛮族一族モード`GAMEMODE_BARBARIAN_CLANS`向け、`DLC/BarbarianClansMode/Data/BarbarianClansMode_GameplayData.xml`)。使い分けの基準は指導者Trait/文明Traitの違いではなく「名前自体が変わるか」で、莉々華の指導者能力は名前ごと変わるためパターンA(ギルガメシュ方式)を採用と決定した(2026-09-20、本人確認済み)。両パターンの詳細は`.claude/skills/implement-leader-abilities/SKILL.md`の「ゲームモードの有無で能力を切り替える」節に記録済み。
 
+2026-09-21、`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES`(モードON側、名前「大天才」)の効果を実装(前日時点はダミー)。当初「産業」を区域(`DISTRICT_INDUSTRIAL_ZONE`)だと誤解して`MODIFIER_PLAYER_DISTRICTS_ADJUST_YIELD_CHANGE`で実装したが、本人から実機プレイでの指摘(タイルチップで改善/施設扱いに見える)を受けて調査し直し、「産業」(`IMPROVEMENT_INDUSTRY`)/「大企業」(`IMPROVEMENT_CORPORATION`)は`Kind="KIND_IMPROVEMENT"`の改善であると確認、同日中に資源特化Trait(`TRAIT_CIVILIZATION_REGLOSS_ICHIJOU`)と同じ`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`→`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`+`REQUIREMENT_PLOT_IMPROVEMENT_TYPE_MATCHES`構造に差し替えた。商品プロジェクトの生産力+100%は`MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION`を対象資源27種分複製(変更なし)。**いずれも実機未確認**(2026-09-21時点)。詳細な調査根拠・前例(都市国家の科学系宗主ボーナス、ギルガメシュの英雄創造プロジェクト生産力ボーナス)は上記「一条莉々華: 指導者固有能力「大天才」」節を参照。
+
 2026-09-20、ユニークアジェンダ「かわいい！ポジティブ！ジーニアス！」(`AGENDA_REGLOSS_ICHIJOU_RIRIKA`)を実装。指導者固有能力(`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`)の名前として確定していた「かわいい！ポジティブ！ジーニアス！」を、アジェンダ側の名前として付け替えた(指導者固有能力は名前も含めて完全にプレースホルダーへ戻った)。アレクサンドロス3世のユニークアジェンダ`AGENDA_SHORT_LIFE_GLORY`(実機データで確認済み: [基礎情報](#基礎情報2026-09-19確定)参照)を土台に着手したが、当初実装(莉々華自身との戦争状態のみを見る)は本人の意図(都市国家攻撃も含めた一般的な好戦性を見たい)と食い違っていたため、同日中にWarmonger判定ベースに変更した(好み=好戦的でない文明、嫌い=好戦的な文明)。不平(Grievance)減衰速度2倍(`MODIFIER_PLAYER_ADJUST_GRIEVANCE_DECAY`、`Amount=100`)は変更せず継承。
 
 - `XML/Leaders.xml` — Leader/Trait本体に加え、`Agendas`/`AgendaTraits`/`HistoricalAgendas`でユニークアジェンダを実装。好み/嫌いの判定は汎用の`MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER`+`REQUIREMENT_PLAYER_IS_NOT_WARMONGER`で組んでいる(バニラの専用ハードコードModifierType、例: `MODIFIER_PLAYER_DIPLOMACY_AGENDA_SHORT_LIFE_GLORY`、はModからは新規追加できないため代替)。好み側はバニラの`PLAYER_NOT_WARMONGER_SUBJECT`(`TRAIT_AGENDA_PEACEKEEPER`というRandom Agendaで実際に使われている生きたRequirementSet)を再利用、嫌い側の対になる`PLAYER_IS_WARMONGER_SUBJECT`はバニラの`AGENDA_MODIFIER_WARMONGER`が参照しているのに定義(RequirementSetRequirements)が丸ごと存在しない(バニラ側の未完成データの疑い)ため自前でInverse版を定義した。`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`は独占/大企業モードOFF側のName/Description参照を持つ(効果=Modifierはまだ無し)
-- `XML/Leaders_Monopolies.xml` — 独占/大企業モード(`GAMEMODE_MONOPOLIES`)ON時のみ`.modinfo`の`Monopolies_Mode`基準経由で読み込まれ、`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`を`Delete`して`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES`(別TraitType)に`LeaderTraits`で付け替える。効果はまだ無し
+- `XML/Leaders_Monopolies.xml` — 独占/大企業モード(`GAMEMODE_MONOPOLIES`)ON時のみ`.modinfo`の`Monopolies_Mode`基準経由で読み込まれ、`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`を`Delete`して`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES`(別TraitType)に`LeaderTraits`で付け替える。効果(「産業」/「大企業」改善+2文化力/+2科学力、商品プロジェクト生産力+100%×27資源)を2026-09-21実装、実機未確認
 - `XML/Civilizations.xml` — Civilization本体、CivilizationLeaders、CityNames(暫定で1件のみ)、および`TRAIT_CIVILIZATION_REGLOSS_ICHIJOU`(資源特化Trait本体)。`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`で`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`(+`REQUIREMENT_PLOT_IMPROVED_RESOURCE_CLASS_TYPE_MATCHES`、資源クラス一致かつ改善済みのタイルのみ)を自国の全都市に付与する構造。Firaxis公式信仰"Religious Idols"と似たパターンだが、外側ModifierTypeはReligious Idols本体の`MODIFIER_ALL_CITIES_ATTACH_MODIFIER`(全プレイヤーの全都市が対象)ではなく自国限定の`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`を使う必要がある(下記「実機デバッグ記録」参照)。ベースゲームのみで完結を目指しているが、`REQUIREMENT_PLOT_IMPROVED_RESOURCE_CLASS_TYPE_MATCHES`の拡張パック依存有無は未検証(下記「実機デバッグ記録」参照)
   - 当初案(`MODIFIER_PLAYER_CITIES_ADJUST_RESOURCE_YIELD_BY_COUNT`、エチオピア方式)は資源クラスでの絞り込みができない(Subjectが都市でありタイルでないため)ことが実装直前に判明し、上記方式に変更した
 - `XML/Colors.xml` — Colors/PlayerColors
-- `XML/Config.xml` — リーダー選択画面(フロントエンド)用の登録。Icon/PortraitはArt未着手のため未指定。CivilizationAbility名/説明はCivilizationTrait実装済みのLOCキーを参照
+- `XML/Config.xml` — リーダー選択画面(フロントエンド)用の登録。Icon/PortraitはArt未着手のため未指定。CivilizationAbility名/説明はCivilizationTrait実装済みのLOCキーを参照。選択画面でも独占/大企業モードON時に指導者能力名/説明が「大天才」側に切り替わるよう、2026-09-21に`GameModePlayerInfoOverrides`+`Queries`/`QueryCriteria`/`PlayerInfoOverrideQueries`の4テーブルを追加(実機未確認)。本人が選択画面での実機挙動差(ギルガメシュは英雄と伝説モードON/OFFで説明文が切り替わるのに莉々華は切り替わらない)に気づいたのが発端。`GameModePlayerInfoOverrides`単体は参照されず(`Base/Assets/Configuration/Data/Schema/AdditionalTables.sql`のコメント通り)、実際のロビー画面ロジック(`Base/Assets/UI/FrontEnd/PlayerSetupLogic.lua`)を読んで`Queries`/`QueryCriteria`/`PlayerInfoOverrideQueries`による明示的なクエリ登録が必要と判明した。**独占/大企業モードの導入元DLC(KublaiKhan_Vietnam)自身がこの登録をしていない**(Firaxis自身のクビライ・カン/レディ・チュウにも選択画面でのモード切替プレビューが無い)ため、Mod側で新規登録した。詳細は`.claude/skills/implement-leader-abilities/references/game-mode-switching-pattern.md`の罠の節を参照
 - `Text/en_US/Text.xml`・`Text/ja_JP/Text.xml` — 文明名/説明、指導者名、指導者/文明Trait名・説明、アジェンダ名・説明・外交台詞、都市名1件。指導者固有能力は独占/大企業モードOFF/ON双方の名前が確定済み(「推し事お疲れ様でした～」/「大天才」)、効果テキストは両方とも「[仮題]」のプレースホルダーのまま
 
 ## 実機デバッグ記録
@@ -130,9 +135,9 @@ TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA  (アジェンダ紐付け用Trait)
 ## 保留・未着手のTODO
 - [ ] 上記の`UNIQUE constraint failed`警告の整理(実害確認の上で、Text/Colorsの参照重複を解消する)
 - [ ] リーダー選択画面の能力アイコン/パウズメニューの色不具合の原因特定(調査経緯は`docs/civ6-icon-color-bug-investigation.md`)
-- [ ] 指導者固有能力(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)の中身の設計(独占/大企業モードOFF「推し事お疲れ様でした～」/ON「大天才」で名前は確定、効果は両方とも"[仮題] 未設計"のプレースホルダー)
-- [ ] 上記のモード切替(`XML/Leaders_Monopolies.xml`によるTraitTypeの`Delete`+付け替え)の実機確認(モードON/OFF両方でリーダー選択画面・ゲーム内の指導者能力名が正しく切り替わるか)
+- [ ] 指導者固有能力(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)の中身の設計。モードON「大天才」は2026-09-21に効果実装済み(「産業」/「大企業」改善+2文化力/+2科学力、商品プロジェクト生産力+100%×27資源、下記実機確認TODO参照)。モードOFF「推し事お疲れ様でした～」は効果"[仮題] 未設計"のプレースホルダーのまま
+- [ ] 上記のモード切替(`XML/Leaders_Monopolies.xml`によるTraitTypeの`Delete`+付け替え、`XML/Config.xml`の`GameModePlayerInfoOverrides`)・「大天才」の効果(「産業」/「大企業」改善ボーナス・商品プロジェクト生産力ブースト)の実機確認(モードON/OFF両方でリーダー選択画面・ゲーム内の指導者能力名が正しく切り替わるか、選択画面でモード設定チェックボックスを切り替えた瞬間に追従するか、モードONでタイルチップ/都市生産画面に効果が反映されるか)
 - [ ] Art本制作: `Art/Source/`に絵師(X上で公開)からのアイコン加工元画像(`ichijou-corporation-logo1〜3.jpg`、複数パターンが1枚にまとまっており切り出しが必要)、`ichijou-ririka-stand.webp`(2000x2000、全身立ち絵)、`wallpaper-broadcast-night.webp`(3840x2160、ローディング背景に使用済み)、および他の壁紙素材数点(`wallpaper-broadcast-daytime.webp`等、未使用)を配置済み。バッジアイコン・外交交渉画面のフォールバック静止画(`FALLBACK_NEUTRAL_*`)・ローディング画面(ポートレート`LEADER_*_NEUTRAL`+背景`LEADER_*_BACKGROUND`)は実装・実機確認済み。**未着手のまま残っているのは外交交渉画面の背景・リーダー選択画面の全身ポートレート(`PORTRAIT_*`、名称含め未検証)**(`docs/civ6-research/diplomacy-background-and-leader-select-portrait.md`に着手時の注意点をまとめてある)
 - [ ] UniqueUnit / UniqueBuilding の設計(CivilizationTraitは資源特化Traitとして設計・実装済み)
-- [ ] 保留中の追加アイデア(独占/大企業モード連動ボーナスの中身、コミュ力によるGrievance減衰)の実装要否再検討(モード切替の骨格自体は着手済み、上記参照)
+- [ ] 保留中の追加アイデア(コミュ力によるGrievance減衰)の実装要否再検討。独占/大企業モード連動ボーナスは2026-09-21に「大天才」として実装済み(上記参照)
 - [ ] 必要ならLua実装(該当するGameEventsが存在するか先に確認)
