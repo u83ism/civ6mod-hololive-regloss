@@ -11,13 +11,17 @@ description: Civ6 Modで文明能力/指導者能力(Trait)の効果を実装す
 
 「所有する資源の数に応じてゴールド等を加算する」系のTraitは、エチオピア方式(`MODIFIER_PLAYER_CITIES_ADJUST_RESOURCE_YIELD_BY_COUNT`)では資源クラスで絞り込めない。代わりに`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`(自国限定。信仰"Religious Idols"の`MODIFIER_ALL_CITIES_ATTACH_MODIFIER`をそのまま流用すると敵文明にも波及するバグになるので使わない)+`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`+`REQUIREMENT_PLOT_IMPROVED_RESOURCE_CLASS_TYPE_MATCHES`(資源クラス一致+改善済み判定を1つで行う)の組み合わせで実装する(実機確認済み、2026-09-20)。都市中心の下の資源は「改善済み」扱いにならない一方、区域(産業区域で確認)の下の資源はなる、という非対称な実機挙動も確認済み。
 
-詳細は`references/resource-yield-bonus-pattern.md`を読むこと。実例は`XML/Civilizations.xml`(`TRAIT_CIVILIZATION_REGLOSS_ICHIJOU`)。
+資源クラスでなく特定のImprovementType単体で絞り込みたい場合は`REQUIREMENT_PLOT_IMPROVEMENT_TYPE_MATCHES`(引数`ImprovementType`)を使う、同じ構造の姉妹パターンがある。**独占/大企業モードの「産業」(`IMPROVEMENT_INDUSTRY`)/「大企業」(`IMPROVEMENT_CORPORATION`)は区域(District)ではなく改善(Improvement)なので注意**(2026-09-21、「産業区域」と誤認してDistrict用Modifierで実装してしまった罠あり)。
+
+詳細は`references/resource-yield-bonus-pattern.md`を読むこと。実例は`XML/Civilizations.xml`(`TRAIT_CIVILIZATION_REGLOSS_ICHIJOU`)、`XML/Leaders_Monopolies.xml`(`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES`)。
 
 ## ゲームモードの有無で能力を切り替える
 
 `.modinfo`の`ActionCriteria`+`ConfigurationValueMatches`(`GAMEMODE_XXX`)でモードON時だけ追加XMLを読み込める(実機確認済み、2026-09-20)。Traitの切り替え方は名前が変わるか否かで選ぶ: **名前ごと変わるなら別TraitTypeへ`Delete`+付け替え**(ギルガメシュ/英雄と伝説モード方式)、**名前が同じで中身(Description等)だけ変わるなら`<Traits><Update><Where/><Set>`**(シュメール文明能力「伝説の勇者」/蛮族一族モード方式)。指導者Trait/文明Traitの違いでは決まらない点に注意。
 
-詳細(XML例・使い分けの根拠)は`references/game-mode-switching-pattern.md`を読むこと。実例は`XML/Leaders.xml`+`XML/Leaders_Monopolies.xml`(`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`、独占/大企業モード)。
+**罠(必須)**: 上記はゲーム内(`InGameActions`)だけの話。**リーダー選択画面(フロントエンド)は`ActionCriteria`を評価しないため、上記だけでは選択画面の表示は切り替わらない**。選択画面は`GameModePlayerInfoOverrides`テーブル(`GameModeType`列)を使うが、**このテーブル単体は一切参照されない**。`Queries`/`QueryCriteria`/`PlayerInfoOverrideQueries`の3テーブルでモードごとに個別登録しないと行が拾われず、この登録はゲームモードの導入元DLCが個別に行うものなので、独占/大企業モードのように導入元(KublaiKhan_Vietnam DLC)が登録していないモードでは自分のModで3テーブルとも新規登録する必要がある(2026-09-21実機で踏んだ罠、`Base/Assets/UI/FrontEnd/PlayerSetupLogic.lua`を直接読んで判明)。
+
+詳細(XML例・使い分けの根拠・選択画面対応)は`references/game-mode-switching-pattern.md`を読むこと。実例は`XML/Leaders.xml`+`XML/Leaders_Monopolies.xml`+`XML/Config.xml`(`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`、独占/大企業モード)。
 
 ## ユニークアジェンダ(HistoricalAgenda)の好み/嫌い
 

@@ -39,3 +39,31 @@
 `<Update><Where/><Set>`はSQLのUPDATE文に相当し、TraitType(≒主キー)は変えずに任意の列(Description、理屈上はNameも)だけ別のLOCキーに差し替えられる。Types/LeaderTraitsの追加やDeleteが不要な分、パターンAより軽量。**名前自体は変えず、説明文や細部の効果だけモードで調整したい場合に向く。**
 
 **使い分けの基準**: 名前が変わるならパターンA、名前が同じで中身だけ変わるならパターンB。civ6mod-hololive-regloss本体の指導者固有能力(モードOFF「推し事お疲れ様でした～」/ON「大天才」)は名前ごと変わるためパターンAを採用(2026-09-20、パターンB案も検討した上でギルガメシュ方式の現状維持を本人が選択)。
+
+## 罠(必須): リーダー選択画面(フロントエンド)はパターンA/Bのどちらも反映されない
+
+パターンA/Bはどちらも`.modinfo`の`ActionCriteria`(`Monopolies_Mode`等)でゲーム内(`InGameActions`)のDBだけを切り替える仕組みで、**ゲーム開始前のリーダー選択画面(ロビー、`FrontEndActions`)はActionCriteriaを評価しない**。選択画面でモードのON/OFFチェックボックスを切り替えても、そこで表示される能力名/説明文は自動では変わらない(2026-09-21、本人が実機で「ギルガメシュは選択画面でモード切替に追従するのに莉々華は追従していない」と気づいて発覚)。
+
+選択画面はActionCriteriaの代わりに`GameModePlayerInfoOverrides`テーブル(`GameModeType`列を持つ)を使うが、**このテーブル単体は一切参照されない**(`Base/Assets/Configuration/Data/Schema/AdditionalTables.sql`のコメント通り"not referenced directly but rather by a 'Query'")。実際のロビー画面ロジック本体(`Base/Assets/UI/FrontEnd/PlayerSetupLogic.lua`の`SyncPlayerOverrides`関数、2026-09-21実機ファイルで確認)を読むと、`Queries`/`QueryCriteria`/`PlayerInfoOverrideQueries`の3テーブルで「このゲームモードがON時にこのSQLを実行する」という登録をしない限り、`GameModePlayerInfoOverrides`の行は一切拾われない。**この3テーブルの登録が無いゲームモードでは、行を正しく書いてもリーダー選択画面には絶対に反映されない(実機で踏んだ罠、2026-09-21)。**
+
+```xml
+<GameModePlayerInfoOverrides>
+	<Row GameModeType="GAMEMODE_HEROES" Domain="Players:StandardPlayers" CivilizationType="CIVILIZATION_SUMERIA"
+	     LeaderType="LEADER_GILGAMESH" LeaderAbilityName="LOC_TRAIT_LEADER_GILGAMESH_HEROES_NAME"
+	     LeaderAbilityDescription="LOC_TRAIT_LEADER_GILGAMESH_HEROES_DESCRIPTION"/>
+</GameModePlayerInfoOverrides>
+<!-- ここから3テーブルが無いと上の行は一切効かない -->
+<PlayerInfoOverrideQueries>
+	<Row QueryId="HeroesModePlayerInfoOverrides"/>
+</PlayerInfoOverrideQueries>
+<Queries>
+	<Row QueryId="HeroesModePlayerInfoOverrides" SQL="SELECT * FROM GameModePlayerInfoOverrides WHERE GameModeType = 'GAMEMODE_HEROES'"/>
+</Queries>
+<QueryCriteria>
+	<Row QueryId="HeroesModePlayerInfoOverrides" ConfigurationGroup="Game" ConfigurationId="GAMEMODE_HEROES" Operator="Equals" ConfigurationValue="1"/>
+</QueryCriteria>
+```
+
+`Domain`は`Players:StandardPlayers`/`Players:Expansion1_Players`/`Players:Expansion2_Players`の3ルールセット分が必要(`XML/Config.xml`の既定`<Players>`テーブルと同じ考え方)。文明Trait側(名前は変えずDescriptionだけ、パターンBに相当)は`LeaderAbilityName`/`LeaderAbilityDescription`の代わりに`CivilizationAbilityDescription`を使う(`DLC/BarbarianClansMode/Data/BarbarianClansMode_ConfigData.xml`のシュメール文明能力の実例)。
+
+**Firaxis公式DLCでも3テーブルの登録は各ゲームモードの導入元が個別に行っており、ゲームモード共通の汎用登録は存在しない**(Babylon=`GAMEMODE_HEROES`、BarbarianClansMode=`GAMEMODE_BARBARIAN_CLANS`、Byzantium_Gaul=`GAMEMODE_DRAMATICAGES`、それぞれ自分のConfigDataファイルで自分のモード分だけ登録)。**独占/大企業モード(`GAMEMODE_MONOPOLIES`)は導入元のKublaiKhan_Vietnam DLC自身がこの3テーブルを登録しておらず(2026-09-21確認、Firaxis自身のクビライ・カン/レディ・チュウにも選択画面でのモード切替プレビューが無い)、モードを使う側のMod(このリポジトリ)が自分で3テーブルとも新規登録する必要がある**。QueryIdは他Modと衝突しないよう独自の名前空間で命名すること(このリポジトリでは`ReglossIchijouRirika...`のように文明固有プレフィックスを付けた)。実例は`XML/Config.xml`(`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES`、2026-09-21追加、実機未確認)。
