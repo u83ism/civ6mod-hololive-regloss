@@ -10,7 +10,16 @@
 	<Dependencies>
 		<Mod id="4873eb62-8ccc-4574-b784-dda455e74e68" title="Expansion: Gathering Storm" />
 	</Dependencies>
-	<ActionCriteria />
+	<ActionCriteria>
+		<!-- Firaxis公式KublaiKhan_Vietnam.modinfoの同名クライテリアをそのまま踏襲(2026-09-20実機ファイルで確認済み) -->
+		<Criteria id="Monopolies_Mode">
+			<ConfigurationValueMatches>
+				<Group>Game</Group>
+				<ConfigurationId>GAMEMODE_MONOPOLIES</ConfigurationId>
+				<Value>1</Value>
+			</ConfigurationValueMatches>
+		</Criteria>
+	</ActionCriteria>
 	<FrontEndActions>
 		<UpdateDatabase id="Config">
 			<File>XML/Config.xml</File>
@@ -34,6 +43,9 @@
 			<File>XML/Civilizations.xml</File>
 			<File>XML/Leaders.xml</File>
 		</UpdateDatabase>
+		<UpdateDatabase id="GameplayMonopolies" criteria="Monopolies_Mode">
+			<File>XML/Leaders_Monopolies.xml</File>
+		</UpdateDatabase>
 		<UpdateColors id="Colors">
 			<File>XML/Colors.xml</File>
 		</UpdateColors>
@@ -51,6 +63,7 @@
 	<Files>
 		<File>XML/Civilizations.xml</File>
 		<File>XML/Leaders.xml</File>
+		<File>XML/Leaders_Monopolies.xml</File>
 		<File>XML/Colors.xml</File>
 		<File>XML/Config.xml</File>
 		<File>Text/en_US/Text.xml</File>

@@ -16,10 +16,16 @@
 		</Row>
 
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="en_US">
-			<Text>[Working Title] Leader Ability</Text>
+			<Text>Good Work on Your Oshi Activities~</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION" Language="en_US">
-			<Text>[Working Title] This leader's unique ability has not been designed yet.</Text>
+			<Text>[Working Title] This leader's unique ability (Monopolies and Corporations mode OFF) has not been designed yet.</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_NAME" Language="en_US">
+			<Text>Great Genius</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION" Language="en_US">
+			<Text>[Working Title] This leader's unique ability (Monopolies and Corporations mode ON) has not been designed yet.</Text>
 		</Row>
 
 		<Row Tag="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="en_US">

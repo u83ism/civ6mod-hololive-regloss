@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+	<!--
+		独占/大企業モード(GAMEMODE_MONOPOLIES)ON時のみ読み込まれるファイル(.modinfoのMonopolies_Mode基準を参照)。
+
+		Firaxis公式Babylon DLC(Data/Babylon_Heroes_MODE.xml、GAMEMODE_HEROES基準)のギルガメシュ実装と
+		同じパターン(2026-09-20実機ファイルで確認済み): ギルガメシュは英雄と伝説モードON時、既定の
+		TraitType(TRAIT_LEADER_ADVENTURES_ENKIDU)をDeleteし、別のTraitType(TRAIT_LEADER_GILGAMESH_HEROES)を
+		新規定義してLeaderTraitsで付け替えている(同じTraitTypeのRowをName/Descriptionだけ上書きする方式ではない)。
+		効果(Modifier)がモードごとに丸ごと変わる場合、TraitModifiersはTraitType単位で紐づくため、
+		TraitType自体を分けたほうが自然に扱える。Traits行のDeleteにより、紐づくLeaderTraits/TraitModifiers等は
+		外部キーのカスケードで自動的に削除される想定(Firaxis実例でも明示的なLeaderTraits側のDeleteは無い)。
+
+		効果(Modifier)はまだダミー(空)。
+	-->
+	<Types>
+		<Row Type="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" Kind="KIND_TRAIT"/>
+	</Types>
+
+	<Traits>
+		<Delete TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" Name="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_NAME" Description="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION"/>
+	</Traits>
+
+	<LeaderTraits>
+		<Row LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES"/>
+	</LeaderTraits>
+</GameData>

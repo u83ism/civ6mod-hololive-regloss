@@ -14,6 +14,13 @@
 		<Row LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA"/>
 	</LeaderTraits>
 
+	<!--
+		TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKAは独占/大企業モードOFF時の既定Trait。モードON時は
+		`XML/Leaders_Monopolies.xml`(.modinfoでMonopolies_Mode基準により、この既定行より後に読み込まれる)が
+		この行を`Delete`し、別のTraitType(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES)に付け替える
+		(Firaxis公式Babylon DLCのギルガメシュ、英雄と伝説モードON時にTRAIT_LEADER_ADVENTURES_ENKIDUを
+		TRAIT_LEADER_GILGAMESH_HEROESに切り替える実装と同じパターン)。効果(Modifier)はどちらの変種もまだダミー(空)。
+	-->
 	<Traits>
 		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA" Name="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME" Description="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION"/>
 		<Row TraitType="TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA"/>
@@ -157,5 +164,5 @@
 		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_IS_WARMONGER" RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_IS_WARMONGER"/>
 	</RequirementSetRequirements>
 
-	<!-- 資源クラス別ゴールドボーナスは文明固有能力(TRAIT_CIVILIZATION_REGLOSS_ICHIJOU)に移設した。詳細はXML/Civilizations.xmlを参照。指導者固有能力(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)本体はまだ未設計(プレースホルダー名のまま)。「かわいい！ポジティブ！ジーニアス！」の名前はユニークアジェンダ側に移設した。 -->
+	<!-- 資源クラス別ゴールドボーナスは文明固有能力(TRAIT_CIVILIZATION_REGLOSS_ICHIJOU)に移設した。詳細はXML/Civilizations.xmlを参照。「かわいい！ポジティブ！ジーニアス！」の名前はユニークアジェンダ側に移設した。指導者固有能力は独占/大企業モードの有無でTraitTypeごと切り替わる構成にした(名前のみ確定、効果はまだダミー)。モードOFF側(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)の名前はここ、ON側(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES)への切り替えはXML/Leaders_Monopolies.xmlを参照。 -->
 </GameData>

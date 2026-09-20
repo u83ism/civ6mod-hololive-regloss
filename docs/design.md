@@ -49,7 +49,7 @@ Civ6 Modding全般の基礎知識(ファイル構造、modinfoの正しいスキ
 
 以下は莉々華の能力候補として出たが、今回は資源Traitを優先して一旦確定・保留とした。技術的な実装可否は調査済み:
 
-- **独占/大企業モードON時の追加ボーナス**: `.modinfo`の`ActionCriteria`で`ConfigurationValueMatches`(`Group=Game`, `ConfigurationId=GAMEMODE_MONOPOLIES`, `Value=1`)を使えば判定可能。Firaxis自身が`KublaiKhan_Vietnam.modinfo`で同じ手法を使っており(`Criteria id="Monopolies_Mode"`)、モードON時だけ追加XMLをロードする構成にできる。モノポリー/コーポレーション専用のEffect/RequirementタイプはDB上に存在しない(倍率計算はエンジン内部でハードコード)ため、直接フックはできない。コーポレーション本社の産出や設立コストなど周辺要素への一般的なModifierで代替する必要がある
+- **独占/大企業モードON時の追加ボーナス**: モードのON/OFF判定・条件付きファイルロードの骨格自体は2026-09-20に着手した(下記「実装状況」参照)。モノポリー/コーポレーション専用のEffect/RequirementタイプはDB上に存在しない(倍率計算はエンジン内部でハードコード)ため、直接フックはできない。コーポレーション本社の産出や設立コストなど周辺要素への一般的なModifierで代替する必要がある(中身はまだ未設計)
 - **コミュ力による外交関係値補正**: 任意の相手へのOpinion数値を直接動かす汎用効果は存在しない(Opinionはアジェンダごとにハードコードされた専用ModifierType、例: `MODIFIER_PLAYER_DIPLOMACY_AGENDA_SHORT_LIFE_GLORY`)。`EFFECT_ADJUST_PLAYER_GRIEVANCE_DECAY`(`ModifierType=MODIFIER_PLAYER_ADJUST_GRIEVANCE_DECAY`、`Amount`引数あり、`CollectionType=COLLECTION_OWNER`)でGrievance(外交不満)の減衰速度を上げることは可能。ゴルゴ(`TRAIT_AGENDA_WITH_SHIELD`、Expansion2で追加)・アレクサンドロス3世(`TRAIT_AGENDA_SHORT_LIFE_GLORY`、同じくExpansion2で追加)の実装で前例あり(`Amount=100`=減衰速度2倍)。2026-09-20に実機データ(`Expansion2_Leaders.xml`/`Macedonia_Persia_Expansion2.xml`)で再確認・リーダー名の誤記を修正(旧: アレクサンダー/キュロスと誤記していた)。
   **効果の向きに注意**: `CollectionType=COLLECTION_OWNER`は「他文明が自分に対して持つGrievance」ではなく**「自分(Owner)自身が他文明に対して持つGrievance」の減衰**を早める効果だと2026-09-20に実機検証で確定した(下記「実装状況」参照)。当初「自分に対する他文明のGrievance」と誤って記述していたが訂正
 
@@ -71,14 +71,23 @@ TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA  (アジェンダ紐付け用Trait)
 
 莉々華の資源特化Trait(資源クラス別ゴールドボーナス)をXMLに実装済み。当初はLeaderTraitとして実装したが、同日中に文明固有能力(CivilizationTrait)へ移設した。
 
+2026-09-20、指導者固有能力を独占/大企業モード(`GAMEMODE_MONOPOLIES`)の有無でTraitTypeごと切り替わる構成にした(効果はまだ空のダミー、名前のみ確定)。モードOFF側(`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`)の名前は「推し事お疲れ様でした～」、ON側(`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES`)は「大天才」。
+
+実装は`.modinfo`の`ActionCriteria`に`ConfigurationValueMatches`(`Group=Game`, `ConfigurationId=GAMEMODE_MONOPOLIES`, `Value=1`)による`Monopolies_Mode`基準を追加し(Firaxis公式`KublaiKhan_Vietnam.modinfo`の同名クライテリアをそのまま踏襲、2026-09-20実機ファイルで確認済み)、モード切替のやり方自体はFiraxis公式Babylon DLC(`Data/Babylon_Heroes_MODE.xml`、`GAMEMODE_HEROES`基準)のギルガメシュ実装をそのまま踏襲した(2026-09-20実機ファイルで確認済み、本人からの指摘で発見): ギルガメシュは英雄と伝説モードON時、既定のTraitType(`TRAIT_LEADER_ADVENTURES_ENKIDU`)を`Delete`し、別のTraitType(`TRAIT_LEADER_GILGAMESH_HEROES`)を新規定義して`LeaderTraits`で付け替える。同じTraitTypeのRowをName/Descriptionだけ上書きする(主キー一致のUPSERT)方式ではない。当初はUPSERT方式で実装したが、Firaxis公式の実例(TraitTypeごと切り替え)が見つかったため2026-09-20中に差し替えた。効果(Modifier)がモードごとに丸ごと変わる場合、TraitModifiersはTraitType単位で紐づくため、TraitType自体を分けたほうが自然に扱える。
+
+`XML/Leaders.xml`にモードOFF側の既定Trait(`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`)を定義し、`XML/Leaders_Monopolies.xml`(モードON時のみ`Monopolies_Mode`基準経由で読み込み)がこれを`Delete`して`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES`に付け替える。Traits行の`Delete`により、紐づく`LeaderTraits`/`TraitModifiers`等は外部キーのカスケードで自動的に削除される想定(Firaxis実例でも明示的な`LeaderTraits`側の`Delete`は書かれていない)。**この機構全体(Firaxis実例と同一パターンだが、うちの実装としては)は未実機確認。** 次に実機で「モードON/OFF両方でリーダー選択画面・ゲーム内の指導者能力名が正しく切り替わるか」を確認すること。
+
+なお、公式データにはTraitTypeを分けず「同じTraitTypeのまま`<Traits><Update><Where/><Set>`でDescription(理屈上はNameも)だけ差し替える」パターンBも存在する(シュメールの文明能力「伝説の勇者」`TRAIT_CIVILIZATION_FIRST_CIVILIZATION`、蛮族一族モード`GAMEMODE_BARBARIAN_CLANS`向け、`DLC/BarbarianClansMode/Data/BarbarianClansMode_GameplayData.xml`)。使い分けの基準は指導者Trait/文明Traitの違いではなく「名前自体が変わるか」で、莉々華の指導者能力は名前ごと変わるためパターンA(ギルガメシュ方式)を採用と決定した(2026-09-20、本人確認済み)。両パターンの詳細は`.claude/skills/leader-abilities/SKILL.md`の「ゲームモードの有無で能力を切り替える」節に記録済み。
+
 2026-09-20、ユニークアジェンダ「かわいい！ポジティブ！ジーニアス！」(`AGENDA_REGLOSS_ICHIJOU_RIRIKA`)を実装。指導者固有能力(`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`)の名前として確定していた「かわいい！ポジティブ！ジーニアス！」を、アジェンダ側の名前として付け替えた(指導者固有能力は名前も含めて完全にプレースホルダーへ戻った)。アレクサンドロス3世のユニークアジェンダ`AGENDA_SHORT_LIFE_GLORY`(実機データで確認済み: [基礎情報](#基礎情報2026-09-19確定)参照)を土台に着手したが、当初実装(莉々華自身との戦争状態のみを見る)は本人の意図(都市国家攻撃も含めた一般的な好戦性を見たい)と食い違っていたため、同日中にWarmonger判定ベースに変更した(好み=好戦的でない文明、嫌い=好戦的な文明)。不平(Grievance)減衰速度2倍(`MODIFIER_PLAYER_ADJUST_GRIEVANCE_DECAY`、`Amount=100`)は変更せず継承。
 
-- `XML/Leaders.xml` — Leader/Trait本体に加え、`Agendas`/`AgendaTraits`/`HistoricalAgendas`でユニークアジェンダを実装。好み/嫌いの判定は汎用の`MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER`+`REQUIREMENT_PLAYER_IS_NOT_WARMONGER`で組んでいる(バニラの専用ハードコードModifierType、例: `MODIFIER_PLAYER_DIPLOMACY_AGENDA_SHORT_LIFE_GLORY`、はModからは新規追加できないため代替)。好み側はバニラの`PLAYER_NOT_WARMONGER_SUBJECT`(`TRAIT_AGENDA_PEACEKEEPER`というRandom Agendaで実際に使われている生きたRequirementSet)を再利用、嫌い側の対になる`PLAYER_IS_WARMONGER_SUBJECT`はバニラの`AGENDA_MODIFIER_WARMONGER`が参照しているのに定義(RequirementSetRequirements)が丸ごと存在しない(バニラ側の未完成データの疑い)ため自前でInverse版を定義した。`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`はName/Description参照のみ持ち、効果(Modifier)は無し。指導者固有能力の中身は未設計
+- `XML/Leaders.xml` — Leader/Trait本体に加え、`Agendas`/`AgendaTraits`/`HistoricalAgendas`でユニークアジェンダを実装。好み/嫌いの判定は汎用の`MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER`+`REQUIREMENT_PLAYER_IS_NOT_WARMONGER`で組んでいる(バニラの専用ハードコードModifierType、例: `MODIFIER_PLAYER_DIPLOMACY_AGENDA_SHORT_LIFE_GLORY`、はModからは新規追加できないため代替)。好み側はバニラの`PLAYER_NOT_WARMONGER_SUBJECT`(`TRAIT_AGENDA_PEACEKEEPER`というRandom Agendaで実際に使われている生きたRequirementSet)を再利用、嫌い側の対になる`PLAYER_IS_WARMONGER_SUBJECT`はバニラの`AGENDA_MODIFIER_WARMONGER`が参照しているのに定義(RequirementSetRequirements)が丸ごと存在しない(バニラ側の未完成データの疑い)ため自前でInverse版を定義した。`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`は独占/大企業モードOFF側のName/Description参照を持つ(効果=Modifierはまだ無し)
+- `XML/Leaders_Monopolies.xml` — 独占/大企業モード(`GAMEMODE_MONOPOLIES`)ON時のみ`.modinfo`の`Monopolies_Mode`基準経由で読み込まれ、`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA`を`Delete`して`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES`(別TraitType)に`LeaderTraits`で付け替える。効果はまだ無し
 - `XML/Civilizations.xml` — Civilization本体、CivilizationLeaders、CityNames(暫定で1件のみ)、および`TRAIT_CIVILIZATION_REGLOSS_ICHIJOU`(資源特化Trait本体)。`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`で`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`(+`REQUIREMENT_PLOT_IMPROVED_RESOURCE_CLASS_TYPE_MATCHES`、資源クラス一致かつ改善済みのタイルのみ)を自国の全都市に付与する構造。Firaxis公式信仰"Religious Idols"と似たパターンだが、外側ModifierTypeはReligious Idols本体の`MODIFIER_ALL_CITIES_ATTACH_MODIFIER`(全プレイヤーの全都市が対象)ではなく自国限定の`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`を使う必要がある(下記「実機デバッグ記録」参照)。ベースゲームのみで完結を目指しているが、`REQUIREMENT_PLOT_IMPROVED_RESOURCE_CLASS_TYPE_MATCHES`の拡張パック依存有無は未検証(下記「実機デバッグ記録」参照)
   - 当初案(`MODIFIER_PLAYER_CITIES_ADJUST_RESOURCE_YIELD_BY_COUNT`、エチオピア方式)は資源クラスでの絞り込みができない(Subjectが都市でありタイルでないため)ことが実装直前に判明し、上記方式に変更した
 - `XML/Colors.xml` — Colors/PlayerColors
 - `XML/Config.xml` — リーダー選択画面(フロントエンド)用の登録。Icon/PortraitはArt未着手のため未指定。CivilizationAbility名/説明はCivilizationTrait実装済みのLOCキーを参照
-- `Text/en_US/Text.xml`・`Text/ja_JP/Text.xml` — 文明名/説明、指導者名、指導者/文明Trait名・説明、アジェンダ名・説明・外交台詞、都市名1件。指導者固有能力の名前・効果テキストのみ「[仮題]」のプレースホルダーが残る
+- `Text/en_US/Text.xml`・`Text/ja_JP/Text.xml` — 文明名/説明、指導者名、指導者/文明Trait名・説明、アジェンダ名・説明・外交台詞、都市名1件。指導者固有能力は独占/大企業モードOFF/ON双方の名前が確定済み(「推し事お疲れ様でした～」/「大天才」)、効果テキストは両方とも「[仮題]」のプレースホルダーのまま
 
 ## 実機デバッグ記録
 
@@ -116,8 +125,9 @@ TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA  (アジェンダ紐付け用Trait)
 
 ## 保留・未着手のTODO
 - [ ] 上記の`UNIQUE constraint failed`警告の整理(実害確認の上で、Text/Colorsの参照重複を解消する)
-- [ ] 指導者固有能力(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)の中身の設計(現状は名前「かわいい！ポジティブ！ジーニアス！」のみ確定、効果は"[仮題] 未設計"のプレースホルダー)
+- [ ] 指導者固有能力(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)の中身の設計(独占/大企業モードOFF「推し事お疲れ様でした～」/ON「大天才」で名前は確定、効果は両方とも"[仮題] 未設計"のプレースホルダー)
+- [ ] 上記のモード切替(`XML/Leaders_Monopolies.xml`によるTraitTypeの`Delete`+付け替え)の実機確認(モードON/OFF両方でリーダー選択画面・ゲーム内の指導者能力名が正しく切り替わるか)
 - [ ] Art本制作: `Art/Source/`に絵師(X上で公開)からのアイコン加工元画像(`ichijou-corporation-logo1〜3.jpg`、複数パターンが1枚にまとまっており切り出しが必要)、および`ichijou-ririka-stand.webp`(2000x2000、リーダーポートレート素材候補)を配置済み。現状`Art/Icons/`のバッジアイコンは、これらとは別の暫定ロゴ(32x32・低解像度、既に削除済み)から自動生成したものなので、上記素材から切り出した本番アイコンに差し替えが必要。リーダー選択画面の全身ポートレート(`IMG_LEADER_..._FOREGROUND/BACKGROUND`)はArtDef+XLP+ModBuddyのAsset Manager経由のコンパイルが必要そうで、PNG直置きの簡易ルートが見当たらなかった(要ModBuddy、ただしテキスト絡みの文字化け問題とは無関係なのでArt制作だけModBuddyを使う手はある)
 - [ ] UniqueUnit / UniqueBuilding の設計(CivilizationTraitは資源特化Traitとして設計・実装済み)
-- [ ] 保留中の追加アイデア(独占/大企業モード連動ボーナス、コミュ力によるGrievance減衰)の実装要否再検討
+- [ ] 保留中の追加アイデア(独占/大企業モード連動ボーナスの中身、コミュ力によるGrievance減衰)の実装要否再検討(モード切替の骨格自体は着手済み、上記参照)
 - [ ] 必要ならLua実装(該当するGameEventsが存在するか先に確認)

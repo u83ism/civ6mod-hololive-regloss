@@ -16,10 +16,16 @@
 		</Row>
 
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="ja_JP">
-			<Text>[仮題] 指導者固有能力</Text>
+			<Text>推し事お疲れ様でした～</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION" Language="ja_JP">
-			<Text>[仮題] 指導者固有能力は未設計。</Text>
+			<Text>[仮題] 独占/大企業モードOFF時の指導者固有能力は未設計。</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_NAME" Language="ja_JP">
+			<Text>大天才</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION" Language="ja_JP">
+			<Text>[仮題] 独占/大企業モードON時の指導者固有能力は未設計。</Text>
 		</Row>
 
 		<Row Tag="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="ja_JP">
