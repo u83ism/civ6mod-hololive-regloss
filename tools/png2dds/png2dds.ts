@@ -1,6 +1,9 @@
 // Convert a 32-bit RGBA PNG into an uncompressed 32bpp RGBA DDS with a full mip chain,
 // matching the byte-for-byte structure of Firaxis's own shipped UI icon DDS files
 // (verified against Civ6 SDK Assets pantry/Textures/CivAztec32.dds and Montezuma32.dds).
+// Non-square images are supported too (verified against pantry/Textures/
+// FALLBACK_NEUTRAL_ROBERT_THE_BRUCE.dds, a non-square leader fallback portrait that also
+// ships with a full mip chain down to 1x1 despite civ6wiki.info claiming these have none).
 // Usage: tsx png2dds.ts <in.png> <out.dds>
 import { readFileSync, writeFileSync } from "node:fs";
 import { PNG } from "pngjs";
@@ -49,15 +52,11 @@ const convertPngToDds = (inputPath: string, outputPath: string): void => {
   const png = PNG.sync.read(readFileSync(inputPath));
   const { width, height, data } = png; // RGBA, row-major, top-down
 
-  if (width !== height) {
-    throw new Error(`${inputPath}: only square icons are supported (got ${width}x${height})`);
-  }
-
   const mipLevels: MipLevel[] = [{ data, width, height }];
   while (mipLevels[mipLevels.length - 1]!.width > 1 || mipLevels[mipLevels.length - 1]!.height > 1) {
     mipLevels.push(downsampleByHalf(mipLevels[mipLevels.length - 1]!));
   }
-  const expectedMipCount = computeMipCount(width);
+  const expectedMipCount = computeMipCount(Math.max(width, height));
   if (mipLevels.length !== expectedMipCount) {
     throw new Error(`internal mip count mismatch: ${mipLevels.length} vs expected ${expectedMipCount}`);
   }

@@ -69,8 +69,12 @@
 		<File>Text/en_US/Text.xml</File>
 		<File>Text/ja_JP/Text.xml</File>
 		<File>Art/Icons/Icons.xml</File>
+		<File>ArtDefs/Leaders.artdef</File>
+		<File>ArtDefs/FallbackLeaders.artdef</File>
 		<File>civ6mod-hololive-regloss.dep</File>
 		<File>Platforms/Windows/BLPs/UI/RegLoss_Icons.blp</File>
 		<File>Platforms/MacOS/BLPs/UI/RegLoss_Icons.blp</File>
+		<File>Platforms/Windows/BLPs/LeaderFallbackImages.blp</File>
+		<File>Platforms/MacOS/BLPs/LeaderFallbackImages.blp</File>
 	</Files>
 </Mod>

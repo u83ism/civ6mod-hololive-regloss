@@ -39,8 +39,24 @@ xml = xml.replace(/<\/loadsLibraries>/g, "</LoadsLibraries>");
 
 // Real .dep files also have an <ArtDefDependencies> section (artdef-to-artdef graph,
 // computed by the cooker from the .artdef files themselves) between SystemDependencies
-// and the gameLibraries-derived LibraryDependencies. We ship no ArtDefs, so it's empty.
-xml = xml.replace(/<\/SystemDependencies>/, "</SystemDependencies>\n\t<ArtDefDependencies/>");
+// and the gameLibraries-derived LibraryDependencies. Verified against a real shipped
+// mod's .dep (Hololive 4th Generation, installed locally) that our own artdefs (leaf
+// artdefs with no references to other artdefs, e.g. Leaders.artdef) get an empty
+// <ArtDefDependencyPaths/> here regardless of what consumers reference them.
+const artDefNames = [...xml.matchAll(/<Element text="([^"]+\.artdef)"\/>/g)].map(
+  ([, artDefName]) => artDefName,
+);
+const uniqueArtDefNames = [...new Set(artDefNames)];
+const artDefDependenciesSection =
+  uniqueArtDefNames.length === 0
+    ? "<ArtDefDependencies/>"
+    : `<ArtDefDependencies>\n${uniqueArtDefNames
+        .map(
+          (artDefName) =>
+            `\t\t<Element>\n\t\t\t<ArtDefPath text="${artDefName}"/>\n\t\t\t<ArtDefDependencyPaths/>\n\t\t</Element>`,
+        )
+        .join("\n")}\n\t</ArtDefDependencies>`;
+xml = xml.replace(/<\/SystemDependencies>/, `</SystemDependencies>\n\t${artDefDependenciesSection}`);
 
 xml = xml.replace(/<gameLibraries>/, "<LibraryDependencies>");
 xml = xml.replace(/<\/gameLibraries>/, "</LibraryDependencies>");

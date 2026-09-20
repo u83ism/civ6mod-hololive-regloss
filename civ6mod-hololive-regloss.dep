@@ -313,6 +313,7 @@
 		<Element>
 			<ConsumerName text="Leaders"/>
 			<ArtDefDependencyPaths>
+				<Element text="Leaders.artdef"/>
 			</ArtDefDependencyPaths>
 			<LibraryDependencies>
 				<Element text="Leader"/>
@@ -324,6 +325,7 @@
 		<Element>
 			<ConsumerName text="LeaderFallback"/>
 			<ArtDefDependencyPaths>
+				<Element text="FallbackLeaders.artdef"/>
 			</ArtDefDependencyPaths>
 			<LibraryDependencies>
 				<Element text="LeaderFallback"/>
@@ -416,7 +418,16 @@
 			<LoadsLibraries>true</LoadsLibraries>
 		</Element>
 	</SystemDependencies>
-	<ArtDefDependencies/>
+	<ArtDefDependencies>
+		<Element>
+			<ArtDefPath text="Leaders.artdef"/>
+			<ArtDefDependencyPaths/>
+		</Element>
+		<Element>
+			<ArtDefPath text="FallbackLeaders.artdef"/>
+			<ArtDefDependencyPaths/>
+		</Element>
+	</ArtDefDependencies>
 	<LibraryDependencies>
 		<Element>
 			<LibraryName text="CityBuildings"/>
@@ -461,7 +472,7 @@
 		<Element>
 			<LibraryName text="LeaderFallback"/>
 			<PackageDependencies>
-				<Element text="LeaderFallbacks"/>
+				<Element text="LeaderFallbackImages.blp"/>
 			</PackageDependencies>
 		</Element>
 		<Element>

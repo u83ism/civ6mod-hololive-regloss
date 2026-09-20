@@ -72,11 +72,16 @@
     <Content Include="Textures\ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_80.tex"><SubType>Content</SubType></Content>
     <Content Include="Textures\ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_256.dds"><SubType>Content</SubType></Content>
     <Content Include="Textures\ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_256.tex"><SubType>Content</SubType></Content>
+    <Content Include="Textures\FALLBACK_NEUTRAL_REGLOSS_ICHIJOU_RIRIKA.dds"><SubType>Content</SubType></Content>
+    <Content Include="Textures\FALLBACK_NEUTRAL_REGLOSS_ICHIJOU_RIRIKA.tex"><SubType>Content</SubType></Content>
     <Content Include="XLPs\RegLoss_Icons.xlp"><SubType>Content</SubType></Content>
+    <Content Include="XLPs\LeaderFallbackImages.xlp"><SubType>Content</SubType></Content>
+    <Content Include="ArtDefs\FallbackLeaders.artdef"><SubType>Content</SubType></Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Textures\" />
     <Folder Include="XLPs\" />
+    <Folder Include="ArtDefs\" />
   </ItemGroup>
   <Import Project="$(MSBuildLocalExtensionPath)Civ6.targets" />
 </Project>

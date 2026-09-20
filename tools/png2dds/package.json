@@ -10,10 +10,13 @@
     "gen-tex": "tsx gen-tex.ts",
     "gen-xlp": "tsx gen-xlp.ts",
     "gen-dep": "tsx gen-dep.ts",
+    "gen-leader-fallback": "tsx gen-leader-fallback.ts",
+    "preview-fallback-dark-bg": "tsx preview-fallback-dark-bg.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "pngjs": "^7.0.0"
+    "pngjs": "^7.0.0",
+    "sharp": "^0.35.4"
   },
   "devDependencies": {
     "@types/node": "^26.6.2",
