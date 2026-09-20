@@ -57,12 +57,13 @@ Config.xmlの`CivilizationIcon`/`LeaderIcon`/`Portrait`等は3節の通りプレ
    - `Database.log`に`NOT NULL constraint failed: Players.X` → `Config.xml`にXフィールドの仮値を追加(3節)。1つ直すとまた次のフィールドで同じエラーが出ることが多いので、`assets/Config.xml.template`を最初から使う方が早い
    - `Database.log`に`UNIQUE constraint failed: LocalizedText...`または`Colors.Type` → 同じText.xml/Colors.xmlを複数箇所(modinfoトップレベルの`<LocalizedText>`と`FrontEndActions`/`InGameActions`の`<UpdateText>`/`<UpdateColors>`)から重複参照していないか確認。XMLのINSERT操作はINSERT OR REPLACEではなく素朴なINSERTなので、同じ(Language,Tag)や同じColor Typeを2回読み込むと2回目が失敗する
 5. **変更を加えたら必ずゲームを完全終了→再起動する。** ローカルテストは`mod-bootstrap`Skillの通りジャンクション運用でよい(ジャンクション自体は動作確認済みで無罪。ただしリポジトリ内に`.modinfo`拡張子のファイルを迷子で残すとジャンクション経由で誤って別Modとして読み込まれるので、詳細は`mod-bootstrap`Skill手順6を参照)。Mod一覧画面への再入場だけでは変更が反映されないことがあるので、**modinfoやファイル追加を変更したら必ずゲームを完全終了→再起動**する
+6. **ログだけでなく稼働中のゲームを直接いじりたいときはFireTunerを使う。** SDK同梱の公式デバッグツールで、ゴールド付与・テクノロジー強制解禁・外交状態の確認/操作などをLiveで行える(いわゆる「God Mode」的な用途)。デフォルト無効(`AppOptions.txt`の`EnableTuner 0`)なので`1`に書き換えて再起動する。詳細な起動手順・パネル一覧は`references/firetuner.md`を参照
 
-## 6. ブートストラップ期のトラブルシューティング(civ6wiki.info要約)
+## 7. ブートストラップ期のトラブルシューティング(civ6wiki.info要約)
 
-指導者定義を後から変更してクラッシュする場合の対処(`LeaderCriteria`)、拡張パック(RaF/GS)対応の3ドメイン登録手順は`references/bootstrap-troubleshooting.md`にciv6wiki.info要約として置いてある。**このリポジトリで実機確認した事実ではない**(1〜5節とは信頼度が異なる)。
+指導者定義を後から変更してクラッシュする場合の対処(`LeaderCriteria`)、拡張パック(RaF/GS)対応の3ドメイン登録手順は`references/bootstrap-troubleshooting.md`にciv6wiki.info要約として置いてある。**このリポジトリで実機確認した事実ではない**(1〜6節とは信頼度が異なる)。
 
-## 7. この先の作業は別Skillへ
+## 8. この先の作業は別Skillへ
 
 指導者/文明が選択画面に出て最低限プレイ可能になったら、以下は別Skillの範囲になる:
 

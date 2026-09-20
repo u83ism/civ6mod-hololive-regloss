@@ -16,6 +16,7 @@ Civ6のModBuddy/Art Pipeline周りは公式ドキュメントが薄く、英語�
    - `leader-abilities/references/trait-and-identity-patterns.md`(文明特性・指導者特性・文明カラー・AIの好み・多言語対応)
    - `leader-unique-content/references/unique-content-patterns.md`(固有ユニット/区域/施設/建造物=UU/UD/UI/UB)
    - `leader-bootstrap/references/bootstrap-troubleshooting.md`(LeaderCriteriaクラッシュ対処・DLC対応)
+   - `leader-bootstrap/references/firetuner.md`(FireTunerによる実機Live操作・God Mode的デバッグ)
 2. **GSLeaderTemplate・実際に動くModサンプル(サンプル・テンプレート)**。詳細は3節参照。実際に動作するModBuddyプロジェクトファイル一式で、スキーマの実例として非常に有用
 3. **実機にインストール済みの参考Mod**(`Documents/My Games/Sid Meier's Civilization VI/Mods/`配下)。実際に動いている他ModのXML/modinfoは伝聞より確実な一次情報。複数の独立したMod(できれば作者違い)で同じパターンが確認できれば、それはほぼ確定的な事実として扱ってよい
 4. **Civ6 SDK同梱ドキュメント/サンプル**(`Sid Meier's Civilization VI SDK/Documentation/Civ6Docs.html`、`Examples/Example Art Mod/`)。公式だが英語かつ量が多いので、上記1-3で仮説が立った後の裏取りに向く
@@ -59,7 +60,7 @@ Civ6のModBuddy/Art Pipeline周りは公式ドキュメントが薄く、英語�
 `https://brokenhumanoid.oops.jp/public/mdwiki/#!<ページ名>.md`(MDwiki形式のSPAなので、WebFetchでは中身が取れない。`curl -s -A "Mozilla/5.0" "https://brokenhumanoid.oops.jp/public/mdwiki/<ページ名>.md"`で生Markdownを直接取得すること)。ナビゲーション(`navigation.md`)に載っている全ページ:
 
 - Tutorial: `ModBuddy.md`(環境設定) / `CreateVanilla.md`(プロジェクト作成) / `initialize.md`(最初にやること) / `LeaderTraits.md`(指導者特性) / `MiscLeaders.md`(アジェンダ・好む宗教・AIの設定) / `CivilizationTraits.md`(文明特性) / `MiscCiv.md`(都市名・市民名・開始地点補正) / `ChangeCivColors.md`(文明カラー) / `UniqueUnits.md` / `UniqueDistricts.md` / `UniqueBuildings.md` / `UniqueImprovements.md`(固有UU/UD/UB/UI) / `mod_uniqued.md`(MODの固有化)
-- Tips: `TipsCombatBonus1.md`(相手の状態による戦闘力増加特性) / `TipsCombatBonus2.md`(自軍の状態による戦闘力増加特性) / `ChangeModifiers.md`(Modifierの効果範囲を変える) / `ChangeMusic.md`(音楽の変更) / `Wwise.md`(サウンド追加) / `FireTuner.md`
+- Tips: `TipsCombatBonus1.md`(相手の状態による戦闘力増加特性) / `TipsCombatBonus2.md`(自軍の状態による戦闘力増加特性) / `ChangeModifiers.md`(Modifierの効果範囲を変える) / `ChangeMusic.md`(音楽の変更) / `Wwise.md`(サウンド追加) / `FireTuner.md`(→`leader-bootstrap/references/firetuner.md`に収録済み)
 - コメントアウトされ未執筆(存在しない): エラーログ/Workshop公開/DLC参照/指導者・背景画像変更/アイコン作成/河川湖山脈砂漠の名前/ユニークプロジェクト/固有総督/Lua Script。リンクをたどっても404なので深追いしない
 
 civ6wiki.infoと内容が重なる項目(指導者特性・文明特性・文明カラー・UU/UD/UB/UI等)も多いが、著者の別解説として食い違いがあれば両方読んで判断すること。
