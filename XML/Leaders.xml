@@ -3,6 +3,7 @@
 	<Types>
 		<Row Type="LEADER_REGLOSS_ICHIJOU_RIRIKA" Kind="KIND_LEADER"/>
 		<Row Type="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA" Kind="KIND_TRAIT"/>
+		<Row Type="TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA" Kind="KIND_TRAIT"/>
 	</Types>
 
 	<Leaders>
@@ -15,7 +16,146 @@
 
 	<Traits>
 		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA" Name="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME" Description="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION"/>
+		<Row TraitType="TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA"/>
 	</Traits>
 
-	<!-- 資源クラス別ゴールドボーナスは文明固有能力(TRAIT_CIVILIZATION_REGLOSS_ICHIJOU)に移設した。詳細はXML/Civilizations.xmlを参照。指導者固有能力はまだ未設計。 -->
+	<!--
+		ユニークアジェンダ「かわいい！ポジティブ！ジーニアス！」。
+		好み=好戦的でない(Warmonger扱いでない)文明、嫌い=好戦的な(Warmonger扱いの)文明。都市国家への侵略・
+		不当な征服戦争も含めた一般的な好戦性(Warmongerペナルティ)を見る仕様で、莉々華自身との交戦有無だけを
+		見る仕様ではない(当初はアレクサンドロス3世のAGENDA_SHORT_LIFE_GLORYを元に「莉々華との戦争状態」で組んだが、
+		2026-09-20に本人の意図(都市国家攻撃も含めた一般的な好戦性を見たい)を確認して現在の形に変更した)。
+		不平の減衰速度2倍(EFFECT_ADJUST_PLAYER_GRIEVANCE_DECAY、Amount=100)はゴルゴ(TRAIT_AGENDA_WITH_SHIELD)・
+		アレクサンドロス3世(TRAIT_AGENDA_SHORT_LIFE_GLORY)の実機データ(2026-09-20確認、いずれもExpansion2側で追加)
+		を元に継承したまま変更していない。**効果の向きに注意**: CollectionType=COLLECTION_OWNERは「他文明が
+		莉々華に対して持つGrievance」ではなく「莉々華自身が他文明に対して持つGrievance」の減衰を早める効果だと
+		2026-09-20に実機検証で確定した(非難声明由来の「自分が莉々華に持つ不平」は基礎値通りにしか減らず、
+		自分が莉々華に奇襲戦争を仕掛けて発生した「莉々華が自分に持つ不平」は講和後にちょうど2倍の速度で減衰した)。
+		ゲーム的には「莉々華を攻撃しても彼女の中の恨みが早く消える」という、攻撃した側が得をする効果になる。
+
+		好み/嫌いの判定は汎用のMODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER + REQUIREMENT_PLAYER_IS_NOT_WARMONGER を
+		使う。好み側はバニラのRequirementSet「PLAYER_NOT_WARMONGER_SUBJECT」をそのまま再利用(こちらは
+		TRAIT_AGENDA_PEACEKEEPERという実際に使われているRandom Agendaで使用されている、完全な形で定義済みのセット)。
+		嫌い側の対になる「PLAYER_IS_WARMONGER_SUBJECT」はバニラのAGENDA_MODIFIER_WARMONGERが参照しているにも
+		関わらずRequirementSetRequirementsの定義が丸ごと存在しない(2026-09-20確認、Expansion1/Expansion2にも無い、
+		バニラ側の未完成データの疑い)ため中身を信用せず、Inverse=trueの対になるRequirementSetを自前で定義している。
+
+		2026-09-20、1vs1決闘モードで実機確認(戦争状態ベースの旧実装時点): FireTunerの`Diplomacy.ltp`
+		(GameEffects.GetModifiers()でModifierインスタンスのOwner/Subject数/Activeを見られるパネル)で「好み」側が
+		`Active=true`・対象1件(相手プレイヤー、自分自身はREQUIRES_MAJOR_CIV_OPPONENTを満たせず対象外になる)、
+		実際にOpinion内訳にも+4点反映されているのを確認済み。バニラの戦争関連アジェンダ(WITH_SHIELD_OR_ON_IT/
+		SHORT_LIFE_GLORY/BACKSTABBER)はいずれもエンジン内蔵の専用ModifierType(しきい値・減衰ターン等でOpinionの
+		ブレを抑える仕組み付き)なので、今回のシンプル版は「Warmonger判定が変わった瞬間にOpinionがそのまま動く」
+		素朴な挙動になる。Warmonger方式への切り替え後の実機再確認はまだ行っていない。
+
+		注意: MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER系は下のModifierStringsへの登録(Context="Sample",
+		Text="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL")が無いと、SimpleModifierDescriptionの値自体は存在するのに
+		Opinion内訳の理由テキストが「理由不明」にフォールバックする(2026-09-20実機で踏んだ罠)。バニラの
+		Agenda系Modifierは全て(AGENDA_HIGH_CULTURE等)この行をセットで持っているので、新規のDIPLOMACY_MODIFIER系
+		Modifierを追加するときは必ずセットで書くこと。
+	-->
+	<Agendas>
+		<Row AgendaType="AGENDA_REGLOSS_ICHIJOU_RIRIKA" Name="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_NAME" Description="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION"/>
+	</Agendas>
+
+	<AgendaTraits>
+		<Row AgendaType="AGENDA_REGLOSS_ICHIJOU_RIRIKA" TraitType="TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA"/>
+	</AgendaTraits>
+
+	<HistoricalAgendas>
+		<Row LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" AgendaType="AGENDA_REGLOSS_ICHIJOU_RIRIKA"/>
+	</HistoricalAgendas>
+
+	<TraitModifiers>
+		<Row TraitType="TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA" ModifierId="REGLOSS_ICHIJOU_RIRIKA_AGENDA_LIKES_PEACE"/>
+		<Row TraitType="TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA" ModifierId="REGLOSS_ICHIJOU_RIRIKA_AGENDA_DISLIKES_WAR"/>
+		<Row TraitType="TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA" ModifierId="REGLOSS_ICHIJOU_RIRIKA_AGENDA_GRIEVANCE_DECAY"/>
+	</TraitModifiers>
+
+	<Modifiers>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_AGENDA_LIKES_PEACE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</ModifierType>
+			<OwnerRequirementSetId>ON_TURN_STARTED</OwnerRequirementSetId>
+			<SubjectRequirementSetId>PLAYER_NOT_WARMONGER_SUBJECT</SubjectRequirementSetId>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_AGENDA_DISLIKES_WAR</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_DIPLOMACY_SIMPLE_MODIFIER</ModifierType>
+			<OwnerRequirementSetId>ON_TURN_STARTED</OwnerRequirementSetId>
+			<SubjectRequirementSetId>REGLOSS_ICHIJOU_RIRIKA_REQSET_IS_WARMONGER</SubjectRequirementSetId>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_AGENDA_GRIEVANCE_DECAY</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_ADJUST_GRIEVANCE_DECAY</ModifierType>
+		</Row>
+	</Modifiers>
+
+	<ModifierArguments>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_AGENDA_LIKES_PEACE</ModifierId>
+			<Name>InitialValue</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_AGENDA_LIKES_PEACE</ModifierId>
+			<Name>StatementKey</Name>
+			<Value>LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_REGLOSS_ICHIJOU_RIRIKA</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_AGENDA_LIKES_PEACE</ModifierId>
+			<Name>SimpleModifierDescription</Name>
+			<Value>LOC_DIPLO_MODIFIER_REGLOSS_ICHIJOU_RIRIKA_LIKES_PEACE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_AGENDA_DISLIKES_WAR</ModifierId>
+			<Name>InitialValue</Name>
+			<Value>-4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_AGENDA_DISLIKES_WAR</ModifierId>
+			<Name>StatementKey</Name>
+			<Value>LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_REGLOSS_ICHIJOU_RIRIKA</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_AGENDA_DISLIKES_WAR</ModifierId>
+			<Name>SimpleModifierDescription</Name>
+			<Value>LOC_DIPLO_MODIFIER_REGLOSS_ICHIJOU_RIRIKA_DISLIKES_WAR</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_AGENDA_GRIEVANCE_DECAY</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+	</ModifierArguments>
+
+	<!-- ModifierStrings(Context="Sample")が無いとOpinion内訳の理由テキストが「理由不明」にフォールバックする(2026-09-20実機で確認)。LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALLは{diplomaticReason}というプレースホルダーで、これがSimpleModifierDescriptionの実際の値に差し替えられる。バニラの全Agenda系Modifierがこの行をセットで持っている -->
+	<ModifierStrings>
+		<Row ModifierId="REGLOSS_ICHIJOU_RIRIKA_AGENDA_LIKES_PEACE" Context="Sample" Text="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"/>
+		<Row ModifierId="REGLOSS_ICHIJOU_RIRIKA_AGENDA_DISLIKES_WAR" Context="Sample" Text="LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALL"/>
+	</ModifierStrings>
+
+	<!--
+		「嫌い(好戦的な文明)」側の条件。「好み」側はバニラの`PLAYER_NOT_WARMONGER_SUBJECT`
+		(実際に`TRAIT_AGENDA_PEACEKEEPER`というRandom Agendaで使われている生きたRequirementSet)を
+		そのまま再利用。嫌い側の対になる`PLAYER_IS_WARMONGER_SUBJECT`はバニラの`AGENDA_MODIFIER_WARMONGER`が
+		参照しているにも関わらず、なぜかRequirementSetRequirementsの定義が丸ごと存在しない(2026-09-20確認、
+		Expansion1/Expansion2側にも無い)。バニラ側でも未完成の疑いがあるため中身を信用せず、
+		`REQUIRES_NOT_WARMONGER_SUBJECT`と対になる`Inverse=true`版を自前で定義した(前回のAT_WAR_AND_HAS_METと同じ手法)。
+	-->
+	<RequirementSets>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_IS_WARMONGER" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+	</RequirementSets>
+
+	<Requirements>
+		<Row RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_IS_WARMONGER" RequirementType="REQUIREMENT_PLAYER_IS_NOT_WARMONGER" Inverse="true"/>
+	</Requirements>
+
+	<RequirementSetRequirements>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_IS_WARMONGER" RequirementId="REQUIRES_MAJOR_CIV_OPPONENT"/>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_IS_WARMONGER" RequirementId="REQUIRES_MET_10_TURNS_AGO"/>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_IS_WARMONGER" RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_IS_WARMONGER"/>
+	</RequirementSetRequirements>
+
+	<!-- 資源クラス別ゴールドボーナスは文明固有能力(TRAIT_CIVILIZATION_REGLOSS_ICHIJOU)に移設した。詳細はXML/Civilizations.xmlを参照。指導者固有能力(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)本体はまだ未設計(プレースホルダー名のまま)。「かわいい！ポジティブ！ジーニアス！」の名前はユニークアジェンダ側に移設した。 -->
 </GameData>

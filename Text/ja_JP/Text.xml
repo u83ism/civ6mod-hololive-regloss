@@ -16,10 +16,29 @@
 		</Row>
 
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="ja_JP">
-			<Text>かわいい！ポジティブ！ジーニアス！</Text>
+			<Text>[仮題] 指導者固有能力</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION" Language="ja_JP">
 			<Text>[仮題] 指導者固有能力は未設計。</Text>
+		</Row>
+
+		<Row Tag="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="ja_JP">
+			<Text>KPG</Text>
+		</Row>
+		<Row Tag="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION" Language="ja_JP">
+			<Text>好戦的でない文明を好み、好戦的な文明を嫌う。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_REGLOSS_ICHIJOU_RIRIKA" Language="ja_JP">
+			<Text>争いのない毎日、最高です！あなたとはこれからも仲良くしたいですね。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_REGLOSS_ICHIJOU_RIRIKA" Language="ja_JP">
+			<Text>戦争なんてやめて、もっと楽しいことをしましょうよ…。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MODIFIER_REGLOSS_ICHIJOU_RIRIKA_LIKES_PEACE" Language="ja_JP">
+			<Text>好戦的でない文明を見て喜んでいる</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MODIFIER_REGLOSS_ICHIJOU_RIRIKA_DISLIKES_WAR" Language="ja_JP">
+			<Text>好戦的な文明にうんざりしている</Text>
 		</Row>
 
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="ja_JP">

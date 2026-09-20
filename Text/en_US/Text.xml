@@ -16,10 +16,29 @@
 		</Row>
 
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="en_US">
-			<Text>Cute! Positive! Genius!</Text>
+			<Text>[Working Title] Leader Ability</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION" Language="en_US">
 			<Text>[Working Title] This leader's unique ability has not been designed yet.</Text>
+		</Row>
+
+		<Row Tag="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="en_US">
+			<Text>KPG</Text>
+		</Row>
+		<Row Tag="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION" Language="en_US">
+			<Text>Likes civilizations that are not warmongers. Has disdain for warmongering civilizations.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_REGLOSS_ICHIJOU_RIRIKA" Language="en_US">
+			<Text>No wars, no worries! I'd love for us to keep getting along like this.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_REGLOSS_ICHIJOU_RIRIKA" Language="en_US">
+			<Text>Must you keep fighting? Let's find something more fun to do instead...</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MODIFIER_REGLOSS_ICHIJOU_RIRIKA_LIKES_PEACE" Language="en_US">
+			<Text>They are pleased to see a civilization that is not a warmonger</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MODIFIER_REGLOSS_ICHIJOU_RIRIKA_DISLIKES_WAR" Language="en_US">
+			<Text>They are unhappy with your warmongering</Text>
 		</Row>
 
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="en_US">
