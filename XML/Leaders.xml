@@ -19,7 +19,9 @@
 		`XML/Leaders_Monopolies.xml`(.modinfoでMonopolies_Mode基準により、この既定行より後に読み込まれる)が
 		この行を`Delete`し、別のTraitType(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES)に付け替える
 		(Firaxis公式Babylon DLCのギルガメシュ、英雄と伝説モードON時にTRAIT_LEADER_ADVENTURES_ENKIDUを
-		TRAIT_LEADER_GILGAMESH_HEROESに切り替える実装と同じパターン)。効果(Modifier)はどちらの変種もまだダミー(空)。
+		TRAIT_LEADER_GILGAMESH_HEROESに切り替える実装と同じパターン)。モードOFF側(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)は
+		交易路容量の重複解除+交易路の産出量ボーナスを実装済み(詳細は下のModifiersコメント参照)。
+		モードON側(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES)の効果はまだダミー(空)。
 	-->
 	<Traits>
 		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA" Name="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME" Description="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION"/>
@@ -77,8 +79,37 @@
 		<Row TraitType="TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA" ModifierId="REGLOSS_ICHIJOU_RIRIKA_AGENDA_LIKES_PEACE"/>
 		<Row TraitType="TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA" ModifierId="REGLOSS_ICHIJOU_RIRIKA_AGENDA_DISLIKES_WAR"/>
 		<Row TraitType="TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA" ModifierId="REGLOSS_ICHIJOU_RIRIKA_AGENDA_GRIEVANCE_DECAY"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA" ModifierId="REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_ATTACH"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA" ModifierId="REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_FOOD"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA" ModifierId="REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_PRODUCTION"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA" ModifierId="REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_SCIENCE"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA" ModifierId="REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_CULTURE"/>
 	</TraitModifiers>
 
+	<!--
+		交易路容量の重複解除+交易路の産出量ボーナス(指導者固有能力、独占/大企業モードOFF側=TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)。
+		バニラでは同じ都市に市場(BUILDING_MARKET)と灯台(BUILDING_LIGHTHOUSE)を両方建てても交易路容量は+1にしかならない
+		(Expansion1/Data/Expansion1_Buildings.xmlで確認済み: MARKET_TRADE_ROUTE_CAPACITYは無条件+1、
+		LIGHTHOUSE_TRADE_ROUTE_CAPACITYは市場が無い場合のみ+1というSubjectRequirementSetId="LIGHTHOUSE_TRADE_ROUTE_CAPACITY_REQUIREMENTS"
+		→REQUIRES_NO_MARKETによる排他制御。FireTunerで灯台→市場の順で建てても+1のみになることを実機検証済み、
+		2026-09-22。建設順序に依存する抜け道は無く、Modifierは都市の建物構成を都度動的に再評価している)。
+		既存のバニラModifier(MARKET_TRADE_ROUTE_CAPACITY/LIGHTHOUSE_TRADE_ROUTE_CAPACITY)には一切触れず、
+		一条莉々華の都市が市場と灯台の両方を持っている場合にのみ+1を追加で上乗せする形で実装する。
+		これにより一条莉々華だけ市場・灯台両方建てれば実質+2、他文明は従来通り+1のまま(数式上の二重加算は発生しない:
+		市場の+1と灯台の+1は排他だが、この追加Modifierは「両方あるときだけ」発火するので隙間を埋めるだけで重複しない)。
+		XML/Civilizations.xmlの「秘書見習い達の奮闘」と同じMODIFIER_PLAYER_CITIES_ATTACH_MODIFIER(COLLECTION_PLAYER_CITIES、
+		自国限定)ラッパーを再利用する。TraitModifiersからMODIFIER_PLAYER_ADJUST_TRADE_ROUTE_CAPACITYを直接アタッチすると、
+		REQUIREMENT_CITY_HAS_BUILDINGの判定に必要な「都市」コンテキストが得られない(Owner=Traitは都市に紐づかないため)。
+		バニラの市場/灯台はOwner=建物インスタンス(特定の都市に属する)経由でこの都市コンテキストを得ているので、
+		代わりにATTACH_MODIFIERで自国の各都市にインナーModifierを配り、インナー側のSubjectRequirementSetIdで
+		都市単位の建物所有判定(市場かつ灯台)を行う。
+
+		交易路の産出量ボーナスは全ての交易路(国内・国際問わず)に食料+1・生産力+1・科学力+1・文化力+1を加算する。
+		ModifierType=MODIFIER_PLAYER_ADJUST_TRADE_ROUTE_YIELD(CollectionType=COLLECTION_OWNER、Base/Assets/Gameplay/Data/Modifiers.xmlで確認済み)。
+		政策カード"交易所"(POLICY_CARAVANSARIES、CARAVANSARIES_TRADEROUTEGOLD)が同じModifierTypeでゴールドを加算している実例。
+		この種類はOwner=プレイヤー自身に対して直接効果が及ぶため、交易路容量ボーナスと違いATTACH_MODIFIERラッパーは不要
+		(都市単位のRequirementで絞り込む必要が無いため)。TraitModifiersから直接4つ(食料/生産力/科学力/文化力)アタッチする。
+	-->
 	<Modifiers>
 		<Row>
 			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_AGENDA_LIKES_PEACE</ModifierId>
@@ -95,6 +126,31 @@
 		<Row>
 			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_AGENDA_GRIEVANCE_DECAY</ModifierId>
 			<ModifierType>MODIFIER_PLAYER_ADJUST_GRIEVANCE_DECAY</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_ATTACH</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_CAPACITY</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_ADJUST_TRADE_ROUTE_CAPACITY</ModifierType>
+			<SubjectRequirementSetId>REGLOSS_ICHIJOU_RIRIKA_REQSET_TRADE_BOTH_BUILDINGS</SubjectRequirementSetId>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_FOOD</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_ADJUST_TRADE_ROUTE_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_PRODUCTION</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_ADJUST_TRADE_ROUTE_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_SCIENCE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_ADJUST_TRADE_ROUTE_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_CULTURE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_ADJUST_TRADE_ROUTE_YIELD</ModifierType>
 		</Row>
 	</Modifiers>
 
@@ -134,6 +190,58 @@
 			<Name>Amount</Name>
 			<Value>100</Value>
 		</Row>
+
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_ATTACH</ModifierId>
+			<Name>ModifierId</Name>
+			<Value>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_CAPACITY</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_CAPACITY</ModifierId>
+			<Name>Amount</Name>
+			<Value>1</Value>
+		</Row>
+
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_FOOD</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_FOOD</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_FOOD</ModifierId>
+			<Name>Amount</Name>
+			<Value>1</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_PRODUCTION</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_PRODUCTION</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_PRODUCTION</ModifierId>
+			<Name>Amount</Name>
+			<Value>1</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_SCIENCE</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_SCIENCE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_SCIENCE</ModifierId>
+			<Name>Amount</Name>
+			<Value>1</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_CULTURE</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_CULTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_TRADE_YIELD_CULTURE</ModifierId>
+			<Name>Amount</Name>
+			<Value>1</Value>
+		</Row>
 	</ModifierArguments>
 
 	<!-- ModifierStrings(Context="Sample")が無いとOpinion内訳の理由テキストが「理由不明」にフォールバックする(2026-09-20実機で確認)。LOC_TOOLTIP_SAMPLE_DIPLOMACY_ALLは{diplomaticReason}というプレースホルダーで、これがSimpleModifierDescriptionの実際の値に差し替えられる。バニラの全Agenda系Modifierがこの行をセットで持っている -->
@@ -152,16 +260,30 @@
 	-->
 	<RequirementSets>
 		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_IS_WARMONGER" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_TRADE_BOTH_BUILDINGS" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
 	</RequirementSets>
 
 	<Requirements>
 		<Row RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_IS_WARMONGER" RequirementType="REQUIREMENT_PLAYER_IS_NOT_WARMONGER" Inverse="true"/>
+		<Row RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_TRADE_HAS_MARKET" RequirementType="REQUIREMENT_CITY_HAS_BUILDING"/>
+		<Row RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_TRADE_HAS_LIGHTHOUSE" RequirementType="REQUIREMENT_CITY_HAS_BUILDING"/>
 	</Requirements>
+
+	<!-- MustBeFunctioning=falseはバニラのREQUIRES_NO_MARKET(Expansion1_Buildings.xml)と同じ流儀。
+	     略奪等で一時的に非稼働でも「建物としては存在する」なら判定に含める -->
+	<RequirementArguments>
+		<Row RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_TRADE_HAS_MARKET" Name="BuildingType" Value="BUILDING_MARKET"/>
+		<Row RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_TRADE_HAS_MARKET" Name="MustBeFunctioning" Value="false"/>
+		<Row RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_TRADE_HAS_LIGHTHOUSE" Name="BuildingType" Value="BUILDING_LIGHTHOUSE"/>
+		<Row RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_TRADE_HAS_LIGHTHOUSE" Name="MustBeFunctioning" Value="false"/>
+	</RequirementArguments>
 
 	<RequirementSetRequirements>
 		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_IS_WARMONGER" RequirementId="REQUIRES_MAJOR_CIV_OPPONENT"/>
 		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_IS_WARMONGER" RequirementId="REQUIRES_MET_10_TURNS_AGO"/>
 		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_IS_WARMONGER" RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_IS_WARMONGER"/>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_TRADE_BOTH_BUILDINGS" RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_TRADE_HAS_MARKET"/>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_TRADE_BOTH_BUILDINGS" RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_TRADE_HAS_LIGHTHOUSE"/>
 	</RequirementSetRequirements>
 
 	<!--
@@ -173,5 +295,5 @@
 		<Row LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" ForegroundImage="LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL" BackgroundImage="LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND"/>
 	</LoadingInfo>
 
-	<!-- 資源クラス別ゴールドボーナスは文明固有能力(TRAIT_CIVILIZATION_REGLOSS_ICHIJOU)に移設した。詳細はXML/Civilizations.xmlを参照。「かわいい！ポジティブ！ジーニアス！」の名前はユニークアジェンダ側に移設した。指導者固有能力は独占/大企業モードの有無でTraitTypeごと切り替わる構成にした(名前のみ確定、効果はまだダミー)。モードOFF側(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)の名前はここ、ON側(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES)への切り替えはXML/Leaders_Monopolies.xmlを参照。 -->
+	<!-- 資源クラス別ゴールドボーナスは文明固有能力(TRAIT_CIVILIZATION_REGLOSS_ICHIJOU)に移設した。詳細はXML/Civilizations.xmlを参照。「かわいい！ポジティブ！ジーニアス！」の名前はユニークアジェンダ側に移設した。指導者固有能力は独占/大企業モードの有無でTraitTypeごと切り替わる構成にした。モードOFF側(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)は交易路容量の重複解除+交易路の産出量ボーナスを実装済み(詳細は上のModifiersコメント参照)、ON側(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES)への切り替えはXML/Leaders_Monopolies.xmlを参照(効果はまだダミー)。 -->
 </GameData>
