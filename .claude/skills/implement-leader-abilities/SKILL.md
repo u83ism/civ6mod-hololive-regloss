@@ -29,6 +29,12 @@ description: Civ6 Modで文明能力/指導者能力(Trait)の効果を実装す
 
 詳細(Requirementの使い分け・デバッグ手順)は`references/agenda-likes-dislikes-pattern.md`を読むこと。実例は`XML/Leaders.xml`。
 
+## 既存ユニットの数値ブースト(BuildCharges等)
+
+「労働者の使用回数+1」のような、既存の標準ユニット(Builder等)に対する数値ブーストだけが目的なら、UUを新設せず`MODIFIER_PLAYER_UNITS_ADJUST_XXX`系のModifierType(例: `MODIFIER_PLAYER_UNITS_ADJUST_BUILDER_CHARGES`)+`SubjectRequirementSetId`で対象を絞る方式が最短(2026-09-22実機確認)。絞り込み用のRequirementSetはバニラが既に定義済みのグローバル共有ID(例: `UNIT_IS_BUILDER`、`Policies.xml`で1回だけ定義されPyramid/始皇帝/公共事業/農奴制が使い回している)をそのまま参照でき、Mod側で再定義する必要はない。実例は始皇帝`FIRST_EMPEROR_TRAIT`の`TRAIT_ADJUST_BUILDER_CHARGES`(`Amount=1`)で、表記も「労働者の使用回数制限が通常よりも1回増加。」をそのまま流用できる。実装は`XML/Civilizations.xml`(`TRAIT_CIVILIZATION_REGLOSS_ICHIJOU`の`REGLOSS_ICHIJOU_ADJUST_BUILDER_CHARGES`)を参照。
+
+**罠(必須・当初UU化を試みて撤回した経緯)**: 同じ「労働者の使用回数+1」を狙って`UnitReplaces`でUU化するアプローチは、`Improvement_ValidBuildUnits`(ImprovementType×UnitTypeのホワイトリスト、`UnitReplaces`では自動継承されない)を置換元と同じ数だけ手動で完全再現しないと「労働者の完全上位互換」にならない。この一覧はバニラ+全DLCで50件超あり、しかもRise and Fall/Gathering Storm本体限定分(`GameCoreInUse`判定でロードされるかどうかがルールセット依存)と個別文明DLC限定分(そのDLCが無いと`Improvements`テーブルに行自体が存在しない)が混在するため、1行でも参照先が欠けると`FOREIGN KEY constraint failed`で`XML`全体の検証が落ち、**ゲームが起動不能になる**(2026-09-22実機で発生)。「UU化して完全上位互換にする」コストは、単純な数値ブースト1個の実装コストとして見合わない場合が多いので、まずTraitへの直接Modifierで足りないか検討すること。詳しくは`add-unique-content` SKILL.mdの該当セクションを参照。
+
 ## civ6wiki.info要約: Trait/Modifierの基本構造、文明カラー・AIの好み、多言語化(未検証)
 
 まだ着手していないTrait実装パターンに手を付けるときは、先に`docs/civ6-research/trait-and-identity-patterns.md`を読むこと。文明特性・指導者特性のXML構造(`TraitModifiers`→`Modifiers`→`ModifierArguments`、地形条件の`RequirementSets`系)、文明カラー(`Colors`/`PlayerColors`)、AIの好み(`AiListTypes`/`AiLists`/`AiFavoredItems`)、多言語対応(`LocalizedText`への変換手順)、Civilopedia/都市名ランダム化などの細部調整をciv6wiki.info(2017〜2020年執筆、SDKサンプルを素材にした写経チュートリアル)から要約してある。**このリポジトリで実機確認した事実ではない**ので、上記の実機確認済みパターンと矛盾したらそちらを優先する。実機確認できたらこのSKILL.mdへ確認済みパターンとして書き足すこと。

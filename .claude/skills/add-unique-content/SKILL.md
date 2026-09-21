@@ -5,7 +5,11 @@ description: Civ6 Modで固有ユニット/区域/施設/建造物(UU/UD/UI/UB)�
 
 # 固有ユニット・区域・施設・建造物(UU/UD/UI/UB)の実装
 
-一条莉々華Mod(civ6mod-hololive-regloss)で着手済み(UU「社員」、労働者UNIT_BUILDER置換、2026-09-22実機確認)。UD/UI/UBは依然未検証(civ6wiki.infoの未検証要約しか材料が無いため)なので、それらに着手するときは`docs/civ6-research/unique-content-patterns.md`(civ6wiki.info要約、2017〜2022年執筆、SDKサンプル`LEADER_JASPER_KITTY`/`CIVILIZATION_FELINE`を素材にした写経チュートリアル)を先に読むこと。実装しながら食い違いが見つかったら実機での挙動を優先し、**確認できたパターンをこのSKILL.mdに直接書き足していく**(このSkillは着手後、`make-fallback-portrait`のような実機確認済みの「作る手順」Skillへ育てていく前提)。`bootstrap-leader`/`make-leader-icons`双方とも整合を取ること。
+一条莉々華Mod(civ6mod-hololive-regloss)で試作・撤回した経緯あり(UU「社員」、労働者UNIT_BUILDER置換を実装→実機確認まで進めたが、下記「UU化する前に」の理由でTraitへの直接Modifierに置き換えて撤回、2026-09-22)。UD/UI/UBは依然未検証(civ6wiki.infoの未検証要約しか材料が無いため)なので、それらに着手するときは`docs/civ6-research/unique-content-patterns.md`(civ6wiki.info要約、2017〜2022年執筆、SDKサンプル`LEADER_JASPER_KITTY`/`CIVILIZATION_FELINE`を素材にした写経チュートリアル)を先に読むこと。実装しながら食い違いが見つかったら実機での挙動を優先し、**確認できたパターンをこのSKILL.mdに直接書き足していく**(このSkillは着手後、`make-fallback-portrait`のような実機確認済みの「作る手順」Skillへ育てていく前提)。`bootstrap-leader`/`make-leader-icons`双方とも整合を取ること。
+
+## UU化する前に: 本当にUUが要るか確認する
+
+「既存ユニットに数値ブースト(使用回数+1、コスト削減等)を付けたいだけ」なら、UU化せず`implement-leader-abilities` SKILL.mdの「既存ユニットの数値ブースト」パターン(Traitに直接Modifierを付ける)で済むかを先に検討すること。UU化(`UnitReplaces`)は「新しい効果を持つ別ユニットとして差別化したい」場合にのみ選ぶ。理由は下記6番目の落とし穴を参照(完全上位互換を狙うと`Improvement_ValidBuildUnits`の再現コストが跳ね上がり、DLC非所持環境で起動不能になるリスクまである)。
 
 ## 要点だけ先に(UD/UI/UBは未検証)
 
@@ -20,6 +24,7 @@ UU(ユニット)/UD(区域)/UI(地形改善)/UB(建造物)は全て同じ8手順
 3. **拡張パック限定のスキーマ拡張列を、Modの依存関係だけを根拠に安易に使わない。** `.modinfo`の`<Dependencies>`がGathering Storm等を要求していても、それは「実際にプレイ中の全ゲームでその拡張のルールが有効」を意味しない(Standard/Rise and Fallルールでもこのモッドはロードされる)。拡張限定のスキーマ拡張列(例: `CanFormMilitaryFormation`、`Expansion2_Schema.sql`由来。`01_GameplaySchema.sql`のBase列かどうかは`Schema/*.sql`のCREATE TABLE文で確認できる)をUnits本体行に含めると、非対応ルールセットで`table Units has no column named ...`のエラーとともにUnitsのINSERT自体が失敗し、`UnitAiInfos`等の外部キー参照が連鎖的に壊れて**ゲームが起動不能になる**。バニラと完全一致させたい誘惑があっても、Base Schemaの列だけで組む方が安全。
 4. **民生ユニット(Builder/Settler/Trader/Missionary)を置換するUUの公式前例はバニラ・全DLCに一件も存在しない**(2026-09-22、実機ファイル全数検索で確認)。実装自体はスキーマ上可能だが、前例が無い分、置換元に紐づく`TypeTags`(例: `CLASS_LANDCIVILIAN`/`CLASS_BUILDER`)・`UnitAiInfos`(例: `UNITAI_BUILD`)等の補助テーブル行を漏れなく一式コピーする必要がある。
 5. **`BuildCharges`/`CostProgressionModel`はUnitsテーブルの単純な列で、Modifier/GameEffectは不要。** `CostProgressionModel`を省略するとスキーマ上のデフォルト`NO_COST_PROGRESSION`になり、同じユニットを何体作ってもコストが上がらない(バニラBuilderは`COST_PROGRESSION_PREVIOUS_COPIES`で複数体生産ごとにコストが上昇する挙動を持つ)。
+6. **民生ユニット置換UUを「置換元の完全上位互換」にしたいなら、`Improvement_ValidBuildUnits`(ImprovementType×UnitTypeのホワイトリスト)の再現が必須だが、これは`UnitReplaces`では自動継承されず、コストが跳ね上がる。** Builderが作れる改善は`Farm`のような一般改善も含め全て`Improvement_ValidBuildUnits`に明示登録されている(登録が無いUnitTypeは何の改善も作れない)。バニラ+全DLCで50件超あり、内訳は(a)Base game本体(常に安全)、(b)Rise and Fall/Gathering Storm本体限定(`GameCoreInUse`判定でロードされるルールセット依存、Standardだと存在しない)、(c)個別文明DLC限定(そのDLCが無いと`Improvements`テーブルに行自体が存在しない)の3層構造。**1行でも参照先ImprovementTypeが存在しないと`FOREIGN KEY constraint failed`でXML全体の検証が落ち、ゲームが起動不能になる**(2026-09-22実機で発生、Portugal DLC限定の`IMPROVEMENT_ANCIENT_TOWER_DEFENSE`等3件が原因だった)。完全な互換性を保つには(b)を`.modinfo`の`ActionCriteria`(`GameCoreInUse`)で条件分岐し、(c)は依存DLCの所持判定が別途必要になるため実装コストが非常に重い。この重さが原因で、実際に一条コーポレーションの「社員」UU化はTrait直接Modifier方式へ撤回した(「UU化する前に」の項を参照)。
 
 ⚠️ **UB(ユニーク建造物)は2つの既知の罠がある(いずれも未検証、wiki記載のまま)**:
 1. Wiki記載のBuildings/Landmarks artdefサンプルは2017年当時のものであり、その後のアップデートで仕様変更が入ったため現在は動作しない、と著者自身が明記している。Artdefが必要になったら、Wikiのサンプルを写経せずSteam Workshopの実働Modを解析すること(`research-mod` Skillの優先順位2〜3節と同じ結論)
