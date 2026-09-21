@@ -63,6 +63,7 @@
 		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_ICHIJOU" ModifierId="REGLOSS_ICHIJOU_RIRIKA_UA_ATTACH_BONUS"/>
 		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_ICHIJOU" ModifierId="REGLOSS_ICHIJOU_RIRIKA_UA_ATTACH_STRATEGIC"/>
 		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_ICHIJOU" ModifierId="REGLOSS_ICHIJOU_RIRIKA_UA_ATTACH_LUXURY"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_ICHIJOU" ModifierId="REGLOSS_ICHIJOU_ADJUST_BUILDER_CHARGES"/>
 	</TraitModifiers>
 
 	<!--
@@ -111,6 +112,18 @@
 			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_LUXURY</ModifierId>
 			<ModifierType>MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD</ModifierType>
 			<SubjectRequirementSetId>REGLOSS_ICHIJOU_REQSET_PLOT_LUXURY</SubjectRequirementSetId>
+		</Row>
+
+		<!--
+			労働者の使用回数制限+1。実装・表記ともに始皇帝(FIRST_EMPEROR_TRAIT)のTRAIT_ADJUST_BUILDER_CHARGES
+			(MODIFIER_PLAYER_UNITS_ADJUST_BUILDER_CHARGES、Amount=1)をそのまま踏襲した(2026-09-22実機ファイルで確認)。
+			SubjectRequirementSetId="UNIT_IS_BUILDER"はPolicies.xmlでバニラが定義済みのグローバル共有
+			RequirementSet(Pyramid/始皇帝/公共事業/農奴制が共通で参照している)で、このMod側で再定義しない。
+		-->
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_ADJUST_BUILDER_CHARGES</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_UNITS_ADJUST_BUILDER_CHARGES</ModifierType>
+			<SubjectRequirementSetId>UNIT_IS_BUILDER</SubjectRequirementSetId>
 		</Row>
 	</Modifiers>
 
@@ -161,6 +174,12 @@
 			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_LUXURY</ModifierId>
 			<Name>Amount</Name>
 			<Value>10</Value>
+		</Row>
+
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_ADJUST_BUILDER_CHARGES</ModifierId>
+			<Name>Amount</Name>
+			<Value>1</Value>
 		</Row>
 	</ModifierArguments>
 

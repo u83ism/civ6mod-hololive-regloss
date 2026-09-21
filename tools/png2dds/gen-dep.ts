@@ -69,10 +69,10 @@ xml = xml.replace(/<requiredGameArtIDs>/, "<RequiredGameArtIDs>");
 xml = xml.replace(/<\/requiredGameArtIDs>/, "</RequiredGameArtIDs>");
 
 // Real .dep files order this right after <ID>, but Art.xml has it last; move it up.
-const requiredIdsMatch = xml.match(/\t<RequiredGameArtIDs>[\s\S]*?<\/RequiredGameArtIDs>\n/);
+const requiredIdsMatch = xml.match(/\t<RequiredGameArtIDs>[\s\S]*?<\/RequiredGameArtIDs>\r?\n/);
 if (requiredIdsMatch) {
   xml = xml.replace(requiredIdsMatch[0], "");
-  xml = xml.replace(/(<\/ID>\n)/, `$1${requiredIdsMatch[0]}`);
+  xml = xml.replace(/(<\/ID>\r?\n)/, `$1${requiredIdsMatch[0]}`);
 }
 
 writeFileSync(outputPath, xml);

@@ -295,7 +295,7 @@
 			<Text>秘書見習い達の奮闘</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION" Language="ja_JP">
-			<Text>資源タイルが開発済みの場合、ボーナス資源は [ICON_Gold] ゴールド+3、戦略資源は+5、高級資源は+10。</Text>
+			<Text>資源タイルが開発済みの場合、ボーナス資源は [ICON_Gold] ゴールド+3、戦略資源は+5、高級資源は+10。労働者の使用回数制限が通常よりも1回増加。</Text>
 		</Row>
 
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_HQ" Language="ja_JP">
