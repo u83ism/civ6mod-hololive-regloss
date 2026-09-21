@@ -157,6 +157,51 @@
 			<Text>ごめん、今はまだちょっと…</Text>
 		</Row>
 
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_ACCEPT_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>おっけー、この条件でいいよ！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_REFUSE_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>うーん、これはちょっと飲めないかな</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_ADJUST_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>うーん、ちょっとだけ条件変えたいな。これでどう？</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_DEAL_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>やったー、商談成立！ありがとね</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_DEAL_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>あちゃー、だめだったか。また今度誘うね</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ねえ、そろそろ終わりにしない？もう戦うの疲れちゃったよ……</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_AI_ACCEPT_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>うん……それでいい。もう終わりにしよ</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_AI_REFUSE_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>はぁ？ふざけないで、そんな条件じゃ絶対ダメ</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>よかった……ほんとによかった。ありがとう</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>は？まだやるつもり…？もう知らない</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_AI_ACCEPT_DEMAND_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>はぁ…わかったよ。今回だけだからね</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_AI_REFUSE_DEMAND_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>え、無理無理！そんなのこっちが損するだけじゃん</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_HUMAN_ACCEPT_DEMAND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>やった、話が分かるじゃん！ありがとね</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_HUMAN_REFUSE_DEMAND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>えー、ケチ。まあ、覚えとくから</Text>
+		</Row>
+
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="ja_JP">
 			<Text>秘書見習い達の奮闘</Text>
 		</Row>

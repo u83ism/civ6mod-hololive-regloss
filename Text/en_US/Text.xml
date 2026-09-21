@@ -157,6 +157,51 @@
 			<Text>Sorry, not quite yet...</Text>
 		</Row>
 
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_ACCEPT_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Okay, these terms work for me!</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_REFUSE_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hmm, I don't think I can go along with this.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_ADJUST_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hmm, I'd like to tweak the terms a little. How about this?</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_DEAL_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Yay, deal closed! Thanks a bunch.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_DEAL_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Aw, no good, huh? I'll try again some other time.</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hey, can we just end this already? I'm so tired of fighting...</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_AI_ACCEPT_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>...Okay. That works. Let's just end this.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_AI_REFUSE_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Huh? Don't mess with me, there's no way I'm accepting those terms.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Thank goodness... I mean it. Thank you.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>What? You still want to keep going...? Fine, I'm done.</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_AI_ACCEPT_DEMAND_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>...Fine. Just this once, okay?</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_AI_REFUSE_DEMAND_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Uh, no way! That's a total loss for me.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_HUMAN_ACCEPT_DEMAND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Yes, you actually get it! Thanks.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_HUMAN_REFUSE_DEMAND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Aw, stingy. Well, I'll remember this.</Text>
+		</Row>
+
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="en_US">
 			<Text>The Junior Secretaries' Hustle</Text>
 		</Row>
