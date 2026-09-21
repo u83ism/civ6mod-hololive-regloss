@@ -1,6 +1,6 @@
 ---
 name: write-official-style-text
-description: Civ6 Mod向けにゲーム内テキスト(文明/指導者Traitの`_NAME`・`_DESCRIPTION`、ユニット/建造物/Civilopedia等の説明文)を公式の文体に合わせて書く時に使う。「能力の説明文を書く」「Trait名を考える」「説明文を日本語で書く」「多言語化する」「公式っぽい言い回しにして」と言われたとき、またはLOCテキストを新規に書く/レビューする場面で使う。Trait名限定のSkillではない。Modifier/RequirementのXML実装自体は`implement-leader-abilities`等の各実装Skillの範囲(そちらは効果の実装、こちらはテキストの文体)。
+description: Civ6 Mod向けにゲーム内テキスト(文明/指導者Traitの`_NAME`・`_DESCRIPTION`、ユニット/建造物/Civilopedia等の説明文)を公式の文体に合わせて書く時に使う。「能力の説明文を書く」「Trait名を考える」「説明文を日本語で書く」「多言語化する」「公式っぽい言い回しにして」と言われたとき、またはLOCテキストを新規に書く/レビューする場面で使う。Trait名限定のSkillではない。Modifier/RequirementのXML実装自体は`implement-leader-abilities`等の各実装Skillの範囲(そちらは効果の実装、こちらはテキストの文体)。**外交交渉画面の台詞(`LOC_DIPLO_*`)はこのSkillの対象外**(公式に統一書式ルールが存在せず、リーダーごとの性格・口調で書くのが作法。`implement-diplomacy-statements` Skillを使うこと)。
 ---
 
 # Civ6公式スタイルのゲーム内テキストを書く
