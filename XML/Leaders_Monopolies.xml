@@ -11,7 +11,49 @@
 		TraitType自体を分けたほうが自然に扱える。Traits行のDeleteにより、紐づくLeaderTraits/TraitModifiers等は
 		外部キーのカスケードで自動的に削除される想定(Firaxis実例でも明示的なLeaderTraits側のDeleteは無い)。
 
-		効果(Modifier)はまだダミー(空)。
+		効果(Modifier)は2026-09-21に実装(2026-09-20時点はダミー)。
+
+		1. 「産業」(IMPROVEMENT_INDUSTRY)+2文化力/+2科学力/+1ゴールド、「大企業」(IMPROVEMENT_CORPORATION)+4文化力/+4科学力/+1ゴールド
+		   (ゴールドのみ産業/大企業で同じ+1、2026-09-21追加。バランス調整の経緯は以下):
+		   **「産業」は区域(District)ではなく、Kind="KIND_IMPROVEMENT"の正真正銘の改善(本人指摘により訂正、
+		   当初区域=DISTRICT_INDUSTRIAL_ZONEだと誤解していた)**。独占/大企業モードで、同種の高級資源2つに
+		   改善(鉱山/採石場/プランテーション等)を作った後、労働者(UNIT_BUILDER)で「産業」を創出でき、
+		   「経済学」研究後は大商人(UNIT_GREAT_MERCHANT)で上位互換の「大企業」にアップグレードできる
+		   (`DLC/KublaiKhan_Vietnam/Data/KublaiKhan_Vietnam_Monopolies_MODE.xml`で実機確認)。
+		   うちの資源特化Trait(TRAIT_CIVILIZATION_REGLOSS_ICHIJOU、XML/Civilizations.xml参照)と全く同じ構造
+		   (MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER→MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD)で実装し、
+		   絞り込みだけREQUIREMENT_PLOT_IMPROVEMENT_TYPE_MATCHES(引数ImprovementType)に差し替えた。
+		   このRequirementType自体もモノポリーMODE自身が実際に使っている(REQUIREMENT_CITY_GROWTH_INDUSTRY)。
+
+		   **罠(2026-09-21、実機で発覚)**: 「大企業」タイル単体のツールチップで文化力/科学力が+4ではなく
+		   +6(=産業分+2+大企業分+4)になる不具合を確認した。原因は未確定(FireTunerでの裏取りは未実施)だが、
+		   推測: Civ6のImprovementは一度建てると内部のImprovementType自体は変わらないパターンが多い
+		   (例: 鉱山は技術で産出が上がってもずっとIMPROVEMENT_MINEのまま)。「産業」→「大企業」も同様に、
+		   UI上は名称/アイコンが切り替わって見えても、プロットの内部ImprovementTypeはIMPROVEMENT_INDUSTRYの
+		   ままで「大企業扱いになったか」は別のフラグで管理されており、REQUIREMENT_PLOT_IMPROVEMENT_TYPE_MATCHES
+		   が両方trueになっている可能性が高い(未検証、公式のResourceIndustries/ResourceCorporations機構でも
+		   同じことが起きていると思われる)。
+
+		   この罠を踏まえ、根本原因を確定させなくても正しい数値になるよう「産業/大企業共通の基礎ボーナス」+
+		   「大企業限定の上乗せボーナス」の2階建てに設計し直した(ImprovementTypeごとに数値を丸ごと分ける
+		   方式は撤回):
+		   - 基礎(産業 or 大企業のどちらかで発火、REQUIREMENTSET_TEST_ANY): 文化力+2、科学力+2、ゴールド+1
+		   - 大企業限定の上乗せ(REQUIREMENTSET_TEST_ALL、大企業のみ): 文化力+2、科学力+2
+		   この設計なら「大企業タイルで産業判定も同時にtrueになる」現象が起きていても基礎は1回しか発火しない
+		   (RequirementSetは1つのModifierの発火条件であって、満たすRequirementの数だけ多重発火するわけではない)
+		   ため、産業タイルは+2/+2/+1、大企業タイルは+4/+4/+1が常に保証される。ゴールドは大企業でも+1のまま
+		   (上乗せ無し)。
+
+		2. 商品プロジェクトの生産力+100%(実質ターン数半分): MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION
+		   (EFFECT_ADJUST_PROJECT_PRODUCTION)をProjectType(PROJECT_CREATE_CORPORATION_PRODUCT_<資源>)ごとに複製。
+		   ProjectTypeを一括指定できるRequirementType(REQUIREMENT_PROJECT_TYPE_MATCHES相当)は存在しないため、
+		   ギルガメシュの英雄と伝説モード実装(TRAIT_LEADER_GILGAMESH_HEROES、英雄創造プロジェクト13種それぞれに
+		   ProjectType+Amount=25のModifierを1つずつ並べる)と同じ構造を踏襲した。対象は標準ルールセットの24資源+
+		   文明勃興モード追加3資源(琥珀/オリーブ/亀)の計27資源(GranColombia_Maya限定の蜂蜜は対象外)。
+		   「コストを半減」の実体は生産力+100%(2倍速)であり、Cost値自体を減らす仕組みはゲーム全体に存在しない
+		   (*_PROJECT*_COST系のModifier/Effectは本体+全DLC検索で0件)。
+
+		どちらも実機未確認(2026-09-21時点)。
 	-->
 	<Types>
 		<Row Type="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" Kind="KIND_TRAIT"/>
@@ -25,4 +67,572 @@
 	<LeaderTraits>
 		<Row LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES"/>
 	</LeaderTraits>
+
+	<TraitModifiers>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_BASE_CULTURE"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_BASE_SCIENCE"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_BASE_GOLD"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_CORPORATION_TOPUP_CULTURE"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_CORPORATION_TOPUP_SCIENCE"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_CITRUS"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_COCOA"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_COFFEE"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_COTTON"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_DYES"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_INCENSE"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SILK"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SPICES"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SUGAR"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TEA"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TOBACCO"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_WINE"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_DIAMONDS"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_JADE"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_MERCURY"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SALT"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SILVER"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_GYPSUM"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_MARBLE"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_FURS"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_IVORY"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TRUFFLES"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_PEARLS"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_WHALES"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_AMBER"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_OLIVES"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES" ModifierId="REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TURTLES"/>
+	</TraitModifiers>
+
+	<Modifiers>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_BASE_CULTURE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_BASE_CULTURE</ModifierId>
+			<ModifierType>MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD</ModifierType>
+			<SubjectRequirementSetId>REGLOSS_ICHIJOU_RIRIKA_REQSET_PLOT_INDUSTRY_OR_CORPORATION</SubjectRequirementSetId>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_BASE_SCIENCE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_BASE_SCIENCE</ModifierId>
+			<ModifierType>MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD</ModifierType>
+			<SubjectRequirementSetId>REGLOSS_ICHIJOU_RIRIKA_REQSET_PLOT_INDUSTRY_OR_CORPORATION</SubjectRequirementSetId>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_BASE_GOLD</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_BASE_GOLD</ModifierId>
+			<ModifierType>MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD</ModifierType>
+			<SubjectRequirementSetId>REGLOSS_ICHIJOU_RIRIKA_REQSET_PLOT_INDUSTRY_OR_CORPORATION</SubjectRequirementSetId>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_CORPORATION_TOPUP_CULTURE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_CORPORATION_TOPUP_CULTURE</ModifierId>
+			<ModifierType>MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD</ModifierType>
+			<SubjectRequirementSetId>REGLOSS_ICHIJOU_RIRIKA_REQSET_PLOT_CORPORATION_ONLY</SubjectRequirementSetId>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_CORPORATION_TOPUP_SCIENCE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_CORPORATION_TOPUP_SCIENCE</ModifierId>
+			<ModifierType>MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD</ModifierType>
+			<SubjectRequirementSetId>REGLOSS_ICHIJOU_RIRIKA_REQSET_PLOT_CORPORATION_ONLY</SubjectRequirementSetId>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_CITRUS</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_COCOA</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_COFFEE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_COTTON</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_DYES</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_INCENSE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SILK</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SPICES</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SUGAR</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TEA</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TOBACCO</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_WINE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_DIAMONDS</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_JADE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_MERCURY</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SALT</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SILVER</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_GYPSUM</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_MARBLE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_FURS</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_IVORY</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TRUFFLES</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_PEARLS</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_WHALES</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_AMBER</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_OLIVES</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TURTLES</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION</ModifierType>
+		</Row>
+	</Modifiers>
+
+	<ModifierArguments>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_BASE_CULTURE</ModifierId>
+			<Name>ModifierId</Name>
+			<Value>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_BASE_CULTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_BASE_CULTURE</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_CULTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_BASE_CULTURE</ModifierId>
+			<Name>Amount</Name>
+			<Value>2</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_BASE_SCIENCE</ModifierId>
+			<Name>ModifierId</Name>
+			<Value>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_BASE_SCIENCE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_BASE_SCIENCE</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_SCIENCE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_BASE_SCIENCE</ModifierId>
+			<Name>Amount</Name>
+			<Value>2</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_BASE_GOLD</ModifierId>
+			<Name>ModifierId</Name>
+			<Value>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_BASE_GOLD</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_BASE_GOLD</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_GOLD</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_BASE_GOLD</ModifierId>
+			<Name>Amount</Name>
+			<Value>1</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_CORPORATION_TOPUP_CULTURE</ModifierId>
+			<Name>ModifierId</Name>
+			<Value>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_CORPORATION_TOPUP_CULTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_CORPORATION_TOPUP_CULTURE</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_CULTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_CORPORATION_TOPUP_CULTURE</ModifierId>
+			<Name>Amount</Name>
+			<Value>2</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_CORPORATION_TOPUP_SCIENCE</ModifierId>
+			<Name>ModifierId</Name>
+			<Value>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_CORPORATION_TOPUP_SCIENCE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_CORPORATION_TOPUP_SCIENCE</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_SCIENCE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_YIELD_CORPORATION_TOPUP_SCIENCE</ModifierId>
+			<Name>Amount</Name>
+			<Value>2</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_CITRUS</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_CITRUS</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_CITRUS</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_COCOA</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_COCOA</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_COCOA</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_COFFEE</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_COFFEE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_COFFEE</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_COTTON</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_COTTON</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_COTTON</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_DYES</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_DYES</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_DYES</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_INCENSE</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_INCENSE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_INCENSE</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SILK</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_SILK</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SILK</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SPICES</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_SPICES</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SPICES</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SUGAR</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_SUGAR</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SUGAR</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TEA</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_TEA</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TEA</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TOBACCO</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_TOBACCO</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TOBACCO</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_WINE</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_WINE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_WINE</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_DIAMONDS</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_DIAMONDS</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_DIAMONDS</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_JADE</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_JADE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_JADE</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_MERCURY</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_MERCURY</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_MERCURY</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SALT</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_SALT</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SALT</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SILVER</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_SILVER</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_SILVER</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_GYPSUM</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_GYPSUM</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_GYPSUM</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_MARBLE</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_MARBLE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_MARBLE</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_FURS</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_FURS</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_FURS</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_IVORY</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_IVORY</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_IVORY</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TRUFFLES</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_TRUFFLES</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TRUFFLES</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_PEARLS</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_PEARLS</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_PEARLS</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_WHALES</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_WHALES</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_WHALES</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_AMBER</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_AMBER</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_AMBER</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_OLIVES</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_OLIVES</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_OLIVES</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TURTLES</ModifierId>
+			<Name>ProjectType</Name>
+			<Value>PROJECT_CREATE_CORPORATION_PRODUCT_TURTLES</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_PRODUCT_TURTLES</ModifierId>
+			<Name>Amount</Name>
+			<Value>100</Value>
+		</Row>
+	</ModifierArguments>
+
+	<!--
+		「産業」(IMPROVEMENT_INDUSTRY)/「大企業」(IMPROVEMENT_CORPORATION)どちらでも発火する基礎セット
+		(REQUIREMENTSET_TEST_ANY)と、大企業だけで発火する上乗せセット(REQUIREMENTSET_TEST_ALL+単一
+		Requirement)の2つに分けている。2026-09-21、「大企業タイル単体で+4のはずが+6になる」実機不具合を
+		受けて、当初のImprovementTypeごとに数値を丸ごと分ける方式(REQSET_PLOT_INDUSTRY_ONLY+
+		REQSET_PLOT_CORPORATION_ONLYで別々のModifierを発火させる方式)から現在の2階建てに変更した。
+		詳細な経緯は上部の罠コメントを参照。
+	-->
+	<RequirementSets>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_PLOT_INDUSTRY_OR_CORPORATION" RequirementSetType="REQUIREMENTSET_TEST_ANY"/>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_PLOT_CORPORATION_ONLY" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+	</RequirementSets>
+
+	<Requirements>
+		<Row RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_PLOT_INDUSTRY" RequirementType="REQUIREMENT_PLOT_IMPROVEMENT_TYPE_MATCHES"/>
+		<Row RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_PLOT_CORPORATION" RequirementType="REQUIREMENT_PLOT_IMPROVEMENT_TYPE_MATCHES"/>
+	</Requirements>
+
+	<RequirementArguments>
+		<Row RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_PLOT_INDUSTRY" Name="ImprovementType" Value="IMPROVEMENT_INDUSTRY"/>
+		<Row RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_PLOT_CORPORATION" Name="ImprovementType" Value="IMPROVEMENT_CORPORATION"/>
+	</RequirementArguments>
+
+	<RequirementSetRequirements>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_PLOT_INDUSTRY_OR_CORPORATION" RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_PLOT_INDUSTRY"/>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_PLOT_INDUSTRY_OR_CORPORATION" RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_PLOT_CORPORATION"/>
+		<Row RequirementSetId="REGLOSS_ICHIJOU_RIRIKA_REQSET_PLOT_CORPORATION_ONLY" RequirementId="REGLOSS_ICHIJOU_RIRIKA_REQ_PLOT_CORPORATION"/>
+	</RequirementSetRequirements>
 </GameData>
