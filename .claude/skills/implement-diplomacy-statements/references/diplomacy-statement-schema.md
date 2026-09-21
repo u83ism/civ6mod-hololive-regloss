@@ -31,7 +31,7 @@
 いずれも同じ5タグ構造。`<提案>_FROM_AI`(莉々華から提案)/`ACCEPT_<提案>_FROM_AI`・`REJECT_<提案>_FROM_AI`(莉々華の提案への回答を受けた莉々華の返事)/`ACCEPT_<提案>_FROM_HUMAN`・`REJECT_<提案>_FROM_HUMAN`(相手発信の提案に対する莉々華の返事)。
 
 - `DECLARE_FRIEND`(友好宣言)
-- `MAKE_ALLIANCE`(同盟) — **未実装**: `MAKE_ALLIANCE_FROM_AI`のみ実装済み、ACCEPT/REJECT×2方向の4タグが未着手
+- `MAKE_ALLIANCE`(同盟)
 - `DELEGATION`(使節団)
 - `EMBASSY`(大使館)
 - `OPEN_BORDERS`(国境開放)

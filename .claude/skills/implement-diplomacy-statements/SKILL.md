@@ -38,8 +38,4 @@ description: Civ6 Modで外交交渉画面の台詞(`LOC_DIPLO_*`、DiplomacySta
 
 日本語を書いた本人(このMod制作者)は英語のニュアンスを直接判定できないため、**英語だけを渡した別セッション/エージェントに和訳させ、それを元の日本語と突き合わせる**と、意図しない硬さ・語のニュアンス変化(例: "officially friends"が「友好宣言」の硬さを意図せず呼び戻す)を客観的に検出できる。自己申告のレビューだけより有効。
 
-## 既知の未実装
-
-`MAKE_ALLIANCE`は`DECLARE_FRIEND`等と同じ5パターン(提案+ACCEPT/REJECT×自分発信/相手発信)のはずだが、現状`MAKE_ALLIANCE_FROM_AI`(提案)のみ実装で、`ACCEPT_MAKE_ALLIANCE_FROM_AI`/`REJECT_MAKE_ALLIANCE_FROM_AI`/`ACCEPT_MAKE_ALLIANCE_FROM_HUMAN`/`REJECT_MAKE_ALLIANCE_FROM_HUMAN`の4つが未着手(2026-09-21時点)。
-
 **断片情報から仮説を積み上げがちな調査が必要になったら、先に`research-mod` Skillに従って一次情報を洗うこと。**
