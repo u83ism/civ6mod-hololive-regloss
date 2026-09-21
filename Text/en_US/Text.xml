@@ -77,7 +77,7 @@
 		</Row>
 
 		<Row Tag="LOC_DIPLO_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
-			<Text>Hey, let's take a pic together and post it online! Let's show the whole world we're officially friends now!</Text>
+			<Text>Hey, let's take a pic together and post it online! Let's show the whole world we're friends now!</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
 			<Text>Yay! Hehe, let's get along from now on. And be good to my company too, okay?</Text>
@@ -132,7 +132,7 @@
 			<Text>Yes! I'll make sure my rep works hard out there.</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_REJECT_EMBASSY_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
-			<Text>Oh, I see... Well, no demand, no help for it I guess.</Text>
+			<Text>Oh, I see... Well, no demand, no need for it, I suppose.</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_ACCEPT_EMBASSY_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
 			<Text>Of course, go ahead and station someone here!</Text>
