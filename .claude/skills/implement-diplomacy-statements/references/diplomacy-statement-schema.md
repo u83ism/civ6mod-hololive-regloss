@@ -48,6 +48,8 @@
 
 根拠: `Base/Assets/Gameplay/Data/DiplomacyStatements_MakeDeal.xml`。`SubType`が`AI_ACCEPT_DEAL`/`POSITIVE`(=ADJUST)/`AI_REFUSE_DEAL`/`HUMAN_ACCEPT_DEAL`/`HUMAN_REFUSE_DEAL`の5種類あり、`Initiator`(AI/HUMANどちらが提案したか)に関わらず同じStatementTextに集約される(=「誰が提案したか」ではなく「莉々華がどう反応するか」だけで文言が決まる)。
 
+**罠(実機で確認、2026-09-21)**: `Initiator=AI`(莉々華が自分から取引画面を持ちかけた)かつ`SubType=HUMAN_REFUSE_DEAL`(プレイヤーが拒否した)の組み合わせだけは、`StatementText`が`$(LEADER)`を含まない**ハードコードされた汎用タグ**(`LOC_DIPLO_DEAL_LEADER_TRADE_REFUSED_NEUTRAL_1`/`_FRIENDLY_1`/`_AGGRESSIVE_2`、Mood別)になっており、全リーダー共通で上書き不可能。`REJECT_MAKE_DEAL_FROM_AI_$(LEADER)_$(MOOD)`(このリポジトリで実装済み)が使われるのは`Initiator=HUMAN`側の同じSubTypeのみ。「実機で見たら知らないセリフが出た」ケースの多くはこの手の汎用固定文字列(DiplomacyStatements系の各XMLに散在)であることを疑うこと。
+
 ## 講和(MakePeace)
 
 | タグ | 意味 |
