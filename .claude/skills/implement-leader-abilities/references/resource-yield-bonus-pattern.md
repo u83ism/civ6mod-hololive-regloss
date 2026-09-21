@@ -24,3 +24,9 @@
 どちらも`Improvement`ではなく`District`という点は同じだが結果が違うため、「`Improvement`オブジェクトの有無」だけでは説明できない(都市中心だけ特別扱いされている可能性が高い)。産業区域以外の区域でも同様かは未検証。カトリーヌ・ド・メディシスの能力も同じRequirementTypeを使うため理屈上は同じ挙動になるはずだが、そちらでの実機確認はしていない。
 
 これは完全にベースゲームの仕組みだけで完結し、拡張パック依存が無い。実例は`XML/Civilizations.xml`(civ6mod-hololive-regloss本体、`TRAIT_CIVILIZATION_REGLOSS_ICHIJOU`)を参照。当初は`XML/Leaders.xml`のLeaderTraitとして実装していたが、2026-09-19にCivilizationTraitへ移設した。
+
+## 姉妹パターン: 特定のImprovementType(資源クラスでなく個別の改善)で絞り込む
+
+「資源クラス」ではなく「特定の改善(Improvement)そのもの」でプロットを絞り込みたい場合は、`REQUIREMENT_PLOT_IMPROVED_RESOURCE_CLASS_TYPE_MATCHES`の代わりに`REQUIREMENT_PLOT_IMPROVEMENT_TYPE_MATCHES`(引数`ImprovementType`)を使う。構造は同じ(`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`→`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`、Requirementだけ差し替え)。実例は独占/大企業モード自身(`DLC/KublaiKhan_Vietnam/Data/KublaiKhan_Vietnam_Monopolies_MODE.xml`、`REQUIREMENT_CITY_GROWTH_INDUSTRY`)と`XML/Leaders_Monopolies.xml`(`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES`、「産業」「大企業」改善+2文化力/+2科学力)。
+
+**罠(2026-09-21、本人指摘で発覚・修正済み)**: 独占/大企業モードの「産業」を`DISTRICT_INDUSTRIAL_ZONE`(産業区域、Kind=KIND_DISTRICT)と誤認し、`MODIFIER_PLAYER_DISTRICTS_ADJUST_YIELD_CHANGE`で実装してしまった。実際には「産業」(`IMPROVEMENT_INDUSTRY`)・上位互換の「大企業」(`IMPROVEMENT_CORPORATION`)は**`Kind="KIND_IMPROVEMENT"`の改善**で、同種の高級資源2つに改善(鉱山/採石場/プランテーション等)を作った後、労働者(産業)/大商人(大企業、要「経済学」)で創出する。「産業区域」という語自体がこのMod内で紛らわしいので、独占/大企業モードの「産業」を指す場合は必ず`IMPROVEMENT_INDUSTRY`と明記し「区域」と呼ばないこと。同種の複数instance(1都市に同時に1つしか存在できない)を1つのRequirementSetで一括判定したい場合、産業→大企業のアップグレードでボーナスが途切れないよう`REQUIREMENTSET_TEST_ANY`で両ImprovementTypeを判定するとよい。
