@@ -94,6 +94,18 @@
 		<Row Tag="LOC_DIPLO_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
 			<Text>Hey, aren't we basically in this together already?</Text>
 		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Yay! Now we can't ever let go of each other.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Oh... really? A little sad, but I guess that's how it goes.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_ALLIANCE_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Of course! I feel like we could really make this work together.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_ALLIANCE_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hmm, I don't think we're quite there yet. Sorry.</Text>
+		</Row>
 
 		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
 			<Text>I'm done putting up with this. I'm telling everyone, so you'd better be ready.</Text>

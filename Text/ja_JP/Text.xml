@@ -94,6 +94,18 @@
 		<Row Tag="LOC_DIPLO_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
 			<Text>ねえ、うちらもう運命共同体だよね？</Text>
 		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>やった！これでもう離れられないね</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>え…そう？ちょっと寂しいけど、仕方ないか</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_ALLIANCE_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>もちろん！莉々華とならずっとやっていけそう</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_ALLIANCE_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>うーん、今はまだそこまでの仲じゃないかな、ごめんね</Text>
+		</Row>
 
 		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
 			<Text>もう我慢の限界。みんなにも言っとくから、覚悟しといてね</Text>
