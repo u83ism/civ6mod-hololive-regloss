@@ -202,6 +202,83 @@
 			<Text>えー、ケチ。まあ、覚えとくから</Text>
 		</Row>
 
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ねえ、そんな近くに支店作らないでよ。もうちょっと離れたとこ探してほしいな</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ありがと、話わかってくれて嬉しい</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>そっちがうちのエリア無視するなら、こっちもそっちのこと考えてあげないからね</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>あ、ごめんごめん！そんな近いって気づかなかった</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>うちだって拠点増やさなきゃいけないの。それ、そっちに口出しされる筋合いある？</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ねえ、うちの会社に、布教しないでくれる</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ありがと</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>えぇ……そっちがその気なら、こっちも布教しちゃうよ？</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>まあ、そっちの言い分は聞いとくけど…ほんとはこっちが正しいと思ってるからね</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ううん、これでいいの。そのうち分かってくれるって</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ねえ、うちの土地で勝手に発掘しないでよ</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ありがと</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>そっちがうちのこと尊重しないなら、こっちもそっちを尊重できないよ</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>あ、そこがそっちの土地だって気づいてなかった。ごめんね</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>昔のものなんだから、別に誰が取ってもよくない？</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ねえ、うちにスパイ送り込むのやめてくれない？</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ありがと</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>うーん……困るなぁ。こっちも対抗せざるを得ないよ</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>うん、そうだよね…そんな手使ってごめん。もうしないから</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>はっ、そんな約束、莉々華がすると思う？</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ねえ、うちの敷地に軍隊集めすぎじゃない？景色を見に来ただけだといいけど</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ありがと</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ごめんごめん、蛮族退治にちょうどいい場所探してただけなんだ</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>そっちの領土に入ってないんだから、莉々華がどうしようと勝手でしょ？</Text>
+		</Row>
+
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="ja_JP">
 			<Text>秘書見習い達の奮闘</Text>
 		</Row>

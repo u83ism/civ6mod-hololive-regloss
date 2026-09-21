@@ -202,6 +202,83 @@
 			<Text>Aw, stingy. Well, I'll remember this.</Text>
 		</Row>
 
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hey, don't open a branch that close, okay? Go find somewhere a little further away.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Thanks, glad you get it.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>If you're going to ignore my territory, then I won't be looking out for you either.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Oh, sorry, sorry! I didn't realize it was that close.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>I need more locations too, you know. Since when do you get a say in that?</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hey, could you not proselytize at my company?</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Thanks.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Ugh... if that's how it's gonna be, I might just start proselytizing too, you know?</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Well, fine, I'll hear you out... but I still think I'm the one who's right.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Nope, this is for the best. You'll get it eventually.</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hey, don't go digging around on my land without asking.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Thanks.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>If you won't respect me, then I can't respect you either.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Oh, I didn't realize that was your land. Sorry about that.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>It's old stuff, though—does it really matter who picks it up?</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hey, could you stop sending spies my way?</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Thanks.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hmm... that's a problem. Guess I'll have to fight back too.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Yeah, you're right... sorry for pulling that. Won't happen again.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Ha! What makes you think I'd actually promise that?</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hey, isn't that a lot of troops crowding my property? Hope you're just here for the view.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Thanks.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Oops, sorry—was just looking for a good spot to clear out some barbarians.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>I'm not even in your territory, so what I do is none of your business, right?</Text>
+		</Row>
+
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="en_US">
 			<Text>The Junior Secretaries' Hustle</Text>
 		</Row>
