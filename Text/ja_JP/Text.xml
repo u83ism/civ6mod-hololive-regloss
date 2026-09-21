@@ -47,6 +47,68 @@
 			<Text>好戦的な文明にうんざりしている</Text>
 		</Row>
 
+		<Row Tag="LOC_DIPLO_GREETING_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>あ、来た来た！莉々華になんか用？</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>わっ、初めましてー！私、一条莉々華。一条コーポレーションの社長やってます、よろしくね〜</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_VISIT_RECIPIENT_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ねえねえ、近くにうちの会社あるんだけど、遊びに来ない？オフィスだけど、ちょっとくらいはもてなせるからさ！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_NEAR_INITIATOR_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>もちろん行くよ！莉々華もそっちの国、気になってたんだよね〜</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_NO_MANS_INFO_EXCHANGE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>お互い遠いとこにいるっぽいね〜。地図、交換しとこっか？</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DECLARE_WAR_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>……ごめん、ほんとはこんなことしたくないんだけど。もう黙って見てられない。戦うしかないよ</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DECLARE_WAR_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>はぁ！？ちょっと待って正気！？……もう知らない、そっちが泣いても知らないからね</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DEFEAT_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>……うそでしょ。ここまで、なんだ……</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DEFEAT_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>……うそでしょ。ここまで、なんだ……</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ねえ、一緒に写真撮ってSNSに上げよ？「もう友達だから」って世界中に見せつけちゃおうよ！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>やったー！えへへ、これからよろしくね。会社の方もよろしくね！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>え、マジ…？ま、まあいいけどさ……</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>もちろん！莉々華と仲良くしたいなんて、見る目あるじゃん</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DECLARE_FRIEND_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>うーん、今はちょっとタイミングじゃないかな、ごめんね</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ねえ、うちらもう運命共同体だよね？</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>もう我慢の限界。みんなにも言っとくから、覚悟しといてね</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>はぁ？なんでそうなるの…そっちこそ反省しなよ</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_KUDO_EXIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>あなたの国、なんかいつも穏やかそうでいいよね。莉々華、そういうの見てるとほっとするんだ</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_EXIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ねえ、最近ちょっと殺伐としてない…？もうちょっと肩の力抜いてもいいと思うけどな</Text>
+		</Row>
+
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="ja_JP">
 			<Text>秘書見習い達の奮闘</Text>
 		</Row>

@@ -47,6 +47,68 @@
 			<Text>They are unhappy with your warmongering</Text>
 		</Row>
 
+		<Row Tag="LOC_DIPLO_GREETING_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Oh, hey! What's up, need something from Ririka?</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Whoa, nice to meet you! I'm Ichijou Ririka, CEO of Ichijou Corporation. Let's get along, okay~</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_VISIT_RECIPIENT_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hey, hey, we've got an office nearby—wanna stop by? It's just an office, but I can still treat you to something!</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_NEAR_INITIATOR_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Of course I'll come! Honestly, I've been curious about your country~</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_NO_MANS_INFO_EXCHANGE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Guess we're both pretty far from each other~ Wanna trade maps?</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DECLARE_WAR_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>...Sorry. I really didn't want it to come to this. But I can't just sit back and watch anymore. We have to fight.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DECLARE_WAR_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Huh!? Wait, are you serious!? ...Fine, I'm done. Don't come crying to me over this.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DEFEAT_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>...No way. Is this... really it...</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DEFEAT_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>...No way. Is this... really it...</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hey, let's take a pic together and post it online! Let's show the whole world we're officially friends now!</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Yay! Hehe, let's get along from now on. And be good to my company too, okay?</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Wait, seriously...? W-well, fine, I guess...</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Of course! Wanting to be friends with Ririka? Now that's good taste.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DECLARE_FRIEND_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hmm, I don't think the timing's right just yet. Sorry about that.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hey, aren't we basically in this together already?</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>I'm done putting up with this. I'm telling everyone, so you'd better be ready.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Huh? Where's that even coming from... You're the one who should be reflecting.</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_KUDO_EXIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Your country always seems so calm and peaceful. Honestly, it puts my mind at ease just watching.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_EXIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hey, isn't it feeling a little tense over there lately...? You could probably stand to loosen up a bit.</Text>
+		</Row>
+
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="en_US">
 			<Text>The Junior Secretaries' Hustle</Text>
 		</Row>
