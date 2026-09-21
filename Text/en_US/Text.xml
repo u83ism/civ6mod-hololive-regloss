@@ -109,6 +109,54 @@
 			<Text>Hey, isn't it feeling a little tense over there lately...? You could probably stand to loosen up a bit.</Text>
 		</Row>
 
+		<Row Tag="LOC_DIPLO_DELEGATION_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hey, mind if I send some of my staff over? I'll make sure they say a proper hello.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DELEGATION_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Yes! Thanks. I'll make sure they behave themselves.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DELEGATION_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Huh, no good...? Well, I guess that's fair.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DELEGATION_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Of course, come by anytime!</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DELEGATION_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Sorry, things are a little hectic right now... maybe next time.</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_EMBASSY_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hey, mind if I station one of my people over there? I'll make sure they do a good job.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_EMBASSY_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Yes! I'll make sure my rep works hard out there.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_EMBASSY_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Oh, I see... Well, no demand, no help for it I guess.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_EMBASSY_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Of course, go ahead and station someone here!</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_EMBASSY_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hmm, sorry, that's a bit of a no for now.</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Hey, wanna let each other move around freely?</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Yay! Now I can drop by anytime I want.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Ahh, I see. Guess it's still a bit early. Sorry.</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_OPEN_BORDERS_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Sure, feel free to come on over!</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_OPEN_BORDERS_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
+			<Text>Sorry, not quite yet...</Text>
+		</Row>
+
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="en_US">
 			<Text>The Junior Secretaries' Hustle</Text>
 		</Row>

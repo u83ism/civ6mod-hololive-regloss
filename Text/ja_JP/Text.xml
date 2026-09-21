@@ -109,6 +109,54 @@
 			<Text>ねえ、最近ちょっと殺伐としてない…？もうちょっと肩の力抜いてもいいと思うけどな</Text>
 		</Row>
 
+		<Row Tag="LOC_DIPLO_DELEGATION_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ねえ、うちのスタッフ、そっちに送ってもいい？ちゃんとご挨拶させるからさ</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DELEGATION_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>やった、ありがと！粗相しないようにちゃんと言っておくね</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DELEGATION_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>え、だめ…？ま、しょうがないか</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DELEGATION_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>もちろん、いつでもおいでよ！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DELEGATION_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ごめん、今ちょっと立て込んでて…また今度ね</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_EMBASSY_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ねえ、そっちに莉々華の駐在員置いてもいい？ちゃんとやらせるから</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_EMBASSY_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>やった！駐在、頑張らせるね</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_EMBASSY_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>あ、そう…。まあ需要ないなら仕方ないか</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_EMBASSY_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>もちろん、駐在員置いちゃっていいよ！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_EMBASSY_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>うーん、それはちょっとごめんね</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ねえ、お互い自由に行き来できるようにしない？</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>やったー！これで気軽に遊びに行けるね</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>あー、そっか。まだ早いよね、ごめん</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_OPEN_BORDERS_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>いいよ、自由に来ていいからね！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_OPEN_BORDERS_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
+			<Text>ごめん、今はまだちょっと…</Text>
+		</Row>
+
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="ja_JP">
 			<Text>秘書見習い達の奮闘</Text>
 		</Row>
