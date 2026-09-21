@@ -38,6 +38,19 @@
 		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CityName="LOC_CITY_NAME_REGLOSS_ICHIJOU_20"/>
 	</CityNames>
 
+	<!--
+		開始地点補正: Bonus資源(Wheat/Stone/Cattle)を複数指定。
+		文明固有能力がBonus/Strategic/Luxury全クラスの改善済みタイルからゴールドを得る設計のため、
+		特定の高級資源1種に絞るより「空振りしにくい資源で早期に能力を起動させる」方が狙いに合う。
+		バニラ本体・両拡張パック・DLC全体でStartBiasResourcesの使用例はスキタイのHorses(Strategic、Tier2)1件のみで、
+		高級資源を指定した例は無い(2026-09-22実機ファイル調査で確認)。Tier値はこの前例に倣いTier2で揃える。
+	-->
+	<StartBiasResources>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" ResourceType="RESOURCE_WHEAT" Tier="2"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" ResourceType="RESOURCE_STONE" Tier="2"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" ResourceType="RESOURCE_CATTLE" Tier="2"/>
+	</StartBiasResources>
+
 	<Traits>
 		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_ICHIJOU" Name="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Description="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION"/>
 	</Traits>
