@@ -21,3 +21,7 @@ Thumbs.db
 
 # Node tooling (tools/)
 node_modules/
+
+# 元絵(Art/Source/)は著作権上グレーな素材を含むため追跡対象外。
+# ローカルにのみ置き、ビルド成果物(Art/Icons/等)だけをコミットする。
+Art/Source/
