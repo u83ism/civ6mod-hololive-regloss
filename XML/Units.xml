@@ -47,4 +47,15 @@
 	<CivilizationTraits>
 		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" TraitType="TRAIT_CIVILIZATION_UNIT_REGLOSS_ICHIJOU_UNI"/>
 	</CivilizationTraits>
+
+	<!--
+		初めて「うに」を生産した時の時代スコアポップアップ(Historic Moment、MOMENT_UNIT_CREATED_FIRST_UNIQUE)用の
+		専用イラスト。未登録の場合は汎用フォールバック画像になる。スキーマ・サイズ規格(456x332、非圧縮RGBA)は
+		DLC Expansion1のMomentIllustrations実例(Moment_UniqueUnit_Cree.dds等7件、2026-09-22実機ファイルで確認)。
+		Textureファイル本体はtools/png2dds/gen-moment-illustration.tsで生成し、
+		tools/IconBuild(ModBuddy)でビルドしたUI/RegLoss_Moments.blpに含まれる。
+	-->
+	<MomentIllustrations>
+		<Row MomentIllustrationType="MOMENT_ILLUSTRATION_UNIQUE_UNIT" MomentDataType="MOMENT_DATA_UNIT" GameDataType="UNIT_REGLOSS_ICHIJOU_UNI" Texture="Moment_UniqueUnit_ReglossIchijou_Uni.dds"/>
+	</MomentIllustrations>
 </GameData>

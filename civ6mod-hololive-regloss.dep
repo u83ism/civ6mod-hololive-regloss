@@ -566,6 +566,7 @@
 				<Element text="UI/RegLoss_Icons.blp"/>
 				<Element text="UI/RegLoss_Loading.blp"/>
 				<Element text="UI/RegLoss_LoadingPortrait.blp"/>
+				<Element text="UI/RegLoss_Moments.blp"/>
 			</PackageDependencies>
 		</Element>
 		<Element>

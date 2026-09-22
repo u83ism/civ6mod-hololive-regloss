@@ -78,10 +78,13 @@
     <Content Include="Textures\LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND.tex"><SubType>Content</SubType></Content>
     <Content Include="Textures\LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL.dds"><SubType>Content</SubType></Content>
     <Content Include="Textures\LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL.tex"><SubType>Content</SubType></Content>
+    <Content Include="Textures\Moment_UniqueUnit_ReglossIchijou_Uni.dds"><SubType>Content</SubType></Content>
+    <Content Include="Textures\Moment_UniqueUnit_ReglossIchijou_Uni.tex"><SubType>Content</SubType></Content>
     <Content Include="XLPs\RegLoss_Icons.xlp"><SubType>Content</SubType></Content>
     <Content Include="XLPs\LeaderFallbackImages.xlp"><SubType>Content</SubType></Content>
     <Content Include="XLPs\RegLoss_Loading.xlp"><SubType>Content</SubType></Content>
     <Content Include="XLPs\RegLoss_LoadingPortrait.xlp"><SubType>Content</SubType></Content>
+    <Content Include="XLPs\RegLoss_Moments.xlp"><SubType>Content</SubType></Content>
     <Content Include="ArtDefs\FallbackLeaders.artdef"><SubType>Content</SubType></Content>
   </ItemGroup>
   <ItemGroup>

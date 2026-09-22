@@ -82,5 +82,7 @@
 		<File>Platforms/MacOS/BLPs/UI/RegLoss_Loading.blp</File>
 		<File>Platforms/Windows/BLPs/UI/RegLoss_LoadingPortrait.blp</File>
 		<File>Platforms/MacOS/BLPs/UI/RegLoss_LoadingPortrait.blp</File>
+		<File>Platforms/Windows/BLPs/UI/RegLoss_Moments.blp</File>
+		<File>Platforms/MacOS/BLPs/UI/RegLoss_Moments.blp</File>
 	</Files>
 </Mod>
