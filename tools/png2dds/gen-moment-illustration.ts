@@ -1,6 +1,6 @@
-// Build the Historic Moment illustration (Moment_UniqueUnit_ReglossIchijou_Uni) shown when the
-// UU "Uni" (uses UU_uni.md naming: UNIT_REGLOSS_ICHIJOU_UNI) is trained for the first time, from
-// the flat toy-poodle illustration in Art/Source/ (read-only; never modified by this script).
+// Build a Historic Moment illustration (e.g. Moment_UniqueUnit_ReglossIchijou_Uni) shown when a
+// UU (e.g. UNIT_REGLOSS_ICHIJOU_UNI, uses UU_uni.md naming) is trained for the first time, from
+// a flat illustration in Art/Source/ (read-only; never modified by this script).
 // Canvas size 456x332 and format (uncompressed RGBA, full mip chain) match every official
 // Moment_UniqueUnit_*.dds in Civ6 SDK Assets pantry/Textures/Expansion1 (7 of 7 samples
 // identical). The elliptical alpha vignette (fully opaque center, fully transparent corners)
@@ -8,12 +8,19 @@
 // Also generates the sidecar .tex (copied from that same official template with only the name
 // substituted, since width/height/mipmap count are identical) and a new XLP package
 // (UI/RegLoss_Moments, following the UITexture class used by RegLoss_Icons.xlp etc.).
-// Usage: tsx gen-moment-illustration.ts
+// Usage: tsx gen-moment-illustration.ts <momentIllustrationName> <unitType> <sourceFileName>
+// Example: tsx gen-moment-illustration.ts Moment_UniqueUnit_ReglossIchijou_Uni UNIT_REGLOSS_ICHIJOU_UNI toy-poodle.png
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
 import { convertPngToDds, computeMipCount } from "./png2dds.js";
 import { centerOnCanvas, applyEllipticalVignette } from "./moment-illustration-compositing.js";
+
+const [, , momentIllustrationName, unitType, sourceFileName] = process.argv;
+if (!momentIllustrationName || !unitType || !sourceFileName) {
+  console.error("Usage: tsx gen-moment-illustration.ts <momentIllustrationName> <unitType> <sourceFileName>");
+  process.exit(1);
+}
 
 const CANVAS_WIDTH = 456;
 const CANVAS_HEIGHT = 332;
@@ -23,13 +30,13 @@ const CONTENT_HEIGHT_FRACTION = 0.85;
 // Measured from Moment_UniqueUnit_Cree.dds's alpha channel: ~20% in from an edge is already
 // near-fully-opaque, so the vignette's opaque core extends to roughly 0.55-0.6 of the half-extent.
 const VIGNETTE_INNER_RADIUS_FRACTION = 0.55;
-const OUR_NAME = "Moment_UniqueUnit_ReglossIchijou_Uni";
-const UNIT_TYPE = "UNIT_REGLOSS_ICHIJOU_UNI";
+const OUR_NAME = momentIllustrationName;
+const UNIT_TYPE = unitType;
 const SDK_ASSETS_TEXTURES =
   "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Sid Meier's Civilization VI SDK Assets\\Civ6\\DLC\\Expansion1\\pantry\\Textures";
 const TEX_TEMPLATE_NAME = "Moment_UniqueUnit_Cree";
 
-const sourcePath = join(import.meta.dirname, "..", "..", "Art", "Source", "toy-poodle.png");
+const sourcePath = join(import.meta.dirname, "..", "..", "Art", "Source", sourceFileName);
 const textureOutputDirectory = join(import.meta.dirname, "..", "IconBuild", "Textures");
 const xlpOutputDirectory = join(import.meta.dirname, "..", "IconBuild", "XLPs");
 mkdirSync(textureOutputDirectory, { recursive: true });

@@ -1,10 +1,33 @@
 // Regenerate Art/Icons/ICON_*.png at every required size from the master source art in
 // Art/Source/. Master art must be square and at least as large as the biggest required size.
-// Usage: tsx gen-icon-sources.ts
+// Usage: tsx gen-icon-sources.ts <civilizationId> <leaderId> <civFullColorMasterFileName> <civSilhouetteMasterFileName> <leaderFaceMasterFileName>
+// Example: tsx gen-icon-sources.ts REGLOSS_ICHIJOU REGLOSS_ICHIJOU_RIRIKA ichijou-corporation-logo-circle.png ichijou-corporation-logo-circle-for-transparent.png ichijou-ririka-face.png
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { PNG } from "pngjs";
 import { civilizationIconName, civilizationIconSizes, leaderIconName, leaderIconSizes } from "./icon-manifest.js";
+
+const [
+  ,
+  ,
+  civilizationId,
+  leaderId,
+  civilizationFullColorMasterFileName,
+  civilizationSilhouetteMasterFileName,
+  leaderFaceMasterFileName,
+] = process.argv;
+if (
+  !civilizationId ||
+  !leaderId ||
+  !civilizationFullColorMasterFileName ||
+  !civilizationSilhouetteMasterFileName ||
+  !leaderFaceMasterFileName
+) {
+  console.error(
+    "Usage: tsx gen-icon-sources.ts <civilizationId> <leaderId> <civFullColorMasterFileName> <civSilhouetteMasterFileName> <leaderFaceMasterFileName>",
+  );
+  process.exit(1);
+}
 
 type RgbaImage = {
   readonly data: Buffer;
@@ -126,9 +149,9 @@ const iconSources: readonly IconSourceSpec[] = [
   {
     // Civ6 displays this one size as-is (civics/tech tree) instead of tinting it at
     // runtime, so it's the only civilization badge size that stays full color.
-    masterFileName: "ichijou-corporation-logo-circle.png",
+    masterFileName: civilizationFullColorMasterFileName,
     sizes: civilizationFullColorSizes,
-    nameForSize: civilizationIconName,
+    nameForSize: (size) => civilizationIconName(civilizationId, size),
     clipToCircle: true, // math-precise circle edge, matching the leader portrait treatment
     isFullColor: true,
   },
@@ -136,16 +159,16 @@ const iconSources: readonly IconSourceSpec[] = [
     // Every other civilization badge size is tinted at runtime via SetColor(playerColor),
     // so the source must already be a white-on-transparent silhouette (see toWhiteSilhouette
     // above): white background made transparent, only the logo mark left opaque.
-    masterFileName: "ichijou-corporation-logo-circle-for-transparent.png",
+    masterFileName: civilizationSilhouetteMasterFileName,
     sizes: civilizationSilhouetteSizes,
-    nameForSize: civilizationIconName,
+    nameForSize: (size) => civilizationIconName(civilizationId, size),
     clipToCircle: false,
     isFullColor: false,
   },
   {
-    masterFileName: "ichijou-ririka-face.png",
+    masterFileName: leaderFaceMasterFileName,
     sizes: leaderIconSizes,
-    nameForSize: leaderIconName,
+    nameForSize: (size) => leaderIconName(leaderId, size),
     clipToCircle: true,
     // Leader portraits are never tinted by the game, so they stay full color at every size.
     isFullColor: true,

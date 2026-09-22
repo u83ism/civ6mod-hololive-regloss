@@ -1,4 +1,4 @@
-// Build the diplomacy-screen fallback portrait (FALLBACK_NEUTRAL_REGLOSS_ICHIJOU_RIRIKA) from
+// Build the diplomacy-screen fallback portrait (FALLBACK_NEUTRAL_<leaderId>) from
 // the full-body master art in Art/Source/ (read-only; never modified by this script). Trims the
 // transparent margin around the character, crops off the bottom (below-knee) portion to match
 // official/Hololive EN-ID fallback portraits (they cut off just below the knee, not full body),
@@ -9,12 +9,19 @@
 // Also generates the sidecar .tex (copied from the matching official template with
 // width/height/mipmap count substituted, since those values differ per character unlike the
 // fixed-size badge icon templates) and .xlp.
-// Usage: tsx gen-leader-fallback.ts
+// Usage: tsx gen-leader-fallback.ts <leaderId> <standingArtFileName>
+// Example: tsx gen-leader-fallback.ts REGLOSS_ICHIJOU_RIRIKA ichijou-ririka-stand.webp
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
 import { convertPngToDds, computeMipCount } from "./png2dds.js";
 import { padTopMargin, applyBottomFade } from "./leader-fallback-compositing.js";
+
+const [, , leaderId, standingArtFileName] = process.argv;
+if (!leaderId || !standingArtFileName) {
+  console.error("Usage: tsx gen-leader-fallback.ts <leaderId> <standingArtFileName>");
+  process.exit(1);
+}
 
 const LEADER_FALLBACK_HEIGHT = 1080;
 // Measured across 5 official leaders (see leader-fallback-compositing.ts's header comment):
@@ -26,13 +33,13 @@ const BOTTOM_FADE_START_FRACTION = 0.75;
 // bottom of the trimmed full-body source (own estimate, not measured from official pixel data
 // like the two constants above).
 const KNEE_CROP_FRACTION = 0.25;
-const OUR_NAME = "FALLBACK_NEUTRAL_REGLOSS_ICHIJOU_RIRIKA";
-const LEADER_TYPE = "LEADER_REGLOSS_ICHIJOU_RIRIKA";
+const OUR_NAME = `FALLBACK_NEUTRAL_${leaderId}`;
+const LEADER_TYPE = `LEADER_${leaderId}`;
 const SDK_ASSETS_TEXTURES =
   "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Sid Meier's Civilization VI SDK Assets\\Civ6\\DLC\\Expansion1\\pantry\\Textures";
 const TEX_TEMPLATE_NAME = "FALLBACK_NEUTRAL_ROBERT_THE_BRUCE";
 
-const sourcePath = join(import.meta.dirname, "..", "..", "Art", "Source", "ichijou-ririka-stand.webp");
+const sourcePath = join(import.meta.dirname, "..", "..", "Art", "Source", standingArtFileName);
 const iconsDirectory = join(import.meta.dirname, "..", "..", "Art", "Icons");
 const textureOutputDirectory = join(import.meta.dirname, "..", "IconBuild", "Textures");
 const xlpOutputDirectory = join(import.meta.dirname, "..", "IconBuild", "XLPs");

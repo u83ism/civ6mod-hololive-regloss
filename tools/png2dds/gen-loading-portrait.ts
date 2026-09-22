@@ -1,7 +1,7 @@
-// Build the loading-screen portrait (LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL) from the full-body
+// Build the loading-screen portrait (LEADER_<leaderId>_NEUTRAL) from the full-body
 // master art in Art/Source/ (read-only; never modified by this script). This is the
 // LoadScreen-specific sibling of the diplomacy-screen fallback portrait
-// (FALLBACK_NEUTRAL_REGLOSS_ICHIJOU_RIRIKA, see gen-leader-fallback.ts / the
+// (FALLBACK_NEUTRAL_<leaderId>, see gen-leader-fallback.ts / the
 // make-fallback-portrait Skill): same source art, same knee-crop + top-margin + bottom-fade
 // treatment (verified against official LEADER_ROBERT_THE_BRUCE_NEUTRAL.dds pixel data, which
 // has the identical baked-in top margin and color-only bottom fade as FALLBACK_NEUTRAL_*), just
@@ -9,12 +9,19 @@
 // Assets pantry/Textures/Expansion1: width varies per character, height is always 1024) and a
 // different registration path (plain UITexture XLP class, like badge icons -- no ArtDef, unlike
 // FALLBACK_NEUTRAL_* which goes through FallbackLeaders.artdef's LeaderFallback class).
-// Usage: tsx gen-loading-portrait.ts
+// Usage: tsx gen-loading-portrait.ts <leaderId> <standingArtFileName>
+// Example: tsx gen-loading-portrait.ts REGLOSS_ICHIJOU_RIRIKA ichijou-ririka-stand.webp
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
 import { convertPngToDds, computeMipCount } from "./png2dds.js";
 import { padTopMargin, applyBottomFade } from "./leader-fallback-compositing.js";
+
+const [, , leaderId, standingArtFileName] = process.argv;
+if (!leaderId || !standingArtFileName) {
+  console.error("Usage: tsx gen-loading-portrait.ts <leaderId> <standingArtFileName>");
+  process.exit(1);
+}
 
 const PORTRAIT_HEIGHT = 1024;
 // Same values as gen-leader-fallback.ts, re-verified against LEADER_ROBERT_THE_BRUCE_NEUTRAL.dds
@@ -22,12 +29,12 @@ const PORTRAIT_HEIGHT = 1024;
 const TOP_MARGIN_FRACTION = 0.1;
 const BOTTOM_FADE_START_FRACTION = 0.75;
 const KNEE_CROP_FRACTION = 0.25;
-const OUR_NAME = "LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL";
+const OUR_NAME = `LEADER_${leaderId}_NEUTRAL`;
 const SDK_ASSETS_TEXTURES =
   "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Sid Meier's Civilization VI SDK Assets\\Civ6\\DLC\\Expansion1\\pantry\\Textures";
 const TEX_TEMPLATE_NAME = "LEADER_ROBERT_THE_BRUCE_NEUTRAL";
 
-const sourcePath = join(import.meta.dirname, "..", "..", "Art", "Source", "ichijou-ririka-stand.webp");
+const sourcePath = join(import.meta.dirname, "..", "..", "Art", "Source", standingArtFileName);
 const iconsDirectory = join(import.meta.dirname, "..", "..", "Art", "Icons");
 const textureOutputDirectory = join(import.meta.dirname, "..", "IconBuild", "Textures");
 const xlpOutputDirectory = join(import.meta.dirname, "..", "IconBuild", "XLPs");
