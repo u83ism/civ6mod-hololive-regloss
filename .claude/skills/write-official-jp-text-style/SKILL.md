@@ -1,11 +1,11 @@
 ---
 name: write-official-jp-text-style
-description: Civ6 Mod向けに**日本語の**ゲーム内テキスト(文明/指導者Traitの`_NAME`・`_DESCRIPTION`、ユニット/建造物/Civilopedia等の説明文)を公式の文体に合わせて書く時に使う。「能力の説明文を書く」「Trait名を考える」「説明文を日本語で書く」「公式っぽい言い回しにして」と言われたとき、またはLOCテキストを新規に書く/レビューする場面で使う。Trait名限定のSkillではない。Modifier/RequirementのXML実装自体は`implement-leader-abilities`等の各実装Skillの範囲(そちらは効果の実装、こちらはテキストの文体)。**外交交渉画面の台詞(`LOC_DIPLO_*`)はこのSkillの対象外**(公式に統一書式ルールが存在せず、リーダーごとの性格・口調で書くのが作法。`implement-diplomacy-statements` Skillを使うこと)。**他言語(中国語簡体字/繁体字等)のテキストにはこのSkillを使わない**(言語ごとに文体の癖・鉤括弧相当の記法・簡体字/繁体字間の語彙差が異なるため、`write-official-<lang>-text-style`のような言語別Skillを別途用意する方針。2026-09-22時点で日本語版のみ存在)。
+description: Civ6 Mod向けに**日本語の**ゲーム内テキスト(文明/指導者Traitの`_NAME`・`_DESCRIPTION`、ユニット/建造物/Civilopedia等の説明文)を公式の文体に合わせて書く時に使う。「能力の説明文を書く」「Trait名を考える」「説明文を日本語で書く」「公式っぽい言い回しにして」と言われたとき、またはLOCテキストを新規に書く/レビューする場面で使う。Trait名限定のSkillではない。Modifier/RequirementのXML実装自体は`implement-leader-abilities`等の各実装Skillの範囲(そちらは効果の実装、こちらはテキストの文体)。**外交交渉画面の台詞(`LOC_DIPLO_*`)はこのSkillの対象外**(公式に統一書式ルールが存在せず、リーダーごとの性格・口調で書くのが作法。`implement-diplomacy-statements` Skillを使うこと)。**他言語のテキストにはこのSkillを使わない**(言語ごとに文体の癖・鉤括弧相当の記法・語彙差が異なるため、`write-official-<lang>-text-style`のような言語別Skillを別途用意する方針。2026-09-22時点で日本語版と中国語版(`write-official-zh-text-style`)が存在する)。
 ---
 
 # Civ6公式スタイルの日本語ゲーム内テキストを書く
 
-一条莉々華Mod(civ6mod-hololive-regloss)の実装で確立した、**日本語の**ゲーム内テキストを公式の文体に揃えるためのガイド。効果(Modifier/Requirement)自体の実装は範囲外(`implement-leader-abilities`等の各実装Skillを使う)。中国語など他言語向けのテキストを書く場合は、このSkillのルールをそのまま流用せず、その言語の一次資料(Vanilla本体・DLCの統合テキストファイル)で改めて文体・語彙の慣習を確認すること(中国語は簡体字/繁体字で語彙自体が違うケースがある。例: Corporation=簡体字「公司」/繁体字「企業」、Warmonger=簡体字「好战者」/繁体字「好戰份子」、2026-09-22`civ6mod-hololive-regloss`側の中国語対応調査で確認)。
+一条莉々華Mod(civ6mod-hololive-regloss)の実装で確立した、**日本語の**ゲーム内テキストを公式の文体に揃えるためのガイド。効果(Modifier/Requirement)自体の実装は範囲外(`implement-leader-abilities`等の各実装Skillを使う)。他言語向けのテキストを書く場合は、このSkillのルールをそのまま流用せず、対応する`write-official-<lang>-text-style`Skill(例: 中国語は`write-official-zh-text-style`)を使うこと。
 
 新しいテキストを日本語で書く前に、`references/official-jp-text-style.md`を読むこと。公式Trait説明文422件(バニラ〜Leader Pass、全DLC)をen_US/ja_JP対訳でリリース時期別に調査した結果、**半角/全角のルール、`[ICON_XXX] 効果+数値`の詰め方、鉤括弧「」を付ける固有名詞の範囲**などは時期を問わずほぼ完全に一貫している(逸脱は単発のtypoのみ)。要点だけ書くと:
 
