@@ -1,15 +1,17 @@
 ---
 name: bootstrap-mod
-description: Hololive系リーダーMod(ReGLOSSシリーズの姉妹リポジトリ)を新規リポジトリとしてゼロから立ち上げる時に使う。「次のReGLOSSメンバーのModを始める」「新しいModリポジトリを作る」「姉妹リポジトリを立ち上げる」と言われたとき、または実際に新しい空リポジトリが作成された直後に必ず使うこと。bootstrap-leader skillの前段にあたる(こちらはリポジトリの雛形、そちらはCivilization/Leader本体の実装)。
+description: Hololive系リーダーMod(このリポジトリの姉妹Mod)を、ReGLOSS以外の別グループ(例: HoloX)向けに新規リポジトリとしてゼロから立ち上げる時に使う。「HoloXのModを始める」「新しいModリポジトリを作る」「姉妹リポジトリを立ち上げる」と言われたとき、または実際に新しい空リポジトリが作成された直後に必ず使うこと。**ReGLOSSメンバーの追加(2人目以降)にはこのSkillを使わない**(ReGLOSSは全員このリポジトリ1本にまとめる方針、2026-09-22確定。`bootstrap-leader` skillに直接進む)。bootstrap-leader skillの前段にあたる(こちらはリポジトリの雛形、そちらはCivilization/Leader本体の実装)。
 ---
 
 # Civ6新Modリポジトリの立ち上げ
 
 このSkillは`civ6mod-hololive-regloss`(一条莉々華Mod)を作った際の実際の試行錯誤から得られた、動作確認済みの雛形を再利用するためのもの。特にmodinfoのスキーマ選択は、一見動きそうに見える形式(`<ActionGroups>`)が実際には**MODが有効化リストに載るのに中身が一切適用されない**という、エラーも出ない厄介な不具合を踏んだ末に判明したものなので、必ずこの雛形をベースにすること(ゼロから書き直さない)。
 
+**適用範囲の注意(2026-09-22)**: `civ6mod-hololive-regloss`はReGLOSSメンバー全員をこの1リポジトリにまとめる方針。そのためReGLOSSメンバーを追加するときはこのSkillを使わず、このリポジトリに直接`bootstrap-leader`で文明を追加する。このSkillを使うのは、ReGLOSS以外の**別グループ(HoloX等)向けの新規Modリポジトリ**を立ち上げるとき。その場合も雛形(特にmodinfoスキーマ)は本リポジトリからコピーして使う。
+
 ## 手順
 
-1. **リポジトリ作成**: `civ6mod-hololive-<member>`のような命名でGitリポジトリを作成、`git init`
+1. **リポジトリ作成**: `civ6mod-hololive-<group>`(例: `civ6mod-hololive-holox`)のような命名でGitリポジトリを作成、`git init`
 2. **フォルダ構成を作る**:
    ```
    <repo>/
@@ -29,7 +31,7 @@ description: Hololive系リーダーMod(ReGLOSSシリーズの姉妹リポジト
    `.claude/skills/`配下の2つのSkillは、civ6mod-hololive-regloss(このMod)から**フォルダごとコピー**すること。個人グローバルのSkillフォルダには置かない(このMod系列固有の知見であり、ユーザーの全プロジェクトに影響を与えるべきではないため)
 3. **modinfo雛形を作る**: `assets/template.modinfo.template`を`<mod-name>.modinfo`としてコピーし、以下を置換する
    - `{{MOD_GUID}}`: 新しいGUIDを発行(PowerShellなら`[guid]::NewGuid().ToString()`)
-   - `{{MOD_NAME}}`: Mod名(例: "Hololive Todoroki Hajime")。**LOCキーではなくリテラル文字列でよい** — HktkNban氏・Neox氏の実働Modは両方ともProperties.Name/Teaser/Descriptionを生文字列にしており、これによりMod名解決専用のLocalizedTextブロックが不要になり、後述の重複INSERT問題を未然に回避できる
+   - `{{MOD_NAME}}`: Mod名。**グループ名にする(個別リーダー名にしない)** — 1グループ=1リポジトリ=1Modで複数リーダーを後から追加していく方針のため(実例: `civ6mod-hololive-regloss`は`Name="Hololive ReGLOSS"`であって`Hololive Ichijou Ririka`ではない)。例: "Hololive HoloX"。**LOCキーではなくリテラル文字列でよい** — HktkNban氏・Neox氏の実働Modは両方ともProperties.Name/Teaser/Descriptionを生文字列にしており、これによりMod名解決専用のLocalizedTextブロックが不要になり、後述の重複INSERT問題を未然に回避できる
    - ファイル参照(`XML/Civilizations.xml`等)はそのまま使ってよい
 4. **空のXML/Text雛形を作る**:
    - `XML/Civilizations.xml`: `<?xml version="1.0" encoding="utf-8"?><GameData></GameData>`
