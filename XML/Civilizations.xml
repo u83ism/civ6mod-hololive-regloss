@@ -157,7 +157,7 @@
 		<Row>
 			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_STRATEGIC</ModifierId>
 			<Name>Amount</Name>
-			<Value>5</Value>
+			<Value>4</Value>
 		</Row>
 
 		<Row>
@@ -173,7 +173,7 @@
 		<Row>
 			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_LUXURY</ModifierId>
 			<Name>Amount</Name>
-			<Value>10</Value>
+			<Value>6</Value>
 		</Row>
 
 		<Row>
