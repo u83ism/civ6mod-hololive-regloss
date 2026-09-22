@@ -18,10 +18,11 @@ Civ6のModBuddy/Art Pipeline周りは公式ドキュメントが薄く、英語�
    - `docs/civ6-research/unique-content-patterns.md`(固有ユニット/区域/施設/建造物=UU/UD/UI/UB、未検証)
    - `docs/civ6-research/bootstrap-leader-troubleshooting.md`(LeaderCriteriaクラッシュ対処・DLC対応、未検証)
    - `bootstrap-leader/references/firetuner.md`(FireTunerによる実機Live操作・God Mode的デバッグ、実機確認済み)
-2. **GSLeaderTemplate・実際に動くModサンプル(サンプル・テンプレート)**。詳細は3節参照。実際に動作するModBuddyプロジェクトファイル一式で、スキーマの実例として非常に有用
-3. **実機にインストール済みの参考Mod**(`Documents/My Games/Sid Meier's Civilization VI/Mods/`配下)。実際に動いている他ModのXML/modinfoは伝聞より確実な一次情報。複数の独立したMod(できれば作者違い)で同じパターンが確認できれば、それはほぼ確定的な事実として扱ってよい
-4. **Civ6 SDK同梱ドキュメント/サンプル**(`Sid Meier's Civilization VI SDK/Documentation/Civ6Docs.html`、`Examples/Example Art Mod/`)。公式だが英語かつ量が多いので、上記1-3で仮説が立った後の裏取りに向く
-5. **CivFanatics forums等の英語コミュニティ**。最後の手段。Civ5とCiv6の情報が検索結果に混在しやすく、"Import into VFS"のようなCiv5専用概念をCiv6の話として誤読しやすいので要注意
+2. **Modifier/Requirement/Collection/Event固有の疑問(引数・対象クラス・データ型・DLC対応)は「Civilization VI Modding Companion 2.0」を最優先で見る**。詳細は6節参照。DLLから抽出/実機検証されたコミュニティ製の逆引き辞典で、`implement-leader-abilities`のModifier実装時に「このEffectTypeにこの引数を渡せるか」「このModが対応するDLCでそのEffectが使えるか」を裏取りするのに向く
+3. **GSLeaderTemplate・実際に動くModサンプル(サンプル・テンプレート)**。詳細は3節参照。実際に動作するModBuddyプロジェクトファイル一式で、スキーマの実例として非常に有用
+4. **実機にインストール済みの参考Mod**(`Documents/My Games/Sid Meier's Civilization VI/Mods/`配下)。実際に動いている他ModのXML/modinfoは伝聞より確実な一次情報。複数の独立したMod(できれば作者違い)で同じパターンが確認できれば、それはほぼ確定的な事実として扱ってよい
+5. **Civ6 SDK同梱ドキュメント/サンプル**(`Sid Meier's Civilization VI SDK/Documentation/Civ6Docs.html`、`Examples/Example Art Mod/`)。公式だが英語かつ量が多いので、上記1-4で仮説が立った後の裏取りに向く
+6. **CivFanatics forums等の英語コミュニティ**。最後の手段。Civ5とCiv6の情報が検索結果に混在しやすく、"Import into VFS"のようなCiv5専用概念をCiv6の話として誤読しやすいので要注意
 
 ## 2. 参考資料(日本語Wiki・執筆ガイド)
 
@@ -100,6 +101,25 @@ ModBuddyプロジェクトのテンプレート一式。`GSLeaderTemplate/GSLead
   ```
   ASCII部分(`MOD`や`/`)も一緒にpercent-encodeされるが害はない。`https://civ6wiki.info/?`の後にこれを繋げてcurlに渡す。UTF-8percent-encode(`encodeURIComponent`等)で組み立てたURLは「有効なWikiNameではありません」と返ってくるだけで、404にすらならないので気づきにくい
 
-## 5. 判断に迷ったら実機ログより先にここを見る
+## 6. Effect/Requirement/Collection/Event逆引き: Civilization VI Modding Companion 2.0
+
+Modifier/Requirement実装(`implement-leader-abilities`)や台詞トリガー(`implement-diplomacy-statements`)で「このEffectType/RequirementTypeの引数は何か」「このCollectionTypeの対象クラスは何か」「このLuaEvent/GameEventはいつ発火し何を渡すか」を調べるときに使う一次情報。DLLから抽出/実機検証されたコミュニティ製の逆引き辞典(ChimpanG作、WildW拡張)。2026-09-23時点で実データを取得・構造を確認済み(実際に役立つかは未検証、実戦投入時に確認すること)。
+
+- 本体: `https://docs.google.com/spreadsheets/d/1EiCTOlPx3IkeAmU0xujGEp9k0v9VuCxe95OcrsyWOVs`(閲覧のみ、認証不要、リンクを知っている全員が閲覧可)
+- 主要タブ(いずれも実データを確認済み。先頭3行がヘッダー、4行目は空行、5行目からデータ):
+  - `Effects`(1997行) — EffectType単位で引数名・データ型・取りうる値・説明・DLC対応表(VANILLA/RISE AND FALL/GATHERING STORM/…列に✓)
+  - `Requirements`(611行) — RequirementType単位で同様の情報+対象クラス(PLAYERS/CITIES/ANY等)
+  - `Collections`(68行) — CollectionType単位で対象クラス・DLC対応
+  - `Events`(1649行) — GameEvents/Events/LuaEvents単位で発火タイミングとパラメータを1パラメータ1行で分解
+  - その他: `Objects`/`Module Objects`/`Global Funcs`/`Module Global Funcs`/`Enums`/`Module Enums`(Lua API逆引き)。DLC別タブ(`Vanilla`/`Rise and Fall`等)や`*Master`系タブは非表示状態の作業用シートで、通常は見なくてよい
+- **特定タブだけCSVで取得する方法(gidを探す必要なし、動作確認済み)**:
+  ```bash
+  curl -sL "https://docs.google.com/spreadsheets/d/1EiCTOlPx3IkeAmU0xujGEp9k0v9VuCxe95OcrsyWOVs/gviz/tq?tqx=out:csv&sheet=<タブ名>" -o <タブ名>.csv
+  ```
+  `<タブ名>`は上記のタブ名をそのまま指定する(例: `Effects`)。ブラウザで開いてgidを控える必要がない
+- 全タブ丸ごと欲しい場合は`.../export?format=xlsx`でxlsx一括ダウンロードも可能(3.8MB程度)。個別タブのCSVで足りるならgviz方式の方が軽い
+- **WebFetchでURLを直接渡してもJS描画されたページのため中身は取れない**。必ずcurlで上記いずれかのエンドポイントを叩くこと
+
+## 7. 判断に迷ったら実機ログより先にここを見る
 
 `bootstrap-leader` Skill 5節の実機デバッグ手順(Modding.log/Database.log確認)は「配線が正しく見えるのに動かない」時の一番強い証拠だが、**そもそもの手順自体が根本的に間違っている**(例: BLPコンパイルが必須なのにXMLの書き方だけ疑っている)場合はログを何度見ても手がかりが出ない。ログ調査で埒が明かない、かつ触っている領域がArt/Icon/ModBuddyなら、ログの深掘りを続ける前に本Skillの1節に戻ること。
