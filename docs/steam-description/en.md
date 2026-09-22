@@ -12,7 +12,7 @@ Adds a new civilization inspired by hololive ReGLOSS.
 Only one leader is implemented so far: Ichijou Ririka (Ichijou Corporation). Bugs may be present -- please report anything you find in the comments.
 
 [Language]
-Full Japanese and English text is included. The English text was translated with the help of Claude (AI) and may contain inaccuracies -- corrections are welcome.
+Full Japanese, English, Simplified Chinese, and Traditional Chinese text is included. Everything besides the Japanese text was translated with the help of Claude (AI) and may contain inaccuracies -- corrections are welcome.
 
 [Balance Note]
 This mod is designed to be used alongside HktkNban's Hololive JP mods and Neox's Hololive EN/ID mods. It's intentionally a bit stronger (overpowered) than a standalone-balanced civ, so it doesn't get lost in the crowd when mixed with those other civs.
