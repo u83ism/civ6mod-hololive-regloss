@@ -3,7 +3,17 @@
 	<!--
 		リーダー選択画面(フロントエンド)用の登録。
 		Playersテーブルはここに並ぶ列のほぼ全てがNOT NULL制約(Icon/Ability/Portrait系も含む)。
-		Art未着手でも仮のType文字列を入れておく必要がある(実体を指す先が無いので表示は空/デフォルトになる想定)。
+	-->
+	<!--
+		Portrait/PortraitBackground(ゲーム設定画面でリーダーを選んだ時の全身ポートレート「Leader Placard」、
+		マルチプレイのStaging Roomでも同じ列を参照する)。実機コード(Base/Assets/UI/FrontEnd/PlayerSetupLogic.lua
+		のGetToolTipArgs、2026-09-23確認)を読むと、この2列が未設定の場合は`<LeaderType>_NEUTRAL`/`_BACKGROUND`
+		にフォールバックする。公式DLC実データ(Babylon_ConfigData.xml等、調べた全リーダーで例外なし)は判で押した
+		ように`Portrait="LEADER_X_NEUTRAL"` `PortraitBackground="LEADER_X_BACKGROUND"`を明示しており、
+		ローディング画面(LoadingInfo)と全く同じテクスチャをそのまま使い回すのが公式の標準パターンだった。
+		civ6wiki.info等が言う`PORTRAIT_hogehoge.dds`という別名の専用アセットは実在しない
+		(LoadingInfo同様、Wikiの記載が架空だった)。本Modも同じパターンでLEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL/
+		_BACKGROUND(make-fallback-portraitの生成物、新規アート不要)をそのまま指定する。
 	-->
 	<!--
 		リーダー選択画面はプレイ中のルールセット(Standard/Rise and Fall/Gathering Storm)ごとに
@@ -25,8 +35,8 @@
 			<LeaderAbilityIcon>ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderAbilityIcon>
 			<LeaderAbilityName>LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME</LeaderAbilityName>
 			<LeaderAbilityDescription>LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION</LeaderAbilityDescription>
-			<Portrait>IMG_LEADER_REGLOSS_ICHIJOU_RIRIKA_FOREGROUND</Portrait>
-			<PortraitBackground>IMG_LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND</PortraitBackground>
+			<Portrait>LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL</Portrait>
+			<PortraitBackground>LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND</PortraitBackground>
 		</Row>
 		<Row>
 			<Domain>Players:Expansion1_Players</Domain>
@@ -43,8 +53,8 @@
 			<LeaderAbilityIcon>ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderAbilityIcon>
 			<LeaderAbilityName>LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME</LeaderAbilityName>
 			<LeaderAbilityDescription>LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION</LeaderAbilityDescription>
-			<Portrait>IMG_LEADER_REGLOSS_ICHIJOU_RIRIKA_FOREGROUND</Portrait>
-			<PortraitBackground>IMG_LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND</PortraitBackground>
+			<Portrait>LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL</Portrait>
+			<PortraitBackground>LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND</PortraitBackground>
 		</Row>
 		<Row>
 			<Domain>Players:Expansion2_Players</Domain>
@@ -61,8 +71,8 @@
 			<LeaderAbilityIcon>ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA</LeaderAbilityIcon>
 			<LeaderAbilityName>LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME</LeaderAbilityName>
 			<LeaderAbilityDescription>LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION</LeaderAbilityDescription>
-			<Portrait>IMG_LEADER_REGLOSS_ICHIJOU_RIRIKA_FOREGROUND</Portrait>
-			<PortraitBackground>IMG_LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND</PortraitBackground>
+			<Portrait>LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL</Portrait>
+			<PortraitBackground>LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND</PortraitBackground>
 		</Row>
 	</Players>
 

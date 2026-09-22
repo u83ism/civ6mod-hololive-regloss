@@ -1,8 +1,8 @@
-# 外交交渉画面の背景(確定)・リーダー選択画面の全身ポートレート(civ6wiki.info要約、未検証)
+# 外交交渉画面の背景・リーダー選択画面の全身ポートレート(いずれも確定、未実機確認)
 
-> このファイルは`.claude/skills/leader-icons/references/loading-and-diplomacy-screen.md`から移動・整理した。**Skillの行動指示ではなく、civ6wiki.info(2017〜2020年執筆)およびSailor Cat's Modding Tutorial(英語、未検証)の要約**であるため、実機確認済みの行動指示を書く`.claude/skills/`ではなく`docs/civ6-research/`に置く。着手して実機確認できたら、確認済みの事実として`make-fallback-portrait` Skillに書き足すこと。
+> このファイルは`.claude/skills/leader-icons/references/loading-and-diplomacy-screen.md`から移動・整理した。**Skillの行動指示ではなく、civ6wiki.info(2017〜2020年執筆)およびSailor Cat's Modding Tutorial(英語)の要約+2026-09-23の一次情報裏取り結果**であるため、実機確認済みの行動指示を書く`.claude/skills/`ではなく`docs/civ6-research/`に置く。**両方とも2026-09-23にXML実装まで完了したが、実機(次回プレイテスト)での見た目確認はまだ**。実機確認が取れたら、確認済みの事実として`make-fallback-portrait` Skill(`references/fallback-and-loading-schema.md`)に書き足すこと(2026-09-23時点で`tools/png2dds/`配下は別セッションがリファクタ中のため、このタイミングでは見送った)。
 >
-> **教訓**: 同じ調査で`LoadingInfo`のForegroundImage/BackgroundImage画像名・XLP名に関するwiki記載(`hogehoge_LoadingInfo_*`/`UILeaders.xlp`)が架空だったと判明済み(実際は`<LeaderType>_NEUTRAL`/`<LeaderType>_BACKGROUND`、`UI_Leaders.xlp`。詳細は`.claude/skills/make-fallback-portrait/references/fallback-and-loading-schema.md`)。**外交交渉画面の背景はこの教訓どおりwiki記載が不正確だったため、2026-09-23にゲーム本体のLua/DBスキーマ/公式DLC実データで裏取りし直し、下記の通り確定した**(リーダー選択画面の全身ポートレートは未着手のまま)。
+> **教訓**: 同じ調査で`LoadingInfo`のForegroundImage/BackgroundImage画像名・XLP名に関するwiki記載(`hogehoge_LoadingInfo_*`/`UILeaders.xlp`)が架空だったと判明済み(実際は`<LeaderType>_NEUTRAL`/`<LeaderType>_BACKGROUND`、`UI_Leaders.xlp`。詳細は`.claude/skills/make-fallback-portrait/references/fallback-and-loading-schema.md`)。**外交交渉画面の背景・全身ポートレートともこの教訓どおりwiki記載が不正確だったため、2026-09-23にゲーム本体のLua/DBスキーマ/公式DLC実データで裏取りし直し、下記の通り確定した**。
 
 ## 外交交渉画面の背景(確定、2026-09-23)
 
@@ -13,11 +13,16 @@ civ6wiki.info(`hogehoge_DiplomacyInfo_Background`単一画像1920x960)ともSail
 - **公式DLCの実装例**(`DLC/PolandScenario/Data/PolandScenario_DiplomacyInfo.xml`、`DLC/NubiaScenario/Data/NubiaScenario_DiplomacyInfo.xml`): `<DiplomacyInfo><Row Type="LEADER_X" BackgroundImage="任意のテクスチャ名"/></DiplomacyInfo>`という単純なINSERTで動作している。Nubiaの例では`NILE.dds`という同一テクスチャを6人のリーダーで使い回しており、**既存テクスチャの流用は公式にサポートされたパターン**
 - **本Mod側の実装**: 新規アート・ArtDef・XLPは一切不要。ローディング画面用に生成済みの`LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND`(既にBLPとして本体に組み込み済み、グローバルに名前解決できる)を`XML/Leaders.xml`の`DiplomacyInfo`テーブルにそのまま登録するだけで済む(詳細は`XML/Leaders.xml`のコメント参照)。**未実機確認**(次回プレイテストで外交交渉画面に反映されるか確認すること)
 
-## リーダー選択画面の全身ポートレート(`PORTRAIT_*`)
+## リーダー選択画面の全身ポートレート(確定、2026-09-23)
 
-- civ6wiki.info: `PORTRAIT_hogehoge.dds`、サイズ328x646
-- Sailor Cat's Modding Tutorial: サイズが825x1024と書かれている(civ6wiki.infoの「328x646」と食い違う)。キャンバス自体のサイズなのか、888x1024キャンバス内に825x1024で配置するという意味なのか原文からは判別できない
-- **名前・サイズとも未検証**。`LoadingInfo`の`<LeaderType>_NEUTRAL`/`_BACKGROUND`と同様に、実際の画像名・登録XLPが全く別物である可能性が高い。着手前に公式データ(`UI_Leaders.xlp`周辺、または`Config.xml`の`Icon`/`Portrait`列、`PlayerSetupLogic.lua`等)で実態を確認すること
+civ6wiki.info(`PORTRAIT_hogehoge.dds`、328x646)ともSailor Cat's Modding Tutorial(825x1024)とも異なり、**そのような専用アセット名は実在しなかった**(`LoadingInfo`の前例と同じくwikiの記載が架空)。ローカルにインストール済みの本体・DLCファイルを直接読んで確認した:
+
+- **実際の呼び名・場所は「Leader Placard」**。ゲーム設定(Advanced Setup)画面でリーダーを選んだ際に表示される全身ポートレート+背景のツールチップで、マルチプレイのStaging Roomでも同じ仕組みを使う(`Base/Assets/UI/FrontEnd/AdvancedSetup.xml`の`Instance Name="LeaderPlacard"`、`.lua`側は`PlayerSetupLogic.lua`)
+- **データソースはConfig.xmlの`Players`テーブルの`Portrait`/`PortraitBackground`列**(`PlayerSetupLogic.lua`の`SELECT ... Portrait, PortraitBackground ... from Players`および該当ロジック、実コードを直接読んで確認)
+- **未設定時のフォールバックも`LoadingInfo`と同じ命名規則**: `info.Portrait`が無ければ`info.LeaderType .. "_NEUTRAL"`、`info.PortraitBackground`が無ければ`info.LeaderType .. "_BACKGROUND"`を使う(`PlayerSetupLogic.lua`該当箇所)
+- **公式DLCの実装例は例外なく明示設定**(`Babylon_ConfigData.xml`、`Byzantium_Gaul_ConfigData.xml`、`Ethiopia_ConfigData.xml`、`Expansion1_Players.xml`等、調べた全リーダー行で確認): `Portrait="LEADER_X_NEUTRAL" PortraitBackground="LEADER_X_BACKGROUND"`。つまり**ローディング画面(`LoadingInfo`)と全く同じ2枚のテクスチャをそのまま使い回すのが公式の標準パターン**であり、別途「全身ポートレート専用」の画像を作る必要は無い
+- **サイズ・レイアウト**: `LeaderPlacard`のプレースホルダーは幅340px固定枠、`LeaderImage`は`StretchMode="UniformToFill"`で`Size="parent,670"`(縦670をアスペクト比維持のままクロップ表示)、`LeaderBG`は`StretchMode="None"`(等倍配置)。ローディング画面用に生成済みの高さ1024固定・膝下クロップ済み`LEADER_*_NEUTRAL`をそのまま流し込む前提の実装になっている
+- **本Mod側の実装**: `XML/Config.xml`の`Players`テーブル3行(Standard/Expansion1/Expansion2)の`Portrait`/`PortraitBackground`を、これまでのダミー文字列(`IMG_LEADER_REGLOSS_ICHIJOU_RIRIKA_FOREGROUND`/`_BACKGROUND`、実体が存在せず空表示の原因だった)から`LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL`/`LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND`(ローディング画面用に生成済み、新規アート不要)に差し替えた。新規アート・ArtDef・XLPは一切不要。**未実機確認**(次回プレイテストでゲーム設定画面のリーダー選択時に全身ポートレートが表示されるか確認すること)
 
 ## その他、Sailor Cat's Modding Tutorialからの言及(未検証)
 
