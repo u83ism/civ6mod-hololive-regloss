@@ -23,10 +23,12 @@ Civ/Leaderの選択画面自体は`bootstrap-leader` Skillの範囲で(アイコ
 
 ## 生成スクリプト(`tools/png2dds/`)
 
-- `npm run gen-icon-sources`: `Art/Source/`のマスター素材から各サイズのPNGを`Art/Icons/`に生成(`icon-manifest.ts`にサイズ一覧、`gen-icon-sources.ts`にトリミング/マスク処理)
-- `npm run build-icons`: `Art/Icons/*.png`を`tools/IconBuild/Textures/*.dds`に変換
-- `npm run gen-tex`: 公式`.tex`テンプレートをコピーして`tools/IconBuild/Textures/*.tex`を生成
-- `npm run gen-xlp`: `tools/IconBuild/XLPs/RegLoss_Icons.xlp`を生成
+`civilizationId`/`leaderId`は`ICON_CIVILIZATION_`/`ICON_LEADER_`を除いた部分(例: `REGLOSS_ICHIJOU`/`REGLOSS_ICHIJOU_RIRIKA`)。キャラ名はハードコードされておらずCLI引数で渡す作りなので、2人目以降のリーダーでもファイルの書き換えは不要。
+
+- `npm run gen-icon-sources -- <civilizationId> <leaderId> <civFullColorMasterFileName> <civSilhouetteMasterFileName> <leaderFaceMasterFileName>`: `Art/Source/`のマスター素材から各サイズのPNGを`Art/Icons/`に生成(`icon-manifest.ts`にサイズ一覧、`gen-icon-sources.ts`にトリミング/マスク処理)
+- `npm run build-icons`: `Art/Icons/*.png`を`tools/IconBuild/Textures/*.dds`に変換(ファイル名から自動判定するため引数なし)
+- `npm run gen-tex -- <civilizationId> <leaderId>`: 公式`.tex`テンプレートをコピーして`tools/IconBuild/Textures/*.tex`を生成
+- `npm run gen-xlp -- <civilizationId> <leaderId>`: `tools/IconBuild/XLPs/RegLoss_Icons.xlp`を生成
 - `npm run gen-dep -- <Mod.Art.xml> <out.dep>`: `.dep`を機械生成
 
 ## 未解決の色バグ

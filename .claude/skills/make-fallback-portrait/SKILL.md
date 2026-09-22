@@ -28,7 +28,7 @@ description: Civ6 Modで、キャラクター立ち絵から静止画ベース�
 
 ### 2a. `FALLBACK_NEUTRAL_*`/`LEADER_*_NEUTRAL`共通(`gen-leader-fallback.ts`/`gen-loading-portrait.ts`)
 
-`tools/png2dds`ディレクトリで`npm run gen-leader-fallback`または`npm run gen-loading-portrait`を実行すると、以下を一括生成する(両スクリプトは`KNEE_CROP_FRACTION`/`TOP_MARGIN_FRACTION`/`BOTTOM_FADE_START_FRACTION`の値と対象の高さ(1080 or 1024)以外ほぼ同じ処理):
+`tools/png2dds`ディレクトリで`npm run gen-leader-fallback -- <leaderId> <standingArtFileName>`または`npm run gen-loading-portrait -- <leaderId> <standingArtFileName>`を実行すると、以下を一括生成する(両スクリプトは`KNEE_CROP_FRACTION`/`TOP_MARGIN_FRACTION`/`BOTTOM_FADE_START_FRACTION`の値と対象の高さ(1080 or 1024)以外ほぼ同じ処理)。`leaderId`は`LEADER_`を除いた部分(例: `REGLOSS_ICHIJOU_RIRIKA`)、`standingArtFileName`は`Art/Source/`配下の全身立ち絵ファイル名(例: `ichijou-ririka-stand.webp`):
 
 1. **透明余白のトリム**(`sharp().trim()`)
 2. **膝下クロップ**(`KNEE_CROP_FRACTION`、既定0.25): トリム後の全身高さの下25%をカットし、膝のちょい下までにする。公式リーダーおよび他言語版Hololive Mod(EN/ID)は全身ではなくこの高さまでしか描いていないため、それに合わせている
@@ -39,7 +39,7 @@ description: Civ6 Modで、キャラクター立ち絵から静止画ベース�
 
 ### 2b. `LEADER_*_BACKGROUND`(`gen-loading-background.ts`)
 
-`npm run gen-loading-background`で、環境イラストを`sharp().resize(1920, 960, { fit: "cover", position: "center" })`で中央クロップ+リサイズするだけ(膝下クロップ・余白・フェードは無関係)。DDS化→`.tex`→`.xlp`まで一括生成。
+`npm run gen-loading-background -- <leaderId> <wallpaperFileName>`で、環境イラストを`sharp().resize(1920, 960, { fit: "cover", position: "center" })`で中央クロップ+リサイズするだけ(膝下クロップ・余白・フェードは無関係)。DDS化→`.tex`→`.xlp`まで一括生成。
 
 生成物の出力先:
 
@@ -56,7 +56,7 @@ description: Civ6 Modで、キャラクター立ち絵から静止画ベース�
 
 `KNEE_CROP_FRACTION`/`TOP_MARGIN_FRACTION`/`BOTTOM_FADE_START_FRACTION`(`FALLBACK_NEUTRAL_*`/`LEADER_*_NEUTRAL`のみ、`LEADER_*_BACKGROUND`には無い)はキャラの体型・ポーズによって微調整が要る(実測値は目安であって、他キャラでもそのまま通用する保証はない)。**ModBuddyビルド→コピー→実機確認は工数が重いので、その前に画像だけで見た目を確認すること**:
 
-1. 該当する`npm run gen-*`でPNGを再生成
+1. 該当する`npm run gen-* -- <leaderId> <ファイル名>`(2節参照)でPNGを再生成
 2. `npm run preview-fallback-dark-bg -- <生成物名>.png`で、外交交渉画面/ローディング画面に近いダーク背景に合成したプレビューPNG(`Art/Icons/<生成物名>_preview-dark-bg.png`)を生成する。**PNGをそのまま見ると透過部分が白背景に合成されてしまい、下部フェード(色だけ黒に落ちる・透過はしない)が正しく見えない**ため、このプレビューが必須(`LEADER_*_BACKGROUND`は透過が無いので不要)
 3. `Read`ツール等でプレビューPNGを見て、余白・膝下位置・フェードの見え方を確認。ズレていたら定数を書き換えて1に戻る
 4. 良ければプレビューPNG(`*_preview-dark-bg.png`)を削除してから次へ進む(確認用の使い捨てファイルなので、コミットに含めない)
@@ -65,7 +65,7 @@ description: Civ6 Modで、キャラクター立ち絵から静止画ベース�
 
 画像の中身(元絵・パラメータ)を差し替えるだけなら、以下の手順の繰り返しで済む(`.dep`/`.modinfo`/`Art.xml`等の配線は初回のみ、5節参照):
 
-1. 該当する`npm run gen-*`(3節で調整済みの状態で最終生成)
+1. 該当する`npm run gen-* -- <leaderId> <ファイル名>`(3節で調整済みの状態で最終生成)
 2. `tools/IconBuild/RegLoss_IconBuild.civ6sln`をModBuddyで開いてビルド
 3. 生成物に対応するblpを本体Modの同パスにコピー:
    - `FALLBACK_NEUTRAL_*` → `Platforms/{Windows,MacOS}/BLPs/LeaderFallbackImages.blp`
@@ -82,6 +82,6 @@ description: Civ6 Modで、キャラクター立ち絵から静止画ベース�
 - `LEADER_*_NEUTRAL`/`LEADER_*_BACKGROUND`を使う場合は`XML/Leaders.xml`等に`LoadingInfo`の`Row`(`ForegroundImage`/`BackgroundImage`属性)も追加する
 - 本体Modの`civ6mod-hololive-regloss.dep`/`.modinfo`を同様に配線(`tools/png2dds/gen-dep.ts`で`.dep`の`ArtDefDependencies`/`PackageDependencies`は再生成して差分確認できる)
 
-## 6. 別のReGLOSSメンバー(姉妹リポジトリ)で使う場合
+## 6. 別のリーダー(同一リポジトリ内の2人目以降、または姉妹リポジトリ)で使う場合
 
-3つの生成スクリプトはいずれもこのMod(莉々華)専用にキャラ名・元絵ファイル名がハードコードされている(`OUR_NAME`/`LEADER_TYPE`/`sourcePath`等の定数)。汎用ライブラリ化はしていないので、姉妹リポジトリでは本Skill言及の各ファイル(`gen-leader-fallback.ts`/`gen-loading-portrait.ts`/`gen-loading-background.ts`/`leader-fallback-compositing.ts`/`preview-fallback-dark-bg.ts`)をコピーし、該当キャラ用に定数を書き換えて使うこと。
+3つの生成スクリプト(`gen-leader-fallback.ts`/`gen-loading-portrait.ts`/`gen-loading-background.ts`)はキャラ名・元絵ファイル名をCLI引数(`leaderId`/`standingArtFileName`/`wallpaperFileName`、2節参照)で受け取る作りになっており、定数の書き換えは不要。同一リポジトリに2人目以降のリーダーを追加する場合はそのまま新しい引数で実行すればよい。姉妹リポジトリで使う場合も、本Skill言及の各ファイル(上記3つ+`leader-fallback-compositing.ts`+`preview-fallback-dark-bg.ts`、いずれもキャラ名のハードコードなし)をそのままコピーして使える。
