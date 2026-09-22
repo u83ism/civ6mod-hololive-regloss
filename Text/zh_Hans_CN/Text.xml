@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+	<LocalizedText>
+		<Row Tag="LOC_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="zh_Hans_CN">
+			<Text>一条公司</Text>
+		</Row>
+		<Row Tag="LOC_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION" Language="zh_Hans_CN">
+			<Text>一条公司</Text>
+		</Row>
+		<Row Tag="LOC_CIVILIZATION_REGLOSS_ICHIJOU_ADJECTIVE" Language="zh_Hans_CN">
+			<Text>一条</Text>
+		</Row>
+
+		<Row Tag="LOC_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="zh_Hans_CN">
+			<Text>一条莉莉华</Text>
+		</Row>
+
+		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="zh_Hans_CN">
+			<Text>追星辛苦了～</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION" Language="zh_Hans_CN">
+			<Text>同时拥有市场和灯塔的城市 [ICON_TradeRoute] 贸易路线上限+1。来自 [ICON_TradeRoute] 贸易路线的 [ICON_Food] 食物+1、[ICON_Production] 生产力+1、[ICON_Science] 科技值+1、[ICON_Culture] 文化值+1。</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_NAME" Language="zh_Hans_CN">
+			<Text>大天才</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION" Language="zh_Hans_CN">
+			<Text>行业额外获得 [ICON_Culture] 文化值+2、[ICON_Science] 科技值+2、[ICON_Gold] 金币+1。公司的这些加成全部翻倍。商品项目的 [ICON_Production] 生产力+100%。</Text>
+		</Row>
+
+		<Row Tag="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="zh_Hans_CN">
+			<Text>KPG</Text>
+		</Row>
+		<Row Tag="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION" Language="zh_Hans_CN">
+			<Text>亲近不好战的文明，讨厌好战的文明。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_KUDO_LEADER_ANY_REASON_AGENDA_REGLOSS_ICHIJOU_RIRIKA" Language="zh_Hans_CN">
+			<Text>没有纷争的每一天，最棒了！真希望能和你一直这样好好相处下去。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_REGLOSS_ICHIJOU_RIRIKA" Language="zh_Hans_CN">
+			<Text>别再打仗了，我们做点更开心的事嘛……</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MODIFIER_REGLOSS_ICHIJOU_RIRIKA_LIKES_PEACE" Language="zh_Hans_CN">
+			<Text>看到不好战的文明感到很欣慰</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MODIFIER_REGLOSS_ICHIJOU_RIRIKA_DISLIKES_WAR" Language="zh_Hans_CN">
+			<Text>对好战的文明感到厌烦</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_GREETING_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>Konriri～找莉莉华有什么事吗？</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>可爱！积极！天才！我是一条莉莉华，自己公司的社长，请多关照哦～</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_VISIT_RECIPIENT_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶诶，我们公司就在附近哦，要不要来玩？虽然只是间办公室，但好歹也能招待你一下！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_NEAR_INITIATOR_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>当然要去啦！莉莉华一直很好奇你们国家呢～</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_NO_MANS_INFO_EXCHANGE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>看来我们彼此都离得挺远的呢～要不要交换一下地图？</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DECLARE_WAR_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>……对不起，其实我真的不想这样。但我不能再坐视不管了。只能打了</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DECLARE_WAR_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>啊！？等等，你认真的！？……我不管了，到时候你哭我也不管</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DEFEAT_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>……不会吧。怎么会走到这一步……</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DEFEAT_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>……不会吧。怎么会走到这一步……</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，我们一起拍张照发到社交网络上吧？就说“我们已经是朋友了”，让全世界都知道！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>太好了！嘿嘿，以后请多多关照。我们公司也请多多关照哦！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，真的假的……那，那好吧……</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>当然可以！想跟莉莉华做朋友，你眼光真不错</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DECLARE_FRIEND_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>嗯……现在时机好像不太对呢，抱歉啦</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，我们不是早就已经是命运共同体了吗？</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>太好了！这下再也分不开啦</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶……是吗？有点小失落，不过没办法呢</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_ALLIANCE_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>当然可以！感觉和莉莉华能一直合作下去</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_ALLIANCE_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>嗯……现在关系好像还没到那一步呢，抱歉啦</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>我已经忍无可忍了。我会告诉大家的，你做好心理准备吧</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>啊？怎么会这样说……你才该反省一下吧</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_KUDO_EXIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>你们国家总感觉一直很平和呢。莉莉华看着就觉得很安心</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_EXIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，最近是不是有点剑拔弩张啊……？我觉得可以再放松一点哦</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_DELEGATION_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，能让我派些员工过去吗？我会让他们好好打招呼的</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DELEGATION_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>太好了，谢谢！我会叮嘱他们注意礼数的</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DELEGATION_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，不行吗……？那也没办法啦</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DELEGATION_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>当然可以，随时欢迎过来！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DELEGATION_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>抱歉，现在有点忙……下次再说吧</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_EMBASSY_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，能让莉莉华派驻个代表过去吗？我会让他好好干的</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_EMBASSY_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>太好了！我会让驻外代表好好努力的</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_EMBASSY_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>啊，是吗……既然没这个需求那也没办法呢</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_EMBASSY_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>当然可以，派驻代表也没问题哦！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_EMBASSY_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>嗯……那个还是算了，抱歉啦</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，要不要让彼此都能自由往来？</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>太好了！这样就能随时去玩啦</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>啊，这样啊。现在还太早了呢，抱歉</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_OPEN_BORDERS_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>可以哦，随时欢迎过来！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_OPEN_BORDERS_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>抱歉，现在还有点……</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_ACCEPT_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>好嘞，这个条件没问题！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_REFUSE_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>嗯……这个我可接受不了</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_ADJUST_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>嗯，我想稍微调整一下条件。这样如何？</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_DEAL_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>太好了，生意谈成啦！谢谢你</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_DEAL_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>哎呀，没成啊。下次再约你吧</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，差不多该结束了吧？打仗真的好累啊……</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_AI_ACCEPT_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>嗯……这样就好。我们就此结束吧</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_AI_REFUSE_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>啊？别开玩笑了，这种条件绝对不行</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>太好了……真的太好了。谢谢你</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>什么？你还想继续……？我不管了</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_AI_ACCEPT_DEMAND_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>唉……好啦好啦。就这一次哦</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_AI_REFUSE_DEMAND_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，不行不行！那样只会让我们吃亏</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_HUMAN_ACCEPT_DEMAND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>太好了，你还挺懂事嘛！谢谢啦</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_HUMAN_REFUSE_DEMAND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>哎，小气鬼。哼，我会记住的</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，别把分公司开在这么近的地方啦。希望你能找个再远一点的地方</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>谢谢，你能理解真是太好了</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>你要是无视我们的地盘，那我也不会再顾及你了哦</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>啊，对不起对不起！没注意到离得这么近</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>我们也得增加据点啊。这轮得到你插嘴吗？</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，能不能别在我们公司搞传教了</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>谢谢</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>唉……你要是这个态度，那我们也去传教哦？</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>好吧，你的意见我听着……不过我心里还是觉得自己是对的哦</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>不，这样就好。总有一天你会明白的</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，别擅自在我们的地盘上挖掘啦</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>谢谢</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>你要是不尊重我们，那我也没法尊重你了</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>啊，没意识到那是你的地盘。抱歉啦</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>都是老古董了，谁捡到不都一样吗？</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，能不能别再派间谍来我们这了？</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>谢谢</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>嗯……真是伤脑筋啊。这样我也只能反过来对付你了</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>嗯，说得对呢……用那种手段真是抱歉。以后不会了</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>哈，你觉得莉莉华会遵守那种承诺吗？</Text>
+		</Row>
+
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>诶，是不是在我们地盘附近集结太多军队了？希望你们只是来看风景的</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>谢谢</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>抱歉抱歉，只是在找个合适的地方清剿蛮族而已</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hans_CN">
+			<Text>又没进你的领土，莉莉华想怎么做还轮不到你管吧？</Text>
+		</Row>
+
+		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="zh_Hans_CN">
+			<Text>见习秘书们的奋斗</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION" Language="zh_Hans_CN">
+			<Text>资源地块已开发时，加成资源额外获得 [ICON_Gold] 金币+3，战略资源+4，奢侈品资源+6。建造者的使用次数上限比通常多1次。</Text>
+		</Row>
+
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_HQ" Language="zh_Hans_CN">
+			<Text>东京总部</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_01" Language="zh_Hans_CN">
+			<Text>纽约分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_02" Language="zh_Hans_CN">
+			<Text>伦敦分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_03" Language="zh_Hans_CN">
+			<Text>巴黎分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_04" Language="zh_Hans_CN">
+			<Text>上海分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_05" Language="zh_Hans_CN">
+			<Text>香港分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_06" Language="zh_Hans_CN">
+			<Text>新加坡分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_07" Language="zh_Hans_CN">
+			<Text>迪拜分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_08" Language="zh_Hans_CN">
+			<Text>悉尼分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_09" Language="zh_Hans_CN">
+			<Text>柏林分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_10" Language="zh_Hans_CN">
+			<Text>首尔分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_11" Language="zh_Hans_CN">
+			<Text>孟买分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_12" Language="zh_Hans_CN">
+			<Text>圣保罗分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_13" Language="zh_Hans_CN">
+			<Text>多伦多分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_14" Language="zh_Hans_CN">
+			<Text>莫斯科分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_15" Language="zh_Hans_CN">
+			<Text>开罗分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_16" Language="zh_Hans_CN">
+			<Text>罗马分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_17" Language="zh_Hans_CN">
+			<Text>马德里分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_18" Language="zh_Hans_CN">
+			<Text>曼谷分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_19" Language="zh_Hans_CN">
+			<Text>墨西哥城分公司</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_20" Language="zh_Hans_CN">
+			<Text>约翰内斯堡分公司</Text>
+		</Row>
+
+		<Row Tag="LOC_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Language="zh_Hans_CN">
+			<Text>海胆</Text>
+		</Row>
+		<Row Tag="LOC_UNIT_REGLOSS_ICHIJOU_UNI_DESCRIPTION" Language="zh_Hans_CN">
+			<Text>取代侦察兵的一条公司专属远古时代侦察单位。[ICON_Movement] 移动力+1。</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_CIVILIZATION_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Language="zh_Hans_CN">
+			<Text>社长的爱犬</Text>
+		</Row>
+	</LocalizedText>
+</GameData>

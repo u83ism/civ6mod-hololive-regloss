@@ -32,6 +32,7 @@ Civilization VI の新規文明追加Mod。hololive ReGLOSSをモチーフにし
 - ModBuddyは日本語エンコーディングで文字化けが起きやすいため、通常の編集はテキストエディタ(UTF-8固定)で行う。ModBuddyはアイコン等Artアセットのビルド時のみ使う
 - ローカルテストは `Documents\My Games\Sid Meier's Civilization VI\Mods\` にこのフォルダをシンボリックリンクして行う
 - `tools/`配下のTypeScript/Node.jsコードは`.claude/rules/`のコーディング規約に従う。Civ6 Modding固有の知識・手順は`.claude/skills/`を参照(`bootstrap-mod`→`bootstrap-leader`→`make-leader-icons`/`make-fallback-portrait`/`implement-leader-abilities`/`add-unique-content`の順)。未検証のciv6wiki.info要約等は`docs/civ6-research/`に分離してある
+- バランスは意図的にやや強め。HktkNban氏のHololive JP Mod、Neox氏のHololive EN/ID Modと混ぜて使うことを前提にしており、単体でのバランスの良さより他作者Mod群の文明と並べたときに埋もれない強さを優先している
 
 ## TODO
 

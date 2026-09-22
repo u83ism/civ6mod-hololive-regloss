@@ -25,6 +25,19 @@
 3. コピーした方だけ`BaseGameText`→`LocalizedText`、`Row`→`Replace`、`en_US`→`ja_JP`に置換
 4. `<Text>`の中身を日本語化し、Propertyの`Text`項目にファイルを追加登録
 
+## 中国語対応(2026-09-22、実機ファイルで確認済み・このリポジトリ未実装)
+
+Language属性の正確な値は`Base/Assets/Text/Vanilla_zh_Hans_CN.xml`(簡体字)・`Vanilla_zh_Hant_HK.xml`(繁体字、**`zh_Hant_TW`ではなく`zh_Hant_HK`**)で確認済み。書式はja_JP同様`<Replace Tag="..." Language="zh_Hans_CN">`(バニラ側の上書き)。自Modの新規LOCキーなら`<Row Tag="..." Language="zh_Hans_CN">`でよい(en_US/ja_JPと同じ`UpdateText`アクションに追加登録するだけ)。
+
+`<UpdateText>`は`.xml`だけでなく`.sql`ファイルも同列に`<File>`登録できる(HktkNban氏シリーズで確認、`INSERT OR REPLACE INTO LocalizedText (Tag, Language, Text) ...`形式)。
+
+姉妹Mod2系統で対応方針が全く異なる(いずれも実機ファイルで確認済み):
+
+- **HktkNban氏(Hololive JP 1〜5期生)**: 実翻訳はせず、`Text/Update_Text_zh_CN.sql`で「言語設定が中国語の場合、日本語を表示」という趣旨のコメント付きで`INSERT OR REPLACE INTO LocalizedText (Tag, Language, Text) SELECT Tag, 'zh_Hans_CN', Text FROM LocalizedText WHERE Tag LIKE '%キャラ名%'`(`zh_Hant_HK`にも同様)を実行し、既存の(恐らくja_JP)テキストをそのまま中国語スロットにコピーするフォールバック手法。翻訳コスト0で「文字化け/空欄表示を防ぐ」目的と思われる
+- **Neox氏(HoloEN)**: `Core/Civilization_Localisation.sql`・`Leader/Leader_Localisation.sql`に`zh_Hant_HK`(繁体字)の実訳608行を保有(ファイル冒頭のコメントに翻訳協力者`ChimpanG, SeelingCat`のクレジットあり)。**ただし`zh_Hans_CN`(簡体字)は0件**、繁体字のみの対応
+
+このMod(civ6mod-hololive-regloss)では中国語対応は未着手。着手する場合、HktkNban方式(ja_JPテキストをzh_Hans_CN/zh_Hant_HKにコピーするだけの.sql、翻訳コスト0)が最も低コストな第一歩になる。
+
 ## 文明のその他表示調整
 
 - Civilopediaの文明ページに謎の項目(学名等)が出る場合は`CivilizationInfo`(`Header`/`Caption`)の該当`Row`を削除

@@ -1,13 +1,15 @@
 ---
-name: write-official-style-text
-description: Civ6 Mod向けにゲーム内テキスト(文明/指導者Traitの`_NAME`・`_DESCRIPTION`、ユニット/建造物/Civilopedia等の説明文)を公式の文体に合わせて書く時に使う。「能力の説明文を書く」「Trait名を考える」「説明文を日本語で書く」「多言語化する」「公式っぽい言い回しにして」と言われたとき、またはLOCテキストを新規に書く/レビューする場面で使う。Trait名限定のSkillではない。Modifier/RequirementのXML実装自体は`implement-leader-abilities`等の各実装Skillの範囲(そちらは効果の実装、こちらはテキストの文体)。**外交交渉画面の台詞(`LOC_DIPLO_*`)はこのSkillの対象外**(公式に統一書式ルールが存在せず、リーダーごとの性格・口調で書くのが作法。`implement-diplomacy-statements` Skillを使うこと)。
+name: write-official-jp-text-style
+description: Civ6 Mod向けに**日本語の**ゲーム内テキスト(文明/指導者Traitの`_NAME`・`_DESCRIPTION`、ユニット/建造物/Civilopedia等の説明文)を公式の文体に合わせて書く時に使う。「能力の説明文を書く」「Trait名を考える」「説明文を日本語で書く」「公式っぽい言い回しにして」と言われたとき、またはLOCテキストを新規に書く/レビューする場面で使う。Trait名限定のSkillではない。Modifier/RequirementのXML実装自体は`implement-leader-abilities`等の各実装Skillの範囲(そちらは効果の実装、こちらはテキストの文体)。**外交交渉画面の台詞(`LOC_DIPLO_*`)はこのSkillの対象外**(公式に統一書式ルールが存在せず、リーダーごとの性格・口調で書くのが作法。`implement-diplomacy-statements` Skillを使うこと)。**他言語のテキストにはこのSkillを使わない**(言語ごとに文体の癖・鉤括弧相当の記法・語彙差が異なるため、`write-official-<lang>-text-style`のような言語別Skillを別途用意する方針。2026-09-22時点で日本語版・英語版(`write-official-en-text-style`)・中国語版(`write-official-zh-text-style`)が存在する)。
 ---
 
-# Civ6公式スタイルのゲーム内テキストを書く
+# Civ6公式スタイルの日本語ゲーム内テキストを書く
 
-一条莉々華Mod(civ6mod-hololive-regloss)の実装で確立した、ゲーム内テキストを公式の文体に揃えるためのガイド。効果(Modifier/Requirement)自体の実装は範囲外(`implement-leader-abilities`等の各実装Skillを使う)。
+一条莉々華Mod(civ6mod-hololive-regloss)の実装で確立した、**日本語の**ゲーム内テキストを公式の文体に揃えるためのガイド。効果(Modifier/Requirement)自体の実装は範囲外(`implement-leader-abilities`等の各実装Skillを使う)。他言語向けのテキストを書く場合は、このSkillのルールをそのまま流用せず、対応する`write-official-<lang>-text-style`Skill(例: 英語は`write-official-en-text-style`、中国語は`write-official-zh-text-style`)を使うこと。
 
-新しいテキストを日本語で書く前に、`references/official-text-style.md`を読むこと。公式Trait説明文422件(バニラ〜Leader Pass、全DLC)をen_US/ja_JP対訳でリリース時期別に調査した結果、**半角/全角のルール、`[ICON_XXX] 効果+数値`の詰め方、鉤括弧「」を付ける固有名詞の範囲**などは時期を問わずほぼ完全に一貫している(逸脱は単発のtypoのみ)。要点だけ書くと:
+ゲーム固有の用語(Yield名・建造物名・資源クラス名等)を書く前に、`idea`リポジトリの`用語対訳/<ゲーム名>-用語対訳.csv`(`map-terms`Skill管轄、このリポジトリの外)に既存の正式訳が無いか確認する。無ければ実機(`Vanilla_ja_JP.xml`等、`add-language`Skillの用語確認手順と同じ)で確認し、CSVに追記して次回以降再利用できるようにする。
+
+新しいテキストを日本語で書く前に、`references/official-jp-text-style.md`を読むこと。公式Trait説明文422件(バニラ〜Leader Pass、全DLC)をen_US/ja_JP対訳でリリース時期別に調査した結果、**半角/全角のルール、`[ICON_XXX] 効果+数値`の詰め方、鉤括弧「」を付ける固有名詞の範囲**などは時期を問わずほぼ完全に一貫している(逸脱は単発のtypoのみ)。要点だけ書くと:
 
 - 数字・`%`・`+`/`-`・丸括弧`()`・コロン`:`は半角。全角括弧・全角コロンは使わない
 - `[ICON_XXX] 効果名+数値`は詰めて書く(数値の前にスペースを入れない)
@@ -15,7 +17,7 @@ description: Civ6 Mod向けにゲーム内テキスト(文明/指導者Traitの`
 - 常体・体言止めで統一する(敬体は基本使わない)
 - **似た効果の公式テキストを先に探し、テンプレとして数値だけ差し替えるのが最短ルート。** これは公式自身も`_EXPANSION1`/`_EXPANSION2`サフィックス違いのTraitで多用している手法
 
-`references/official-text-style.md`には上記に加えて、効果カテゴリ別のフレーズ早見表・DLCリリース時期マッピング・調査手順(再現用)も載っている。
+`references/official-jp-text-style.md`には上記に加えて、効果カテゴリ別のフレーズ早見表・DLCリリース時期マッピング・調査手順(再現用)も載っている。
 
 **調査対象はTrait説明文(422件)であり、Civilopedia・ユニット/建造物説明文等の他のテキスト種別で同じ規則を直接検証したわけではない。** ただし上記のルール(半角/全角、アイコン+数値の詰め方、鉤括弧の使い分け、常体)はCiv6ローカライズ全体に共通する一般的な慣習である可能性が高く、他のテキスト種別を書く際もまず適用し、明らかに違和感があれば該当箇所の公式テキストで個別に確認すること。
 

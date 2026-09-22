@@ -25,3 +25,13 @@ node_modules/
 # 元絵(Art/Source/)は著作権上グレーな素材を含むため追跡対象外。
 # ローカルにのみ置き、ビルド成果物(Art/Icons/等)だけをコミットする。
 Art/Source/
+
+# Steam Workshop説明文(docs/steam-description/*.md)は、
+# write-steam-description Skillの references/template.md から
+# リリースのたびに再生成するコピペ用の使い捨て出力。Git管理しない。
+docs/steam-description/*.md
+
+# Steam Workshop更新ノート(docs/update-notes/*.md)も同様に、
+# write-update-notes Skillがリリースのたびに main/developの差分から
+# 再生成するコピペ用の使い捨て出力。Git管理しない。
+docs/update-notes/*.md
