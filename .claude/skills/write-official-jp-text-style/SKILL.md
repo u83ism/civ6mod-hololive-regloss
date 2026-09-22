@@ -7,6 +7,8 @@ description: Civ6 Mod向けに**日本語の**ゲーム内テキスト(文明/�
 
 一条莉々華Mod(civ6mod-hololive-regloss)の実装で確立した、**日本語の**ゲーム内テキストを公式の文体に揃えるためのガイド。効果(Modifier/Requirement)自体の実装は範囲外(`implement-leader-abilities`等の各実装Skillを使う)。他言語向けのテキストを書く場合は、このSkillのルールをそのまま流用せず、対応する`write-official-<lang>-text-style`Skill(例: 英語は`write-official-en-text-style`、中国語は`write-official-zh-text-style`)を使うこと。
 
+ゲーム固有の用語(Yield名・建造物名・資源クラス名等)を書く前に、`idea`リポジトリの`用語対訳/<ゲーム名>-用語対訳.csv`(`map-terms`Skill管轄、このリポジトリの外)に既存の正式訳が無いか確認する。無ければ実機(`Vanilla_ja_JP.xml`等、`add-language`Skillの用語確認手順と同じ)で確認し、CSVに追記して次回以降再利用できるようにする。
+
 新しいテキストを日本語で書く前に、`references/official-jp-text-style.md`を読むこと。公式Trait説明文422件(バニラ〜Leader Pass、全DLC)をen_US/ja_JP対訳でリリース時期別に調査した結果、**半角/全角のルール、`[ICON_XXX] 効果+数値`の詰め方、鉤括弧「」を付ける固有名詞の範囲**などは時期を問わずほぼ完全に一貫している(逸脱は単発のtypoのみ)。要点だけ書くと:
 
 - 数字・`%`・`+`/`-`・丸括弧`()`・コロン`:`は半角。全角括弧・全角コロンは使わない

@@ -5,7 +5,9 @@ description: Civ6 Mod向けに**英語(en_US)の**ゲーム内テキスト(文�
 
 # Civ6公式スタイルの英語ゲーム内テキストを書く
 
-一条莉々華Mod(civ6mod-hololive-regloss)の実装で確立した、**英語の**ゲーム内テキストを公式の文体に揃えるためのガイド。効果(Modifier/Requirement)自体の実装は範囲外(`implement-leader-abilities`等の各実装Skillを使う)。このModのワークフローはJP→EN→ZHの順で書くが、英語は本来Civ6本体の開発言語(マスター言語)であり、他言語のような「翻訳の癖」ではなく**Firaxis公式の作文規則**に合わせる必要がある。
+一条莉々華Mod(civ6mod-hololive-regloss)の実装で確立した、**英語の**ゲーム内テキストを公式の文体に揃えるためのガイド。効果(Modifier/Requirement)自体の実装は範囲外(`implement-leader-abilities`等の各実装Skillを使う)。このModのワークフローはJP→EN→ZHの順で書くが、Civ6本体自体はFiraxisが英語で開発しているため、英語のテキストは他言語のような「翻訳の癖」ではなく**Firaxis公式の作文規則**に合わせる必要がある(このModにおける英語の位置付けについては次段落を参照)。
+
+既存のCiv6本体・DLCのゲーム用語(Yield名・建造物名等)はFiraxisが英語で書いたものが原本なので、それらを書く際は`idea`リポジトリの`用語対訳/<ゲーム名>-用語対訳.csv`(`map-terms`Skill管轄、EN以外の言語で正式訳を探すためのもの)を引く必要が無く、Vanilla本体・DLCのen_USファイルから直接拾えばよい。**ただし、これは英語がこのModの万能な「原文」という意味ではない。** このMod自体の新規コンテンツ(Trait効果文など)はJP→EN→ZHの順で書くが、`add-language`Skillの「テキストの翻訳元を決める」節にある通り、各言語は効果テキストならXML効果定義、フレーバーテキストならキャラクター性から独立に組み立てるものであり、特定の1言語が常に原文になるわけではない。
 
 新しいテキストを英語で書く前に、`references/official-en-text-style.md`を読むこと。2026-09-22、Civ6実機(Steamインストールフォルダ)からTrait説明文198件をen_US/zh_Hans_CN/zh_Hant_HK対訳で抽出し解析した結果、要点は:
 
