@@ -42,18 +42,55 @@ Steam Workshopの編集画面には直接書き込む手段がない(APIも自�
 - **説明文の地の文**は`ja.md`の記述を翻訳する。`Text/en_US/Text.xml`の対応する`_DESCRIPTION`(`[ICON_Xxx]`を除いたもの)が既に自然な英訳として存在するので、内容が一致するかの裏取りに使ってよい(このSkillの対象は公式ローカライズ文体ではなくWorkshopページのくだけた紹介文なので、`write-official-en-text-style` Skillの対象外)。
 - **開発中です/対応言語/バランスについて等の自由記述部分**(LOCタグに存在しない、Workshopページ固有の文章)は、`en.md`の既存の訳文をテンプレートとして使い回す。意味が変わった差分だけを訳し直し、変わっていない文をゼロから再翻訳しない。
 
-## フォーマット
+## フォーマット: プレースホルダーに沿って埋める
 
-`docs/steam-description/ja.md`・`en.md`にある一条莉々華のセクションをテンプレートとして扱う。新規リーダーのセクションも同じ構成を踏襲する:
+新規リーダーのセクションは、一条莉々華の例をなんとなく真似るのではなく、以下のプレースホルダーテンプレートの`<>`部分を対応するLOCタグの値(ステップ1の表を参照)で機械的に埋める形で書く。空白・改行・括弧の位置もテンプレート通りに揃える(JP/ENで括弧前のスペースの有無が違う点に注意)。
 
-1. `【リーダー名(文明名)】` / `[Leader Name (Civilization Name)]` 見出し
-2. 文明固有能力
-3. 指導者固有能力(通常時)
-4. 指導者固有能力(独占・大企業モード時、あれば)
-5. ユニークアジェンダ
-6. ユニークユニット/区域/施設/建造物(複数あれば全て)
+**日本語版(`ja.md`)**:
 
-日本語版は`【】`見出し、英語版は`[]`見出しの体裁をそれぞれ維持する。
+```
+【<指導者名>(<文明名>)】
+
+文明固有能力「<文明固有能力の名前>」
+<文明固有能力の説明>
+
+指導者固有能力(通常時)「<指導者固有能力(通常時)の名前>」
+<指導者固有能力(通常時)の説明>
+
+指導者固有能力(独占・大企業モード時)「<指導者固有能力(独占・大企業モード時)の名前>」
+<指導者固有能力(独占・大企業モード時)の説明>
+
+ユニークアジェンダ「<アジェンダ名>」
+<アジェンダの説明>
+(隠し効果があれば、丸括弧で追記)
+
+ユニークユニット「<ユニット名>」(<ユニットの副題>)
+<ユニットの説明>
+```
+
+**英語版(`en.md`)**: 見出し・ラベルが変わり、`(`の前に半角スペースが入る点がJP版と違う。
+
+```
+[<Leader Name> (<Civilization Name>)]
+
+Civilization Ability: <Civilization ability name>
+<Civilization ability description>
+
+Leader Ability (default): <Leader ability (default) name>
+<Leader ability (default) description>
+
+Leader Ability (Monopolies & Corporations mode): <Leader ability (Monopolies) name>
+<Leader ability (Monopolies) description>
+
+Agenda: <Agenda name>
+<Agenda description>
+(Hidden effect note in parentheses, if any)
+
+Unique Unit: <Unit name> (<Unit subtitle>)
+<Unit description>
+```
+
+指導者固有能力(独占・大企業モード時)がいないリーダーはそのブロックごと省略する。UD/UI/UBがあれば「ユニークユニット」/`Unique Unit:`のブロックを`ユニークアジェンダ`ブロックの後に必要な数だけ追加する(区域は「固有区域」/`Unique District:`、施設は「固有施設」/`Unique Improvement:`、建造物は「固有建造物」/`Unique Building:`)。
 
 ## その他、リーダー追加のたびに見直す箇所
 
