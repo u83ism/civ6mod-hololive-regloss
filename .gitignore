@@ -30,3 +30,8 @@ Art/Source/
 # write-steam-description Skillの references/template.md から
 # リリースのたびに再生成するコピペ用の使い捨て出力。Git管理しない。
 docs/steam-description/*.md
+
+# Steam Workshop更新ノート(docs/update-notes/*.md)も同様に、
+# write-update-notes Skillがリリースのたびに main/developの差分から
+# 再生成するコピペ用の使い捨て出力。Git管理しない。
+docs/update-notes/*.md
