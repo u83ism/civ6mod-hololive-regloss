@@ -1,6 +1,6 @@
 # Steam Workshop Description (English)
 
-Source of truth for the description text shown on the Steam Workshop listing page. After updating this file, copy it into the Steam edit screen by hand (there is no automated sync).
+Translation of `ja.md`, which is the source of truth. Update `ja.md` first, then translate the change here (don't edit this file independently). After updating, copy it into the Steam edit screen by hand (there is no automated sync).
 
 See the `write-steam-description` Skill for how to write/update this.
 
