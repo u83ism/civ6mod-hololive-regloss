@@ -25,7 +25,7 @@
 			<Text>大天才</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION" Language="ja_JP">
-			<Text>「産業」は追加で [ICON_Culture] 文化力+2、[ICON_Science] 科学力+2、[ICON_Gold] ゴールド+1を得る。「大企業」は文化力と科学力とゴールドがその2倍。商品プロジェクトの [ICON_Production] 生産力+100%。</Text>
+			<Text>産業は追加で [ICON_Culture] 文化力+2、[ICON_Science] 科学力+2、[ICON_Gold] ゴールド+1を得る。大企業はそれらがすべて2倍になる。商品プロジェクトの [ICON_Production] 生産力+100%。</Text>
 		</Row>
 
 		<Row Tag="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="ja_JP">
