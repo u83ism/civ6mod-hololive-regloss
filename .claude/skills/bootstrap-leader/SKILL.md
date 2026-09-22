@@ -13,7 +13,7 @@ description: Civ6 Modリポジトリ内でCivilization/Leader本体をゼロか�
 
 ## 1. 命名規則
 
-Neox/Keniisu氏系(HoloEN/HoloID)の実働Modに合わせ、パック名でスコープしたID + テーマ名の文明IDを使う(HktkNban氏系はキャラ名をそのまま文明IDにしているが、文明名をキャラと別ブランドにしたい場合はNeox系の方が合う):
+Neox氏系(HoloEN/HoloID)の実働Modに合わせ、パック名でスコープしたID + テーマ名の文明IDを使う(HktkNban氏系はキャラ名をそのまま文明IDにしているが、文明名をキャラと別ブランドにしたい場合はNeox系の方が合う):
 
 ```
 CIVILIZATION_REGLOSS_<テーマ名>       (表示名は別途LOCで自由に付けられる)

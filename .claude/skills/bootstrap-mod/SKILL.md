@@ -44,4 +44,4 @@ description: Hololive系リーダーMod(このリポジトリの姉妹Mod)を、
 ## 参考資料
 
 - 動作確認済みの実例: `civ6mod-hololive-regloss`リポジトリ全体(特に`civ6mod-hololive-regloss.modinfo`と`docs/design.md`)
-- 他作者の実働Mod(ローカルにインストール済みなら参照可能): `Documents\My Games\Sid Meier's Civilization VI\Mods\`配下のHktkNban氏シリーズ、`steamapps\workshop\content\289070\`配下のHoloEN/HoloID(Neox/Keniisu氏)
+- 他作者の実働Mod(ローカルにインストール済みなら参照可能): `Documents\My Games\Sid Meier's Civilization VI\Mods\`配下のHktkNban氏シリーズ、`steamapps\workshop\content\289070\`配下のHoloEN/HoloID(Neox氏)
