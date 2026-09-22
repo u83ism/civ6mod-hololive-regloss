@@ -48,10 +48,10 @@
 		</Row>
 
 		<Row Tag="LOC_DIPLO_GREETING_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
-			<Text>あ、来た来た！莉々華になんか用？</Text>
+			<Text>こんりり〜。私になんか用？</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_FIRST_MEET_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
-			<Text>わっ、初めましてー！私、一条莉々華。一条コーポレーションの社長やってます、よろしくね〜</Text>
+			<Text>かわいい！ポジティブ！ジーニアス！一条莉々華だよ〜。会社の社長やってます、よろしくね〜</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_FIRST_MEET_VISIT_RECIPIENT_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
 			<Text>ねえねえ、近くにうちの会社あるんだけど、遊びに来ない？オフィスだけど、ちょっとくらいはもてなせるからさ！</Text>

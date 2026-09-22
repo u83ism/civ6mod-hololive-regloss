@@ -48,10 +48,10 @@
 		</Row>
 
 		<Row Tag="LOC_DIPLO_GREETING_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hant_HK">
-			<Text>啊，你來啦！找莉莉華有什麼事嗎？</Text>
+			<Text>Konriri～找莉莉華有什麼事嗎？</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_FIRST_MEET_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hant_HK">
-			<Text>哇，初次見面！我是一條莉莉華，一條公司的社長，請多關照哦～</Text>
+			<Text>可愛！積極！天才！我是一條莉莉華，自己公司的社長，請多關照哦～</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_FIRST_MEET_VISIT_RECIPIENT_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="zh_Hant_HK">
 			<Text>誒誒，我們公司就在附近哦，要不要來玩？雖然只是間辦公室，但好歹也能招待你一下！</Text>

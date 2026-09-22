@@ -48,10 +48,10 @@
 		</Row>
 
 		<Row Tag="LOC_DIPLO_GREETING_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
-			<Text>Oh, hey! What's up, need something from Ririka?</Text>
+			<Text>Konriri~ What's up, need something from Ririka?</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_FIRST_MEET_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
-			<Text>Whoa, nice to meet you! I'm Ichijou Ririka, CEO of Ichijou Corporation. Let's get along, okay~</Text>
+			<Text>Kawaii! Positive! Genius! I'm Ichijou Ririka. CEO of my own company, let's get along, okay~</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_FIRST_MEET_VISIT_RECIPIENT_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
 			<Text>Hey, hey, we've got an office nearby—wanna stop by? It's just an office, but I can still treat you to something!</Text>
