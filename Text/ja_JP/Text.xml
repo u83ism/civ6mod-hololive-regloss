@@ -361,5 +361,15 @@
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_20" Language="ja_JP">
 			<Text>ヨハネスブルグ支社</Text>
 		</Row>
+
+		<Row Tag="LOC_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Language="ja_JP">
+			<Text>うに</Text>
+		</Row>
+		<Row Tag="LOC_UNIT_REGLOSS_ICHIJOU_UNI_DESCRIPTION" Language="ja_JP">
+			<Text>斥候に取ってかわる、一条コーポレーション固有の太古の偵察ユニット。[ICON_Movement] 移動力+1。</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_CIVILIZATION_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Language="ja_JP">
+			<Text>社長の愛犬</Text>
+		</Row>
 	</LocalizedText>
 </GameData>

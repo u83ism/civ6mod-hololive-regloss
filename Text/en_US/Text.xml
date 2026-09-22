@@ -361,5 +361,15 @@
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_20" Language="en_US">
 			<Text>Johannesburg Branch Office</Text>
 		</Row>
+
+		<Row Tag="LOC_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Language="en_US">
+			<Text>Uni</Text>
+		</Row>
+		<Row Tag="LOC_UNIT_REGLOSS_ICHIJOU_UNI_DESCRIPTION" Language="en_US">
+			<Text>Ichijou Corporation unique Ancient era recon unit that replaces the Scout. +1 [ICON_Movement] Movement.</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_CIVILIZATION_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Language="en_US">
+			<Text>The CEO's Dog</Text>
+		</Row>
 	</LocalizedText>
 </GameData>

@@ -67,6 +67,19 @@
 	</Players>
 
 	<!--
+		文明選択画面/ローディング画面の「この文明の固有要素」アイコン一覧用の登録。
+		Units.xml側の実装だけでは自動的に反映されない(add-unique-content Skillの落とし穴2番)。
+		見た目はScoutをそのまま流用するため、IconにはArt/Icons/Icons.xmlでScoutと同じ
+		Atlas/Indexをエイリアス登録したICON_UNIT_REGLOSS_ICHIJOU_UNIを指定する。
+		スキーマ実例: DLC GreatBuilders/Data/GreatBuilders_ConfigData_Byzantium.xml(2026-09-22実機ファイルで確認)。
+	-->
+	<PlayerItems>
+		<Row Domain="Players:StandardPlayers" CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" Type="UNIT_REGLOSS_ICHIJOU_UNI" Icon="ICON_UNIT_REGLOSS_ICHIJOU_UNI" Name="LOC_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Description="LOC_UNIT_REGLOSS_ICHIJOU_UNI_DESCRIPTION" SortIndex="10"/>
+		<Row Domain="Players:Expansion1_Players" CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" Type="UNIT_REGLOSS_ICHIJOU_UNI" Icon="ICON_UNIT_REGLOSS_ICHIJOU_UNI" Name="LOC_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Description="LOC_UNIT_REGLOSS_ICHIJOU_UNI_DESCRIPTION" SortIndex="10"/>
+		<Row Domain="Players:Expansion2_Players" CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" Type="UNIT_REGLOSS_ICHIJOU_UNI" Icon="ICON_UNIT_REGLOSS_ICHIJOU_UNI" Name="LOC_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Description="LOC_UNIT_REGLOSS_ICHIJOU_UNI_DESCRIPTION" SortIndex="10"/>
+	</PlayerItems>
+
+	<!--
 		リーダー選択画面(フロントエンド)は.modinfoのActionCriteria(Monopolies_Mode等)を評価しない
 		(FrontEndActionsはゲーム開始前のロビー画面用で、ゲーム設定のモードON/OFFに応じて動的に再評価される
 		わけではないため)。代わりにGameModePlayerInfoOverridesテーブル(GameModeType列を持つ)を使うが、

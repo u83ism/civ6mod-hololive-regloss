@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+	<Types>
+		<Row Type="UNIT_REGLOSS_ICHIJOU_UNI" Kind="KIND_UNIT"/>
+		<Row Type="TRAIT_CIVILIZATION_UNIT_REGLOSS_ICHIJOU_UNI" Kind="KIND_TRAIT"/>
+	</Types>
+
+	<TypeTags>
+		<Row Type="UNIT_REGLOSS_ICHIJOU_UNI" Tag="CLASS_RECON"/>
+		<Row Type="UNIT_REGLOSS_ICHIJOU_UNI" Tag="CLASS_REVEAL_STEALTH"/>
+	</TypeTags>
+
+	<!--
+		UU「うに」(一条莉々華のペットのトイプードル)。斥候(UNIT_SCOUT)の完全コピーに
+		BaseMoves+1(3→4)のみを加えたもので、性能・関連テーブルはバニラの斥候置換UU
+		UNIT_CREE_OKIHTCITAW(Expansion1_Units_Major.xml)を実例として踏襲した
+		(2026-09-22実機ファイルで確認)。見た目はScoutをそのまま流用するため、
+		専用ArtDef/3Dモデルは追加しない(過去のUU「社員」実機確認でもArtDef無しで
+		問題なく表示された実績があるため、モデルを変えない今回は特に問題ない想定)。
+	-->
+	<Units>
+		<Row UnitType="UNIT_REGLOSS_ICHIJOU_UNI" Cost="30" BaseMoves="4" BaseSightRange="2" ZoneOfControl="true" Domain="DOMAIN_LAND" Combat="10" FormationClass="FORMATION_CLASS_LAND_COMBAT" PromotionClass="PROMOTION_CLASS_RECON" AdvisorType="ADVISOR_GENERIC" Name="LOC_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Description="LOC_UNIT_REGLOSS_ICHIJOU_UNI_DESCRIPTION" PurchaseYield="YIELD_GOLD" PseudoYieldType="PSEUDOYIELD_UNIT_EXPLORER" TraitType="TRAIT_CIVILIZATION_UNIT_REGLOSS_ICHIJOU_UNI"/>
+	</Units>
+
+	<UnitAiInfos>
+		<Row UnitType="UNIT_REGLOSS_ICHIJOU_UNI" AiType="UNITAI_EXPLORE"/>
+		<Row UnitType="UNIT_REGLOSS_ICHIJOU_UNI" AiType="UNITTYPE_LAND_COMBAT"/>
+	</UnitAiInfos>
+
+	<UnitUpgrades>
+		<Row Unit="UNIT_REGLOSS_ICHIJOU_UNI" UpgradeUnit="UNIT_RANGER"/>
+	</UnitUpgrades>
+
+	<UnitReplaces>
+		<Row CivUniqueUnitType="UNIT_REGLOSS_ICHIJOU_UNI" ReplacesUnitType="UNIT_SCOUT"/>
+	</UnitReplaces>
+
+	<!--
+		UU専用のTraitType。文明本体のTRAIT_CIVILIZATION_REGLOSS_ICHIJOUを使い回すと
+		ローディング画面/外交交渉画面のCivilization Ability表示が消える不具合が
+		過去のUU「社員」実機確認で判明済みのため、バニラの全UUと同じく専用Traitを新設する。
+	-->
+	<Traits>
+		<Row TraitType="TRAIT_CIVILIZATION_UNIT_REGLOSS_ICHIJOU_UNI" Name="LOC_TRAIT_CIVILIZATION_UNIT_REGLOSS_ICHIJOU_UNI_NAME"/>
+	</Traits>
+
+	<CivilizationTraits>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" TraitType="TRAIT_CIVILIZATION_UNIT_REGLOSS_ICHIJOU_UNI"/>
+	</CivilizationTraits>
+</GameData>
