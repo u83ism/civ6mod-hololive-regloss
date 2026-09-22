@@ -7,6 +7,8 @@ description: mainブランチとdevelopブランチの差分から、Steam Works
 
 `main`と`develop`の差分から、プレイヤー向けの更新概要を4言語(日本語・英語・簡体字中国語zh_Hans_CN・繁体字中国語zh_Hant_HK、`Text/`配下の対応言語と同じ)で重要度順の箇条書きにまとめ、`docs/update-notes/<YYYY-MM-DD>.md`(作業日付)に書き出す。Steam WorkshopのMod更新公開(ModBuddyのUpload/Publish Updateダイアログ)には説明文と同じく言語別の更新ノート入力欄があるので、本人がそのファイルの内容を手動でコピペする。4言語分をチャットに書き出すと分量が多く読みにくいため、ファイルに固定してそこから参照する。
 
+`docs/update-notes/*.md`は`.gitignore`済み(Git管理外)。毎回`main`/`develop`の実際の差分から作り直す使い捨て出力で、過去のリリース文面をリポジトリに残す設計ではない(`write-steam-description` Skillの`docs/steam-description/`と同じ考え方)。同名ファイルが残っていても古い内容を前提にせず、差分を取り直して書く。
+
 ## 手順
 
 1. `git log main..develop --oneline`で、`main`にまだ取り込まれていないコミット一覧を取得する。
