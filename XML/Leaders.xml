@@ -295,5 +295,17 @@
 		<Row LeaderType="LEADER_REGLOSS_ICHIJOU_RIRIKA" ForegroundImage="LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL" BackgroundImage="LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND"/>
 	</LoadingInfo>
 
+	<!--
+		外交交渉画面の背景(DiplomacyInfo)。LeaderScene.luaの実機コード上、この行が無いと
+		Leaders.SceneLayers(本Mod未設定=0)を見て"CLEOPATRA_1"〜"_4"のパララックス層にフォールバックする
+		(=これまで表示されていた背景は実はクレオパトラの交渉背景だった)。公式DLC実データ
+		(PolandScenario_DiplomacyInfo.xml、NubiaScenario_DiplomacyInfo.xml)でも他画面のテクスチャを
+		そのまま使い回す例があるため、ローディング画面用に生成済みのLEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND
+		をそのまま流用する(新規アセット・XLP追加は不要)。
+	-->
+	<DiplomacyInfo>
+		<Row Type="LEADER_REGLOSS_ICHIJOU_RIRIKA" BackgroundImage="LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND"/>
+	</DiplomacyInfo>
+
 	<!-- 資源クラス別ゴールドボーナスは文明固有能力(TRAIT_CIVILIZATION_REGLOSS_ICHIJOU)に移設した。詳細はXML/Civilizations.xmlを参照。「かわいい！ポジティブ！ジーニアス！」の名前はユニークアジェンダ側に移設した。指導者固有能力は独占/大企業モードの有無でTraitTypeごと切り替わる構成にした。モードOFF側(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA)は交易路容量の重複解除+交易路の産出量ボーナスを実装済み(詳細は上のModifiersコメント参照)、ON側(TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES)への切り替えはXML/Leaders_Monopolies.xmlを参照(効果はまだダミー)。 -->
 </GameData>
