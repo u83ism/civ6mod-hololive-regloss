@@ -25,7 +25,7 @@
 			<Text>Great Genius</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION" Language="en_US">
-			<Text>Industries provide an additional +2 [ICON_Culture] Culture, +2 [ICON_Science] Science, and +1 [ICON_Gold] Gold. Corporations provide twice the Culture and Science. Corporation product projects gain +100% [ICON_Production] Production.</Text>
+			<Text>Industries provide an additional +2 [ICON_Culture] Culture, +2 [ICON_Science] Science, and +1 [ICON_Gold] Gold. Corporations provide twice the Culture, Science, and Gold. Corporation product projects gain +100% [ICON_Production] Production.</Text>
 		</Row>
 
 		<Row Tag="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="en_US">
