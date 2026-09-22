@@ -44,7 +44,7 @@
 			<Text>They are pleased to see a civilization that is not a warmonger</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_MODIFIER_REGLOSS_ICHIJOU_RIRIKA_DISLIKES_WAR" Language="en_US">
-			<Text>They are unhappy with your warmongering</Text>
+			<Text>They are fed up with your warmongering</Text>
 		</Row>
 
 		<Row Tag="LOC_DIPLO_GREETING_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
@@ -92,7 +92,7 @@
 			<Text>Hmm, I don't think the timing's right just yet. Sorry about that.</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
-			<Text>Hey, aren't we basically in this together already?</Text>
+			<Text>Hey, aren't we already joined at the hip for better or worse?</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="en_US">
 			<Text>Yay! Now we can't ever let go of each other.</Text>
@@ -292,7 +292,7 @@
 		</Row>
 
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME" Language="en_US">
-			<Text>The Junior Secretaries' Hustle</Text>
+			<Text>The Trainee Secretaries' Hustle</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION" Language="en_US">
 			<Text>Tiles with an improved resource provide +3 [ICON_Gold] Gold for a Bonus resource, +5 for a Strategic resource, and +10 for a Luxury resource. Builders receive an additional charge.</Text>
@@ -369,7 +369,7 @@
 			<Text>Ichijou Corporation unique Ancient era recon unit that replaces the Scout. +1 [ICON_Movement] Movement.</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Language="en_US">
-			<Text>The CEO's Dog</Text>
+			<Text>The CEO's Pet Dog</Text>
 		</Row>
 	</LocalizedText>
 </GameData>
