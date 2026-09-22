@@ -35,9 +35,18 @@ Civ6 Modding全般の基礎知識(ファイル構造、modinfoの正しいスキ
 - **ただしMod(リポジトリ)自体は分けない**: ReGLOSSメンバー全員をこの1本のMod(このリポジトリ)に順次追加していく方針。上記「開発方針の決定事項」の「Mod単位でリポジトリを分ける」はReGLOSS以外の別Mod構想向けの方針であり、ReGLOSSメンバー同士はこのMod内で1文明ずつ増えていく想定(2026-09-22、本人確認)
 - 1人目は一条莉々華から着手。社長キャラ → 経済特化、その中でも資源(ボーナス/戦略/高級資源)に特化した指導者とする
 
-### 一条莉々華: 確定した能力(2026-09-19)
+### 一条莉々華
+#### コンセプト
+- 社長キャラなので経済特化
+- 「独占と大企業」モードにフォーカスするが、ONとOFFで指導者能力が変わる
+  - ONの場合は、特に産業がやや弱いので底上げと、作成するまでが大変でほとんど活きてない商品の作成コストを削減する
+  - OFFの場合は交易をテーマに底上げ。
+- ただし大企業はもちろん作業もが出現までやや時間がかかるので、資源ボーナスを増やすことで序盤を生き残れるようにしてある
+- その他、資源探索に必要な強化型斥候をUUに、資源を改善するのに必要な労働者の使用回数に補正を入れることで足回りを強化
 
-**資源クラス別ゴールドボーナス**(文明固有能力「秘書見習い達の奮闘」) — 通常の産出に加えて、所有する資源のうち改善(施設)を建てて開発済みのものの数に応じてゴールドを追加で得る(未改善タイルはボーナス無し):
+#### 文明固有能力「秘書見習い達の奮闘」
+
+**資源クラス別ゴールドボーナス** — 通常の産出に加えて、所有する資源のうち改善(施設)を建てて開発済みのものの数に応じてゴールドを追加で得る(未改善タイルはボーナス無し):
 
 | 資源クラス | 追加ゴールド(資源1つあたり) |
 |---|---|
@@ -47,9 +56,9 @@ Civ6 Modding全般の基礎知識(ファイル構造、modinfoの正しいスキ
 
 実装方式は「実装状況」節を参照(`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`+`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`+`REQUIREMENT_PLOT_RESOURCE_CLASS_TYPE_MATCHES`の組み合わせ、ベースゲームのみで完結・Lua不要)。当初は指導者固有能力(LeaderTrait)として実装したが、2026-09-19に文明固有能力(CivilizationTrait)へ移設した。
 
-### 一条莉々華: 指導者固有能力「大天才」(独占/大企業モードON時、2026-09-21確定)
+#### 指導者固有能力「大天才」(独占/大企業モードON時、2026-09-21確定)
 
-独占/大企業モード(`GAMEMODE_MONOPOLIES`)ON時の指導者固有能力(`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES`、名前「大天才」)の中身。モードOFF時は「推し事お疲れ様でした～」(効果は未設計のまま):
+独占/大企業モード(`GAMEMODE_MONOPOLIES`)ON時の指導者固有能力(`TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES`、名前「大天才」)の中身。
 
 - **「産業」改善+2文化力/+2科学力/+1ゴールド、「大企業」改善+4文化力/+4科学力/+2ゴールド**(文化力・科学力・ゴールドとも大企業は産業の2倍。2026-09-21、実機確認後のバランス調整で「文化力/科学力は大企業2倍」「ゴールド+1を追加」に変更し、2026-09-22にゴールドも大企業2倍(+2)に統一): 「産業」(`IMPROVEMENT_INDUSTRY`)は区域ではなく`Kind="KIND_IMPROVEMENT"`の改善(当初「産業区域」=`DISTRICT_INDUSTRIAL_ZONE`だと誤解していたが、本人指摘により2026-09-21に訂正)。同種の高級資源2つに改善(鉱山/採石場/プランテーション等)を作った後、労働者で創出でき、「経済学」研究後は大商人で上位互換の「大企業」(`IMPROVEMENT_CORPORATION`)にアップグレードできる。うちの資源特化Trait(`TRAIT_CIVILIZATION_REGLOSS_ICHIJOU`)と同じ`MODIFIER_PLAYER_CITIES_ATTACH_MODIFIER`→`MODIFIER_CITY_PLOT_YIELDS_ADJUST_PLOT_YIELD`構造で実装し、絞り込みは`REQUIREMENT_PLOT_IMPROVEMENT_TYPE_MATCHES`(引数`ImprovementType`、モノポリーMODE自身が実際に使っている`REQUIREMENT_CITY_GROWTH_INDUSTRY`で実例確認)。**罠(2026-09-21、実機で発覚)**: 数値を分けるため当初はImprovementTypeごとに独立したRequirementSet(産業専用/大企業専用)+Modifierペアに分けたが、大企業タイル単体のツールチップで文化力/科学力が+4ではなく+6(産業分+2+大企業分+4)になる不具合が実機で見つかった。原因は未確定(FireTunerでの裏取りは未実施)だが、Civ6のImprovementは一度建てるとImprovementType自体は変わらないパターンが多い(鉱山は技術で産出が上がってもずっと`IMPROVEMENT_MINE`のまま等)ことから、「大企業」にアップグレードしてもプロット内部の`ImprovementType`は`IMPROVEMENT_INDUSTRY`のままで別フラグ管理されており、`REQUIREMENT_PLOT_IMPROVEMENT_TYPE_MATCHES`が産業/大企業両方trueになっている可能性が高いと推測している。根本原因を確定させずに対処できるよう、「産業/大企業共通の基礎ボーナス(`REQUIREMENTSET_TEST_ANY`、文化力+2/科学力+2/ゴールド+1)」+「大企業限定の上乗せボーナス(文化力+2/科学力+2/ゴールド+1)」の2階建てに設計し直した。RequirementSetは1つのModifierの発火条件であり満たすRequirementの数だけ多重発火するわけではないため、大企業タイルで産業判定も同時にtrueになっていても基礎は1回しか発火せず、産業+2/+2/+1・大企業+4/+4/+2が常に保証される。いずれも既存の「産業」/「大企業」本来の食料/生産力/ゴールド増加(`Improvement_YieldChanges`テーブル、全文明共通)に追加で加算される(上書きではない、`EffectType=EFFECT_ADJUST_PLOT_YIELD`)。ゴールドの大企業上乗せ(`REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_ATTACH_CORPORATION_TOPUP_GOLD`)は2026-09-22追加、文化力/科学力の上乗せModifierと全く同じ構造(`REQSET_PLOT_CORPORATION_ONLY`)をゴールドにも複製しただけで、罠の再発無し
 - **商品プロジェクトの生産力+100%**: `MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION`(`EFFECT_ADJUST_PROJECT_PRODUCTION`)を対象資源27種(標準ルールセット24種+文明勃興モード追加3種: 琥珀/オリーブ/亀。GranColombia_Maya限定の蜂蜜は対象外)の`ProjectType=PROJECT_CREATE_CORPORATION_PRODUCT_<資源>`ごとに複製。Cost値自体を減らす仕組みはゲーム全体に存在しない(`*_PROJECT*_COST`系のModifier/Effectは本体+全DLC検索で0件)ため、「コストを半減」の実体は生産力+100%(2倍速、実質ターン数半分)とした
@@ -141,7 +150,7 @@ TRAIT_AGENDA_REGLOSS_ICHIJOU_RIRIKA  (アジェンダ紐付け用Trait)
 - [ ] 「大企業」改善の文化力/科学力+4・ゴールド+2の実機確認(「産業」側の文化力/科学力+2/+2は確認済み)。**2026-09-21、当初のImprovementTypeごとに数値を丸ごと分ける設計で大企業タイルが+6になる不具合が発覚**し、「基礎+大企業限定の上乗せ」の2階建て方式に修正済み(修正後は未確認)。2026-09-22追加のゴールド上乗せも同じ構造の複製のため同様に実機未確認。原因(大企業タイルで産業判定も同時にtrueになっているらしいこと)自体もFireTunerでの裏取りができれば確定させたい
 - [x] 商品プロジェクト生産力+100%×27資源の実機確認 — 2026-09-21、商品製造の生産速度倍化を本人確認済み
 - [ ] 上記のモード切替(`XML/Leaders_Monopolies.xml`によるTraitTypeの`Delete`+付け替え、`XML/Config.xml`の`GameModePlayerInfoOverrides`)の実機確認は2026-09-21に完了(リーダー選択画面・ゲーム内とも指導者能力名の切り替わりを本人確認済み)
-- [ ] Art本制作: `Art/Source/`に絵師(X上で公開)からのアイコン加工元画像(`ichijou-corporation-logo1〜3.jpg`、複数パターンが1枚にまとまっており切り出しが必要)、`ichijou-ririka-stand.webp`(2000x2000、全身立ち絵)、`wallpaper-broadcast-night.webp`(3840x2160、ローディング背景に使用済み)、および他の壁紙素材数点(`wallpaper-broadcast-daytime.webp`等、未使用)を配置済み。バッジアイコン・外交交渉画面のフォールバック静止画(`FALLBACK_NEUTRAL_*`)・ローディング画面(ポートレート`LEADER_*_NEUTRAL`+背景`LEADER_*_BACKGROUND`)は実装・実機確認済み。**未着手のまま残っているのは外交交渉画面の背景・リーダー選択画面の全身ポートレート(`PORTRAIT_*`、名称含め未検証)**(`docs/civ6-research/diplomacy-background-and-leader-select-portrait.md`に着手時の注意点をまとめてある)
+- [x] Art本制作: `Art/Source/`に絵師(X上で公開)からのアイコン加工元画像(`ichijou-corporation-logo1〜3.jpg`、複数パターンが1枚にまとまっており切り出しが必要)、`ichijou-ririka-stand.webp`(2000x2000、全身立ち絵)、`wallpaper-broadcast-night.webp`(3840x2160、ローディング背景に使用済み)、および他の壁紙素材数点(`wallpaper-broadcast-daytime.webp`等、未使用)を配置済み。バッジアイコン・外交交渉画面のフォールバック静止画(`FALLBACK_NEUTRAL_*`)・ローディング画面(ポートレート`LEADER_*_NEUTRAL`+背景`LEADER_*_BACKGROUND`)・外交交渉画面の背景(`DiplomacyInfo`)・ゲーム設定画面の全身ポートレート「Leader Placard」(`Players.Portrait`/`PortraitBackground`、いずれもローディング画面用テクスチャを流用)は実装・実機確認済み(2026-09-23、詳細は`make-fallback-portrait/references/fallback-and-loading-schema.md`)
 - [ ] UniqueUnit / UniqueBuilding の設計(CivilizationTraitは資源特化Traitとして設計・実装済み)
 - [ ] 保留中の追加アイデア(コミュ力によるGrievance減衰)の実装要否再検討。独占/大企業モード連動ボーナスは2026-09-21に「大天才」として実装済み(上記参照)
 - [ ] 必要ならLua実装(該当するGameEventsが存在するか先に確認)

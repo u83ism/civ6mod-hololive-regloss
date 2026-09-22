@@ -1,6 +1,6 @@
 ---
 name: make-fallback-portrait
-description: Civ6 Modで、キャラクター立ち絵から静止画ベースのCiv6アセット(外交交渉画面フォールバック`FALLBACK_NEUTRAL_*`、ローディング画面ポートレート`LEADER_*_NEUTRAL`、ローディング画面背景`LEADER_*_BACKGROUND`)を実際に生成する時に使う。「フォールバックポートレートを作る」「FALLBACK_NEUTRAL/LEADER_*_NEUTRALを作る/差し替える」「外交画面・ロード画面用の立ち絵を用意する」「ロード画面の背景を作る」「膝下トリミング」「上部余白・下部フェードを付ける/調整する」と言われたとき、または`tools/png2dds/gen-leader-fallback.ts`・`gen-loading-portrait.ts`・`gen-loading-background.ts`を新規に書く/パラメータ調整する場面で使う。**`PORTRAIT_*`(リーダー選択画面の全身ポートレート、名称含め未検証。着手前に`docs/civ6-research/diplomacy-background-and-leader-select-portrait.md`を読むこと)は対象外**、バッジアイコン(`ICON_*`)もスコープ外(そちらは`make-leader-icons` Skill)。Civ6側の`FallbackLeaders.artdef`/`LoadingInfo`テーブルのスキーマ・実機裏取りの詳細は`references/fallback-and-loading-schema.md`を参照(本SKILL.mdは「作る手順」、そちらは「Civ6側の仕様・裏取り根拠」の置き場)。
+description: Civ6 Modで、キャラクター立ち絵から静止画ベースのCiv6アセット(外交交渉画面フォールバック`FALLBACK_NEUTRAL_*`、ローディング画面ポートレート`LEADER_*_NEUTRAL`、ローディング画面背景`LEADER_*_BACKGROUND`)を実際に生成する時に使う。「フォールバックポートレートを作る」「FALLBACK_NEUTRAL/LEADER_*_NEUTRALを作る/差し替える」「外交画面・ロード画面用の立ち絵を用意する」「ロード画面の背景を作る」「膝下トリミング」「上部余白・下部フェードを付ける/調整する」と言われたとき、または`tools/png2dds/gen-leader-fallback.ts`・`gen-loading-portrait.ts`・`gen-loading-background.ts`を新規に書く/パラメータ調整する場面で使う。**`LEADER_*_NEUTRAL`/`LEADER_*_BACKGROUND`はローディング画面専用ではなく、外交交渉画面の背景(`DiplomacyInfo.BackgroundImage`)・ゲーム設定画面の全身ポートレート「Leader Placard」(`Config.xmlのPlayers.Portrait`/`PortraitBackground`)にもそのまま流用される**(civ6wiki.info記載の`hogehoge_DiplomacyInfo_Background`/`PORTRAIT_*`という専用アセット名は実在しない。公式DLCが例外なくこの使い回しパターンを採用している。詳細は`references/fallback-and-loading-schema.md`)。バッジアイコン(`ICON_*`)はスコープ外(そちらは`make-leader-icons` Skill)。Civ6側の`FallbackLeaders.artdef`/`LoadingInfo`/`DiplomacyInfo`/`Players.Portrait`テーブルのスキーマ・実機裏取りの詳細は`references/fallback-and-loading-schema.md`を参照(本SKILL.mdは「作る手順」、そちらは「Civ6側の仕様・裏取り根拠」の置き場)。
 ---
 
 # キャラクター立ち絵ベースの静止画アセットの制作手順
@@ -14,8 +14,8 @@ description: Civ6 Modで、キャラクター立ち絵から静止画ベース�
 | 生成物 | 画面 | 元絵 | サイズ | 加工 | 生成スクリプト |
 | --- | --- | --- | --- | --- | --- |
 | `FALLBACK_NEUTRAL_<LEADER_NAME>` | 外交交渉画面 | キャラ立ち絵 | 高さ1080固定・幅可変 | 膝下クロップ+上部余白+下部フェード | `gen-leader-fallback.ts` |
-| `LEADER_<LEADER_NAME>_NEUTRAL` | ローディング画面(ポートレート) | キャラ立ち絵(同じ元絵を流用可) | 高さ1024固定・幅可変 | 膝下クロップ+上部余白+下部フェード(上と同じ関数、高さだけ違う) | `gen-loading-portrait.ts` |
-| `LEADER_<LEADER_NAME>_BACKGROUND` | ローディング画面(背景) | 環境イラスト(**キャラ不要**、`LoadScreen.xml`上ポートレートとは別レイヤーのため) | 1920x960固定 | 中央クロップ+リサイズのみ(膝下クロップ等は無関係) | `gen-loading-background.ts` |
+| `LEADER_<LEADER_NAME>_NEUTRAL` | ローディング画面(ポートレート)+ゲーム設定画面の全身ポートレート「Leader Placard」(`Config.xml`の`Players.Portrait`) | キャラ立ち絵(同じ元絵を流用可) | 高さ1024固定・幅可変 | 膝下クロップ+上部余白+下部フェード(上と同じ関数、高さだけ違う) | `gen-loading-portrait.ts` |
+| `LEADER_<LEADER_NAME>_BACKGROUND` | ローディング画面(背景)+外交交渉画面の背景(`DiplomacyInfo.BackgroundImage`)+Leader Placardの背景(`Players.PortraitBackground`) | 環境イラスト(**キャラ不要**、`LoadScreen.xml`上ポートレートとは別レイヤーのため) | 1920x960固定 | 中央クロップ+リサイズのみ(膝下クロップ等は無関係) | `gen-loading-background.ts` |
 
 ## 1. 前提: 元絵の要件
 

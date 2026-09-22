@@ -13,7 +13,7 @@ Civ6のModBuddy/Art Pipeline周りは公式ドキュメントが薄く、英語�
 
 1. **civ6wiki.info・brokenhumanoid mdwiki(日本語の参考資料)**。詳細ページ索引は2節参照。特にArt/Icon/ModBuddy関連は「指導者アイコンの作り方」「文明アイコン」「ローディング画面・リザルト」ページに`.tex`/`.xlp`の具体的な書き換え手順・ビルド後のフォルダ構成・`cooker.log`の見方まで載っている。**「新文明・指導者」配下と「その他」配下の主要ページはすでに以下へ要約済み**なので、これらのトピックは都度WebFetchし直さず先に読むこと。未収録のページ(2節の一覧で「未収録」と付いているもの)だけ改めて取得すればよい:
    - `make-leader-icons/references/icon-blp-pipeline.md`(指導者/文明アイコン、実機確認済み)
-   - `make-fallback-portrait/references/fallback-and-loading-schema.md`(外交交渉画面フォールバック・ローディング画面、実機確認済み)/`docs/civ6-research/diplomacy-background-and-leader-select-portrait.md`(外交交渉画面の背景・リーダー選択画面ポートレート、未検証)
+   - `make-fallback-portrait/references/fallback-and-loading-schema.md`(外交交渉画面フォールバック・ローディング画面・外交交渉画面の背景・ゲーム設定画面の全身ポートレート「Leader Placard」、いずれも実機確認済み)
    - `docs/civ6-research/trait-and-identity-patterns.md`(文明特性・指導者特性・文明カラー・AIの好み・多言語対応、未検証)
    - `docs/civ6-research/unique-content-patterns.md`(固有ユニット/区域/施設/建造物=UU/UD/UI/UB、未検証)
    - `docs/civ6-research/bootstrap-leader-troubleshooting.md`(LeaderCriteriaクラッシュ対処・DLC対応、未検証)
@@ -35,7 +35,7 @@ Civ6のModBuddy/Art Pipeline周りは公式ドキュメントが薄く、英語�
 | --- | --- |
 | 指導者アイコンの作り方 | `make-leader-icons/references/icon-blp-pipeline.md` |
 | 文明アイコン | `make-leader-icons/references/icon-blp-pipeline.md` |
-| ローディング画面・リザルト | `make-fallback-portrait/references/fallback-and-loading-schema.md`(検証済み部分)+`docs/civ6-research/diplomacy-background-and-leader-select-portrait.md`(未検証部分) |
+| ローディング画面・リザルト | `make-fallback-portrait/references/fallback-and-loading-schema.md` |
 | 勝手に出てくるクレオパトラを消す方法 | `make-fallback-portrait/references/fallback-and-loading-schema.md` |
 | 指導者特性 | `docs/civ6-research/trait-and-identity-patterns.md` |
 | 文明特性 | `docs/civ6-research/trait-and-identity-patterns.md` |

@@ -58,6 +58,23 @@ ModBuddyビルド→`LeaderFallbackImages.blp`をWindows/MacOS両方コピー→
 - `XML/Leaders.xml`に`LoadingInfo`の`Row`を追加(`ForegroundImage="LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL"` `BackgroundImage="LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND"`)
 - ModBuddyビルド→`RegLoss_Loading.blp`/`RegLoss_LoadingPortrait.blp`(どちらも`Platforms/{Windows,MacOS}/BLPs/UI/`)を本体にコピー→実機で新規ゲーム開始のローディング画面に莉々華が表示されることを確認(本人評価「パーフェクト。素晴らしい」)
 
-## 未着手のまま残っている別領域(このSkillのスコープ外)
+## 外交交渉画面の背景(`DiplomacyInfo`)
 
-- 外交交渉画面の背景・リーダー選択画面の全身ポートレート(`PORTRAIT_*`)は未検証。着手前に`docs/civ6-research/diplomacy-background-and-leader-select-portrait.md`を読み、上記と同じ手順(公式データで裏取り)を踏むこと。**wiki記載の画像名がそのまま架空だった前例が2件(`LoadingInfo`関連)あるので、この2つも名前から疑ってかかること**
+**実機確認済み**(2026-09-23、一条莉々華で実装・実機確認済み)。`Base/Assets/UI/LeaderScene.lua`の`GenerateLayers()`を直接読んで裏取りした:
+
+- **スキーマ**(`Base/Assets/Gameplay/Data/Schema/01_GameplaySchema.sql`): `DiplomacyInfo`テーブルは`Type`(PK、LeaderType文字列)と`BackgroundImage`の2列のみ
+- **解決ロジック**: `GameInfo.DiplomacyInfo[leaderName].BackgroundImage`が設定されていれば、そのテクスチャ1枚だけを背景として使う。**未設定の場合は`Leaders.SceneLayers`の枚数だけ`<LeaderType(LEADER_プレフィックス除去)>_1`,`_2`...のパララックス層画像を探しにいき、さらに`SceneLayers`が0(=列自体を設定していない場合のデフォルト)だと`CLEOPATRA_1`〜`_4`にフォールバックする**。`SceneLayers`未設定のまま外交交渉画面を確認すると、クレオパトラの交渉背景が違和感なく表示されてしまうので気づきにくい
+- **公式DLCの実装例**(`DLC/PolandScenario/Data/PolandScenario_DiplomacyInfo.xml`、`DLC/NubiaScenario/Data/NubiaScenario_DiplomacyInfo.xml`): `<DiplomacyInfo><Row Type="LEADER_X" BackgroundImage="任意のテクスチャ名"/></DiplomacyInfo>`という単純なINSERTで動作する。Nubiaの例は`NILE.dds`という同一テクスチャを6人のリーダーで使い回しており、既存テクスチャの流用は公式にサポートされたパターン
+- **本Mod側の実装**: `LEADER_*_BACKGROUND`(2節、ローディング画面用に生成済み)をそのまま`XML/Leaders.xml`の`DiplomacyInfo`テーブルに登録するだけ。新規アート・ArtDef・XLPは不要
+- civ6wiki.info(`hogehoge_DiplomacyInfo_Background`、単一画像1920x960)・Sailor Cat's Modding Tutorial(`_1`〜`_4`のレイヤー合成、1920x1010)の記載はいずれも不正確だった(`LoadingInfo`と同じ教訓)
+
+## ゲーム設定画面の全身ポートレート「Leader Placard」(`Players.Portrait`/`PortraitBackground`)
+
+**実機確認済み**(2026-09-23、一条莉々華で実装・実機確認済み)。civ6wiki.info・Sailor Cat's Modding Tutorialが言う`PORTRAIT_hogehoge.dds`という専用アセットは実在しない。`Base/Assets/UI/FrontEnd/PlayerSetupLogic.lua`を直接読んで裏取りした:
+
+- **呼び名・使われる場所**: 公式コード上「Leader Placard」。ゲーム設定(Advanced Setup)画面でリーダーを選んだ際に表示される全身ポートレート+背景のツールチップ(`AdvancedSetup.xml`の`Instance Name="LeaderPlacard"`)。マルチプレイのStaging Roomでも同じ仕組みを使う
+- **データソース**: `Config.xml`の`Players`テーブルの`Portrait`/`PortraitBackground`列(`PlayerSetupLogic.lua`が`SELECT ... Portrait, PortraitBackground ... from Players`で取得)
+- **未設定時のフォールバックも`LoadingInfo`と同じ命名規則**: `info.Portrait`が無ければ`info.LeaderType .. "_NEUTRAL"`、`info.PortraitBackground`が無ければ`info.LeaderType .. "_BACKGROUND"`
+- **公式DLCの実装例は例外なく明示設定**(`Babylon_ConfigData.xml`、`Byzantium_Gaul_ConfigData.xml`、`Ethiopia_ConfigData.xml`、`Expansion1_Players.xml`等、調べた全リーダー行で確認): `Portrait="LEADER_X_NEUTRAL" PortraitBackground="LEADER_X_BACKGROUND"`。ローディング画面と全く同じ2枚のテクスチャをそのまま使い回すのが公式の標準パターンで、専用の全身ポートレート画像を別途作る必要は無い
+- **レイアウト**: `LeaderPlacard`は幅340px固定枠、`LeaderImage`は`StretchMode="UniformToFill"`で`Size="parent,670"`(アスペクト比維持のままクロップ表示)、`LeaderBG`は`StretchMode="None"`(等倍配置)。高さ1024固定・膝下クロップ済みの`LEADER_*_NEUTRAL`をそのまま流し込む前提のレイアウトになっている
+- **本Mod側の実装**: `XML/Config.xml`の`Players`テーブル(Standard/Expansion1/Expansion2の3行)の`Portrait`/`PortraitBackground`に`LEADER_*_NEUTRAL`/`LEADER_*_BACKGROUND`(2節、ローディング画面用に生成済み)をそのまま指定するだけ。実体の無いダミー文字列を指定していたのが「ポートレートが空になる」不具合の原因だった。新規アート・ArtDef・XLPは不要
