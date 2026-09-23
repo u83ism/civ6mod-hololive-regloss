@@ -19,7 +19,7 @@ self.Controls.CivIndicator:SetColor(backColor);   -- 円形の背景をプレイ
 self.Controls.CivIcon:SetColor(frontColor);        -- アイコン本体をセカンダリカラーで着色
 ```
 
-`Instances/CivilizationIcon.lua`(ランキング画面・交易画面・エスピオナージ画面等の汎用文明バッジ)、`Menus/InGameTopOptionsMenu.lua`(ESCメニュー上部)も同じ`SetColor(secondaryColor)`パターン。45x45だけは技術・社会制度ツリーで生のまま(着色なし)表示されるため、この45pxだけフルカラーのままにする。
+`Instances/CivilizationIcon.lua`(ランキング画面・交易画面・エスピオナージ画面等の汎用文明バッジ)、`Menus/InGameTopOptionsMenu.lua`(ESCメニュー上部)も同じ`SetColor(secondaryColor)`パターン。~~45x45だけは技術・社会制度ツリーで生のまま(着色なし)表示されるため、この45pxだけフルカラーのままにする。~~ → この記述はwikiの推測の受け売りで誤りだった(2026-09-24、姉妹Mod civ6mod-hololive-holoxでの調査で判明)。45pxが無着色表示されるのはプレイヤーカラー解決失敗時のフォールバックだけ。詳細は`.claude/skills/make-leader-icons/references/icon-blp-pipeline.md`の45x45の項を参照。
 
 **裏取り**: バニラの`Sid Meier's Civilization VI SDK Assets\Civ6\pantry\Textures\CivAztec22.dds`/`CivAztec32.dds`をDDSバイナリレベルで直接読むと、全不透明ピクセルのRGBが`(255,255,255)`固定でアルファだけが形状を表現していた。`CivAztec45.dds`だけはRGBに実際の色(濃紺系)が入っていた。DDSは128バイトヘッダ+ABGR8生ピクセル(`tools/png2dds/png2dds.ts`のコメント参照)なので、Node.jsで`readFileSync`して128バイト目以降を読むだけで検証できる。
 
