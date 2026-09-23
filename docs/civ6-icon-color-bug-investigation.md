@@ -1,6 +1,6 @@
-# 未解決: リーダー選択画面の能力アイコン色/パウズメニューの黒表示
+# 解決済み: リーダー選択画面の能力アイコン色/パウズメニューの黒表示
 
-> 汎用的な制作手順ではなく、本Mod固有の未解決バグのデバッグログ(`.claude/skills/make-leader-icons/references/icon-blp-pipeline.md`から分離)。次にこの領域を触るセッションは、着手前にこのファイル全体を読み、同じ道を辿り直さないこと。
+> 汎用的な制作手順ではなく、本Mod固有バグのデバッグログ(`.claude/skills/make-leader-icons/references/icon-blp-pipeline.md`から分離)。**2026-09-23、原因・修正方法とも確定した(末尾の「解決済み」節を参照)。恒久的な教訓は`.claude/skills/bootstrap-leader/SKILL.md`4節に昇格済みなので、次に新しい指導者を追加するときはそちらを読めば足りる。** 以下は解決に至るまでの調査経緯の記録。
 
 ## 【試して撤回した】白シルエット化(2026-09-19〜20実機検証、最終的にフルカラー1本に戻した)
 
@@ -92,3 +92,14 @@ Sailor Cat's Modding Tutorial(英語ガイド)の内容自体はColors/PlayerCol
   **`if`の中でしか`SetColor`を呼んでいない**。つまり`UI.GetPlayerColorValues`(エンジン内蔵関数、Luaソース無し)がうちの`LEADER_REGLOSS_ICHIJOU_RIRIKA`の解決に失敗して`nil`/`0`を返した場合、**このコードは何もせず`SetColor`を呼ばずに抜ける**(「Major色プールへの自動フォールバック割当」のような能動的な代替処理はLua側には存在しない)。`civAbility.Icon`/`civAbility.IconBG`は`tooltipControls.CivHeaderIconIM:GetInstance()`(InstanceManagerの使い回しプール)から取得したインスタンスなので、**直前に別の文明のツールチップを表示した際に付いた色が、SetColorされないままそのインスタンスに残留して見えている**可能性が高い。観測された「オレンジ/紺色」は汎用色プールへの積極的な割当結果ではなく、**直前に表示した別リーダー(たまたまオレンジ/紺系の配色だった)の残り香**という解釈の方が、コードの実態と整合する
   - `info.PlayerColor`自体は`row.PlayerColor or leader_type`(`PlayerSetupLogic.lua`527行目、`Config.Players.PlayerColor`列が無ければ`LeaderType`文字列をそのまま使う)なので、**`Config.xml`にPlayerColor列を明示しても・しなくても同じ文字列になる**。既存の「PlayerColor列を明示追加しても直らなかった」という実験結果と矛盾しない(そもそも変わりようがなかった)
 - **次の一手はこの仮説の検証**: `UI/Replacements/`相当の仕組みで`PlayerSetupLogic.lua`の該当関数を上書きし、`info.PlayerColor`・`info.PlayerColorIndex`・`backColor`・`frontColor`を`print()`でLua.logに出力する。`backColor`/`frontColor`が`nil`または`0`であれば「サイレント失敗」説が確定し、次は「なぜ`UI.GetPlayerColorValues`(ネイティブ関数)がFrontEnd DBから`LEADER_REGLOSS_ICHIJOU_RIRIKA`行を引けないのか」(FrontEnd用DBとInGame用DBのどちらを参照する関数なのか、`UpdateColors`アクションのタイミング等)を追うのが筋になる
+
+## 2026-09-23: 解決。姉妹Mod(civ6mod-hololive-holox)での検証により、`Colors.xml`をSQL形式に変えるだけで直ると判明
+
+姉妹リポジトリ(civ6mod-hololive-holox、沙花叉クロヱMod)で同一症状を再現させ、`Lua/`に一時的な診断用UI(`AddUserInterfaces`+`Events.LoadScreenClose`)を追加して`UI.GetPlayerColorValues`/`UI.GetPlayerColors`の戻り値を実機で直接観測した結果、以下が確定した:
+
+- `UI.GetPlayerColorValues(leaderType, index)`(能力アイコンが使う)は`index`が0〜3のどれでも一貫して`nil`を返す。うちの`Usage="Unique"`な`PlayerColors`行を一切見つけられていない
+- `UI.GetPlayerColors(playerID)`(パウズメニュー・外交パネル・ゲーム中の文明バッジが使う)はエラーにはならないが、戻り値をバニラの`Base/Assets/UI/Colors/PlayerStandardColors.xml`/`PlayerColors.xml`と照合すると、**`Usage="Major"`の汎用プール`PLAYERCOLOR_ORANGE`と数値が完全一致**した。つまり自分の色を見つけられず、静かに汎用オレンジ色へフォールバックしていた
+
+**修正**: `XML/Colors.xml`(XML形式)を`XML/Colors.sql`(実機で正しく着色されている`Hololive 2nd Generation`Mod等と同じ、生SQLの`INSERT OR REPLACE INTO Colors/PlayerColors (...) VALUES (...)`形式)に書き換え、`.modinfo`の`UpdateColors`(`FrontEndActions`/`InGameActions`両方)が読むファイルをこちらに差し替えるだけで、外交交渉画面・パウズメニュー・リーダー選択画面の能力アイコン・ゲーム中の文明アイコンの全箇所が正しい配色になることを、holox側で実機確認した(2026-09-23)。**XML形式の`UpdateColors`パーサー自体に何らかの不具合がある(または実行時に参照するDBコンテキストがSQL版と異なる)と推測されるが、Firaxis内部実装の話でこれ以上の深掘りは困難。「`UpdateColors`には常にSQLを渡す」で実用上確定してよい。** `UpdateDatabase`で読む他のXML(Civilizations.xml/Leaders.xml等)はこの問題の対象外(XMLのまま問題なく動く)。
+
+本Mod(regloss)側にも同じ修正(`XML/Colors.sql`新設・`.modinfo`のUpdateColors差し替え)を適用済み。恒久的な手順としては`.claude/skills/bootstrap-leader/SKILL.md`4節に昇格したので、次に新しい指導者を追加するときは調査の再実施は不要、そちらに従うだけでよい。

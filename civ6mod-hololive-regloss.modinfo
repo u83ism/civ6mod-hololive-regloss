@@ -24,8 +24,9 @@
 		<UpdateDatabase id="Config">
 			<File>XML/Config.xml</File>
 		</UpdateDatabase>
+		<!-- 2026-09-23確定: PlayerColors解決バグ対策のためColors.xmlではなくColors.sqlを読ませる(docs/civ6-icon-color-bug-investigation.md参照) -->
 		<UpdateColors id="ConfigColors">
-			<File>XML/Colors.xml</File>
+			<File>XML/Colors.sql</File>
 		</UpdateColors>
 		<UpdateText id="ConfigText">
 			<File>Text/en_US/Text.xml</File>
@@ -49,8 +50,9 @@
 		<UpdateDatabase id="GameplayMonopolies" criteria="Monopolies_Mode">
 			<File>XML/Leaders_Monopolies.xml</File>
 		</UpdateDatabase>
+		<!-- 2026-09-23確定: PlayerColors解決バグ対策のためColors.xmlではなくColors.sqlを読ませる(docs/civ6-icon-color-bug-investigation.md参照) -->
 		<UpdateColors id="Colors">
-			<File>XML/Colors.xml</File>
+			<File>XML/Colors.sql</File>
 		</UpdateColors>
 		<UpdateText id="Text">
 			<File>Text/en_US/Text.xml</File>
@@ -70,7 +72,7 @@
 		<File>XML/Leaders.xml</File>
 		<File>XML/Leaders_Monopolies.xml</File>
 		<File>XML/Units.xml</File>
-		<File>XML/Colors.xml</File>
+		<File>XML/Colors.sql</File>
 		<File>XML/Config.xml</File>
 		<File>Text/en_US/Text.xml</File>
 		<File>Text/ja_JP/Text.xml</File>
