@@ -25,6 +25,7 @@ Civilization VI の新規文明追加Mod。hololive ReGLOSSをモチーフにし
 - `Text/ja_JP/`, `Text/en_US/`, `Text/zh_Hans_CN/`, `Text/zh_Hant_HK/` — ローカライズテキスト(`ja_JP`が正本)
 - `Art/` — アイコン・リーダーシーン等のアセット(`Art/Source/`が元画像、`Art/Icons/`が各サイズ展開済みPNG)
 - `Platforms/` — ModBuddyビルド済みの`.blp`(バッジアイコン用)
+- `tools/loc-lookup/` — Civ6本体(Base+DLC)とこのModの`Text/`から、LOCタグまたは本文で公式の各言語訳を引くスクリプト(`npm run lookup -- <タグ正規表現>`、`--text <文字列>`で逆引き、初回は`npm ci`)。公式用語の確認に使う(`.claude/rules/game-terms.md`)
 - `tools/png2dds/` — 元画像からアイコン各サイズのPNG/DDSを自動生成するビルドスクリプト(TypeScript、`tsx`で実行)
 - `tools/IconBuild/` — アイコン画像専用のModBuddyプロジェクト(本体Modとは分離)
 
