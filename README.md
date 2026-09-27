@@ -34,7 +34,7 @@ Civilization VI の新規文明追加Mod。hololive ReGLOSSをモチーフにし
 - ModBuddyは日本語エンコーディングで文字化けが起きやすいため、通常の編集はテキストエディタ(UTF-8固定)で行う。ModBuddyはアイコン等Artアセットのビルド時のみ使う
 - ローカルテストは `Documents\My Games\Sid Meier's Civilization VI\Mods\` にこのフォルダをシンボリックリンクして行う
 - `main`=リリース済み安定版、`develop`=作業ブランチ。通常のコミットは`develop`に積み、リリース時に`develop`を`main`にマージする
-- `tools/`配下のTypeScript/Node.jsコードは`.claude/rules/`のコーディング規約に従う。Civ6 Modding固有の知識・手順は`.claude/skills/`を参照(`bootstrap-mod`→`bootstrap-leader`→`make-leader-icons`/`make-fallback-portrait`/`implement-leader-abilities`/`add-unique-content`の順が基本線。日本語テキストは`write-official-jp-text-style`(英語/中国語は`write-official-en-text-style`/`write-official-zh-text-style`)、外交台詞は`implement-diplomacy-statements`、言語追加は`add-language`、調べ物は`research-mod`を使う)。未検証のciv6wiki.info要約等は`docs/civ6-research/`に分離してある
+- `tools/`配下のTypeScript/Node.jsコードは`.claude/rules/`のコーディング規約に従う。Civ6 Modding固有の知識・手順は`.claude/skills/`を参照(`bootstrap-mod`→`bootstrap-leader`→`make-leader-icons`/`make-fallback-portrait`/`implement-leader-abilities`/`add-unique-content`の順が基本線。ゲーム内テキストは`write-game-text`、外交台詞は`implement-diplomacy-statements`、言語追加は`add-language`、調べ物は`research-mod`を使う)。未検証のciv6wiki.info要約等は`docs/civ6-research/`に分離してある
 - Steam Workshop説明文・更新ノートは`write-steam-description`/`write-update-notes` Skillで管理。`docs/steam-description/`・`docs/update-notes/`配下の生成物はリリースのたびに作り直す使い捨て出力のためGit管理外
 - バランスは意図的にやや強め。HktkNban氏のHololive JP Mod、Neox氏のHololive EN/ID Modと混ぜて使うことを前提にしており、単体でのバランスの良さより他作者Mod群の文明と並べたときに埋もれない強さを優先している
 
