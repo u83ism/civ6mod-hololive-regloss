@@ -2,7 +2,7 @@
 
 Civilization VI の新規文明追加Mod。hololive ReGLOSSをモチーフにした文明を実装する。
 
-設計判断の理由・実機で踏んだ罠等は[docs/design.md](docs/design.md)を参照(役割分担: 現状ステータス・TODOはこのREADME、なぜその実装にしたかはdesign.md)。
+ゲームデザインの判断理由は[docs/design.md](docs/design.md)、実装の仕組み・実機で踏んだ罠は[docs/implementation-notes.md](docs/implementation-notes.md)、Mod固有名詞の各言語表記は[docs/glossary.md](docs/glossary.md)を参照(役割分担: 現状ステータス・TODOはこのREADME。詳細は`.claude/rules/documentation.md`)。
 
 ## 現状
 
@@ -16,7 +16,7 @@ Civilization VI の新規文明追加Mod。hololive ReGLOSSをモチーフにし
 - 外交交渉画面のクレオパトラ対策(フォールバック静止画)、ローディング画面(ポートレート・背景)、外交交渉画面の背景(`DiplomacyInfo`)、ゲーム設定画面の全身ポートレート「Leader Placard」をすべて実装・実機確認済み(仕組みの詳細は`.claude/skills/make-fallback-portrait/references/fallback-and-loading-schema.md`参照)
 - ローカライズは日本語(正本)・英語・簡体字中国語・繁体字中国語の4言語に対応
 - 固有区域/施設/建造物は未着手
-- 既知の未解決問題: リーダー選択画面の文明能力アイコンとパウズメニューのバッジが、本Modの`PlayerColors`ではなくバニラの汎用色プールで着色されてしまう(詳細は`docs/civ6-icon-color-bug-investigation.md`)
+- 既知の未解決問題(姉妹Mod holoxで原因は判明し、`XML/Colors.sql`への切り替えは適用済み。アイコン再ビルドと実機確認がまだ): リーダー選択画面の文明能力アイコンとパウズメニューのバッジが、本Modの`PlayerColors`ではなくバニラの汎用色プールで着色されてしまう(詳細は`docs/civ6-icon-color-bug-investigation.md`)
 
 ## 構成
 
@@ -25,6 +25,7 @@ Civilization VI の新規文明追加Mod。hololive ReGLOSSをモチーフにし
 - `Text/ja_JP/`, `Text/en_US/`, `Text/zh_Hans_CN/`, `Text/zh_Hant_HK/` — ローカライズテキスト(`ja_JP`が正本)
 - `Art/` — アイコン・リーダーシーン等のアセット(`Art/Source/`が元画像、`Art/Icons/`が各サイズ展開済みPNG)
 - `Platforms/` — ModBuddyビルド済みの`.blp`(バッジアイコン用)
+- `tools/setup-dev-env.ps1` — 新しいPCでの開発環境セットアップ(`pwsh tools/setup-dev-env.ps1`、何度実行しても安全)。Modsフォルダへのジャンクション作成・`AppOptions.txt`のログ有効化(`-EnableTuner`でFireTunerも)・`npm ci`を行い、Development Tools/SDK Assets/`Art/Source/`の有無をチェックする
 - `tools/loc-lookup/` — Civ6本体(Base+DLC)とこのModの`Text/`から、LOCタグまたは本文で公式の各言語訳を引くスクリプト(`npm run lookup -- <タグ正規表現>`、`--text <文字列>`で逆引き、初回は`npm ci`)。公式用語の確認に使う(`.claude/rules/game-terms.md`)
 - `tools/png2dds/` — 元画像からアイコン各サイズのPNG/DDSを自動生成するビルドスクリプト(TypeScript、`tsx`で実行)
 - `tools/IconBuild/` — アイコン画像専用のModBuddyプロジェクト(本体Modとは分離)
@@ -32,7 +33,7 @@ Civilization VI の新規文明追加Mod。hololive ReGLOSSをモチーフにし
 ## 開発方針
 
 - ModBuddyは日本語エンコーディングで文字化けが起きやすいため、通常の編集はテキストエディタ(UTF-8固定)で行う。ModBuddyはアイコン等Artアセットのビルド時のみ使う
-- ローカルテストは `Documents\My Games\Sid Meier's Civilization VI\Mods\` にこのフォルダをシンボリックリンクして行う
+- ローカルテストは `Documents\My Games\Sid Meier's Civilization VI\Mods\` にこのフォルダへのジャンクションを作って行う(`tools/setup-dev-env.ps1`が作る)
 - `main`=リリース済み安定版、`develop`=作業ブランチ。通常のコミットは`develop`に積み、リリース時に`develop`を`main`にマージする
 - `tools/`配下のTypeScript/Node.jsコードは`.claude/rules/`のコーディング規約に従う。Civ6 Modding固有の知識・手順は`.claude/skills/`を参照(`bootstrap-mod`→`bootstrap-leader`→`make-leader-icons`/`make-fallback-portrait`/`implement-leader-abilities`/`add-unique-content`の順が基本線。ゲーム内テキストは`write-game-text`、外交台詞は`implement-diplomacy-statements`、言語追加は`add-language`、調べ物は`research-mod`を使う)。未検証のciv6wiki.info要約等は`docs/civ6-research/`に分離してある
 - Steam Workshop説明文・更新ノートは`write-steam-description`/`write-update-notes` Skillで管理。`docs/steam-description/`・`docs/update-notes/`配下の生成物はリリースのたびに作り直す使い捨て出力のためGit管理外
@@ -40,7 +41,7 @@ Civilization VI の新規文明追加Mod。hololive ReGLOSSをモチーフにし
 
 ## TODO
 
-- [ ] リーダー選択画面の能力アイコン/パウズメニューの色不具合の原因特定
+- [ ] リーダー選択画面の能力アイコン/パウズメニューの色不具合の修正(`XML/Colors.sql`への切り替え。holoxで解決を確認済み、こちらはアイコン再ビルドと実機確認がまだ)
 - [ ] 指導者固有能力「推し事お疲れ様でした～」(交易路容量+1・交易路産出+1×4)の効果自体の実機確認
 - [ ] 指導者固有能力「大天才」の「大企業」改善ボーナス(文化力/科学力+4・ゴールド+2)の実機確認(「産業」側の+2/+2/+1は確認済み)
 - [ ] UniqueDistrict / UniqueImprovement / UniqueBuilding の設計(UniqueUnit「うに」は実装済み)
