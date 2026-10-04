@@ -45,6 +45,7 @@
 		<UpdateDatabase id="Gameplay">
 			<File>XML/Civilizations.xml</File>
 			<File>XML/Leaders.xml</File>
+			<File>XML/JuufuuteiRaden.xml</File>
 			<File>XML/Units.xml</File>
 		</UpdateDatabase>
 		<UpdateDatabase id="GameplayMonopolies" criteria="Monopolies_Mode">
@@ -70,6 +71,7 @@
 	<Files>
 		<File>XML/Civilizations.xml</File>
 		<File>XML/Leaders.xml</File>
+		<File>XML/JuufuuteiRaden.xml</File>
 		<File>XML/Leaders_Monopolies.xml</File>
 		<File>XML/Units.xml</File>
 		<File>XML/Colors.sql</File>

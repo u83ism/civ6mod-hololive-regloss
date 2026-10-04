@@ -89,6 +89,86 @@
 			<m_EntryID text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_256"/>
 			<m_ObjectName text="ICON_LEADER_REGLOSS_ICHIJOU_RIRIKA_256"/>
 		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_22"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_22"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_30"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_30"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_32"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_32"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_36"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_36"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_44"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_44"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_45"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_45"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_48"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_48"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_50"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_50"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_64"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_64"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_80"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_80"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_128"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_128"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_256"/>
+			<m_ObjectName text="ICON_CIVILIZATION_REGLOSS_JUUFUUTEI_256"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_32"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_32"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_45"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_45"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_48"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_48"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_50"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_50"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_55"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_55"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_64"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_64"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_80"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_80"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_256"/>
+			<m_ObjectName text="ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN_256"/>
+		</Element>
 	</m_Entries>
 	<m_AllowedPlatforms>
 		<Element>WINDOWS</Element>

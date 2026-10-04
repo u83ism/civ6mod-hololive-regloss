@@ -371,5 +371,66 @@
 		<Row Tag="LOC_TRAIT_CIVILIZATION_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Language="ja_JP">
 			<Text>社長の愛犬</Text>
 		</Row>
+
+		<Row Tag="LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME" Language="ja_JP">
+			<Text>儒烏風亭一門</Text>
+		</Row>
+		<Row Tag="LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_DESCRIPTION" Language="ja_JP">
+			<Text>儒烏風亭一門</Text>
+		</Row>
+		<Row Tag="LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_ADJECTIVE" Language="ja_JP">
+			<Text>儒烏風亭</Text>
+		</Row>
+		<Row Tag="LOC_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME" Language="ja_JP">
+			<Text>儒烏風亭らでん</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME" Language="ja_JP">
+			<Text>(仮)文明能力</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_DESCRIPTION" Language="ja_JP">
+			<Text>(未実装)</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME" Language="ja_JP">
+			<Text>(仮)指導者能力</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_DESCRIPTION" Language="ja_JP">
+			<Text>(未実装)</Text>
+		</Row>
+		<Row Tag="LOC_AGENDA_REGLOSS_JUUFUUTEI_RADEN_NAME" Language="ja_JP">
+			<Text>(仮)アジェンダ</Text>
+		</Row>
+		<Row Tag="LOC_AGENDA_REGLOSS_JUUFUUTEI_RADEN_DESCRIPTION" Language="ja_JP">
+			<Text>(未実装)</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_CAPITAL" Language="ja_JP">
+			<Text>京都</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_01" Language="ja_JP">
+			<Text>奈良</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_02" Language="ja_JP">
+			<Text>東京</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_03" Language="ja_JP">
+			<Text>箱根</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_04" Language="ja_JP">
+			<Text>福岡</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_05" Language="ja_JP">
+			<Text>鹿児島</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_06" Language="ja_JP">
+			<Text>静岡</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_07" Language="ja_JP">
+			<Text>倉敷</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_08" Language="ja_JP">
+			<Text>金沢</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_09" Language="ja_JP">
+			<Text>直島</Text>
+		</Row>
 	</LocalizedText>
 </GameData>

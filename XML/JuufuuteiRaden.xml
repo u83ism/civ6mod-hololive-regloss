@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+	<!--
+		儒烏風亭らでんの土台(2026-10-04)。文明・指導者・ダミーのTrait・ダミーのアジェンダ・ローディング/外交交渉画面の背景だけで、
+		効果(Modifier)は一切入れていない。固有ユニット「学芸員」(考古学者の置換)が実機で動くかを、能力無しのバニラ状態で
+		確認するための足場。設計はdocs/character-juufuutei-raden-brainstorm.mdを参照(まだ確定していない部分が多い)。
+
+		ID命名は一条莉々華に揃えた(文明ID=姓のテーマ名、指導者ID=姓+名)。文明の表示名(LOC)は暫定。
+		ダミーのアジェンダは、効果の無いTraitを紐づけただけ(好み・嫌いは未設計)。
+	-->
+	<Types>
+		<Row Type="CIVILIZATION_REGLOSS_JUUFUUTEI" Kind="KIND_CIVILIZATION"/>
+		<Row Type="LEADER_REGLOSS_JUUFUUTEI_RADEN" Kind="KIND_LEADER"/>
+		<Row Type="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" Kind="KIND_TRAIT"/>
+		<Row Type="TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN" Kind="KIND_TRAIT"/>
+		<Row Type="TRAIT_AGENDA_REGLOSS_JUUFUUTEI_RADEN" Kind="KIND_TRAIT"/>
+	</Types>
+
+	<Traits>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" Name="LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME" Description="LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_DESCRIPTION"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN" Name="LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME" Description="LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_DESCRIPTION"/>
+		<Row TraitType="TRAIT_AGENDA_REGLOSS_JUUFUUTEI_RADEN"/>
+	</Traits>
+
+	<Leaders>
+		<Row LeaderType="LEADER_REGLOSS_JUUFUUTEI_RADEN" Name="LOC_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME" InheritFrom="LEADER_DEFAULT"/>
+	</Leaders>
+
+	<Civilizations>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" Name="LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME" Description="LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_DESCRIPTION" Adjective="LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_ADJECTIVE" StartingCivilizationLevelType="CIVILIZATION_LEVEL_FULL_CIV" RandomCityNameDepth="1"/>
+	</Civilizations>
+
+	<LeaderTraits>
+		<Row LeaderType="LEADER_REGLOSS_JUUFUUTEI_RADEN" TraitType="TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN"/>
+	</LeaderTraits>
+
+	<CivilizationTraits>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI"/>
+	</CivilizationTraits>
+
+	<CivilizationLeaders>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" LeaderType="LEADER_REGLOSS_JUUFUUTEI_RADEN" CapitalName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_CAPITAL"/>
+	</CivilizationLeaders>
+
+	<!-- 都市名は暫定(首都+9)。2都市目以降は上から順に採番される -->
+	<CityNames>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_CAPITAL"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_01"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_02"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_03"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_04"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_05"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_06"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_07"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_08"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_09"/>
+	</CityNames>
+
+	<Agendas>
+		<Row AgendaType="AGENDA_REGLOSS_JUUFUUTEI_RADEN" Name="LOC_AGENDA_REGLOSS_JUUFUUTEI_RADEN_NAME" Description="LOC_AGENDA_REGLOSS_JUUFUUTEI_RADEN_DESCRIPTION"/>
+	</Agendas>
+
+	<AgendaTraits>
+		<Row AgendaType="AGENDA_REGLOSS_JUUFUUTEI_RADEN" TraitType="TRAIT_AGENDA_REGLOSS_JUUFUUTEI_RADEN"/>
+	</AgendaTraits>
+
+	<HistoricalAgendas>
+		<Row LeaderType="LEADER_REGLOSS_JUUFUUTEI_RADEN" AgendaType="AGENDA_REGLOSS_JUUFUUTEI_RADEN"/>
+	</HistoricalAgendas>
+
+	<!-- ローディング画面(make-fallback-portraitの生成物をそのまま使う、一条莉々華と同じ構成) -->
+	<LoadingInfo>
+		<Row LeaderType="LEADER_REGLOSS_JUUFUUTEI_RADEN" ForegroundImage="LEADER_REGLOSS_JUUFUUTEI_RADEN_NEUTRAL" BackgroundImage="LEADER_REGLOSS_JUUFUUTEI_RADEN_BACKGROUND"/>
+	</LoadingInfo>
+
+	<!-- 外交交渉画面の背景。この行が無いとクレオパトラの背景にフォールバックする(一条莉々華と同じ理由) -->
+	<DiplomacyInfo>
+		<Row Type="LEADER_REGLOSS_JUUFUUTEI_RADEN" BackgroundImage="LEADER_REGLOSS_JUUFUUTEI_RADEN_BACKGROUND"/>
+	</DiplomacyInfo>
+</GameData>

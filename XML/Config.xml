@@ -74,6 +74,60 @@
 			<Portrait>LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL</Portrait>
 			<PortraitBackground>LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND</PortraitBackground>
 		</Row>
+		<Row>
+			<Domain>Players:StandardPlayers</Domain>
+			<CivilizationType>CIVILIZATION_REGLOSS_JUUFUUTEI</CivilizationType>
+			<LeaderType>LEADER_REGLOSS_JUUFUUTEI_RADEN</LeaderType>
+			<PlayerColor>LEADER_REGLOSS_JUUFUUTEI_RADEN</PlayerColor>
+			<CivilizationName>LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME</CivilizationName>
+			<LeaderName>LOC_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME</LeaderName>
+			<CivilizationIcon>ICON_CIVILIZATION_REGLOSS_JUUFUUTEI</CivilizationIcon>
+			<LeaderIcon>ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN</LeaderIcon>
+			<CivilizationAbilityName>LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME</CivilizationAbilityName>
+			<CivilizationAbilityDescription>LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_DESCRIPTION</CivilizationAbilityDescription>
+			<CivilizationAbilityIcon>ICON_CIVILIZATION_REGLOSS_JUUFUUTEI</CivilizationAbilityIcon>
+			<LeaderAbilityIcon>ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN</LeaderAbilityIcon>
+			<LeaderAbilityName>LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME</LeaderAbilityName>
+			<LeaderAbilityDescription>LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_DESCRIPTION</LeaderAbilityDescription>
+			<Portrait>LEADER_REGLOSS_JUUFUUTEI_RADEN_NEUTRAL</Portrait>
+			<PortraitBackground>LEADER_REGLOSS_JUUFUUTEI_RADEN_BACKGROUND</PortraitBackground>
+		</Row>
+		<Row>
+			<Domain>Players:Expansion1_Players</Domain>
+			<CivilizationType>CIVILIZATION_REGLOSS_JUUFUUTEI</CivilizationType>
+			<LeaderType>LEADER_REGLOSS_JUUFUUTEI_RADEN</LeaderType>
+			<PlayerColor>LEADER_REGLOSS_JUUFUUTEI_RADEN</PlayerColor>
+			<CivilizationName>LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME</CivilizationName>
+			<LeaderName>LOC_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME</LeaderName>
+			<CivilizationIcon>ICON_CIVILIZATION_REGLOSS_JUUFUUTEI</CivilizationIcon>
+			<LeaderIcon>ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN</LeaderIcon>
+			<CivilizationAbilityName>LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME</CivilizationAbilityName>
+			<CivilizationAbilityDescription>LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_DESCRIPTION</CivilizationAbilityDescription>
+			<CivilizationAbilityIcon>ICON_CIVILIZATION_REGLOSS_JUUFUUTEI</CivilizationAbilityIcon>
+			<LeaderAbilityIcon>ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN</LeaderAbilityIcon>
+			<LeaderAbilityName>LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME</LeaderAbilityName>
+			<LeaderAbilityDescription>LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_DESCRIPTION</LeaderAbilityDescription>
+			<Portrait>LEADER_REGLOSS_JUUFUUTEI_RADEN_NEUTRAL</Portrait>
+			<PortraitBackground>LEADER_REGLOSS_JUUFUUTEI_RADEN_BACKGROUND</PortraitBackground>
+		</Row>
+		<Row>
+			<Domain>Players:Expansion2_Players</Domain>
+			<CivilizationType>CIVILIZATION_REGLOSS_JUUFUUTEI</CivilizationType>
+			<LeaderType>LEADER_REGLOSS_JUUFUUTEI_RADEN</LeaderType>
+			<PlayerColor>LEADER_REGLOSS_JUUFUUTEI_RADEN</PlayerColor>
+			<CivilizationName>LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME</CivilizationName>
+			<LeaderName>LOC_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME</LeaderName>
+			<CivilizationIcon>ICON_CIVILIZATION_REGLOSS_JUUFUUTEI</CivilizationIcon>
+			<LeaderIcon>ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN</LeaderIcon>
+			<CivilizationAbilityName>LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME</CivilizationAbilityName>
+			<CivilizationAbilityDescription>LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_DESCRIPTION</CivilizationAbilityDescription>
+			<CivilizationAbilityIcon>ICON_CIVILIZATION_REGLOSS_JUUFUUTEI</CivilizationAbilityIcon>
+			<LeaderAbilityIcon>ICON_LEADER_REGLOSS_JUUFUUTEI_RADEN</LeaderAbilityIcon>
+			<LeaderAbilityName>LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME</LeaderAbilityName>
+			<LeaderAbilityDescription>LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_DESCRIPTION</LeaderAbilityDescription>
+			<Portrait>LEADER_REGLOSS_JUUFUUTEI_RADEN_NEUTRAL</Portrait>
+			<PortraitBackground>LEADER_REGLOSS_JUUFUUTEI_RADEN_BACKGROUND</PortraitBackground>
+		</Row>
 	</Players>
 
 	<!--

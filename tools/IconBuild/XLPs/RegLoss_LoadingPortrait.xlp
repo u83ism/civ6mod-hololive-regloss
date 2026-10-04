@@ -13,6 +13,10 @@
 			<m_EntryID text="LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL"/>
 			<m_ObjectName text="LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL"/>
 		</Element>
+		<Element>
+			<m_EntryID text="LEADER_REGLOSS_JUUFUUTEI_RADEN_NEUTRAL"/>
+			<m_ObjectName text="LEADER_REGLOSS_JUUFUUTEI_RADEN_NEUTRAL"/>
+		</Element>
 	</m_Entries>
 	<m_AllowedPlatforms>
 		<Element>WINDOWS</Element>
