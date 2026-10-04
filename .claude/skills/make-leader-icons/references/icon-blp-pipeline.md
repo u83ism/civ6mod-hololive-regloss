@@ -37,7 +37,7 @@
 6. `Icons.xml`の`IconTextureAtlases`/`IconDefinitions`は今まで通りの書き方でよい(`Filename`はddsファイル名のまま)
 7. **ModBuddyでビルド**。成功すると`Platforms/{Windows,MacOS}/BLPs/{SHARED_DATA,UI}/[m_PackageNameから決まる名前].blp`が生成される。**出力先はプロジェクトのソースフォルダではなく`Documents/My Games/Sid Meier's Civilization VI/Mods/<.civ6projのName>/`**(ModBuddyがローカルテスト用に直接デプロイする場所)。`.blp`はここからコピーして本体Modへ持っていく
 8. ビルドが失敗したら**`cooker.log`**(MOD開発環境フォルダ直下)を見る。大半は`.tex`内のdds名指定ミス
-   - **ModBuddyが`Build: 1 succeeded`と出してもBLPが生成されているとは限らない。** AssetCookerがクラッシュしてもビルド全体は成功扱いになる(2026-09-27、姉妹Mod civ6mod-hololive-holoxで確認。`exited with code -1073740791`(0xC0000409)が全XLPで出ていたのに`1 succeeded`だった)。ビルド後は出力先に`.blp`が実在し更新日時が新しいことを必ず確認する。無ければ「ソリューションのリビルド」で出力ウィンドウの`exited with code`行を見る(通常ビルドは`up-to-date`扱いでCookerの出力が出ないことがある)
+   - **ModBuddyが`Build: 1 succeeded`と出してもBLPが生成されているとは限らない。** AssetCookerがクラッシュしてもビルド全体は成功扱いになる(2026-09-27、`exited with code -1073740791`(0xC0000409)が全XLPで出ていたのに`1 succeeded`だった)。ビルド後は出力先に`.blp`が実在し更新日時が新しいことを必ず確認する。無ければ「ソリューションのリビルド」で出力ウィンドウの`exited with code`行を見る(通常ビルドは`up-to-date`扱いでCookerの出力が出ないことがある)
    - **Windowsかつユーザー名が日本語(ASCII外)の環境では、ModBuddy経由のビルドでは必ずBLPが生成されない**(AssetCookerが日本語パスを扱えず、出力先がModBuddy固定の`Documents\My Games\...`のため回避不能)。AssetCookerを英数字パスで直接実行する回避策を`japanese-username-workaround.md`に書いてある
 
 ## ModBuddyはOSSではない
@@ -76,7 +76,7 @@ civ6mod-hololive-regloss本体での実際の配線:
 - **指導者アイコンのサイズ一覧が古い**: wikiは256,80,64,55,50,45,32の7サイズのみを挙げているが、`48`が抜けている。本リポジトリの実際の`Art/Icons/Icons.xml`(および実働Mod群)では`48`込みの8サイズが必須。おそらく執筆時点(2020年)以降のDLC/GSアップデートで追加されたサイズと思われるので、**wikiのサイズ一覧より本ファイル冒頭の8サイズを優先すること**
 - **texファイルのコピー元は指導者用/文明用で別々のバニラサンプルを使う**: 指導者アイコンは`Montezuma*.tex`、文明アイコンは`CivAztec*.tex`(いずれもモンテスマ/アステカ)。本質的にはどの文明/指導者のtexでも構わないが、著者は同一指導者のペアで統一している
 - **文明アイコンの45x45サイズだけ見た目の仕様が違う**: wiki本文にも明記されている(「他のサイズは白と透過だけで描かれていますが、45x45のものだけ色が付いています」)。バニラでは45x45以外が白抜き+透過のシルエットで、45x45だけ着色済みの完成品バッジになっている。**ただしwikiは「そう作れ」という事実だけを書いており、理由(なぜ白+透過である必要があるか)にも、フルカラー素材から白+透過シルエットへの変換手順にも触れていない**。この2点はこのファイル自体を実際に踏み抜いて解決した内容で、`docs/civ6-icon-color-bug-investigation.md`に経緯を残してある
-  - **45pxをフルカラーにする必要はない(2026-09-24、姉妹Mod civ6mod-hololive-holoxで調査・実機確認)**: 本体UI Luaでサイズ45を明示して文明アイコンを取得しているのは`Base/Assets/UI/FrontEnd/PlayerSetupLogic.lua`の3箇所だけで、いずれも「`UI.GetPlayerColorValues`で色が取れなかったときの`else`側で`SetIcon(icons.CivIcon, 45)`を無着色表示する」というフォールバックだった。wikiが示唆する技術・社会制度ツリーでの使用は確認できなかった(`CivicsTree.lua`/`TechTree.lua`の進捗マーカーは指導者ポートレートで、文明アイコンは使っていない)。公式自身もポーランドの45px(`CivPoland45.dds`)をアステカの紋章の流用で済ませており、誰も目視確認していない。色バグ(`Colors.sql`化で解決)が起きていなければ通常プレイでこの経路は通らないので、45pxも他サイズと同じ白シルエットにしてよい。ただし`Icons.xml`の`IconSize="45"`のアトラス定義自体は、フォールバックの`SetIcon(..., 45)`が解決失敗しないよう残すこと。holox側は45pxも白シルエットに統一し、実機で表示上の問題が出ないことを確認済み。本Mod(regloss)は現状45pxをフルカラーのまま出している(実害は無いが、統一する場合は`gen-icon-sources.ts`のフルカラー用マスター引数を削除する)
+  - **45pxをフルカラーにする必要はない(2026-09-24)**: 本体UI Luaで45pxが無着色表示されるのは`PlayerSetupLogic.lua`の「プレイヤーカラー解決失敗時のフォールバック」だけで、wikiが示唆する社会制度ツリー等での使用は確認できなかった。公式自身もポーランドの45pxをアステカの流用で済ませている。本リポジトリでは45pxも白シルエットに統一している(詳細は`docs/civ6-icon-color-bug-investigation.md`末尾)
 - xlpの`m_PackageName`は指導者用・文明用アイコンをまとめて1つのパッケージ(例: `UI/hogehoge_Icons`)にする運用で書かれている。本リポジトリの`RegLoss_Icons`も同じ「1パッケージにまとめる」方式
 
 ## 英語圏ガイド(Sailor Cat's Modding Tutorial)との照合

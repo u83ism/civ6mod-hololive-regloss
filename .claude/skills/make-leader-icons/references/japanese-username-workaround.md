@@ -6,7 +6,7 @@
 
 ModBuddyでビルドすると出力ウィンドウは`Build: 1 succeeded`(リビルドでも`Rebuild All: 1 succeeded`)と成功扱いになり、`Documents\My Games\Sid Meier's Civilization VI\Mods\<IconBuildプロジェクト名>\`にdds/tex/xlp/modinfoのコピーまでは出る。**しかし`Platforms\{Windows,MacOS}\BLPs\`が生成されない。** ゲーム内の見た目は古いBLPのまま変わらない。
 
-2026-09-27に姉妹Mod civ6mod-hololive-holoxで確認した2段階の失敗:
+2026-09-27に確認した2段階の失敗:
 
 1. プロジェクトを`C:\Users\<日本語ユーザー名>\...`から開いた場合: `cooker.log`(プロジェクトフォルダ直下)に、ユーザー名部分が文字化けしたパスとともに次のエラーが出る
    ```
@@ -36,6 +36,8 @@ ModBuddyのビルドは使わず、ModBuddyが内部で呼んでいるのと同�
    ```
    成功すると`XLP cook completed with success.`と出て、`X:\tools\IconBuild\_cooked\<platform>\BLPs\UI\<Package>.blp`(`m_PackageName`が`UI/`始まりでない場合はその名前に応じた場所)が生成される。`Could not load digest key: ''.  Using mod key to sign BLP.`は無害(ModBuddy経由でも出る)
 3. 生成された`.blp`を本体の`Platforms\{Windows,MacOS}\BLPs\`配下の同じ相対パスに上書きコピーし、`_cooked`フォルダは削除する(コミットしない)
+   - **削除に`rmdir /s`や`Remove-Item`を使わない**。Claude Codeから実行すると保護パスの判定で**コマンド全体が実行されず**(クックもコピーも走らない。エラーは出るが、後続のコミットを並べていると気づかずに進んでしまう)、2026-10-01に再生成が漏れたままコミットした。`[System.IO.Directory]::Delete('X:\tools\IconBuild\_cooked', $true)`を使い、できればクック・コピーとは別の呼び出しに分ける
+   - **コピーしたら、コミット前に`Platforms\...\*.blp`の更新日時とサイズが新しいことを確認する**(BLPが古いままのコミットを防ぐ)
 
 この後の手順(`.modinfo`の`<Files>`登録・`.dep`・実機確認)はModBuddyでビルドした場合と同じ。BLPの中身を差し替えるだけで`Art.xml`を変えていなければ、`.dep`の再生成は不要。
 

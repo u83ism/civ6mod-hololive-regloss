@@ -37,17 +37,22 @@ description: Civ6 Modで文明能力/指導者能力(Trait)の効果を実装す
 
 ## Luaでしか組めない能力(GameplayScript)
 
-Modifier/Requirementの組み合わせでは表現できない効果(例:「倒した敵ユニットの戦闘力に応じて動的な量の偉人ポイントを得る」。`MODIFIER_PLAYER_UNITS_ADJUST_POST_COMBAT_YIELD`にはYield版しか無く、GreatPersonPoints版のEffectTypeが存在しない)は、`.modinfo`の`AddGameplayScripts`で登録するLuaファイルに`Events.Combat.Add(handler)`のようにイベントフックする形で実装する(姉妹Mod civ6mod-hololive-holoxで実機確認済み、2026-09-23)。着手前に、実装したい効果が既存のModifier/Requirementの組み合わせで本当に組めないか確認すること(Luaは最後の手段)。
+Modifier/Requirementの組み合わせでは表現できない効果(例:「倒した敵ユニットの戦闘力に応じて動的な量の偉人ポイントを得る」。`MODIFIER_PLAYER_UNITS_ADJUST_POST_COMBAT_YIELD`にはYield版しか無く、GreatPersonPoints版のEffectTypeが存在しない)は、`.modinfo`の`AddGameplayScripts`で登録するLuaファイルに`GameEvents.OnCombatOccurred.Add(handler)`のようにゲーム本体側のイベント(`GameEvents.*`)にフックする形で実装する。`Events.*`(演出側のイベント)はマルチプレイで一部のPCでしか発火しない可能性があるので、ゲームの状態を変える処理や同期された乱数には使わない(公式のシナリオスクリプトも`GameEvents.*`を使う。CivFanaticsでGedemonが指摘)(civ6mod-hololive-holoxで実機確認済み、2026-09-23)。着手前に、実装したい効果が既存のModifier/Requirementの組み合わせで本当に組めないか確認すること(Luaは最後の手段)。
 
 **罠(必須)**: **Luaファイル名は他Mod(特にHololive系の他作者Mod)と衝突しないユニークな名前にする**。`GameplayScript.lua`のような汎用名にすると、別Modが同じ汎用名のファイルを`AddGameplayScripts`で登録していた場合、Civ6のLuaモジュールがファイル名ベースでキャッシュされ、後から読み込まれた側にサイレントに上書きされてこちらのコードが一切実行されない(エラーもログも一切出ない)事故が起きる(2026-09-23実機で発覚、`Hololive GAMERS`Modの`Scripts/GameplayScript.lua`と衝突していた)。`<キャラ名>GameplayScript.lua`のようにキャラ名を含めた名前にすること。`.modinfo`の`AddGameplayScripts id="..."`側の`id`もユニークにする。
 
 **罠(必須)**: **`Events.Combat`ハンドラ内で`unit:SetDamage(n)`を呼んでユニットを強制的に撃破しようとしても、実際の生死判定には反映されない**。`Events.Combat`はこの戦闘の生死判定が確定した後に発火するイベントのようで、事後にダメージ値だけ書き換えても、ユニットは盤面に残り続ける(次に攻撃すると改めて死に、効果が二重発火する)。ユニットをその場で確実に除去したい場合は、DLCシナリオスクリプト(`AlexanderScenario.lua`等)で使われている`UnitManager.Kill(unit, false)`(ユニットを即座に削除する公式API)を使うこと。`CombatResultParameters.MAX_HIT_POINTS`は必ずしも100とは限らないため、生死判定に固定値100を使わずこのフィールドを都度参照すること。
 
+**罠(必須)**: **確率判定に`math.random`を使わず、`Game.GetRandNum(最大値, "理由")`を使う**(戻り値は0〜最大値-1の整数。25%なら`Game.GetRandNum(100, "...") < 25`)。ゲームプレイ用スクリプトは参加者全員のPCで実行されるので、`math.random`だとPCごとに判定が割れてマルチプレイの同期が崩れる。公式のシナリオスクリプト(`BlackDeathScenario.lua`・`WarMachineScenario.lua`等)はゲームプレイの判定に例外なく`Game.GetRandNum`を使い、`math.random`はUIスクリプトにしか使っていない(第2引数の文字列は同期ずれ調査用のラベル)。`TerrainBuilder.GetRandomNumber`は公式ではマップ生成スクリプトでしか使われておらず、ゲーム中の判定に使ってよい裏付けは無い。他作者のHololive系Mod(戌神ころねの`math.random`等)の書き方をそのまま真似ない(2026-09-28確認、マルチプレイでの実機確認はまだ)
+
 **便利なAPI(実機確認済み)**:
 - `GetGreatPeoplePoints():ChangePointsTotal(classID, amount)` — 偉人ポイントを動的加算する。`classID`は`0`=Great General、`1`=Great Admiral、`2`=Great Engineer、`3`=Great Merchant、`4`=Great Prophet、`5`=Great Scientist、`6`=Great Writer、`7`=Great Artist、`8`=Great Musicianの並び(FireTunerパネル`Debug/Player.ltp`の各アクションボタンのLua実装で確認)
 - `Game.AddWorldViewText(playerID, text, x, y)` — 戦闘結果等をワールド上にフロートテキストで表示する。`text`は`Locale.Lookup("LOC_...", param1, ...)`で多言語対応させること(ハードコード文字列を直接渡さない)。`[COLOR_RED]...[ENDCOLOR]`のような色タグはこのフロートテキストでも機能する(バニラの`LOC_WORLD_UNIT_DAMAGE_INCREASE_FLOATER`で実際に使われている記法)
+- `GameEvents.OnCombatOccurred(attackerPlayerID, attackerUnitID, defenderPlayerID, defenderUnitID, attackerDistrictID, defenderDistrictID)` — 戦闘の後に発火するゲーム本体側のイベント。IDしか渡さないので`Players[playerID]:GetUnits():FindID(unitID)`でユニットを引き、撃破は`unit:IsDead() or unit:IsDelayedDeath()`で判定する(公式`PiratesScenario_StartScript.lua`と同じ形)。戦闘で倒れたユニットもこの時点ではまだ引けるので、攻撃側が倒れた場合も種類・位置を取れる。ユニットID・プレイヤーIDが無いときは-1(2026-09-28、civ6mod-hololive-holoxで実機確認)
+- 戦闘力の基本値: ユニットの定義`GameInfo.Units[unit:GetType()]`の`Combat`/`RangedCombat`/`Bombard`。なお`Events.Combat`の戦闘結果テーブルの`COMBAT_STRENGTH`も補正前の基本値(遠隔攻撃なら遠隔戦闘力)で、補正は`STRENGTH_MODIFIER`に別に入っている(公式UIの`UnitPanel.lua`は両者を足して合計を表示する)
+- `Game.GetRandNum(n, "理由")` — 0〜n-1の整数を返す同期された乱数。1000回まとめて引いた場合・イベントごとに1回ずつ引いた場合のどちらも偏りは無かった(2026-09-28、civ6mod-hololive-holoxで計測)。端数のある確率は`Game.GetRandNum(10000, ...)`で万分率にして比べる
 
-実例は姉妹Mod civ6mod-hololive-holoxの`Lua/SakamataChloeGameplayScript.lua`、詳細な実機デバッグ記録は同リポジトリの`docs/design.md`の「沙花叉クロヱ」節を参照。
+実例は姉妹Mod civ6mod-hololive-holoxの`Lua/SakamataChloeGameplayScript.lua`、詳細な実機デバッグ記録は同リポジトリの`docs/implementation-notes.md`を参照。
 
 ## civ6wiki.info要約: Trait/Modifierの基本構造、文明カラー・AIの好み、多言語化(未検証)
 

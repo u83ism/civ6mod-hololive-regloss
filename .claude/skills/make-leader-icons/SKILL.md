@@ -26,19 +26,24 @@ Civ/Leaderの選択画面自体は`bootstrap-leader` Skillの範囲で(アイコ
 
 `civilizationId`/`leaderId`は`ICON_CIVILIZATION_`/`ICON_LEADER_`を除いた部分(例: `REGLOSS_ICHIJOU`/`REGLOSS_ICHIJOU_RIRIKA`)。キャラ名はハードコードされておらずCLI引数で渡す作りなので、2人目以降のリーダーでもファイルの書き換えは不要。
 
-- `npm run gen-icon-sources -- <civilizationId> <leaderId> <civFullColorMasterFileName> <civSilhouetteMasterFileName> <leaderFaceMasterFileName>`: `Art/Source/`のマスター素材から各サイズのPNGを`Art/Icons/`に生成(`icon-manifest.ts`にサイズ一覧、`gen-icon-sources.ts`にトリミング/マスク処理)
+- `npm run gen-silhouette-master -- <svgFileName> <outputFileName> [<fillFraction>]`: 線画・フラットなSVG(`Art/Source/`からの相対パス)から、文明アイコンの元絵(白シルエット・透明背景、1024px)を生成して`Art/Source/`に保存する。暗い線→不透明の白、白い面→透明(バッジの背景色が透ける穴)。出力を下の`gen-icon-sources`の文明元絵に渡す。注意点(いずれも2026-10-01、風真いろはの葉のアイコンで踏んだ):
+  - **線が純黒でないSVGは、輝度をそのままalphaにすると最大alphaが下がる**(`#231f20`の線だと87%止まり)。線の色(最も暗い不透明ピクセル)で正規化する作りにしてある
+  - **円形バッジでは、図案が外接矩形ぴったりだと縁に接する**。図案の長辺をキャンバスの65%に収める(`fillFraction`で調整、小さいほど余白が増える)。**作ったら円形バッジに重ねたプレビューで、余白と小サイズ(22〜32px)の線の細さを目視で確認すること**(数値だけ見て確認した気になり、縁に接したまま出した前例がある)
+- `npm run gen-icon-sources -- <civilizationId> <civSilhouetteMasterFileName> [<leaderId> <leaderFaceMasterFileName>]`: `Art/Source/`のマスター素材(ファイル名引数は`Art/Source/`からの相対パス、例: `sakamata-chloe/sakamata_chloe-face.png`)から各サイズのPNGを`Art/Icons/`に生成(`icon-manifest.ts`にサイズ一覧、`gen-icon-sources.ts`にトリミング/マスク処理)。文明アイコンはバニラの45pxのようなフルカラー版を作らず、全サイズを白シルエットにする(理由は`docs/civ6-icon-color-bug-investigation.md`末尾)
 - `npm run build-icons`: `Art/Icons/*.png`を`tools/IconBuild/Textures/*.dds`に変換(ファイル名から自動判定するため引数なし)
 - `npm run gen-tex -- <civilizationId> <leaderId>`: 公式`.tex`テンプレートをコピーして`tools/IconBuild/Textures/*.tex`を生成
-- `npm run gen-xlp -- <civilizationId> <leaderId>`: `tools/IconBuild/XLPs/RegLoss_Icons.xlp`を生成
+- `npm run gen-xlp -- <civilizationId> <leaderId> [<civilizationId> <leaderId> ...]`: `tools/IconBuild/XLPs/RegLoss_Icons.xlp`を生成。**毎回ファイルを作り直すので、残したい全リーダーの組を一度に渡すこと**(2人目を1組だけで実行すると1人目のエントリが消える。2026-10-01、風真いろは追加時に発覚)
 - `npm run gen-dep -- <Mod.Art.xml> <out.dep>`: `.dep`を機械生成
 
-## 色バグは解決済み(旧: 未解決の色バグ)
+**生成スクリプトを実行したら、コミット前に`git diff`で共有ファイル(`tools/IconBuild/XLPs/*.xlp`・`ArtDefs/FallbackLeaders.artdef`)の変更が追加行のみ(削除行なし)か確認する。** 2人目のリーダーを追加したとき、スクリプトが共有ファイルを作り直して1人目のエントリが消えたまま、BLPのサイズが小さいことで後から気づいた前例がある(2026-10-01、現在は追記方式に直してある)。
 
-リーダー選択画面の能力アイコン色/パウズメニューの黒表示に関する調査(白シルエット化を試して撤回した経緯を含む)は本Mod固有のデバッグログのため、`docs/civ6-icon-color-bug-investigation.md`に分離してある。原因は`UpdateColors`アクションにXML形式のファイルを渡していたことで、SQL形式(`.sql`)に切り替えれば解決する(2026-09-23、姉妹Mod civ6mod-hololive-holoxで実機確認済み。恒久的な手順は`.claude/skills/bootstrap-leader/SKILL.md`4節に昇格済み)。アイコンのピクセル形式(白シルエットかフルカラーか)自体はこのバグの原因ではなかった。本Mod(regloss)にも同じ修正(`XML/Colors.sql`の新設と、`.modinfo`の`UpdateColors`の参照先差し替え)を適用済み。
+## 色バグはholoxで解決済み(reglossは修正適用済み・実機未確認)
+
+リーダー選択画面の能力アイコン色/パウズメニューの黒表示に関する調査(白シルエット化を試して撤回→再挑戦→解決に至った経緯)は本Mod固有のデバッグログのため、`docs/civ6-icon-color-bug-investigation.md`に分離してある。原因は`UpdateColors`アクションにXML形式のファイルを渡していたことで、SQL形式(`.sql`)に切り替えれば解決する(恒久的な手順は`.claude/skills/bootstrap-leader/SKILL.md`4節に昇格済み)。アイコンのピクセル形式(白シルエットかフルカラーか)自体はこのバグの原因ではなかった。
 
 ## 白い模様部分を透過(切り抜き)にする時は、2回レンダリングして合成(dest-out)しない
 
-キャラクター元絵(SVG等)に「白い塗り」で描かれた模様(目のハイライト、腹の白い斑点等)があり、それをバッジのシルエット上で「背景円の色が透けて見える穴」として表現したい場合(2色構成のまま模様を出す手法)、**白い模様部分だけを別途レンダリングしてマスクを作り、`dest-out`ブレンドモードで本体から差し引く、という2回レンダリング方式は避けること**。姉妹Mod civ6mod-hololive-holoxの文明アイコン(シャチ)制作で以下の不具合を踏んだ(2026-09-24):
+キャラクター元絵(SVG等)に「白い塗り」で描かれた模様(目のハイライト、腹の白い斑点等)があり、それをバッジのシルエット上で「背景円の色が透けて見える穴」として表現したい場合(2色構成のまま模様を出す手法。姉妹Mod civ6mod-hololive-holoxの沙花叉クロヱの文明アイコンで実施)、**白い模様部分だけを別途レンダリングしてマスクを作り、`dest-out`ブレンドモードで本体から差し引く、という2回レンダリング方式は避けること**。実機で以下の不具合を踏んだ(2026-09-24):
 
 - 2つの独立したラスタライズ結果(本体全体のレンダリングと、模様部分だけのレンダリング)は、境界のアンチエイリアシングが微妙に食い違う。これを`dest-out`で合成すると、**細い線状の模様が実際より大きく・丸く歪んで切り抜かれる**(本人から「パスを捏造している」と指摘された不具合)。単体のレンダリング結果を目視しても分かりにくく、合成後の結果を元絵と拡大比較して初めて気づいた
 
