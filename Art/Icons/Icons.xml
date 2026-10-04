@@ -2,7 +2,6 @@
 <GameData>
 	<!--
 		一条莉々華/一条コーポレーションのアイコン。
-		文明アイコンはArt/Source/ichijou-corporation-logo-square.png(1100x1100)から各サイズを再生成したもの。
 		指導者アイコンは暫定的に旧ロゴ画像を流用しており、本人の肖像画からの切り出しに差し替える予定。
 	-->
 	<IconTextureAtlases>
