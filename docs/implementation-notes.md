@@ -71,3 +71,14 @@
 ## 文明のBGM(`ArtDefs/Civilizations.artdef`)
 
 - 一条莉々華(`CIVILIZATION_REGLOSS_ICHIJOU`)のBGMは、バニラのブラジル(`XrefName`=`Brazil`)の曲を借りている。2026-10-04に実機で鳴ったのを確認した(本人の提案でブラジルにした)。仕組みと登録手順は`.claude/skills/implement-leader-abilities/SKILL.md`の「文明のBGM」節。
+
+## 儒烏風亭らでん(`XML/JuufuuteiRaden.xml`)
+
+設計は`docs/design.md`の「儒烏風亭らでん」節。文明・指導者・ダミーのTrait/アジェンダ・LoadingInfo・DiplomacyInfo・固有ユニット「学芸員」を1ファイルにまとめ、Config.xml・Colors.sql・Icons.xml・Text/ja_JP/Text.xml・`ArtDefs/Leaders.artdef`・`.modinfo`は一条莉々華のファイルへ追記した。
+
+- **画像**: 文明アイコン(能面のSVG→白シルエット、長辺を直径の90%)・指導者アイコン(顔)・外交交渉画面の静止画・ローディング画面のポートレートと背景を`tools/png2dds`の各スクリプトで生成し、BLPは`make-leader-icons`の日本語ユーザー名回避手順でクックした。元素材は`Art/Source/juufuutei-raden/`(git管理外)。ローディング・外交の背景は`SAMPLE`の透かしと`©COVER`入りの素材(1000px幅を拡大)で、差し替え待ち
+- **文明BGM**: `ArtDefs/Civilizations.artdef`の`XrefName`=`Canada`(嵐の訪れの文明の曲)。実機で鳴るのを確認した(2026-10-04)。嵐の訪れ無しの環境での動作は未確認
+- **学芸員(`UNIT_REGLOSS_JUUFUUTEI_CURATOR`)**: バニラの考古学者の行をコピーして`BaseMoves`・`Cost`・`Name`・`Description`・`TraitType`だけ変えた。`TypeTags`は`CLASS_LANDCIVILIAN`・`CLASS_ARCHAEOLOGIST`、`Unit_BuildingPrereqs`は考古博物館(`NumSupported=1`)。Base Schemaの列だけで組み、拡張パック限定の列(`CanEarnExperience`・`CanFormMilitaryFormation`)は入れていない。`UnitAiInfos`はバニラの考古学者にも無いので足していない。実機で購入・発掘・秘宝の傑作登録・移動力+2・コスト50%が動くことを確認した(2026-10-04)
+- **実機の罠: FireTunerで直接出したユニットは拠点都市(Home City)が無い。** 発掘した秘宝が傑作として登録されず、2回目の発掘もできなくなる。置換ユニットの欠陥ではなく出し方の違いだった。考古博物館のある都市で購入(または生産)すること
+- **実機の罠: 固有ユニットは、見た目が置換元と同じでも`ArtDefs/Units.artdef`に専用の要素が要る。** 無いと汎用モデルになった(学芸員は労働者のような見た目、うには戦士系)。バニラの考古学者・斥候の要素を複製して`m_Name`だけ変え、`.dep`の`Units`コンシューマの`ArtDefDependencyPaths`と`.modinfo`の`Files`に登録した。手順は`.claude/skills/add-unique-content/SKILL.md`。`.dep`は手で2行(`Civilizations.artdef`・`Units.artdef`)足してあるので、`gen-dep`で作り直すと消える
+- **歴史的瞬間の挿絵(うに)**: フラットな色のイラストが公式の挿絵の横でカラフルすぎたので、`gen-moment-illustration`に`cutout-sepia`モード(公式の最も暗い茶から淡いクリーム色の2色)を足して作り直した。方式と不採用だった方法は`make-moment-illustration` Skill

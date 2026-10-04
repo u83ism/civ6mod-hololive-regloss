@@ -3,7 +3,7 @@
 	<!--
 		儒烏風亭らでんの土台(2026-10-04)。文明・指導者・ダミーのTrait・ダミーのアジェンダ・ローディング/外交交渉画面の背景だけで、
 		効果(Modifier)は一切入れていない。固有ユニット「学芸員」(考古学者の置換)が実機で動くかを、能力無しのバニラ状態で
-		確認するための足場。設計はdocs/character-juufuutei-raden-brainstorm.mdを参照(まだ確定していない部分が多い)。
+		確認するための足場。設計はdocs/design.mdの「儒烏風亭らでん」節を参照(未決の論点が残っている)。
 
 		ID命名は一条莉々華に揃えた(文明ID=姓のテーマ名、指導者ID=姓+名)。文明の表示名(LOC)は暫定。
 		ダミーのアジェンダは、効果の無いTraitを紐づけただけ(好み・嫌いは未設計)。
@@ -81,7 +81,7 @@
 	</DiplomacyInfo>
 
 	<!--
-		UU「学芸員」(考古学者UNIT_ARCHAEOLOGISTの置換)。設計メモ(docs/character-juufuutei-raden-brainstorm.md): 移動力+2、コスト50%(400→200)。
+		UU「学芸員」(考古学者UNIT_ARCHAEOLOGISTの置換)。設計はdocs/design.mdの「儒烏風亭らでん」節: 移動力+2、コスト50%(400→200)。
 		コスト50%は本人の決定(2026-10-04)。バニラUUの割安の前例では最大級(イェニチェリ50%)。
 
 		バニラの考古学者の行(Base/Assets/Gameplay/Data/Units.xml)をそのままコピーして、BaseMoves(4→6)とCost(400→200)と
