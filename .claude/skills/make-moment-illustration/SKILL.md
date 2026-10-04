@@ -31,8 +31,9 @@ description: Civ6 Modで、歴史的瞬間(Historic Moment、時代スコアの�
 ## 2. 元絵の用意
 
 - `Art/Source/<キャラ名>/`に置く(`Art/Source/`はgit管理外)。Steamで配布するので、権利的に使える素材か本人に確認する
-- 元絵の種類で`cutout`か`photo`かを決める:
+- 元絵の種類で`cutout`・`cutout-sepia`・`photo`のどれかを決める:
   - `cutout`: **透過背景のキャラ絵**。余白をトリムし、高さの85%で中央に配置する。色はそのまま
+  - `cutout-sepia`: `cutout`と同じ配置のあと、**淡い2色のセピア**に変換する(`moment-illustration-tone.ts`の`applySepiaDuotone`。絵の明るさの幅を、公式の最も暗い茶(約`69,52,26`)から淡いクリーム色(`242,230,196`、羊皮紙に近い自前の値)へ当てる)。**フラットな色のイラストで、元から輪郭線があり、公式の挿絵の横でカラフルすぎるとき**に使う(うに、2026-10-04、トイプードルの透過PNGイラストで確定)。試して不採用だったもの: (1)写真用の線画化を掛ける→元の輪郭線の外側にさらに暗い輪郭が重なって二重線になる、(2)写真用の明るさ分布の合わせ込み(`photo`と同じ)→白とクリームと茶の2〜3色しかない絵では明るさの差が潰れ、襟や陰影が消えて劣化する、(3)明るさを公式の絵の範囲(最大で黄土色`224,197,127`)に当てる→クリーム色の犬が茶色い犬になる。公式の最も明るい色が黄土色なので、明るい絵は`photo`の方式だと必ず濃く見える
   - `photo`: **不透明な写真・風景画**。キャンバスの縦横比(456:332)に合わせて**下端基準・左右中央**でトリミング(空や天井など上側が削れる)→縮小→公式調の色合わせ+線画
 - 命名は公式に倣う: UUは`Moment_UniqueUnit_<名前>`、UD/UBは`Moment_Infrastructure_<名前>`(例: holoxの`Moment_Infrastructure_HoloxOrcaParadise`、regglossの`Moment_UniqueUnit_ReglossIchijou_Uni`)
 
@@ -41,13 +42,14 @@ description: Civ6 Modで、歴史的瞬間(Historic Moment、時代スコアの�
 `tools/png2dds`で:
 
 ```
-npm run gen-moment-illustration -- <cutout|photo> <momentIllustrationName> <Art/Source/からの相対パス>
+npm run gen-moment-illustration -- <cutout|cutout-sepia|photo> <momentIllustrationName> <Art/Source/からの相対パス>
 # 例(holox): npm run gen-moment-illustration -- photo Moment_Infrastructure_HoloxOrcaParadise sakamata-chloe/waterpark.jpg
+# 例(うに): npm run gen-moment-illustration -- cutout-sepia Moment_UniqueUnit_ReglossIchijou_Uni ichijou-ririka/toy-poodle.png
 ```
 
 - 出力: `tools/IconBuild/Textures/<名前>.png`(確認用の中間ファイル、コミットしない)・`.dds`(git管理外)・`.tex`(公式`Moment_UniqueUnit_Cree.tex`から名前だけ差し替え)と、`tools/IconBuild/XLPs/RegLoss_Moments.xlp`
 - **XLPは全挿絵で1つを共有し、実行のたびに既存エントリを残して追記する**(上書きしない)。挿絵を削除したいときはXLPから手で消す
-- `photo`モードの色合わせ(`moment-illustration-tone.ts`): 実行時にSDK Assetsの公式`Moment_*.dds`全部を読み、明るさごとの平均色と明るさ分布を実測する。写真の明るさ分布を公式に揃え、輪郭(ぼかした明るさのSobel)を暗くして線画に見せ、明るさ→公式の色に置き換える。色は手で決めた値ではない
+- `photo`モードの色合わせ(`moment-illustration-tone.ts`の`applyOfficialTone`。**実写の写真用で、`cutout-sepia`には使わない**): 実行時にSDK Assetsの公式`Moment_*.dds`全部を読み、明るさごとの平均色と明るさ分布を実測する。写真の明るさ分布を公式に揃え、輪郭(ぼかした明るさのSobel)を暗くして線画に見せ、明るさ→公式の色に置き換える。色は手で決めた値ではない
   - 線の出方は`INK_EDGE_START`/`INK_EDGE_FULL`/`INK_MAX_DARKENING`で調整する(目視で決めた値)。細かい建物が多い俯瞰写真は線がごちゃつきやすい
   - 色合わせだけ(線画なし)は、本人の評価では「写真加工したの丸出し」で不採用だった(2026-09-29)
 - **本人に仕上がりを見せる**: 羊皮紙色(`233,222,196`)で背景を埋めたプレビューをTempに作り、**絶対パス**で伝える(グローバル規則「チャットでのパス表記」)
