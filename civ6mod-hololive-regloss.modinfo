@@ -82,6 +82,7 @@
 		<File>Text/zh_Hant_HK/Text.xml</File>
 		<File>Art/Icons/Icons.xml</File>
 		<File>ArtDefs/Civilizations.artdef</File>
+		<File>ArtDefs/Units.artdef</File>
 		<File>ArtDefs/Leaders.artdef</File>
 		<File>ArtDefs/FallbackLeaders.artdef</File>
 		<File>civ6mod-hololive-regloss.dep</File>
