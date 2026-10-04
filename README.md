@@ -16,7 +16,6 @@ Civilization VI の新規文明追加Mod。hololive ReGLOSSをモチーフにし
 - 外交交渉画面のクレオパトラ対策(フォールバック静止画)、ローディング画面(ポートレート・背景)、外交交渉画面の背景(`DiplomacyInfo`)、ゲーム設定画面の全身ポートレート「Leader Placard」をすべて実装・実機確認済み(仕組みの詳細は`.claude/skills/make-fallback-portrait/references/fallback-and-loading-schema.md`参照)
 - ローカライズは日本語(正本)・英語・簡体字中国語・繁体字中国語の4言語に対応
 - 固有区域/施設/建造物は未着手
-- 既知の未解決問題(姉妹Mod holoxで原因は判明し、`XML/Colors.sql`への切り替えは適用済み。アイコン再ビルドと実機確認がまだ): リーダー選択画面の文明能力アイコンとパウズメニューのバッジが、本Modの`PlayerColors`ではなくバニラの汎用色プールで着色されてしまう(詳細は`docs/civ6-icon-color-bug-investigation.md`)
 
 ## 構成
 
@@ -41,7 +40,6 @@ Civilization VI の新規文明追加Mod。hololive ReGLOSSをモチーフにし
 
 ## TODO
 
-- [ ] リーダー選択画面の能力アイコン/パウズメニューの色不具合の修正(`XML/Colors.sql`への切り替え。holoxで解決を確認済み、こちらはアイコン再ビルドと実機確認がまだ)
 - [ ] 指導者固有能力「推し事お疲れ様でした～」(交易路容量+1・交易路産出+1×4)の効果自体の実機確認
 - [ ] 指導者固有能力「大天才」の「大企業」改善ボーナス(文化力/科学力+4・ゴールド+2)の実機確認(「産業」側の+2/+2/+1は確認済み)
 - [ ] UniqueDistrict / UniqueImprovement / UniqueBuilding の設計(UniqueUnit「うに」は実装済み)

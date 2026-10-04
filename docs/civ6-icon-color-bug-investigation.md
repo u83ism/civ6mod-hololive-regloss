@@ -1,6 +1,6 @@
-# holoxで解決済み・reglossは修正適用済みだが実機未確認: リーダー選択画面の能力アイコン色/パウズメニューの黒表示
+# 解決済み: リーダー選択画面の能力アイコン色/パウズメニューの黒表示
 
-> 汎用的な制作手順ではなく、本Mod固有バグのデバッグログ(`.claude/skills/make-leader-icons/references/icon-blp-pipeline.md`から分離)。**2026-09-23、姉妹Mod holoxで原因・修正方法が確定した(末尾の「解決」節を参照)。本Mod(regloss)には同じ修正をコード上は適用したが、アイコンの再ビルドと実機確認は2026-10-04時点で未実施(確認できたらこの見出しを「解決済み」に直す)。恒久的な教訓は`.claude/skills/bootstrap-leader/SKILL.md`4節に昇格済みなので、次に新しい指導者を追加するときはそちらを読めば足りる。** 以下は解決に至るまでの調査経緯の記録。
+> 汎用的な制作手順ではなく、本Mod固有バグのデバッグログ(`.claude/skills/make-leader-icons/references/icon-blp-pipeline.md`から分離)。**2026-09-23、姉妹Mod holoxで原因・修正方法が確定した(末尾の「解決」節を参照)。本Mod(regloss)にも同じ修正(`XML/Colors.sql`への切り替え+文明アイコン全サイズの白シルエット化・BLP再ビルド)を適用し、2026-10-04に実機で直ったことを確認した(従来のオレンジ・紺ではなく、ピンクベースの白いアイコンで表示される)。恒久的な教訓は`.claude/skills/bootstrap-leader/SKILL.md`4節に昇格済みなので、次に新しい指導者を追加するときはそちらを読めば足りる。** 以下は解決に至るまでの調査経緯の記録。
 
 ## 【試して撤回した】白シルエット化(2026-09-19〜20実機検証、最終的にフルカラー1本に戻した)
 
@@ -102,4 +102,4 @@ Sailor Cat's Modding Tutorial(英語ガイド)の内容自体はColors/PlayerCol
 
 **修正**: `XML/Colors.xml`(XML形式)を`XML/Colors.sql`(実機で正しく着色されている`Hololive 2nd Generation`Mod等と同じ、生SQLの`INSERT OR REPLACE INTO Colors/PlayerColors (...) VALUES (...)`形式)に書き換え、`.modinfo`の`UpdateColors`(`FrontEndActions`/`InGameActions`両方)が読むファイルをこちらに差し替えるだけで、外交交渉画面・パウズメニュー・リーダー選択画面の能力アイコン・ゲーム中の文明アイコンの全箇所が正しい配色になることを、holox側で実機確認した(2026-09-23)。**XML形式の`UpdateColors`パーサー自体に何らかの不具合がある(または実行時に参照するDBコンテキストがSQL版と異なる)と推測されるが、Firaxis内部実装の話でこれ以上の深掘りは困難。「`UpdateColors`には常にSQLを渡す」で実用上確定してよい。** `UpdateDatabase`で読む他のXML(Civilizations.xml/Leaders.xml等)はこの問題の対象外(XMLのまま問題なく動く)。
 
-本Mod(regloss)側にも同じ修正(`XML/Colors.sql`新設・`.modinfo`のUpdateColors差し替え)をコード上は適用した。**ただしアイコンの再ビルドと実機での確認は未実施(2026-10-04時点)。** 恒久的な手順としては`.claude/skills/bootstrap-leader/SKILL.md`4節に昇格したので、次に新しい指導者を追加するときは調査の再実施は不要、そちらに従うだけでよい。
+本Mod(regloss)側にも同じ修正(`XML/Colors.sql`新設・`.modinfo`のUpdateColors差し替え)を適用した。**2026-10-04、文明アイコンを全サイズ白シルエットで作り直してBLPを再ビルドし、実機で直ったことを確認した(従来のオレンジ・紺ではなく、ピンクベースの白いアイコンになった)。** 恒久的な手順としては`.claude/skills/bootstrap-leader/SKILL.md`4節に昇格したので、次に新しい指導者を追加するときは調査の再実施は不要、そちらに従うだけでよい。
