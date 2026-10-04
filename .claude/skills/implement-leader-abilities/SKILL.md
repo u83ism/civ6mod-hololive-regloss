@@ -58,6 +58,15 @@ Modifier/Requirementの組み合わせでは表現できない効果(例:「倒�
 
 まだ着手していないTrait実装パターンに手を付けるときは、先に`docs/civ6-research/trait-and-identity-patterns.md`を読むこと。文明特性・指導者特性のXML構造(`TraitModifiers`→`Modifiers`→`ModifierArguments`、地形条件の`RequirementSets`系)、文明カラー(`Colors`/`PlayerColors`)、AIの好み(`AiListTypes`/`AiLists`/`AiFavoredItems`)、多言語対応(`LocalizedText`への変換手順)、Civilopedia/都市名ランダム化などの細部調整をciv6wiki.info(2017〜2020年執筆、SDKサンプルを素材にした写経チュートリアル)から要約してある。**このリポジトリで実機確認した事実ではない**ので、上記の実機確認済みパターンと矛盾したらそちらを優先する。実機確認できたらこのSKILL.mdへ確認済みパターンとして書き足すこと。
 
+## 文明のBGMをバニラ文明の曲に差し替える(`ArtDefs/Civilizations.artdef`)
+
+文明のBGMは、`ArtDefs/Civilizations.artdef`の`Audio`コレクションに書いた`XrefName`(バニラの文明名、例: `Brazil`・`Japan`・`America`)で決まる。要素名(`m_Name`)は自分の文明タイプ。**実機確認済み**(2026-10-04、一条莉々華=`Brazil`でブラジルの曲が鳴った。姉妹Mod holoxでも沙花叉クロヱ=`America`・風真いろは=`Japan`で同方式)。
+
+- 書き方: バニラの`Base/ArtDefs/Civilizations.artdef`から必要な文明の要素だけ複製し、`m_Name`を自分の文明タイプ、`XrefName`を借りる曲の文明名に差し替える。1ファイルに複数文明を並べてよい
+- 登録(3点そろえる): ①`ArtDefs/Civilizations.artdef`を置く ②`.dep`の`ConsumerName text="Civilizations"`の`ArtDefDependencyPaths`に`<Element text="Civilizations.artdef"/>`を追加 ③`.modinfo`の`<Files>`に`ArtDefs/Civilizations.artdef`を追加
+- `.artdef`はAssetCookerのビルド対象ではないので、ModBuddyでビルドし直さなくても`Mods`フォルダ(リポジトリへのリンク)から読まれる
+- 独自の曲を入れるにはWwise(v2015.1.9)でSoundBankを作る必要があり、未着手(`research-mod`の`ChangeMusic.md`/`Wwise.md`参照)
+
 ## 説明文(`_NAME`/`_DESCRIPTION`)を書くときは
 
 このSkillの範囲外。`write-game-text` Skillを使うこと(公式Trait説明文422件の文体調査等に基づくスタイルガイド)。
