@@ -16,7 +16,8 @@
     "gen-loading-portrait": "tsx gen-loading-portrait.ts",
     "preview-fallback-dark-bg": "tsx preview-fallback-dark-bg.ts",
     "typecheck": "tsc --noEmit",
-    "gen-silhouette-master": "tsx gen-silhouette-master.ts"
+    "gen-silhouette-master": "tsx gen-silhouette-master.ts",
+    "gen-vertical-split": "tsx gen-vertical-split.ts"
   },
   "dependencies": {
     "pngjs": "^7.0.0",
