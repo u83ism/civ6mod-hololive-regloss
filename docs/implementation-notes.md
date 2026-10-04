@@ -67,3 +67,7 @@
 **2026-09-21、ローディング画面(新規ゲーム開始時)にも一条莉々華の立ち絵・背景を実装、実機確認済み**(本人評価「パーフェクト。素晴らしい」)。`LoadingInfo`テーブル(`XML/Leaders.xml`)に`ForegroundImage="LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL"`/`BackgroundImage="LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND"`の行を追加。civ6wiki.infoの画像名(`hogehoge_LoadingInfo_*`)・XLP名(`UILeaders.xlp`)は実在せず架空だったと判明したため、ゲーム本体の`LoadScreen.lua`/DBスキーマ/公式DLC実データを直接読んで裏取りした(詳細は`.claude/skills/make-fallback-portrait/references/fallback-and-loading-schema.md`)。**背景画像はキャラクターを描き込む必要がない**(`LoadScreen.xml`上、背景とポートレートは完全に別レイヤーで重ねられる仕組みのため)ことが分かり、`Art/Source/ichijou-ririka/wallpaper-broadcast-night.webp`(環境イラスト、キャラなし)を中央クロップして使用。ポートレート側は`FALLBACK_NEUTRAL_*`と全く同じ加工(膝下クロップ+上部余白+下部フェード)が高さ1024向けにそのまま使い回せた。
 
 `Art/Source/ichijou-ririka/`(一条莉々華関連の元画像は2026-10-04にこのサブディレクトリへ移した。追加指導者が出てきたため)には他に、絵師(X上で公開)からのアイコン加工元画像(`ichijou-corporation-logo1〜3.jpg`、複数パターンが1枚にまとまっており切り出しが必要だった)、`ichijou-ririka-stand.webp`(2000x2000、全身立ち絵)、他の壁紙素材数点(`wallpaper-broadcast-daytime.webp`等)が置いてある。`wallpaper-broadcast-daytime.webp`は2026-09-23時点で未使用。
+
+## 文明のBGM(`ArtDefs/Civilizations.artdef`)
+
+- 一条莉々華(`CIVILIZATION_REGLOSS_ICHIJOU`)のBGMは、バニラのブラジル(`XrefName`=`Brazil`)の曲を借りている。2026-10-04に実機で鳴ったのを確認した(本人の提案でブラジルにした)。仕組みと登録手順は`.claude/skills/implement-leader-abilities/SKILL.md`の「文明のBGM」節。
