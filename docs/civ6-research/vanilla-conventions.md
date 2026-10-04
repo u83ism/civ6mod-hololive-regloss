@@ -134,7 +134,8 @@
 ### 公式の前例: コンゴ「ンキシ」と都市国家キャンディ
 
 - コンゴの文明能力「ンキシ」(`TRAIT_CIVILIZATION_NKISI`): 彫刻・遺物・秘宝それぞれに食料+2・生産力+2・信仰力+1・ゴールド+4(`MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD`)。説明文にはこのほか、大著述家・大芸術家・大音楽家・大商人ポイント+50%、宮殿の傑作スロット5つも入る
-- 都市国家キャンディ(宗教系、`LEADER_MINOR_CIV_KANDY`)の宗主国ボーナス: 新しい自然遺産を発見するたびに遺物を獲得し、すべての遺物から信仰力+50%。`Leaders.xml`の`MINOR_CIV_KANDY_UNIQUE_INFLUENCE_GRANT_BONUS`(`MODIFIER_ALL_PLAYERS_ATTACH_MODIFIER`、条件`PLAYER_IS_SUZERAIN`)が、内側の`MINOR_CIV_KANDY_GRANT_RELIC_BONUS`(`MODIFIER_PLAYER_ADJUST_NATURAL_WONDER_RELIC`、`Amount=1`)を付与する2段構成。信仰力+50%は別の`MINOR_CIV_KANDY_BETTER_RELIC_BONUS`(`MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD`)。内側のModifierを文明・指導者のTraitから直接付ける流用は未確認
+- 都市国家キャンディ(宗教系、`LEADER_MINOR_CIV_KANDY`)の宗主国ボーナス: 新しい自然遺産を発見するたびに遺物を獲得し、すべての遺物から信仰力+50%。`Leaders.xml`の`MINOR_CIV_KANDY_UNIQUE_INFLUENCE_GRANT_BONUS`(`MODIFIER_ALL_PLAYERS_ATTACH_MODIFIER`、条件`PLAYER_IS_SUZERAIN`)が、内側の`MINOR_CIV_KANDY_GRANT_RELIC_BONUS`(`MODIFIER_PLAYER_ADJUST_NATURAL_WONDER_RELIC`、`Amount=1`)を付与する2段構成。信仰力+50%は別の`MINOR_CIV_KANDY_BETTER_RELIC_BONUS`(`MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD`)。**内側のModifierを、宗主国の条件を外して指導者のTraitから直接付ける流用は、実機で動いた**(2026-10-05、儒烏風亭らでんの「芸術への渇望」)
+- 自然遺産の「発見」: ゲームは「自分の文明として初めて発見」(`MOMENT_FIND_NATURAL_WONDER`、時代スコア+1)と「世界で初めて発見」(`MOMENT_FIND_NATURAL_WONDER_FIRST_IN_WORLD`、+3)を別に扱い、発見のイベント`NaturalWonderRevealed`も最後の引数`wasFirstToFind`で区別する。他の文明に先に見つけられていても、自分が初めて見つければ発見として扱われる。遺物を与える効果(`EFFECT_ADJUST_NATURAL_WONDER_RELIC`)の判定そのものはゲーム本体のプログラム側で読めず、他の文明に先に発見された遺産でも遺物が入るかは未確認(状況証拠は入る側)。斥候以外(地図の交換・視界の共有)の発見でも成立するかも未確認
 
 ### 所持ゴールドを条件にする手段は無い
 

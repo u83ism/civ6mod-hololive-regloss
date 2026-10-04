@@ -385,16 +385,16 @@
 			<Text>儒烏風亭らでん</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME" Language="ja_JP">
-			<Text>(仮)文明能力</Text>
+			<Text>芸術に満たされて</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_DESCRIPTION" Language="ja_JP">
-			<Text>(未実装)</Text>
+			<Text>[ICON_GreatWork_Landscape] 傑作 (芸術)、 [ICON_GreatWork_Relic] 遺物、 [ICON_GreatWork_Artifact] 秘宝からそれぞれ [ICON_Food] 食料+4、 [ICON_Production] 生産力+4、 [ICON_Faith] 信仰力+4、 [ICON_Culture] 文化力+4。</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME" Language="ja_JP">
-			<Text>(仮)指導者能力</Text>
+			<Text>芸術への渇望</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_DESCRIPTION" Language="ja_JP">
-			<Text>(未実装)</Text>
+			<Text>ターンごとに [ICON_GreatArtist] 大芸術家ポイント+2。新しい自然遺産を発見するたびに [ICON_GreatWork_Relic] 遺物を獲得する。</Text>
 		</Row>
 		<Row Tag="LOC_AGENDA_REGLOSS_JUUFUUTEI_RADEN_NAME" Language="ja_JP">
 			<Text>(仮)アジェンダ</Text>
