@@ -37,7 +37,7 @@ Civ/Leaderの選択画面自体は`bootstrap-leader` Skillの範囲で(アイコ
 
 **生成スクリプトを実行したら、コミット前に`git diff`で共有ファイル(`tools/IconBuild/XLPs/*.xlp`・`ArtDefs/FallbackLeaders.artdef`)の変更が追加行のみ(削除行なし)か確認する。** 2人目のリーダーを追加したとき、スクリプトが共有ファイルを作り直して1人目のエントリが消えたまま、BLPのサイズが小さいことで後から気づいた前例がある(2026-10-01、現在は追記方式に直してある)。
 
-## 色バグはholoxで解決済み(reglossは修正適用済み・実機未確認)
+## 色バグは解決済み(holox・reglossとも実機確認済み)
 
 リーダー選択画面の能力アイコン色/パウズメニューの黒表示に関する調査(白シルエット化を試して撤回→再挑戦→解決に至った経緯)は本Mod固有のデバッグログのため、`docs/civ6-icon-color-bug-investigation.md`に分離してある。原因は`UpdateColors`アクションにXML形式のファイルを渡していたことで、SQL形式(`.sql`)に切り替えれば解決する(恒久的な手順は`.claude/skills/bootstrap-leader/SKILL.md`4節に昇格済み)。アイコンのピクセル形式(白シルエットかフルカラーか)自体はこのバグの原因ではなかった。
 
