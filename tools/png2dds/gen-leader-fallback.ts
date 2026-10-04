@@ -10,7 +10,7 @@
 // width/height/mipmap count substituted, since those values differ per character unlike the
 // fixed-size badge icon templates) and .xlp.
 // Usage: tsx gen-leader-fallback.ts <leaderId> <standingArtFileName>
-// Example: tsx gen-leader-fallback.ts REGLOSS_ICHIJOU_RIRIKA ichijou-ririka-stand.webp
+// Example: tsx gen-leader-fallback.ts REGLOSS_ICHIJOU_RIRIKA ichijou-ririka/ichijou-ririka-stand.webp
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";

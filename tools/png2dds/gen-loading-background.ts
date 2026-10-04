@@ -11,7 +11,7 @@
 // wallpaper's aspect ratio doesn't match. Also generates the sidecar .tex (copied from the
 // matching official template with mipmap count substituted) and .xlp.
 // Usage: tsx gen-loading-background.ts <leaderId> <wallpaperFileName>
-// Example: tsx gen-loading-background.ts REGLOSS_ICHIJOU_RIRIKA wallpaper-broadcast-night.webp
+// Example: tsx gen-loading-background.ts REGLOSS_ICHIJOU_RIRIKA ichijou-ririka/wallpaper-broadcast-night.webp
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";

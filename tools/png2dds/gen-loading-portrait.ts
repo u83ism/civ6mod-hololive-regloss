@@ -10,7 +10,7 @@
 // different registration path (plain UITexture XLP class, like badge icons -- no ArtDef, unlike
 // FALLBACK_NEUTRAL_* which goes through FallbackLeaders.artdef's LeaderFallback class).
 // Usage: tsx gen-loading-portrait.ts <leaderId> <standingArtFileName>
-// Example: tsx gen-loading-portrait.ts REGLOSS_ICHIJOU_RIRIKA ichijou-ririka-stand.webp
+// Example: tsx gen-loading-portrait.ts REGLOSS_ICHIJOU_RIRIKA ichijou-ririka/ichijou-ririka-stand.webp
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
