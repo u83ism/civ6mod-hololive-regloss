@@ -396,12 +396,6 @@
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_DESCRIPTION" Language="ja_JP">
 			<Text>ターンごとに [ICON_GreatArtist] 大芸術家ポイント+2。新しい自然遺産を発見するたびに [ICON_GreatWork_Relic] 遺物を獲得する。</Text>
 		</Row>
-		<Row Tag="LOC_AGENDA_REGLOSS_JUUFUUTEI_RADEN_NAME" Language="ja_JP">
-			<Text>(仮)アジェンダ</Text>
-		</Row>
-		<Row Tag="LOC_AGENDA_REGLOSS_JUUFUUTEI_RADEN_DESCRIPTION" Language="ja_JP">
-			<Text>(未実装)</Text>
-		</Row>
 		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_CAPITAL" Language="ja_JP">
 			<Text>京都</Text>
 		</Row>

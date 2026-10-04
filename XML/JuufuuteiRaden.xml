@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameData>
 	<!--
-		儒烏風亭らでんの土台(2026-10-04)。文明・指導者・ダミーのTrait・ダミーのアジェンダ・ローディング/外交交渉画面の背景だけで、
-		効果(Modifier)は一切入れていない。固有ユニット「学芸員」(考古学者の置換)が実機で動くかを、能力無しのバニラ状態で
-		確認するための足場。設計はdocs/design.mdの「儒烏風亭らでん」節を参照(未決の論点が残っている)。
+		儒烏風亭らでん。文明・指導者・文明能力・指導者能力・アジェンダ(バニラの文化重視を流用)・ローディング/外交交渉画面の背景・
+		固有ユニット「学芸員」・固有建造物「寄席」。設計はdocs/design.mdの「儒烏風亭らでん」節を参照(未決の論点が残っている)。
 
 		ID命名は一条莉々華に揃えた(文明ID=姓のテーマ名、指導者ID=姓+名)。文明の表示名(LOC)は暫定。
-		ダミーのアジェンダは、効果の無いTraitを紐づけただけ(好み・嫌いは未設計)。
 	-->
 	<Types>
 		<Row Type="CIVILIZATION_REGLOSS_JUUFUUTEI" Kind="KIND_CIVILIZATION"/>
 		<Row Type="LEADER_REGLOSS_JUUFUUTEI_RADEN" Kind="KIND_LEADER"/>
 		<Row Type="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" Kind="KIND_TRAIT"/>
 		<Row Type="TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN" Kind="KIND_TRAIT"/>
-		<Row Type="TRAIT_AGENDA_REGLOSS_JUUFUUTEI_RADEN" Kind="KIND_TRAIT"/>
 		<Row Type="UNIT_REGLOSS_JUUFUUTEI_CURATOR" Kind="KIND_UNIT"/>
 		<Row Type="TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR" Kind="KIND_TRAIT"/>
 		<Row Type="BUILDING_REGLOSS_JUUFUUTEI_YOSE" Kind="KIND_BUILDING"/>
@@ -23,7 +20,6 @@
 	<Traits>
 		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" Name="LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME" Description="LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_DESCRIPTION"/>
 		<Row TraitType="TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN" Name="LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME" Description="LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_DESCRIPTION"/>
-		<Row TraitType="TRAIT_AGENDA_REGLOSS_JUUFUUTEI_RADEN"/>
 	</Traits>
 
 	<Leaders>
@@ -60,12 +56,22 @@
 		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_09"/>
 	</CityNames>
 
+	<!--
+		アジェンダは作り込まず、バニラの「文化重視」(AGENDA_CULTURED)をそのまま使う(本人判断。docs/design.md)。
+		他のHololive Mod(夜空メルのAGENDA_YOZORA_MEL_CULTURED)と同じ形: 専用のアジェンダ型を1つ足し、名前・説明・Traitは
+		バニラのもの(LOC_AGENDA_CULTURED_*、TRAIT_AGENDA_PREFER_CULTURE)を指す。ExclusiveAgendasで、バニラ本体の
+		AGENDA_CULTUREDと同時に割り当てられないようにする。好み・嫌いの判定はバニラの文化重視のまま。
+	-->
 	<Agendas>
-		<Row AgendaType="AGENDA_REGLOSS_JUUFUUTEI_RADEN" Name="LOC_AGENDA_REGLOSS_JUUFUUTEI_RADEN_NAME" Description="LOC_AGENDA_REGLOSS_JUUFUUTEI_RADEN_DESCRIPTION"/>
+		<Row AgendaType="AGENDA_REGLOSS_JUUFUUTEI_RADEN" Name="LOC_AGENDA_CULTURED_NAME" Description="LOC_AGENDA_CULTURED_DESCRIPTION"/>
 	</Agendas>
 
+	<ExclusiveAgendas>
+		<Row AgendaOne="AGENDA_REGLOSS_JUUFUUTEI_RADEN" AgendaTwo="AGENDA_CULTURED"/>
+	</ExclusiveAgendas>
+
 	<AgendaTraits>
-		<Row AgendaType="AGENDA_REGLOSS_JUUFUUTEI_RADEN" TraitType="TRAIT_AGENDA_REGLOSS_JUUFUUTEI_RADEN"/>
+		<Row AgendaType="AGENDA_REGLOSS_JUUFUUTEI_RADEN" TraitType="TRAIT_AGENDA_PREFER_CULTURE"/>
 	</AgendaTraits>
 
 	<HistoricalAgendas>

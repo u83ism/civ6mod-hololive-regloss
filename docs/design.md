@@ -171,6 +171,10 @@ Civ6 Modding全般の基礎知識(ファイル構造、modinfoの正しいスキ
 - 前例: マオリの「マラエ」(円形闘技場の置換で、書物スロットなど元の効果を外して差し替え)。宮殿タイプのスロットを宮殿以外が持つ前例は国立歴史博物館(4つ)・アパダーナ(2つ)
 - **名前は「寄席」**(本人判断。2026-10-05。落語の寄席から)。コスト150・維持費1・文化力+2は、バニラの円形闘技場と同じ暫定値(本人は未指定)。見た目(3Dモデル)・アイコンは円形闘技場のまま
 
+#### ユニークアジェンダ(バニラの「文化重視」)
+
+**アジェンダは作り込まず、バニラの「文化重視」(`AGENDA_CULTURED`)をそのまま使う**(本人判断。2026-10-05、「特に作りこむ必要ない」)。「文化力を高めることを重視し、同じように文化力の強化に注力する文明を好む」。文化勝利を狙う方向と合う。他のHololive Mod(夜空メルの`AGENDA_YOZORA_MEL_CULTURED`)と同じ形で、専用のアジェンダ型を足してバニラの名前・説明・Traitを指す。`ExclusiveAgendas`でバニラ本体の`AGENDA_CULTURED`と重ならないようにする。
+
 #### 固有ユニット「学芸員」(考古学者の置換)
 
 **移動力+2(4→6)、生産コスト50%(400→200)**(本人判断。2026-10-04、「歩くのが大変」「コスト50%にしといて」)。
@@ -189,7 +193,7 @@ Civ6 Modding全般の基礎知識(ファイル構造、modinfoの正しいスキ
 
 #### 未決の論点
 
-1. 文明名(暫定は「儒烏風亭一門」で、本人は仮決めのままでよいとしている)、固有建造物の名前、アジェンダ(好み・嫌い)、都市名(暫定10件)
+1. 文明名(暫定は「儒烏風亭一門」で、本人は仮決めのままでよいとしている)、都市名(暫定10件)
 2. 寄席のコスト・維持費・文化力(暫定はバニラの円形闘技場と同じ)。3Dモデルを専用にするか。神の光や国立歴史博物館の効果が寄席に効くか(寄席が円形闘技場として数えられるか)
 3. 美術館と考古博物館を1都市に両方建てられるようにするか(固有建造物で排他を外す案は、置換先の排他の扱いが未確認)
 4. 美術の移動ロックの扱い
@@ -223,8 +227,7 @@ CIVILIZATION_REGLOSS_JUUFUUTEI       (表示名: 儒烏風亭一門、暫定)
 LEADER_REGLOSS_JUUFUUTEI_RADEN       (儒烏風亭らでん)
 TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI
 TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN
-AGENDA_REGLOSS_JUUFUUTEI_RADEN
-TRAIT_AGENDA_REGLOSS_JUUFUUTEI_RADEN
+AGENDA_REGLOSS_JUUFUUTEI_RADEN       (バニラの文化重視AGENDA_CULTUREDを指す。Traitはバニラの`TRAIT_AGENDA_PREFER_CULTURE`)
 UNIT_REGLOSS_JUUFUUTEI_CURATOR       (学芸員)
 TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR
 ```
