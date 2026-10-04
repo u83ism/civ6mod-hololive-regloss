@@ -21,6 +21,12 @@ const OPAQUE_ALPHA_THRESHOLD = 200;
 const INK_EDGE_START = 40;
 const INK_EDGE_FULL = 160;
 const INK_MAX_DARKENING = 0.75;
+// Light end of the sepia gradient for flat-color illustrations: a pale cream-tan close to the parchment
+// background (own choice, not measured). The official art's own bright end is a saturated ochre, which turned a
+// cream-white dog into a brown dog (2026-10-04), so illustrations keep their lightness instead.
+const SEPIA_LIGHT_COLOR = [242, 230, 196] as const;
+// Share of opaque pixels clipped at each end when stretching the picture's luminance range (own choice).
+const SEPIA_CLIP_SHARE = 0.01;
 
 const toLuminance = (red: number, green: number, blue: number): number => 0.299 * red + 0.587 * green + 0.114 * blue;
 
@@ -122,5 +128,30 @@ const applyOfficialTone = (image: RgbaImage, reference: ToneReference): RgbaImag
   return { data: toned, width, height };
 };
 
-export { buildToneReference, applyOfficialTone };
+// Two-color sepia for flat-color illustrations (cutout-sepia): the picture's own luminance range (1st-99th
+// percentile of the opaque pixels) is stretched onto a gradient from the official art's darkest common color to
+// SEPIA_LIGHT_COLOR. No histogram matching and no ink-edge darkening: the art keeps its own contrast and outlines.
+const applySepiaDuotone = (image: RgbaImage, reference: ToneReference): RgbaImage => {
+  const opaqueLuminances: number[] = [];
+  for (let i = 0; i < image.data.length; i += 4) {
+    if (image.data[i + 3]! >= OPAQUE_ALPHA_THRESHOLD) {
+      opaqueLuminances.push(toLuminance(image.data[i]!, image.data[i + 1]!, image.data[i + 2]!));
+    }
+  }
+  opaqueLuminances.sort((first, second) => first - second);
+  const low = opaqueLuminances[Math.floor(opaqueLuminances.length * SEPIA_CLIP_SHARE)] ?? 0;
+  const high = Math.max(low + 1, opaqueLuminances[Math.floor(opaqueLuminances.length * (1 - SEPIA_CLIP_SHARE))] ?? 255);
+  const officialDarkLuminance = reference.luminanceCdf.findIndex((share) => share >= SEPIA_CLIP_SHARE);
+  const dark = reference.colorByLuminance[Math.max(0, officialDarkLuminance)]!;
+  const toned = Buffer.from(image.data);
+  for (let i = 0; i < toned.length; i += 4) {
+    const position = Math.min(1, Math.max(0, (toLuminance(toned[i]!, toned[i + 1]!, toned[i + 2]!) - low) / (high - low)));
+    for (let channel = 0; channel < 3; channel++) {
+      toned[i + channel] = Math.round(dark[channel]! + position * (SEPIA_LIGHT_COLOR[channel]! - dark[channel]!));
+    }
+  }
+  return { data: toned, width: image.width, height: image.height };
+};
+
+export { buildToneReference, applyOfficialTone, applySepiaDuotone };
 export type { ToneReference };

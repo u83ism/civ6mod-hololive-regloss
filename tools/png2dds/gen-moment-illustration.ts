@@ -5,15 +5,18 @@
 // Moment_UniqueUnit_*.dds and Moment_Infrastructure_*.dds in Civ6 SDK Assets
 // pantry/Textures/Expansion1. The elliptical alpha vignette (fully opaque center, fully
 // transparent corners) replicates the falloff measured from their raw alpha channels.
-// Two fit modes:
+// Three fit modes:
 //   cutout: transparent-background character art, trimmed and centered at 85% of the height
+//   cutout-sepia: same placement as cutout, then recolored to a light two-color sepia (official dark brown ->
+//           pale cream-tan, moment-illustration-tone.ts applySepiaDuotone) for flat-color art that would
+//           otherwise look too colorful next to the official art
 //   photo:  opaque photo/illustration, cropped to the canvas aspect ratio (bottom edge kept,
 //           horizontally centered) and then downscaled to fill the whole canvas, then recolored
 //           to the official sepia tone with ink-like edges (moment-illustration-tone.ts; the
 //           reference palette is measured from every official Moment_*.dds at run time)
 // Also generates the sidecar .tex (copied from the official template with only the name
 // substituted) and adds the entry to the shared UI/RegLoss_Moments XLP package (existing entries kept).
-// Usage: tsx gen-moment-illustration.ts <cutout|photo> <momentIllustrationName> <sourceFileName>
+// Usage: tsx gen-moment-illustration.ts <cutout|cutout-sepia|photo> <momentIllustrationName> <sourceFileName>
 // Example: tsx gen-moment-illustration.ts photo Moment_Infrastructure_HoloxOrcaParadise sakamata-chloe/waterpark.jpg
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -26,11 +29,11 @@ import {
   type RgbaImage,
 } from "./moment-illustration-compositing.js";
 import { parseXlpEntryIds, buildMomentXlp } from "./moment-xlp.js";
-import { buildToneReference, applyOfficialTone, type ToneReference } from "./moment-illustration-tone.js";
+import { buildToneReference, applyOfficialTone, applySepiaDuotone, type ToneReference } from "./moment-illustration-tone.js";
 
 const [, , fitMode, momentIllustrationName, sourceFileName] = process.argv;
-if ((fitMode !== "cutout" && fitMode !== "photo") || !momentIllustrationName || !sourceFileName) {
-  console.error("Usage: tsx gen-moment-illustration.ts <cutout|photo> <momentIllustrationName> <sourceFileName>");
+if ((fitMode !== "cutout" && fitMode !== "cutout-sepia" && fitMode !== "photo") || !momentIllustrationName || !sourceFileName) {
+  console.error("Usage: tsx gen-moment-illustration.ts <cutout|cutout-sepia|photo> <momentIllustrationName> <sourceFileName>");
   process.exit(1);
 }
 
@@ -87,10 +90,15 @@ const loadOfficialToneReference = (): ToneReference => {
 };
 
 const saveMomentIllustrationPng = async (): Promise<string> => {
-  const canvas = fitMode === "cutout" ? await loadCutoutCanvas() : await loadPhotoCanvas();
+  const canvas = fitMode === "photo" ? await loadPhotoCanvas() : await loadCutoutCanvas();
   const vignetted = applyEllipticalVignette(canvas, VIGNETTE_INNER_RADIUS_FRACTION);
   // Toned after the vignette so the luminance histogram only counts the visible (opaque) core.
-  const finished = fitMode === "photo" ? applyOfficialTone(vignetted, loadOfficialToneReference()) : vignetted;
+  const finished =
+    fitMode === "cutout"
+      ? vignetted
+      : fitMode === "cutout-sepia"
+        ? applySepiaDuotone(vignetted, loadOfficialToneReference())
+        : applyOfficialTone(vignetted, loadOfficialToneReference());
   const pngPath = join(textureOutputDirectory, `${OUR_NAME}.png`);
   await sharp(finished.data, { raw: { width: finished.width, height: finished.height, channels: 4 } })
     .png()
