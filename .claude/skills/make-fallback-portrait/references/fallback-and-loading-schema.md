@@ -52,7 +52,7 @@ ModBuddyビルド→`LeaderFallbackImages.blp`をWindows/MacOS両方コピー→
 
 ### 本Mod側の実装
 
-- 背景(`LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND`): `Art/Source/wallpaper-broadcast-night.webp`(3840x2160、キャラなしの環境イラスト)を`tools/png2dds/gen-loading-background.ts`で中央クロップ+1920x960にリサイズして生成。キャラを乗せる必要が無いと分かったので画像加工はこれだけで完結
+- 背景(`LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND`): `Art/Source/ichijou-ririka/wallpaper-broadcast-night.webp`(3840x2160、キャラなしの環境イラスト)を`tools/png2dds/gen-loading-background.ts`で中央クロップ+1920x960にリサイズして生成。キャラを乗せる必要が無いと分かったので画像加工はこれだけで完結
 - ポートレート(`LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL`): `tools/png2dds/gen-loading-portrait.ts`で`gen-leader-fallback.ts`と同じ元絵・同じ加工(膝下クロップ・上部余白・下部フェード、`leader-fallback-compositing.ts`を共有)を高さ1024向けに適用して生成
 - 両方とも`ArtDef`不要、`UITexture`クラスのXLP(`RegLoss_Loading.xlp`/`RegLoss_LoadingPortrait.xlp`、公式の`Shell_Loading`/`UI_Leaders`とは別名の自前パッケージ)で登録。`tools/IconBuild`の`.civ6proj`/`.Art.xml`(`UITexture`ライブラリの`relativePackagePaths`に追加)、本体の`.dep`/`.modinfo`も同様に配線
 - `XML/Leaders.xml`に`LoadingInfo`の`Row`を追加(`ForegroundImage="LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL"` `BackgroundImage="LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND"`)
