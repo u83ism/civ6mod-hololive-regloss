@@ -44,7 +44,16 @@ UU(ユニット)/UD(区域)/UI(地形改善)/UB(建造物)は全て同じ8手順
 
 ### 見た目を置換元とまったく同じにしたい場合
 
-**見た目(3Dモデル・アイコン)を置換元とまったく同じにしたいUU(モデル差し替えをしない)は、専用Artdefを新規に用意しなくても実機で問題なく表示される**(社員UU実装時、UU「うに」で2026-09-22実機確認済み)。Artdefの罠(UB向けの記述、および`docs/civ6-research/unique-content-patterns.md`)は「新しいモデルに差し替えたい」場合の話で、モデルを変えないなら踏まなくてよい(3Dモデルとゲームプレイ上のUnitTypeとの紐付け機構自体は未解明のままだが、結果として置換元のモデルがそのまま出る)。アイコンは`Art/Icons/Icons.xml`の`IconDefinitions`に、置換元アイコンと同じ`Atlas`/`Index`を指す新規行(`Name`だけ新UnitType用に変える)を追加するだけでよい。**`IconTextureAtlases`側の新規登録は不要**(バニラの既存アトラス名、例: ユニット本体`ICON_ATLAS_UNITS`、マップ上の旗`ICON_ATLAS_UNIT_FLAG_SYMBOLS_WHITE`/`_BLACK`、選択パネルの顔`ICON_ATLAS_UNIT_PORTRAITS`をそのまま指せる)。置換元の`Atlas`/`Index`は`Base/Assets/UI/Icons/Icons_Units.xml`・`Icons_UnitFlags.xml`・`Icons_UnitPortraits.xml`をUnitType名でgrepすれば分かる。UU「うに」(斥候置換)でこの方式を実装し、選択画面・アイコン表示とも実機で問題なく動作することを確認した(2026-09-22)。
+**見た目(3Dモデル)を置換元と同じにしたいUU(モデル差し替えをしない)でも、置換元の`Units.artdef`の要素を複製した専用ArtDefが要る。** 専用の要素が無いと、置換元の見た目にならず汎用モデルになる(2026-10-04実機確認: 考古学者置換の「学芸員」は労働者のような見た目、斥候置換の「うに」は戦士系の汎用モデルのまま)。2026-09-22に「専用Artdef無しで問題なく表示された」と書いていたのは誤りだった(その時は見た目の違いを見落としていた)。バニラ・DLCの固有ユニットは全て`Units.artdef`に自分専用の要素を持っている(例: `UNIT_CREE_OKIHTCITAW`、`UNIT_ZULU_IMPI`)。
+
+手順(2026-10-04、学芸員(考古学者置換)・うに(斥候置換)とも実機で置換元の3Dモデルになることを確認済み):
+1. 置換元ユニットの要素を`Base/ArtDefs/Units.artdef`(DLCのユニットなら該当DLCの`ArtDefs/Units.artdef`)から抜き出す。3タブ字下げの`<Element>`から、`<m_Name text="<置換元のUnitType>"/>`を含み`<m_AppendMergedParameterCollections>`の次の`</Element>`までが1要素(考古学者141行、斥候166行)。ファイルが約5MBと大きいので、`m_Name`の行を探してから前方へ`^			<Element>$`まで遡って切り出すスクリプトを書くとよい(閉じタグの検索は行頭の字下げ込みで行うこと。`</Element>`だけを探すと深い字下げの閉じタグに誤一致する)
+2. `m_Name`の値だけを自分のUnitType(例: `UNIT_REGLOSS_JUUFUUTEI_CURATOR`)に書き換える。`Members`が指す3Dモデル(`UnitMemberTypes`、例: `Archaeologist`)はバニラのファイル側にあり、`m_ArtDefPath text="Units.artdef"`の参照でそのまま解決される
+3. `ArtDefs/Units.artdef`に並べる。ヘッダと外枠はバニラの`Units.artdef`と同じ(`m_TemplateName text="Units"`、ルートコレクション名`Units`、`m_ReplaceMergedCollectionElements`は`false`)。複数のUUは同じファイルに要素を並べる
+4. 登録は2点: `.dep`の`ConsumerName text="Units"`の`ArtDefDependencyPaths`に`<Element text="Units.artdef"/>`を追加、`.modinfo`の`<Files>`に`ArtDefs/Units.artdef`を追加(`.modinfo`の`UpdateArt`は`.dep`を読む構成なので`<Files>`への列挙が要る)
+5. `.artdef`はAssetCookerのビルド対象ではないので、ModBuddyでのビルドは不要(ゲームの再起動だけでよい)。**`.dep`を`gen-dep`で作り直すとこの手書きの1行(と`Civilizations.artdef`の1行)が消える**ので、再生成したら差分を確認すること
+
+**アイコン**は`Art/Icons/Icons.xml`の`IconDefinitions`に、置換元アイコンと同じ`Atlas`/`Index`を指す新規行(`Name`だけ新UnitType用に変える)を追加するだけでよい。**`IconTextureAtlases`側の新規登録は不要**(バニラの既存アトラス名、例: ユニット本体`ICON_ATLAS_UNITS`、マップ上の旗`ICON_ATLAS_UNIT_FLAG_SYMBOLS_WHITE`/`_BLACK`、選択パネルの顔`ICON_ATLAS_UNIT_PORTRAITS`をそのまま指せる)。置換元の`Atlas`/`Index`は`Base/Assets/UI/Icons/Icons_Units.xml`・`Icons_UnitFlags.xml`・`Icons_UnitPortraits.xml`をUnitType名でgrepすれば分かる。UU「うに」(斥候置換)でこの方式を実装し、選択画面・アイコン表示とも実機で問題なく動作することを確認した(2026-09-22)。
 
 ### 初めて完成/生産した時の歴史的瞬間の挿絵を付けたい場合
 

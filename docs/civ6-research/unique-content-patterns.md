@@ -14,7 +14,7 @@ UU(ユニット)/UD(区域)/UI(地形改善)/UB(建造物)は全て同じ8手順
 4. **テキスト**: `NewLeader_ConfigText.xml`に4種(ゲーム内名称/説明/Trait名/Civilopedia本文の`LOC_PEDIA_..._CHAPTER_HISTORY_PARA_1`)
 5. Propertyへのファイル登録(`In-Game Actions > UpdateDatabase`)を忘れない
 6. **アイコン**: 既存の近い要素のIconDefinitionsをコピーして`Name`だけ書き換える使い回しが手軽。専用アイコンを新規に作る場合は`make-leader-icons` Skillの参考資料のBLPパイプラインが別途必要
-7. **見た目(Artdef)**: 3Dモデルを新規に作れない場合、バニラの近い要素のArtdefから該当ブロックを抜き出し`m_Name`だけ書き換えて使い回す。`Mod.Art.xml`の`artConsumers`にArtdefパスを登録(種別で登録箇所が違う: Units→`Units`のみ、Districts→`Landmarks`+`WorldView_Translate`+`StrategicView_Translate`、Improvements→`Improvements`+上記2つ、Buildings→さらに専用`Buildings.artdef`を追加registration)
+7. **見た目(Artdef)**: 3Dモデルを新規に作れない場合、バニラの近い要素のArtdefから該当ブロックを抜き出し`m_Name`だけ書き換えて使い回す。**ユニット(UU)は置換元と見た目が同じでもこの複製が必須**(専用要素が無いと汎用モデルになる、2026-10-04実機確認。手順は`.claude/skills/add-unique-content/SKILL.md`)。`Mod.Art.xml`の`artConsumers`にArtdefパスを登録(種別で登録箇所が違う: Units→`Units`のみ、Districts→`Landmarks`+`WorldView_Translate`+`StrategicView_Translate`、Improvements→`Improvements`+上記2つ、Buildings→さらに専用`Buildings.artdef`を追加registration)
 8. ビルド→動作確認
 
 ## 種類別の要点
