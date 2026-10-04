@@ -74,12 +74,15 @@
 
 ## 儒烏風亭らでん(`XML/JuufuuteiRaden.xml`)
 
+- **大芸術家ポイントの数え方(実機、2026-10-05)**: 首都に劇場広場・寄席・考古博物館がある状態で10と表示された。都市のぶん(区域1+寄席1+考古博物館2=4)と、文明全体のぶん(指導者能力の+2)は別に数える。ピンガラの昇進「助成者」(都市の偉人ポイント+100%)は都市のぶんだけを倍にする(4×2+2=10)。計算式そのものは画面の数字からの推測
+
 設計は`docs/design.md`の「儒烏風亭らでん」節。文明・指導者・ダミーのTrait/アジェンダ・LoadingInfo・DiplomacyInfo・固有ユニット「学芸員」を1ファイルにまとめ、Config.xml・Colors.sql・Icons.xml・Text/ja_JP/Text.xml・`ArtDefs/Leaders.artdef`・`.modinfo`は一条莉々華のファイルへ追記した。
 
 - **画像**: 文明アイコン(能面のSVG→白シルエット、長辺を直径の90%)・指導者アイコン(顔)・外交交渉画面の静止画・ローディング画面のポートレートと背景を`tools/png2dds`の各スクリプトで生成し、BLPは`make-leader-icons`の日本語ユーザー名回避手順でクックした。元素材は`Art/Source/juufuutei-raden/`(git管理外)。ローディング・外交の背景は`SAMPLE`の透かしと`©COVER`入りの素材(1000px幅を拡大)で、差し替え待ち
 - **文明BGM**: `ArtDefs/Civilizations.artdef`の`XrefName`=`Canada`(嵐の訪れの文明の曲)。実機で鳴るのを確認した(2026-10-04)。嵐の訪れ無しの環境での動作は未確認
 - **文明能力「芸術に満たされて」**: `MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD`を、傑作の種類6(彫刻・肖像画・風景画・宗教画・遺物・秘宝)×産出4(食料・生産力・信仰力・文化力)の24本、`YieldChange=4`で`TraitModifiers`に付けた。コンゴ「ンキシ」と同じModifier。数値は全て同じなので、調整は`YieldChange`の値を書き換える
 - **指導者能力「芸術への渇望」**: 大芸術家ポイント+2は`MODIFIER_PLAYER_ADJUST_GREAT_PERSON_POINTS`(バニラの政策「フレスコ画」と同じ。`GreatPersonClassType`・`Amount`)。自然遺産の遺物は`MODIFIER_PLAYER_ADJUST_NATURAL_WONDER_RELIC`(`Amount=1`)で、都市国家キャンディの宗主国ボーナスが宗主国に付ける内側のModifierを、宗主国の条件を外して指導者Traitから直接付けた。**Traitから直接付けても動くことを実機で確認した**(2026-10-05)。文明能力・指導者能力とも、産出・ポイント・遺物・説明文の表示まで動作確認済み
+- **固有建造物「寄席」(`BUILDING_REGLOSS_JUUFUUTEI_YOSE`、円形闘技場の置換)**: バニラの円形闘技場の行をコピーして`Name`・`Description`・`TraitType`を足し、`Building_GreatWorks`を`GREATWORKSLOT_PALACE`2つ、`Building_GreatPersonPoints`を大芸術家1、`Building_YieldChanges`を文化力+2にした(コスト150・維持費1・市民スロット1はバニラのまま、暫定)。専用Trait・`BuildingReplaces`・`Config.xml`の`PlayerItems`・アイコン(円形闘技場のアイコンの別名)も足した。Base Schemaの列だけで組んだ。実機で、寄席を建てられること・大芸術家ポイントが想定どおり出ること・寄席の後に考古博物館を建てられること(置換した建物が円形闘技場の代わりとして前提を満たすこと)を確認した(2026-10-05)。**3Dモデル(Buildings.artdef/Landmarks.artdef)は未対応**: 劇場広場の見た目は「円形闘技場+美術館」等の建物の組み合わせごとのランドマークで定義されており(`Base/ArtDefs/Landmarks.artdef`)、置換した建物が入るかは未確認
 - **学芸員(`UNIT_REGLOSS_JUUFUUTEI_CURATOR`)**: バニラの考古学者の行をコピーして`BaseMoves`・`Cost`・`Name`・`Description`・`TraitType`だけ変えた。`TypeTags`は`CLASS_LANDCIVILIAN`・`CLASS_ARCHAEOLOGIST`、`Unit_BuildingPrereqs`は考古博物館(`NumSupported=1`)。Base Schemaの列だけで組み、拡張パック限定の列(`CanEarnExperience`・`CanFormMilitaryFormation`)は入れていない。`UnitAiInfos`はバニラの考古学者にも無いので足していない。実機で購入・発掘・秘宝の傑作登録・移動力+2・コスト50%が動くことを確認した(2026-10-04)
 - **実機の罠: FireTunerで直接出したユニットは拠点都市(Home City)が無い。** 発掘した秘宝が傑作として登録されず、2回目の発掘もできなくなる。置換ユニットの欠陥ではなく出し方の違いだった。考古博物館のある都市で購入(または生産)すること
 - **実機の罠: 固有ユニットは、見た目が置換元と同じでも`ArtDefs/Units.artdef`に専用の要素が要る。** 無いと汎用モデルになった(学芸員は労働者のような見た目、うには戦士系)。バニラの考古学者・斥候の要素を複製して`m_Name`だけ変え、`.dep`の`Units`コンシューマの`ArtDefDependencyPaths`と`.modinfo`の`Files`に登録した。手順は`.claude/skills/add-unique-content/SKILL.md`。`.dep`は手で2行(`Civilizations.artdef`・`Units.artdef`)足してあるので、`gen-dep`で作り直すと消える

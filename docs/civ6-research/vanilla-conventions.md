@@ -52,7 +52,7 @@
 - UB不要(Trait/UD側のModifierで施設を指定して上乗せできる): 傑作スロット追加(`MODIFIER_PLAYER_CITIES_ADJUST_EXTRA_GREAT_WORK_SLOTS`)、産出の加算(`MODIFIER_PLAYER_CITIES_ADJUST_BUILDING_YIELD_CHANGE`)/%増加(`..._BUILDING_YIELD_MODIFIER`)、生産力・購入コスト(`..._BUILDING_PRODUCTION`/`..._BUILDING_PURCHASE_COST`)、住宅(`..._BUILDING_HOUSING`)、区域単位の快適性(`MODIFIER_PLAYER_DISTRICTS_ADJUST_EXTRA_ENTERTAINMENT`)。いずれもゲーム本体の`Modifiers.xml`に実在する
 - UB必須(施設そのものの定義): 解禁の社会制度、前提施設(「観覧車の後」を外す等)、基本コスト・維持費・快適性の範囲、施設の固有名
 - UB無しの欠点: 上乗せ効果は施設のツールチップに出ない(上乗せ分は文明能力の説明文に書くしかない)
-- 置き換え施設で元の効果を外した前例: 温泉(ハンガリー、動物園置換。熱帯雨林・湿原からの科学力を外して快適性・生産力・観光力に差し替え)、マラエ(マオリ、円形闘技場の文化力・書物スロット・大著作家ポイントを全部外す)、HOLOLIVE系ではセイレーンの岩礁(灯台の沿岸食料・住宅・経験値を外して音楽スロット等)、Hakos BaelzのImprovisation Theater(円形劇場の書物スロットを外す)など
+- 置き換え施設で元の効果を外した前例: 温泉(ハンガリー、動物園置換。熱帯雨林・湿原からの科学力を外して快適性・生産力・観光力に差し替え)、マラエ(マオリ、円形闘技場の文化力・書物スロット・大著作家ポイントを全部外す)、HOLOLIVE系ではセイレーンの岩礁(灯台の沿岸食料・住宅・経験値を外して音楽スロット等)、Hakos BaelzのImprovisation Theater(円形闘技場の書物スロットを外す)など
 
 ## 深海は仕様上の除外ではない
 
@@ -60,7 +60,7 @@
 
 ## 傑作スロットを増やす文明能力の公式の前例
 
-- コンゴ(ンキシ、宮殿の傑作スロット+4、`TRAIT_EXTRA_PALACE_SLOTS`)、イングランド(考古学博物館の秘宝スロット倍増、`TRAIT_DOUBLE_ARCHAEOLOGY_SLOTS`)。いずれも`MODIFIER_PLAYER_CITIES_ADJUST_EXTRA_GREAT_WORK_SLOTS`で、引数に建造物・スロット種類・数を指定するだけ
+- コンゴ(ンキシ、宮殿の傑作スロット+4、`TRAIT_EXTRA_PALACE_SLOTS`)、イングランド(考古博物館の秘宝スロット倍増、`TRAIT_DOUBLE_ARCHAEOLOGY_SLOTS`)。いずれも`MODIFIER_PLAYER_CITIES_ADJUST_EXTRA_GREAT_WORK_SLOTS`で、引数に建造物・スロット種類・数を指定するだけ
 
 ## 傑作・博物館まわりの仕様(2026-10-04、儒烏風亭らでんの設計時に確認)
 

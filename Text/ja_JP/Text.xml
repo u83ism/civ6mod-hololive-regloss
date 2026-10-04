@@ -441,5 +441,14 @@
 		<Row Tag="LOC_TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR_NAME" Language="ja_JP">
 			<Text>学芸員</Text>
 		</Row>
+		<Row Tag="LOC_BUILDING_REGLOSS_JUUFUUTEI_YOSE_NAME" Language="ja_JP">
+			<Text>寄席</Text>
+		</Row>
+		<Row Tag="LOC_BUILDING_REGLOSS_JUUFUUTEI_YOSE_DESCRIPTION" Language="ja_JP">
+			<Text>儒烏風亭一門固有の建造物。どの傑作にも使えるスロットを2つ得る。ターン毎の [ICON_GreatArtist] 大芸術家ポイント+1。</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_CIVILIZATION_BUILDING_REGLOSS_JUUFUUTEI_YOSE_NAME" Language="ja_JP">
+			<Text>寄席</Text>
+		</Row>
 	</LocalizedText>
 </GameData>

@@ -16,6 +16,8 @@
 		<Row Type="TRAIT_AGENDA_REGLOSS_JUUFUUTEI_RADEN" Kind="KIND_TRAIT"/>
 		<Row Type="UNIT_REGLOSS_JUUFUUTEI_CURATOR" Kind="KIND_UNIT"/>
 		<Row Type="TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR" Kind="KIND_TRAIT"/>
+		<Row Type="BUILDING_REGLOSS_JUUFUUTEI_YOSE" Kind="KIND_BUILDING"/>
+		<Row Type="TRAIT_CIVILIZATION_BUILDING_REGLOSS_JUUFUUTEI_YOSE" Kind="KIND_TRAIT"/>
 	</Types>
 
 	<Traits>
@@ -647,4 +649,48 @@
 			<Value>1</Value>
 		</Row>
 	</ModifierArguments>
+
+	<!--
+		UB「寄席」(円形闘技場BUILDING_AMPHITHEATERの置換)。設計はdocs/design.mdの「儒烏風亭らでん」節。
+		円形闘技場の書物スロット2つを、宮殿と同じ種類のスロット(GREATWORKSLOT_PALACE、秘宝以外なら何でも置ける)2つに、
+		大著述家ポイント1を大芸術家ポイント1に変えた。美術館・考古博物館のスロットは増やさない(テーマ化の条件が変わるため)。
+
+		バニラの円形闘技場の行(Base/Assets/Gameplay/Data/Buildings.xml)をコピーして、Name/Description/TraitTypeを足した。
+		コスト150・維持費1・市民スロット1・文化力+2(Building_YieldChanges)はバニラの円形闘技場のまま。**暫定**
+		(コスト・維持費・文化力を残すかは未決。マオリの「マラエ」は維持費を外し、文化力を別の効果に差し替えている)。
+		Base Schemaの列だけで組み、拡張パック限定の列(TourismBombValue等)は入れていない。
+		専用Traitは文明能力の表示が消える不具合の対策(add-unique-content Skill落とし穴1番)。
+
+		**3Dモデル(Buildings.artdef/Landmarks.artdef)は未対応**。劇場広場の見た目は「円形闘技場+美術館」等の建物の組み合わせごとの
+		ランドマークで定義されており(Base/ArtDefs/Landmarks.artdef)、置換した建物がこの組み合わせに入るかは未確認。
+		アイコンは円形闘技場のものを流用する。
+		未確認: 寄席が円形闘技場として数えられるか(美術館・考古博物館の前提Building_Prerequisites、神の光、国立歴史博物館の効果)。
+	-->
+	<Buildings>
+		<Row BuildingType="BUILDING_REGLOSS_JUUFUUTEI_YOSE" Name="LOC_BUILDING_REGLOSS_JUUFUUTEI_YOSE_NAME" Description="LOC_BUILDING_REGLOSS_JUUFUUTEI_YOSE_DESCRIPTION" PrereqCivic="CIVIC_DRAMA_POETRY" PrereqDistrict="DISTRICT_THEATER" PurchaseYield="YIELD_GOLD" Cost="150" AdvisorType="ADVISOR_CULTURE" Maintenance="1" CitizenSlots="1" TraitType="TRAIT_CIVILIZATION_BUILDING_REGLOSS_JUUFUUTEI_YOSE"/>
+	</Buildings>
+
+	<BuildingReplaces>
+		<Row CivUniqueBuildingType="BUILDING_REGLOSS_JUUFUUTEI_YOSE" ReplacesBuildingType="BUILDING_AMPHITHEATER"/>
+	</BuildingReplaces>
+
+	<Traits>
+		<Row TraitType="TRAIT_CIVILIZATION_BUILDING_REGLOSS_JUUFUUTEI_YOSE" Name="LOC_TRAIT_CIVILIZATION_BUILDING_REGLOSS_JUUFUUTEI_YOSE_NAME"/>
+	</Traits>
+
+	<CivilizationTraits>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" TraitType="TRAIT_CIVILIZATION_BUILDING_REGLOSS_JUUFUUTEI_YOSE"/>
+	</CivilizationTraits>
+
+	<Building_YieldChanges>
+		<Row BuildingType="BUILDING_REGLOSS_JUUFUUTEI_YOSE" YieldType="YIELD_CULTURE" YieldChange="2"/>
+	</Building_YieldChanges>
+
+	<Building_GreatPersonPoints>
+		<Row BuildingType="BUILDING_REGLOSS_JUUFUUTEI_YOSE" GreatPersonClassType="GREAT_PERSON_CLASS_ARTIST" PointsPerTurn="1"/>
+	</Building_GreatPersonPoints>
+
+	<Building_GreatWorks>
+		<Row BuildingType="BUILDING_REGLOSS_JUUFUUTEI_YOSE" GreatWorkSlotType="GREATWORKSLOT_PALACE" NumSlots="2"/>
+	</Building_GreatWorks>
 </GameData>
