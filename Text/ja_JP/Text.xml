@@ -432,5 +432,14 @@
 		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_09" Language="ja_JP">
 			<Text>直島</Text>
 		</Row>
+		<Row Tag="LOC_UNIT_REGLOSS_JUUFUUTEI_CURATOR_NAME" Language="ja_JP">
+			<Text>学芸員</Text>
+		</Row>
+		<Row Tag="LOC_UNIT_REGLOSS_JUUFUUTEI_CURATOR_DESCRIPTION" Language="ja_JP">
+			<Text>考古学者に取ってかわる、儒烏風亭一門固有の発掘ユニット。[ICON_RESOURCE_ANTIQUITY_SITE] 史跡から [ICON_GreatWork_Artifact] 秘宝を発掘し、拠点都市の博物館で展示する。考古学者より [ICON_Movement] 移動力+2で、生産コストが安い。</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR_NAME" Language="ja_JP">
+			<Text>学芸員</Text>
+		</Row>
 	</LocalizedText>
 </GameData>

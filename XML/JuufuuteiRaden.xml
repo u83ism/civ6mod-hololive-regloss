@@ -14,6 +14,8 @@
 		<Row Type="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" Kind="KIND_TRAIT"/>
 		<Row Type="TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN" Kind="KIND_TRAIT"/>
 		<Row Type="TRAIT_AGENDA_REGLOSS_JUUFUUTEI_RADEN" Kind="KIND_TRAIT"/>
+		<Row Type="UNIT_REGLOSS_JUUFUUTEI_CURATOR" Kind="KIND_UNIT"/>
+		<Row Type="TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR" Kind="KIND_TRAIT"/>
 	</Types>
 
 	<Traits>
@@ -77,4 +79,43 @@
 	<DiplomacyInfo>
 		<Row Type="LEADER_REGLOSS_JUUFUUTEI_RADEN" BackgroundImage="LEADER_REGLOSS_JUUFUUTEI_RADEN_BACKGROUND"/>
 	</DiplomacyInfo>
+
+	<!--
+		UU「学芸員」(考古学者UNIT_ARCHAEOLOGISTの置換)。設計メモ(docs/character-juufuutei-raden-brainstorm.md): 移動力+2、コスト50%(400→200)。
+		コスト50%は本人の決定(2026-10-04)。バニラUUの割安の前例では最大級(イェニチェリ50%)。
+
+		バニラの考古学者の行(Base/Assets/Gameplay/Data/Units.xml)をそのままコピーして、BaseMoves(4→6)とCost(400→200)と
+		Name/Description/TraitTypeだけ差し替えた。発掘の可否はExtractsArtifacts="true"(Base Schemaの列。SelectedUnit.luaが
+		GameInfo.Units[...].ExtractsArtifactsで判定している)とTypeTagsのCLASS_ARCHAEOLOGIST(ABILITY_ARCHAEOLOGIST_ENTER_FOREIGN_LANDS
+		の付与元)に依る。考古学者を置換するバニラUUは前例が無かったが、実機で発掘できることを確認済み(2026-10-04)。
+		注意: 学芸員をFireTunerで直接出すと拠点都市(Home City)が無く、発掘した秘宝が傑作として登録されず2回目の発掘もできない。考古博物館のある都市で購入/生産したものは正常に動く。
+		拡張パック(Expansion2_Units.xml)がバニラ考古学者に足しているCanEarnExperience/CanFormMilitaryFormationは、
+		拡張限定のスキーマ列で非対応ルールセットではUnits全体のINSERTが失敗するため(add-unique-content Skill落とし穴3番)入れていない。
+		UnitAiInfosはバニラの考古学者にも無いので足していない。博物館1つにつき1人の支援枠もバニラと同じNumSupported=1。
+		専用Traitは文明能力の表示が消える不具合の対策(同Skill落とし穴1番)。
+	-->
+	<TypeTags>
+		<Row Type="UNIT_REGLOSS_JUUFUUTEI_CURATOR" Tag="CLASS_LANDCIVILIAN"/>
+		<Row Type="UNIT_REGLOSS_JUUFUUTEI_CURATOR" Tag="CLASS_ARCHAEOLOGIST"/>
+	</TypeTags>
+
+	<Units>
+		<Row UnitType="UNIT_REGLOSS_JUUFUUTEI_CURATOR" Cost="200" BaseMoves="6" BaseSightRange="2" ZoneOfControl="false" Domain="DOMAIN_LAND" FormationClass="FORMATION_CLASS_CIVILIAN" AdvisorType="ADVISOR_CULTURE" Name="LOC_UNIT_REGLOSS_JUUFUUTEI_CURATOR_NAME" Description="LOC_UNIT_REGLOSS_JUUFUUTEI_CURATOR_DESCRIPTION" CanCapture="False" PurchaseYield="YIELD_GOLD" PseudoYieldType="PSEUDOYIELD_UNIT_ARCHAEOLOGIST" PrereqCivic="CIVIC_NATURAL_HISTORY" ExtractsArtifacts="true" CanRetreatWhenCaptured="True" TraitType="TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR"/>
+	</Units>
+
+	<UnitReplaces>
+		<Row CivUniqueUnitType="UNIT_REGLOSS_JUUFUUTEI_CURATOR" ReplacesUnitType="UNIT_ARCHAEOLOGIST"/>
+	</UnitReplaces>
+
+	<Unit_BuildingPrereqs>
+		<Row Unit="UNIT_REGLOSS_JUUFUUTEI_CURATOR" PrereqBuilding="BUILDING_MUSEUM_ARTIFACT" NumSupported="1"/>
+	</Unit_BuildingPrereqs>
+
+	<Traits>
+		<Row TraitType="TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR" Name="LOC_TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR_NAME"/>
+	</Traits>
+
+	<CivilizationTraits>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" TraitType="TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR"/>
+	</CivilizationTraits>
 </GameData>
