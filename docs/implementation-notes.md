@@ -88,4 +88,4 @@
 - **実機の罠: FireTunerで直接出したユニットは拠点都市(Home City)が無い。** 発掘した秘宝が傑作として登録されず、2回目の発掘もできなくなる。置換ユニットの欠陥ではなく出し方の違いだった。考古博物館のある都市で購入(または生産)すること
 - **実機の罠: 固有ユニットは、見た目が置換元と同じでも`ArtDefs/Units.artdef`に専用の要素が要る。** 無いと汎用モデルになった(学芸員は労働者のような見た目、うには戦士系)。バニラの考古学者・斥候の要素を複製して`m_Name`だけ変え、`.dep`の`Units`コンシューマの`ArtDefDependencyPaths`と`.modinfo`の`Files`に登録した。手順は`.claude/skills/add-unique-content/SKILL.md`。`.dep`は手で2行(`Civilizations.artdef`・`Units.artdef`)足してあるので、`gen-dep`で作り直すと消える
 - **歴史的瞬間の挿絵(うに)**: フラットな色のイラストが公式の挿絵の横でカラフルすぎたので、`gen-moment-illustration`に`cutout-sepia`モード(公式の最も暗い茶から淡いクリーム色の2色)を足して作り直した。方式と不採用だった方法は`make-moment-illustration` Skill
-- **歴史的瞬間の挿絵(寄席・学芸員)**: 寄席は繁昌亭の写真(`photo`モード、`INK_*`は元の値のまま。線を弱めると「写真を色加工しただけ」に見えるので強い線のままにした)、学芸員はイラスト(`cutout-sepia`)。`MomentIllustrations`の行は`JuufuuteiRaden.xml`の末尾(うにの`Units.xml`と同じ`Gameplay`グループ)、BLPは「うに」と同じ`UI/RegLoss_Moments.blp`に3枚入りで再ビルドした(2026-10-05、実機は未確認)
+- **歴史的瞬間の挿絵(寄席・学芸員)**: 寄席は繁昌亭の写真(`photo`モード、`INK_*`は元の値のまま。線を弱めると「写真を色加工しただけ」に見えるので強い線のままにした)、学芸員はイラスト(`cutout-sepia`)。`MomentIllustrations`の行は`JuufuuteiRaden.xml`の末尾(うにの`Units.xml`と同じ`Gameplay`グループ)、BLPは「うに」と同じ`UI/RegLoss_Moments.blp`に3枚入りで再ビルドした(2026-10-05。実機確認済み)
