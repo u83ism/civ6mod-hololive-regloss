@@ -13,6 +13,14 @@
 			<m_EntryID text="Moment_UniqueUnit_ReglossIchijou_Uni"/>
 			<m_ObjectName text="Moment_UniqueUnit_ReglossIchijou_Uni"/>
 		</Element>
+		<Element>
+			<m_EntryID text="Moment_Infrastructure_ReglossJuufuutei_Yose"/>
+			<m_ObjectName text="Moment_Infrastructure_ReglossJuufuutei_Yose"/>
+		</Element>
+		<Element>
+			<m_EntryID text="Moment_UniqueUnit_ReglossJuufuutei_Curator"/>
+			<m_ObjectName text="Moment_UniqueUnit_ReglossJuufuutei_Curator"/>
+		</Element>
 	</m_Entries>
 	<m_AllowedPlatforms>
 		<Element>WINDOWS</Element>

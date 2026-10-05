@@ -126,6 +126,10 @@
     <Content Include="Textures\LEADER_REGLOSS_JUUFUUTEI_RADEN_NEUTRAL.tex"><SubType>Content</SubType></Content>
     <Content Include="Textures\Moment_UniqueUnit_ReglossIchijou_Uni.dds"><SubType>Content</SubType></Content>
     <Content Include="Textures\Moment_UniqueUnit_ReglossIchijou_Uni.tex"><SubType>Content</SubType></Content>
+    <Content Include="Textures\Moment_Infrastructure_ReglossJuufuutei_Yose.dds"><SubType>Content</SubType></Content>
+    <Content Include="Textures\Moment_Infrastructure_ReglossJuufuutei_Yose.tex"><SubType>Content</SubType></Content>
+    <Content Include="Textures\Moment_UniqueUnit_ReglossJuufuutei_Curator.dds"><SubType>Content</SubType></Content>
+    <Content Include="Textures\Moment_UniqueUnit_ReglossJuufuutei_Curator.tex"><SubType>Content</SubType></Content>
     <Content Include="XLPs\RegLoss_Icons.xlp"><SubType>Content</SubType></Content>
     <Content Include="XLPs\LeaderFallbackImages.xlp"><SubType>Content</SubType></Content>
     <Content Include="XLPs\RegLoss_Loading.xlp"><SubType>Content</SubType></Content>

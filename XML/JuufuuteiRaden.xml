@@ -716,4 +716,14 @@
 	<Building_GreatWorks>
 		<Row BuildingType="BUILDING_REGLOSS_JUUFUUTEI_YOSE" GreatWorkSlotType="GREATWORKSLOT_PALACE" NumSlots="2"/>
 	</Building_GreatWorks>
+
+	<!--
+		固有建造物「寄席」・固有ユニット「学芸員」を初めて完成/生産した時の時代スコアポップアップ(Historic Moment)用の専用挿絵。
+		スキーマ・規格は`.claude/skills/make-moment-illustration`参照。Textureはtools/png2dds/gen-moment-illustration.tsで生成し、
+		tools/IconBuild(AssetCooker)でビルドしたUI/RegLoss_Moments.blpに含まれる(うにの挿絵と同じパッケージ)。
+	-->
+	<MomentIllustrations>
+		<Row MomentIllustrationType="MOMENT_ILLUSTRATION_UNIQUE_BUILDING" MomentDataType="MOMENT_DATA_BUILDING" GameDataType="BUILDING_REGLOSS_JUUFUUTEI_YOSE" Texture="Moment_Infrastructure_ReglossJuufuutei_Yose.dds"/>
+		<Row MomentIllustrationType="MOMENT_ILLUSTRATION_UNIQUE_UNIT" MomentDataType="MOMENT_DATA_UNIT" GameDataType="UNIT_REGLOSS_JUUFUUTEI_CURATOR" Texture="Moment_UniqueUnit_ReglossJuufuutei_Curator.dds"/>
+	</MomentIllustrations>
 </GameData>
