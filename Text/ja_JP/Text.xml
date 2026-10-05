@@ -495,5 +495,233 @@
 		<Row Tag="LOC_TRAIT_CIVILIZATION_BUILDING_REGLOSS_JUUFUUTEI_YOSE_NAME" Language="ja_JP">
 			<Text>寄席</Text>
 		</Row>
+		<Row Tag="LOC_DIPLO_GREETING_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>はい、らでんです。ちょいと一席、いかがです？</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ホロライブDEV_ISよりデビューいたしました、ReGLOSSは神出鬼没のミュージアムプリンセス担当、儒烏風亭一門は前座見習い、儒烏風亭 rrrrrrらでんでございます！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_VISIT_RECIPIENT_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>うちの街がすぐ近くにあるんです。美術館もありますけん、ぜひ見に来てください！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_NEAR_INITIATOR_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>いいんですか！ ぜひぜひ。街の建物を、じっくり拝見したいですなぁ。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_NO_MANS_INFO_EXCHANGE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>お互い、遠いところにおりますなぁ。そうだなぁ、まずは地図を見せ合いませんか？ お互いの国のことが分かれば、話もしやすいですし。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DECLARE_WAR_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>もう、堪忍袋の緒が切れました。ここからは、らでんも容赦せんけんね！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DECLARE_WAR_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>えぇ！？ どげんしたとですか、急に！ …そう来るなら、受けて立ちます。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DEFEAT_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>負けました…。見事です。らでんの噺もこれでおしまいですな。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DEFEAT_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>負けました…。見事です。らでんの噺もこれでおしまいですな。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>あなたとは気が合いそうです。お友達になりませんか？ 今度、美術館にでもご一緒しましょう。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ありがとうございます！ ああぁぁぁいいい！ 嬉しいなぁ！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>そうですか…。残念ですが、また機会があれば。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>もちろんです！ こちらこそ、よろしくお願いします。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DECLARE_FRIEND_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>うーん、今はちょっと…。もう少し、お互いを知ってからにしましょう。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ここまで仲良くなれたんですから、いっそ同盟を組みませんか？ 一門の盃を交わすつもりで。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ありがとうございます！ それでは、固めの盃といきましょう。お酒を飲みまあす！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ありゃ、振られてしまいましたか。…いえ、無理は言いません。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_ALLIANCE_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>喜んでお受けします。今日からは、同じ一門ですよ！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_ALLIANCE_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>お気持ちは嬉しいんですが、同盟となると話が別です。ここはご勘弁を。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>正直、今回のことは見過ごせません。あなたの振る舞いには、らでん、がっかりしました。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>えぇ！？ らでんを非難ですか！？ …そうですか。そこまで言われるなら、こっちにも考えがあります。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_KUDO_EXIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>あなたの国はなんだか絵になりますなぁ。また寄らせてもらいます。それでは、さようならでん！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_EXIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ちょっと気になることがあります。次にお会いする時までに、考えておいてくださいね。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DELEGATION_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>使節団を送らせてもらえませんか？ お互いの文化をじっくり知りたいんです。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DELEGATION_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ありがとうございます！ いい出会いになりますように。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DELEGATION_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>残念…。また、時期を見てお願いしますね。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DELEGATION_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>もちろんです、お待ちしておりました。ゆっくり見ていってください。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DELEGATION_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>すみません、今はちょっと手が回らなくて。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_EMBASSY_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>お互いに大使館を置きませんか？ 行き来がしやすくなれば、噺のネタも増えますし。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_EMBASSY_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ありがとうございます！ いい場所に建てましょうね。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_EMBASSY_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>そうですか。また、お互いに慣れた頃に。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_EMBASSY_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>喜んで。お互いの街をゆっくり見て回りましょう。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_EMBASSY_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>まだ、そこまでは…。もう少しお付き合いしてからで。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>お互いの国を自由に行き来できるようにしませんか？ 旅は、大好きなんです。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ありがとうございます！ さっそく、旅の計画を立てなければ！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>そうですか…。旅の予定はまた今度ですな。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_OPEN_BORDERS_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>もちろんです。ぜひ、うちの国も見て回ってください。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_OPEN_BORDERS_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>うーん、国の中を見せるのは、まだちょっと恥ずかしいですなぁ。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_ACCEPT_DEAL_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>はい、その条件でいきましょう。商談成立ですな。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_ADJUST_DEAL_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>そうだなぁ、ここをちょっと変えてもらえたら、お受けできるんですけど。こちらでん！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_REFUSE_DEAL_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>申し訳ないですけど、その条件はちょっと。美術館通いで金欠気味なもので…。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_DEAL_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ありがとうございます！ いいお取引でした。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_DEAL_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ありゃ、ダメでしたか。残念ですなぁ、また次の機会に。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>そろそろ、お互いに矛を収めませんか？ これ以上はどちらにも得がありませんし。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_AI_ACCEPT_DEAL_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>分かりました、講和を受けます。お互いよう頑張りましたなぁ。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_AI_REFUSE_DEAL_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>まだ終わりにはできません。そんな条件じゃ、納得できんけん！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ありがとうございます。これで、やっと落ち着けますなぁ。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>そうですか…。それなら、もうしばらくお付き合いしますけん。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_AI_ACCEPT_DEMAND_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>分かりました、お渡しします。ここは、収めておきましょう。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_AI_REFUSE_DEMAND_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>お断りします！ 人にものを頼むには、それなりの態度ってものがありますけん。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_HUMAN_ACCEPT_DEMAND_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>聞き入れてくれてありがとうございます。話の分かる人でよかった。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_HUMAN_REFUSE_DEMAND_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>…そうですか。それなら、こちらにも考えがあります。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ちょいと、お待ちを。そこに街を建てられるとうちの景観が台無しなんですよ。ご遠慮願えませんか。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ありがとうございます。ご理解いただいて助かります。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>…聞いてもらえませんでしたか。覚えとくけんね。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>あっ、すみません！ 気づきませんでした。以後、気をつけます。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>そう言われましても、こっちにも事情がありますけん。聞けませんな。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>うちの街での布教は、そろそろやめてもらえませんか。信仰は押しつけるものじゃありませんよ。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>分かってもらえてよかったです。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>…やめてくれないんですね。らでん、そういうのは好かんです。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ああぁぁ、すみません！ そんなつもりじゃなかったんです。控えます。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>信仰の自由というやつです。お断りします！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ちょっと、うちの遺跡を勝手に掘らないでください！ 学芸員として見過ごせません！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ありがとうございます。遺跡はみんなの宝ですからね。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>…まだ掘るんですか。学芸員として本当に怒りますよ！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>あっ、これは失礼しました！ 発掘は手順を踏んでやるべきでしたな。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>これは学術調査です！ 学芸員の仕事に口出しは無用ですけん！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>うちの国の中を、こそこそ嗅ぎ回るのはやめてもらえませんか？ 見たいものがあるなら、堂々と言ってください。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ありがとうございます。お互い、気持ちよくやりましょうね。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>…まだ続けるんですか。そっちがその気なら、こっちも考えるけん。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>ありゃ、ばれてましたか！ すみません、やめておきます。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>何のことでしょうなぁ。らでん、何も知らんけん。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>うちの国境の近くに、兵隊さんが多すぎやしませんか？ 落ち着いて噺もできません。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>分かってもらえてホッとしました。ありがとうございます。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>あっ、そんなに怖がらせてしまいましたか。下がらせます、すみません。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="ja_JP">
+			<Text>これはうちの国の中のことです。口出しは無用ですけん。</Text>
+		</Row>
 	</LocalizedText>
 </GameData>
