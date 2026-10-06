@@ -71,7 +71,7 @@ Workshopの説明欄が上記のタグをすべて解釈するかは検証して
 
 ### 他3言語
 
-`en.md`・`zh-Hans.md`・`zh-Hant.md`は独立したテンプレートファイルを持たず、ステップ2の通り`ja.md`(または`template.md`)からの翻訳として都度書く。**構造(タグ・絵文字・見出しの順序・ブロックの数)は`ja.md`と完全に同じにする**。ゲーム用語のラベル(下記)は公式の対訳に合わせる(`LOC_UI_PEDIA_UNIQUE_ABILITY`=Unique Ability/固有能力/特色能力/特色能力、`LOC_LOADING_UNIQUE_DISTRICT`/`_BUILDING`=固有の区域・建造物/特色区域・特色建筑(繁体字は特色區域・特色建築)。「专属」は公式の語彙ではない。固有ユニットのラベルは公式で見つからなかったので、固有区域に揃えてUnique Unit/固有ユニット/特色单位/特色單位とする)。リーダーごとのセクションは、以下の言語別プレースホルダーに沿って埋める。
+`en.md`・`zh-Hans.md`・`zh-Hant.md`は独立したテンプレートファイルを持たず、ステップ2の通り`ja.md`(または`template.md`)からの翻訳として都度書く。**構造(タグ・絵文字・見出しの順序・ブロックの数)は`ja.md`と完全に同じにする**。ゲーム用語のラベル(下記)は公式の対訳に合わせる(`LOC_UI_PEDIA_UNIQUE_ABILITY`=Unique Ability/固有能力/特色能力/特色能力、`LOC_LOADING_UNIQUE_DISTRICT`/`_BUILDING`/`_IMPROVEMENT`=固有の区域・建造物・施設/特色区域・特色建筑・特色改良设施(繁体字は特色區域・特色建築・特色改良設施。英語はUnique District/Building/Improvement)。「施設」はタイル上の農場・鉱山・採石場のような、労働者が作るもの(公式の日本語は「改善」ではなく「施設」。2026-10-07確認)。「专属」は公式の語彙ではない。固有ユニットのラベルは公式で見つからなかったので、固有区域に揃えてUnique Unit/固有ユニット/特色单位/特色單位とする)。リーダーごとのセクションは、以下の言語別プレースホルダーに沿って埋める。
 
 **英語版(`en.md`)**: `(`の前に半角スペースが入る点が日本語版と違う。
 
@@ -88,18 +88,21 @@ Workshopの説明欄が上記のタグをすべて解釈するかは検証して
 [h3]Leader Ability (Monopolies & Corporations mode) "<Leader ability (Monopolies) name>"[/h3]
 <Leader ability (Monopolies) description>
 
-[h3]Unique Agenda "<Agenda name>"[/h3]
-<Agenda description>
-(Hidden effect note in parentheses, if any)
-
 [h3]Unique District "<District name>"[/h3]
 <District description>
 
 [h3]Unique Building "<Building name>"[/h3]
 <Building description>
 
-[h3]Unique Unit "<Unit name>"[/h3]
+[h3]Unique Improvement "<Improvement name>"[/h3]
+<Improvement description>
+
+[h3]Unique Unit "<Unit name>" (<Unit subtitle>)[/h3]
 <Unit description>
+
+[h3]Unique Agenda "<Agenda name>"[/h3]
+<Agenda description>
+(Hidden effect note in parentheses, if any)
 ```
 
 英語は公式の作文規則(`write-game-text`の`lang-en.md`)に従うと固有名詞を引用符で囲まないが、ここはゲーム内テキストではなくWorkshopの紹介文なので、日本語版の鉤括弧に対応させて`" "`で囲む(能力名を本文の中で見分けやすくするため)。
@@ -119,18 +122,21 @@ Workshopの説明欄が上記のタグをすべて解釈するかは検証して
 [h3]领袖特色能力（垄断与企业模式）“<领袖特色能力（垄断）名称>”[/h3]
 <领袖特色能力（垄断）说明>
 
-[h3]特色议程“<议程名称>”[/h3]
-<议程说明>
-（如有隐藏效果，用圆括号补充说明）
-
 [h3]特色区域“<区域名称>”[/h3]
 <区域说明>
 
 [h3]特色建筑“<建筑名称>”[/h3]
 <建筑说明>
 
-[h3]特色单位“<单位名称>”[/h3]
+[h3]特色改良设施“<改良设施名称>”[/h3]
+<改良设施说明>
+
+[h3]特色单位“<单位名称>”（<单位副标题>）[/h3]
 <单位说明>
+
+[h3]特色议程“<议程名称>”[/h3]
+<议程说明>
+（如有隐藏效果，用圆括号补充说明）
 ```
 
 **繁体字版(`zh-Hant.md`)**: 丸括弧は全角`（ ）`、`（`の前にスペースを入れない。固有名詞は鉤括弧「」で囲む(簡体字版と記号が違う点に注意)。
@@ -148,18 +154,21 @@ Workshopの説明欄が上記のタグをすべて解釈するかは検証して
 [h3]領袖特色能力（壟斷與企業模式）「<領袖特色能力（壟斷）名稱>」[/h3]
 <領袖特色能力（壟斷）說明>
 
-[h3]特色議程「<議程名稱>」[/h3]
-<議程說明>
-（如有隱藏效果，用圓括號補充說明）
-
 [h3]特色區域「<區域名稱>」[/h3]
 <區域說明>
 
 [h3]特色建築「<建築名稱>」[/h3]
 <建築說明>
 
-[h3]特色單位「<單位名稱>」[/h3]
+[h3]特色改良設施「<改良設施名稱>」[/h3]
+<改良設施說明>
+
+[h3]特色單位「<單位名稱>」（<單位副標題>）[/h3]
 <單位說明>
+
+[h3]特色議程「<議程名稱>」[/h3]
+<議程說明>
+（如有隱藏效果，用圓括號補充說明）
 ```
 
 そのリーダーに存在しないブロック(指導者固有能力の独占・大企業モード版、ユニークアジェンダ、ユニークユニット等)は4言語とも省略する。存在するときは、日本語版のテンプレートに足したブロックと同じ順序・同じ書式で、各言語の公式対訳のラベルを使って追加する。
