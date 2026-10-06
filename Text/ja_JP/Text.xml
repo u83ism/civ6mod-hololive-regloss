@@ -16,7 +16,7 @@
 		</Row>
 
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="ja_JP">
-			<Text>推し事お疲れ様でした～</Text>
+			<Text>推し事お疲れさまでした〜</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION" Language="ja_JP">
 			<Text>市場と灯台の両方がある都市は [ICON_TradeRoute] 交易路の数+1。[ICON_TradeRoute] 交易路からの [ICON_Food] 食料+1、[ICON_Production] 生産力+1、[ICON_Science] 科学力+1、[ICON_Culture] 文化力+1。</Text>
@@ -38,7 +38,7 @@
 			<Text>争いのない毎日、最高です！あなたとはこれからも仲良くしたいですね。</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_WARNING_LEADER_ANY_REASON_AGENDA_REGLOSS_ICHIJOU_RIRIKA" Language="ja_JP">
-			<Text>戦争なんてやめて、もっと楽しいことをしましょうよ…。</Text>
+			<Text>戦争なんてやめて、もっと楽しいことをしましょうよ……。</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_MODIFIER_REGLOSS_ICHIJOU_RIRIKA_LIKES_PEACE" Language="ja_JP">
 			<Text>好戦的でない文明を見て喜んでいる</Text>
@@ -83,7 +83,7 @@
 			<Text>やったー！えへへ、これからよろしくね。会社の方もよろしくね！</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_REJECT_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
-			<Text>え、マジ…？ま、まあいいけどさ……</Text>
+			<Text>え、マジ……？ま、まあいいけどさ……</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
 			<Text>もちろん！莉々華と仲良くしたいなんて、見る目あるじゃん</Text>
@@ -98,7 +98,7 @@
 			<Text>やった！これでもう離れられないね</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_REJECT_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
-			<Text>え…そう？ちょっと寂しいけど、仕方ないか</Text>
+			<Text>え……そう？ちょっと寂しいけど、仕方ないか</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_ALLIANCE_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
 			<Text>もちろん！莉々華とならずっとやっていけそう</Text>
@@ -111,14 +111,14 @@
 			<Text>もう我慢の限界。みんなにも言っとくから、覚悟しといてね</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
-			<Text>はぁ？なんでそうなるの…そっちこそ反省しなよ</Text>
+			<Text>はぁ？なんでそうなるの……そっちこそ反省しなよ</Text>
 		</Row>
 
 		<Row Tag="LOC_DIPLO_KUDO_EXIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
 			<Text>あなたの国、なんかいつも穏やかそうでいいよね。莉々華、そういうの見てるとほっとするんだ</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_WARNING_EXIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
-			<Text>ねえ、最近ちょっと殺伐としてない…？もうちょっと肩の力抜いてもいいと思うけどな</Text>
+			<Text>ねえ、最近ちょっと殺伐としてない……？もうちょっと肩の力抜いてもいいと思うけどな</Text>
 		</Row>
 
 		<Row Tag="LOC_DIPLO_DELEGATION_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
@@ -128,13 +128,13 @@
 			<Text>やった、ありがと！粗相しないようにちゃんと言っておくね</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_REJECT_DELEGATION_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
-			<Text>え、だめ…？ま、しょうがないか</Text>
+			<Text>え、だめ……？ま、しょうがないか</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_ACCEPT_DELEGATION_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
 			<Text>もちろん、いつでもおいでよ！</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_REJECT_DELEGATION_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
-			<Text>ごめん、今ちょっと立て込んでて…また今度ね</Text>
+			<Text>ごめん、今ちょっと立て込んでて……また今度ね</Text>
 		</Row>
 
 		<Row Tag="LOC_DIPLO_EMBASSY_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
@@ -144,7 +144,7 @@
 			<Text>やった！駐在、頑張らせるね</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_REJECT_EMBASSY_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
-			<Text>あ、そう…。まあ需要ないなら仕方ないか</Text>
+			<Text>あ、そう……。まあ需要ないなら仕方ないか</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_ACCEPT_EMBASSY_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
 			<Text>もちろん、駐在員置いちゃっていいよ！</Text>
@@ -166,7 +166,7 @@
 			<Text>いいよ、自由に来ていいからね！</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_REJECT_OPEN_BORDERS_FROM_HUMAN_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
-			<Text>ごめん、今はまだちょっと…</Text>
+			<Text>ごめん、今はまだちょっと……</Text>
 		</Row>
 
 		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_ACCEPT_DEAL_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
@@ -198,11 +198,11 @@
 			<Text>よかった……ほんとによかった。ありがとう</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_REJECT_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
-			<Text>は？まだやるつもり…？もう知らない</Text>
+			<Text>は？まだやるつもり……？もう知らない</Text>
 		</Row>
 
 		<Row Tag="LOC_DIPLO_AI_ACCEPT_DEMAND_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
-			<Text>はぁ…わかったよ。今回だけだからね</Text>
+			<Text>はぁ……わかったよ。今回だけだからね</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_AI_REFUSE_DEMAND_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
 			<Text>え、無理無理！そんなのこっちが損するだけじゃん</Text>
@@ -240,7 +240,7 @@
 			<Text>えぇ……そっちがその気なら、こっちも布教しちゃうよ？</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
-			<Text>まあ、そっちの言い分は聞いとくけど…ほんとはこっちが正しいと思ってるからね</Text>
+			<Text>まあ、そっちの言い分は聞いとくけど……ほんとはこっちが正しいと思ってるからね</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
 			<Text>ううん、これでいいの。そのうち分かってくれるって</Text>
@@ -272,7 +272,7 @@
 			<Text>うーん……困るなぁ。こっちも対抗せざるを得ないよ</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
-			<Text>うん、そうだよね…そんな手使ってごめん。もうしないから</Text>
+			<Text>うん、そうだよね……そんな手使ってごめん。もうしないから</Text>
 		</Row>
 		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_ICHIJOU_RIRIKA_ANY" Language="ja_JP">
 			<Text>はっ、そんな約束、莉々華がすると思う？</Text>

@@ -11,7 +11,7 @@
 | 文明名 | 一条コーポレーション | Ichijou Corporation | 一条公司 | 一條公司 | `LOC_CIVILIZATION_REGLOSS_ICHIJOU_NAME` |
 | 指導者名 | 一条莉々華 | Ichijou Ririka | 一条莉莉华 | 一條莉莉華 | `LOC_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME` |
 | 文明能力 | 秘書見習い達の奮闘 | The Trainee Secretaries' Hustle | 见习秘书们的奋斗 | 見習秘書們的奮鬥 | `LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_NAME` |
-| 指導者能力(独占・大企業モードOFF) | 推し事お疲れ様でした～ | Good Work on Your Oshi Activities~ | 追星辛苦了～ | 追星辛苦了～ | `LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME` |
+| 指導者能力(独占・大企業モードOFF) | 推し事お疲れさまでした〜 | Good Work on Your Oshi Activities~ | 追星辛苦了～ | 追星辛苦了～ | `LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_NAME` |
 | 指導者能力(独占・大企業モードON) | 大天才 | Great Genius | 大天才 | 大天才 | `LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_NAME` |
 | ユニークアジェンダ | KPG | KPG | KPG | KPG | `LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_NAME` |
 | 固有ユニット | うに | Uni | 海胆 | 海膽 | `LOC_UNIT_REGLOSS_ICHIJOU_UNI_NAME` |
