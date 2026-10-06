@@ -15,7 +15,20 @@
 | 指導者能力(独占・大企業モードON) | 大天才 | Great Genius | 大天才 | 大天才 | `LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_NAME` |
 | ユニークアジェンダ | KPG | KPG | KPG | KPG | `LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_NAME` |
 | 固有ユニット | うに | Uni | 海胆 | 海膽 | `LOC_UNIT_REGLOSS_ICHIJOU_UNI_NAME` |
+| らでん: 文明名 | 儒烏風亭一門 | House of Juufuutei | 儒乌风亭一门 | 儒烏風亭一門 | `LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME` |
+| らでん: 文明の形容詞 | 儒烏風亭 | Juufuutei | 儒乌风亭 | 儒烏風亭 | `LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_ADJECTIVE` |
+| らでん: 指導者名 | 儒烏風亭らでん | Juufuutei Raden | 儒乌风亭拉电 | 儒烏風亭拉電 | `LOC_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME` |
+| らでん: 文明能力 | 芸術に満たされて | Filled with Art | 沉浸于艺术 | 沉浸於藝術 | `LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME` |
+| らでん: 指導者能力 | 芸術への渇望 | A Thirst for Art | 对艺术的渴望 | 對藝術的渴望 | `LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME` |
+| らでん: 固有ユニット | 学芸員 | Curator | 策展人 | 策展人 | `LOC_UNIT_REGLOSS_JUUFUUTEI_CURATOR_NAME` |
+| らでん: 固有建造物 | 寄席 | Yose Hall | 寄席 | 寄席 | `LOC_BUILDING_REGLOSS_JUUFUUTEI_YOSE_NAME` |
 
 ## 未確定
 
-- ReGLOSSの他メンバー(火威青・音乃瀬奏・儒烏風亭らでん・轟はじめ)の名前・能力名: 実装に着手し、本人が他言語対応を指示した時点で各言語の表記を決める。
+- ReGLOSSの他メンバー(火威青・音乃瀬奏・轟はじめ)の名前・能力名: 実装に着手し、本人が他言語対応を指示した時点で各言語の表記を決める。
+
+## らでんの補足(2026-10-07)
+
+- 上のらでんの行は、他言語対応の指示を受けてAIが案を出し、本人が「AI案で進める」と選んだもの。個別の語は本人が一つずつ確認したわけではない。**「儒烏風亭拉电/拉電」(らでんは仮名のため音写)、「学芸員=策展人」(curatorに合わせて、AI案の「馆员」から変えた)は特に要確認**
+- 都市名(首都+26): 公式訳があるもの(京都・大阪・神戸・広島・福岡・横浜・青森・松本・高松)はCiv6本体の訳、無いものは通用のローマ字(en)・日本語の漢字(zh、簡体/繁体の字形のみ変換)。豊島は「てしま」(直島の隣の美術館の島)と解釈しTeshimaとした(**本人未確認**)。竹橋はTakebashi
+- 口癖「ああぁぁぁいいい」「〜まあす」「こちらでん」「さようならでん」は、語尾「ラデン」の掛け言葉を各言語に残す形で書いた(意味のある語は訳し、鳴き声・掛け言葉は音を残す)
