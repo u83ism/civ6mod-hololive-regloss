@@ -19,13 +19,13 @@
 			<Text>追星辛苦了～</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION" Language="zh_Hant_HK">
-			<Text>同時擁有市場和燈塔的城市 [ICON_TradeRoute] 貿易路線上限+1。來自 [ICON_TradeRoute] 貿易路線的 [ICON_Food] 食物+1、[ICON_Production] 生產力+1、[ICON_Science] 科技值+1、[ICON_Culture] 文化值+1。</Text>
+			<Text>同時擁有市場和燈塔的城市 [ICON_TradeRoute] 貿易路線容量+1。來自 [ICON_TradeRoute] 貿易路線的 [ICON_Food] 食物+1、[ICON_Production] 生產力+1、[ICON_Science] 科技值+1、[ICON_Culture] 文化值+1。</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_NAME" Language="zh_Hant_HK">
 			<Text>大天才</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION" Language="zh_Hant_HK">
-			<Text>工業額外獲得 [ICON_Culture] 文化值+2、[ICON_Science] 科技值+2、[ICON_Gold] 金幣+1。企業的這些加成全部翻倍。商品項目的 [ICON_Production] 生產力+100%。</Text>
+			<Text>工業額外獲得 [ICON_Culture] 文化值+2、[ICON_Science] 科技值+2、[ICON_Gold] 金幣+1。企業的這些加成全部翻倍。創造新產品項目的 [ICON_Production] 生產力+100%。</Text>
 		</Row>
 
 		<Row Tag="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="zh_Hant_HK">
@@ -295,7 +295,7 @@
 			<Text>見習秘書們的奮鬥</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION" Language="zh_Hant_HK">
-			<Text>資源地塊已開發時，加成資源額外獲得 [ICON_Gold] 金幣+3，戰略資源+4，奢侈品資源+6。建造者的使用次數上限比通常多1次。</Text>
+			<Text>資源單元格已開發時，加成資源額外獲得 [ICON_Gold] 金幣+3，戰略資源+4，奢侈品資源+6。建造者會獲得額外建造勞動力。</Text>
 		</Row>
 
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_HQ" Language="zh_Hant_HK">
@@ -323,7 +323,7 @@
 			<Text>迪拜分公司</Text>
 		</Row>
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_08" Language="zh_Hant_HK">
-			<Text>悉尼分公司</Text>
+			<Text>雪梨分公司</Text>
 		</Row>
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_09" Language="zh_Hant_HK">
 			<Text>柏林分公司</Text>
@@ -359,14 +359,14 @@
 			<Text>墨西哥城分公司</Text>
 		</Row>
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_20" Language="zh_Hant_HK">
-			<Text>約翰內斯堡分公司</Text>
+			<Text>約翰尼斯堡分公司</Text>
 		</Row>
 
 		<Row Tag="LOC_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Language="zh_Hant_HK">
 			<Text>海膽</Text>
 		</Row>
 		<Row Tag="LOC_UNIT_REGLOSS_ICHIJOU_UNI_DESCRIPTION" Language="zh_Hant_HK">
-			<Text>取代偵察兵的一條公司專屬遠古時代偵察單位。[ICON_Movement] 移動力+1。</Text>
+			<Text>一條公司遠古時代特色偵察單位，取代偵察兵。[ICON_Movement] 移動力+1。</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Language="zh_Hant_HK">
 			<Text>社長的愛犬</Text>

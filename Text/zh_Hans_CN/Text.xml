@@ -19,13 +19,13 @@
 			<Text>追星辛苦了～</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION" Language="zh_Hans_CN">
-			<Text>同时拥有市场和灯塔的城市 [ICON_TradeRoute] 贸易路线上限+1。来自 [ICON_TradeRoute] 贸易路线的 [ICON_Food] 食物+1、[ICON_Production] 生产力+1、[ICON_Science] 科技值+1、[ICON_Culture] 文化值+1。</Text>
+			<Text>同时拥有市场和灯塔的城市 [ICON_TradeRoute] 贸易路线容量+1。来自 [ICON_TradeRoute] 贸易路线的 [ICON_Food] 食物+1、[ICON_Production] 生产力+1、[ICON_Science] 科技值+1、[ICON_Culture] 文化值+1。</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_NAME" Language="zh_Hans_CN">
 			<Text>大天才</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION" Language="zh_Hans_CN">
-			<Text>行业额外获得 [ICON_Culture] 文化值+2、[ICON_Science] 科技值+2、[ICON_Gold] 金币+1。公司的这些加成全部翻倍。商品项目的 [ICON_Production] 生产力+100%。</Text>
+			<Text>行业额外获得 [ICON_Culture] 文化值+2、[ICON_Science] 科技值+2、[ICON_Gold] 金币+1。公司的这些加成全部翻倍。开发新产品项目的 [ICON_Production] 生产力+100%。</Text>
 		</Row>
 
 		<Row Tag="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="zh_Hans_CN">
@@ -295,7 +295,7 @@
 			<Text>见习秘书们的奋斗</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION" Language="zh_Hans_CN">
-			<Text>资源地块已开发时，加成资源额外获得 [ICON_Gold] 金币+3，战略资源+4，奢侈品资源+6。建造者的使用次数上限比通常多1次。</Text>
+			<Text>资源单元格已开发时，加成资源额外获得 [ICON_Gold] 金币+3，战略资源+4，奢侈品资源+6。建造者会获得1个额外次数。</Text>
 		</Row>
 
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_HQ" Language="zh_Hans_CN">
@@ -366,7 +366,7 @@
 			<Text>海胆</Text>
 		</Row>
 		<Row Tag="LOC_UNIT_REGLOSS_ICHIJOU_UNI_DESCRIPTION" Language="zh_Hans_CN">
-			<Text>取代侦察兵的一条公司专属远古时代侦察单位。[ICON_Movement] 移动力+1。</Text>
+			<Text>远古时代的一条公司特色侦察单位，替代侦察兵。[ICON_Movement] 移动力+1。</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Language="zh_Hans_CN">
 			<Text>社长的爱犬</Text>

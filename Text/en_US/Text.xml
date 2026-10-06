@@ -25,7 +25,7 @@
 			<Text>Great Genius</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION" Language="en_US">
-			<Text>Industries provide an additional +2 [ICON_Culture] Culture, +2 [ICON_Science] Science, and +1 [ICON_Gold] Gold. Corporations double all of these. Corporation Product Projects gain +100% [ICON_Production] Production.</Text>
+			<Text>Industries provide an additional +2 [ICON_Culture] Culture, +2 [ICON_Science] Science, and +1 [ICON_Gold] Gold. Corporations double all of these. Create New Product projects gain +100% [ICON_Production] Production.</Text>
 		</Row>
 
 		<Row Tag="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="en_US">
@@ -335,7 +335,7 @@
 			<Text>Mumbai Branch Office</Text>
 		</Row>
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_12" Language="en_US">
-			<Text>Sao Paulo Branch Office</Text>
+			<Text>São Paulo Branch Office</Text>
 		</Row>
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_13" Language="en_US">
 			<Text>Toronto Branch Office</Text>
