@@ -112,6 +112,7 @@
 		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_ICHIJOU" ModifierId="REGLOSS_ICHIJOU_RIRIKA_UA_ATTACH_STRATEGIC"/>
 		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_ICHIJOU" ModifierId="REGLOSS_ICHIJOU_RIRIKA_UA_ATTACH_LUXURY"/>
 		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_ICHIJOU" ModifierId="REGLOSS_ICHIJOU_ADJUST_BUILDER_CHARGES"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_ICHIJOU" ModifierId="REGLOSS_ICHIJOU_FIRST_ENVOY_DOUBLE"/>
 	</TraitModifiers>
 
 	<!--
@@ -173,6 +174,16 @@
 			<ModifierType>MODIFIER_PLAYER_UNITS_ADJUST_BUILDER_CHARGES</ModifierType>
 			<SubjectRequirementSetId>UNIT_IS_BUILDER</SubjectRequirementSetId>
 		</Row>
+		<!--
+			都市国家に最初に送った代表団(Envoy)を2人分として数える。バニラ政策「外交連盟」(POLICY_DIPLOMATIC_LEAGUE)の
+			DIPLOMATICLEAGUE_DUPLICATEFIRSTINFLUENCETOKEN(Amount=1)と同じModifierTypeをTraitから直接付与する。
+			同系統の兄弟Modifier(ルーズベルト/モンゴルのTraitが使用)は公式がTraitModifiersに直接置いているが、
+			このModifierType自体をTraitから使うのは公式に前例が無く、実機未確認(2026-10-07)。
+		-->
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_FIRST_ENVOY_DOUBLE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_ADJUST_DUPLICATE_FIRST_INFLUENCE_TOKEN</ModifierType>
+		</Row>
 	</Modifiers>
 
 	<ModifierArguments>
@@ -189,7 +200,7 @@
 		<Row>
 			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_BONUS</ModifierId>
 			<Name>Amount</Name>
-			<Value>3</Value>
+			<Value>2</Value>
 		</Row>
 
 		<Row>
@@ -205,7 +216,7 @@
 		<Row>
 			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_STRATEGIC</ModifierId>
 			<Name>Amount</Name>
-			<Value>4</Value>
+			<Value>3</Value>
 		</Row>
 
 		<Row>
@@ -221,11 +232,16 @@
 		<Row>
 			<ModifierId>REGLOSS_ICHIJOU_RIRIKA_UA_YIELD_LUXURY</ModifierId>
 			<Name>Amount</Name>
-			<Value>6</Value>
+			<Value>5</Value>
 		</Row>
 
 		<Row>
 			<ModifierId>REGLOSS_ICHIJOU_ADJUST_BUILDER_CHARGES</ModifierId>
+			<Name>Amount</Name>
+			<Value>1</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_ICHIJOU_FIRST_ENVOY_DOUBLE</ModifierId>
 			<Name>Amount</Name>
 			<Value>1</Value>
 		</Row>
