@@ -178,7 +178,7 @@
 			都市国家に最初に送った代表団(Envoy)を2人分として数える。バニラ政策「外交連盟」(POLICY_DIPLOMATIC_LEAGUE)の
 			DIPLOMATICLEAGUE_DUPLICATEFIRSTINFLUENCETOKEN(Amount=1)と同じModifierTypeをTraitから直接付与する。
 			同系統の兄弟Modifier(ルーズベルト/モンゴルのTraitが使用)は公式がTraitModifiersに直接置いているが、
-			このModifierType自体をTraitから使うのは公式に前例が無く、実機未確認(2026-10-07)。
+			このModifierType自体をTraitから使うのは公式に前例が無いが、2026-10-07に実機で動作確認済み。
 		-->
 		<Row>
 			<ModifierId>REGLOSS_ICHIJOU_FIRST_ENVOY_DOUBLE</ModifierId>
