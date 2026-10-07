@@ -295,7 +295,7 @@
 			<Text>見習秘書們的奮鬥</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION" Language="zh_Hant_HK">
-			<Text>資源單元格已開發時，加成資源額外獲得 [ICON_Gold] 金幣+3，戰略資源+4，奢侈品資源+6。建造者會獲得額外建造勞動力。</Text>
+			<Text>資源單元格已開發時，加成資源額外獲得 [ICON_Gold] 金幣+2，戰略資源+3，奢侈品資源+5。建造者會獲得額外建造勞動力。你向每個城邦派遣的第一個 [ICON_Envoy] 使者會被視為兩個 [ICON_Envoy] 使者。</Text>
 		</Row>
 
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_HQ" Language="zh_Hant_HK">

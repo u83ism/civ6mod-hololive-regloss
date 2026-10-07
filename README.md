@@ -50,5 +50,4 @@ Civilization VI の新規文明追加Mod。hololive ReGLOSSをモチーフにし
 
 ## TODO
 
-- 上記調整に伴い、en/zhの「秘書見習い達の奮闘」説明文を再確認する(指示後)
 - 上記調整に伴い、`docs/steam-description/`の4言語を更新する(リリース前、依頼時)

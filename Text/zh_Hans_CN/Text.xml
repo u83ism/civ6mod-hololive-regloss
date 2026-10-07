@@ -295,7 +295,7 @@
 			<Text>见习秘书们的奋斗</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION" Language="zh_Hans_CN">
-			<Text>资源单元格已开发时，加成资源额外获得 [ICON_Gold] 金币+3，战略资源+4，奢侈品资源+6。建造者会获得1个额外次数。</Text>
+			<Text>资源单元格已开发时，加成资源额外获得 [ICON_Gold] 金币+2，战略资源+3，奢侈品资源+5。建造者会获得1个额外次数。您向每个城邦派遣的第一个 [ICON_Envoy] 使者会被视为2个 [ICON_Envoy] 使者。</Text>
 		</Row>
 
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_HQ" Language="zh_Hans_CN">
