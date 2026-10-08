@@ -3,7 +3,7 @@
 // Editing either text changes the fingerprint, so the finding reappears and has to be re-approved (never silently stays hidden).
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
-import { baseLanguage, type Finding, type TextIndex } from "./validate-text.js";
+import { baseLanguage, type Finding, type NumberEquivalent, type TextIndex } from "./validate-text.js";
 
 export type IgnoreEntry = {
   readonly language: string;
@@ -61,3 +61,26 @@ export const buildIgnoreSuggestions = (findings: readonly Finding[], index: Text
     fingerprint: computeFingerprint(index, finding),
     reason: "",
   }));
+
+const isNumberEquivalent = (value: unknown): value is NumberEquivalent => {
+  if (typeof value !== "object" || value === null) return false;
+  const record = value as Record<string, unknown>;
+  const phrases = record["phrases"];
+  return (
+    typeof record["reason"] === "string" &&
+    record["reason"].trim() !== "" &&
+    typeof phrases === "object" &&
+    phrases !== null &&
+    Object.values(phrases).every((phrase) => typeof phrase === "string" && phrase !== "") &&
+    baseLanguage in phrases
+  );
+};
+
+export const readNumberEquivalents = (path: string): readonly NumberEquivalent[] => {
+  if (!existsSync(path)) return [];
+  const parsed: unknown = JSON.parse(readFileSync(path, "utf8"));
+  if (!Array.isArray(parsed) || !parsed.every(isNumberEquivalent)) {
+    throw new Error(`${path}: expected an array of {phrases: {ja_JP: ..., <language>: ...}, reason} (reason must be non-empty)`);
+  }
+  return parsed;
+};

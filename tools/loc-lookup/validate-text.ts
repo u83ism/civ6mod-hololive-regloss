@@ -60,6 +60,7 @@ const validateAgainstBase = (
   index: TextIndex,
   label: string,
   extract: (text: string) => readonly string[],
+  prepareBase: (baseText: string, text: string, language: string) => string = (baseText) => baseText,
 ): readonly Finding[] =>
   [...index.entries()].flatMap(([tag, byLanguage]) => {
     const baseText = byLanguage.get(baseLanguage);
@@ -67,7 +68,7 @@ const validateAgainstBase = (
     return [...byLanguage.entries()]
       .filter(([language]) => language !== baseLanguage)
       .flatMap(([language, text]): readonly Finding[] => {
-        const differences = describeDifferences(extract(baseText), extract(text));
+        const differences = describeDifferences(extract(prepareBase(baseText, text, language)), extract(text));
         return differences.length === 0
           ? []
           : [{ severity: "error", tag, language, message: `${label}が${baseLanguage}と一致しない: ${differences.join(", ")}` }];
@@ -77,7 +78,25 @@ const validateAgainstBase = (
 export const validatePlaceholders = (index: TextIndex): readonly Finding[] =>
   validateAgainstBase(index, "プレースホルダー([ICON_*]/[NEWLINE]/{N_*}等)", extractPlaceholders);
 
-export const validateNumbers = (index: TextIndex): readonly Finding[] => validateAgainstBase(index, "数値", extractNumbers);
+// A set of phrases that express the same quantity across languages, where ja_JP writes it with a digit and another language with a word
+// (e.g. ja "2倍" / en "double" / zh "翻倍"). When ja_JP and the other language both contain their phrase, the digit of the ja_JP phrase is not counted.
+// Languages missing from a set (or whose phrase keeps the digit, e.g. zh_Hans "1个") are compared normally.
+export type NumberEquivalent = {
+  readonly phrases: Readonly<Record<string, string>>;
+  readonly reason: string;
+};
+
+const removeEquivalentPhrases = (equivalents: readonly NumberEquivalent[]) => (baseText: string, text: string, language: string): string =>
+  equivalents.reduce((current, equivalent) => {
+    const basePhrase = equivalent.phrases[baseLanguage];
+    const otherPhrase = equivalent.phrases[language];
+    return basePhrase !== undefined && otherPhrase !== undefined && current.includes(basePhrase) && text.includes(otherPhrase)
+      ? current.replace(basePhrase, "")
+      : current;
+  }, baseText);
+
+export const validateNumbers = (index: TextIndex, equivalents: readonly NumberEquivalent[]): readonly Finding[] =>
+  validateAgainstBase(index, "数値", extractNumbers, removeEquivalentPhrases(equivalents));
 
 type PunctuationRule = {
   readonly pattern: RegExp;

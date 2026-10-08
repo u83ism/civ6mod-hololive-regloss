@@ -6,7 +6,9 @@
 //   npm run check -- --no-terms   skip the official-term check (no game install needed, much faster)
 //   npm run check -- --strict     treat missing tags (a language lacking a tag another language has) as errors
 //   npm run check -- --suggest-ignore   print the remaining findings as ignore-list entries (reason is empty; fill it in only after judging each a false positive)
-// Findings listed in check-ignore.json (human/AI-approved false positives, see ignore-list.ts) are hidden; an entry stops matching when either text changes.
+// Two approved-false-positive mechanisms (both human/AI-approved, never automatic; see ignore-list.ts):
+//   number-equivalents.json  multilingual phrase sets for "ja writes a digit, other language writes a word" (generalizes to new texts)
+//   check-ignore.json        exact per-finding entries for anything else; an entry stops matching when either text changes
 // Missing tags are warnings by default: ja_JP is written first and the other languages are added only when the user asks
 // (.claude/rules/localization-order.md). Use --strict for the release gate.
 // Exit code is 1 when there are errors (warnings alone do not fail).
@@ -14,7 +16,7 @@
 //   CIV6_PATH              game install directory (default: the standard Steam location)
 import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { applyIgnoreList, buildIgnoreSuggestions, readIgnoreList } from "./ignore-list.js";
+import { applyIgnoreList, buildIgnoreSuggestions, readIgnoreList, readNumberEquivalents } from "./ignore-list.js";
 import { defaultGamePath, loadEntries } from "./load-entries.js";
 import { validateTerms } from "./validate-terms.js";
 import {
@@ -28,7 +30,8 @@ import {
 
 const formatFinding = (finding: Finding): string => `[${finding.severity}] ${finding.language} ${finding.tag}\n    ${finding.message}`;
 
-const modRoot = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
+const toolDirectory = dirname(fileURLToPath(import.meta.url));
+const modRoot = join(toolDirectory, "..", "..");
 const modEntries = loadEntries(join(modRoot, "Text"), basename(modRoot), false);
 const modIndex = buildTextIndex(modEntries);
 const languages = [...new Set(modEntries.map((entry) => entry.language))].sort();
@@ -43,12 +46,12 @@ const officialIndex = process.argv.includes("--no-terms")
 const allFindings: readonly Finding[] = [
   ...validateTagParity(modIndex, languages, process.argv.includes("--strict") ? "error" : "warning"),
   ...validatePlaceholders(modIndex),
-  ...validateNumbers(modIndex),
+  ...validateNumbers(modIndex, readNumberEquivalents(join(toolDirectory, "number-equivalents.json"))),
   ...validatePunctuation(modIndex),
   ...(officialIndex === undefined ? [] : validateTerms(modIndex, officialIndex, languages)),
 ];
 
-const ignoreListPath = join(dirname(fileURLToPath(import.meta.url)), "check-ignore.json");
+const ignoreListPath = join(toolDirectory, "check-ignore.json");
 const { remaining: findings, ignoredCount, staleEntries } = applyIgnoreList(allFindings, readIgnoreList(ignoreListPath), modIndex);
 
 if (process.argv.includes("--suggest-ignore")) {
