@@ -5,6 +5,8 @@
 //   npm run check                 all checks (reads the game install for the official-term check)
 //   npm run check -- --no-terms   skip the official-term check (no game install needed, much faster)
 //   npm run check -- --strict     treat missing tags (a language lacking a tag another language has) as errors
+//   npm run check -- --suggest-ignore   print the remaining findings as ignore-list entries (reason is empty; fill it in only after judging each a false positive)
+// Findings listed in check-ignore.json (human/AI-approved false positives, see ignore-list.ts) are hidden; an entry stops matching when either text changes.
 // Missing tags are warnings by default: ja_JP is written first and the other languages are added only when the user asks
 // (.claude/rules/localization-order.md). Use --strict for the release gate.
 // Exit code is 1 when there are errors (warnings alone do not fail).
@@ -12,6 +14,7 @@
 //   CIV6_PATH              game install directory (default: the standard Steam location)
 import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { applyIgnoreList, buildIgnoreSuggestions, readIgnoreList } from "./ignore-list.js";
 import { defaultGamePath, loadEntries } from "./load-entries.js";
 import { validateTerms } from "./validate-terms.js";
 import {
@@ -37,7 +40,7 @@ const officialIndex = process.argv.includes("--no-terms")
       ...loadEntries(join(process.env["CIV6_PATH"] ?? defaultGamePath, "DLC"), "DLC", false),
     ]);
 
-const findings: readonly Finding[] = [
+const allFindings: readonly Finding[] = [
   ...validateTagParity(modIndex, languages, process.argv.includes("--strict") ? "error" : "warning"),
   ...validatePlaceholders(modIndex),
   ...validateNumbers(modIndex),
@@ -45,8 +48,19 @@ const findings: readonly Finding[] = [
   ...(officialIndex === undefined ? [] : validateTerms(modIndex, officialIndex, languages)),
 ];
 
+const ignoreListPath = join(dirname(fileURLToPath(import.meta.url)), "check-ignore.json");
+const { remaining: findings, ignoredCount, staleEntries } = applyIgnoreList(allFindings, readIgnoreList(ignoreListPath), modIndex);
+
+if (process.argv.includes("--suggest-ignore")) {
+  console.log(JSON.stringify(buildIgnoreSuggestions(findings, modIndex), null, 2));
+  process.exit(0);
+}
+
 const errorCount = findings.filter((finding) => finding.severity === "error").length;
 console.log(`languages: ${languages.join(", ")} / tags: ${modIndex.size}`);
 console.log(findings.length === 0 ? "OK: no findings." : findings.map(formatFinding).join("\n"));
-console.log(`\n${errorCount} error(s), ${findings.length - errorCount} warning(s)`);
+console.log(`\n${errorCount} error(s), ${findings.length - errorCount} warning(s) (${ignoredCount} approved false positive(s) hidden)`);
+if (staleEntries.length > 0) {
+  console.log(`stale entries in check-ignore.json (no longer matching; text changed or fixed, delete or re-approve):\n${staleEntries.map((entry) => `  ${entry.language} ${entry.tag}`).join("\n")}`);
+}
 process.exit(errorCount > 0 ? 1 : 0);

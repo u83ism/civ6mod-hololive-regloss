@@ -1,0 +1,37 @@
+[
+  {
+    "language": "en_US",
+    "tag": "LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION",
+    "message": "数値がja_JPと一致しない: 2 (ja_JP:3, here:2)",
+    "fingerprint": "7920e36a3e36",
+    "reason": "日本語「2倍」(数字)に対し他言語はdouble/翻倍(単語)。XML(産業+2/+2/+1、大企業は同量上乗せ)と内容一致を2026-10-09に確認"
+  },
+  {
+    "language": "zh_Hans_CN",
+    "tag": "LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION",
+    "message": "数値がja_JPと一致しない: 2 (ja_JP:3, here:2)",
+    "fingerprint": "e5162b9835c8",
+    "reason": "日本語「2倍」(数字)に対し他言語はdouble/翻倍(単語)。XML(産業+2/+2/+1、大企業は同量上乗せ)と内容一致を2026-10-09に確認"
+  },
+  {
+    "language": "zh_Hant_HK",
+    "tag": "LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION",
+    "message": "数値がja_JPと一致しない: 2 (ja_JP:3, here:2)",
+    "fingerprint": "d29758533044",
+    "reason": "日本語「2倍」(数字)に対し他言語はdouble/翻倍(単語)。XML(産業+2/+2/+1、大企業は同量上乗せ)と内容一致を2026-10-09に確認"
+  },
+  {
+    "language": "en_US",
+    "tag": "LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION",
+    "message": "数値がja_JPと一致しない: 2 (ja_JP:2, here:1), 1 (ja_JP:1, here:0)",
+    "fingerprint": "17d79995a9cb",
+    "reason": "日本語「2つ」「1回」(数字)に対し他言語はtwo/an additional charge等(単語)。公式の外交連盟・始皇帝の文と同じ対応で、内容一致を2026-10-09に確認"
+  },
+  {
+    "language": "zh_Hant_HK",
+    "tag": "LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION",
+    "message": "数値がja_JPと一致しない: 2 (ja_JP:2, here:1), 1 (ja_JP:1, here:0)",
+    "fingerprint": "35fc276c0f7f",
+    "reason": "日本語「2つ」「1回」(数字)に対し他言語はtwo/an additional charge等(単語)。公式の外交連盟・始皇帝の文と同じ対応で、内容一致を2026-10-09に確認"
+  }
+]
