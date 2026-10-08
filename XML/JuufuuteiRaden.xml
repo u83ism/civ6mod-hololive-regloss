@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+	<!--
+		儒烏風亭らでん。文明・指導者・文明能力・指導者能力・アジェンダ(バニラの文化重視を流用)・ローディング/外交交渉画面の背景・
+		固有ユニット「学芸員」・固有建造物「寄席」。設計はdocs/design.mdの「儒烏風亭らでん」節を参照(未決の論点が残っている)。
+
+		ID命名は一条莉々華に揃えた(文明ID=姓のテーマ名、指導者ID=姓+名)。文明の表示名(LOC)は暫定。
+	-->
+	<Types>
+		<Row Type="CIVILIZATION_REGLOSS_JUUFUUTEI" Kind="KIND_CIVILIZATION"/>
+		<Row Type="LEADER_REGLOSS_JUUFUUTEI_RADEN" Kind="KIND_LEADER"/>
+		<Row Type="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" Kind="KIND_TRAIT"/>
+		<Row Type="TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN" Kind="KIND_TRAIT"/>
+		<Row Type="UNIT_REGLOSS_JUUFUUTEI_CURATOR" Kind="KIND_UNIT"/>
+		<Row Type="TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR" Kind="KIND_TRAIT"/>
+		<Row Type="BUILDING_REGLOSS_JUUFUUTEI_YOSE" Kind="KIND_BUILDING"/>
+		<Row Type="TRAIT_CIVILIZATION_BUILDING_REGLOSS_JUUFUUTEI_YOSE" Kind="KIND_TRAIT"/>
+	</Types>
+
+	<Traits>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" Name="LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME" Description="LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_DESCRIPTION"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN" Name="LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME" Description="LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_DESCRIPTION"/>
+	</Traits>
+
+	<Leaders>
+		<Row LeaderType="LEADER_REGLOSS_JUUFUUTEI_RADEN" Name="LOC_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME" InheritFrom="LEADER_DEFAULT"/>
+	</Leaders>
+
+	<Civilizations>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" Name="LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME" Description="LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_DESCRIPTION" Adjective="LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_ADJECTIVE" StartingCivilizationLevelType="CIVILIZATION_LEVEL_FULL_CIV" RandomCityNameDepth="1"/>
+	</Civilizations>
+
+	<LeaderTraits>
+		<Row LeaderType="LEADER_REGLOSS_JUUFUUTEI_RADEN" TraitType="TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN"/>
+	</LeaderTraits>
+
+	<CivilizationTraits>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI"/>
+	</CivilizationTraits>
+
+	<CivilizationLeaders>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" LeaderType="LEADER_REGLOSS_JUUFUUTEI_RADEN" CapitalName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_CAPITAL"/>
+	</CivilizationLeaders>
+
+	<!-- 都市名は「美術館のある街」と「寄席・落語ゆかりの街」を交互に並べ、寄席側が尽きたら美術館の街が続く。2都市目以降は上から順に採番される -->
+	<CityNames>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_CAPITAL"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_01"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_02"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_03"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_04"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_05"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_06"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_07"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_08"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_09"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_10"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_11"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_12"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_13"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_14"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_15"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_16"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_17"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_18"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_19"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_20"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_21"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_22"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_23"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_24"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_25"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CityName="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_26"/>
+	</CityNames>
+
+	<!--
+		市民名はバニラの日本(CIVILIZATION_JAPAN)と同じ40個(男・女・現代男・現代女 各10)をそのまま参照する。
+		スパイ(捕虜の解放交渉画面を含む)の名前は文明の市民名から付く。未設定だと名無しになったとみられる(2026-10-05、らでんのテストプレイで捕虜の名前が空になった。市民名が原因かは実機で未確認)。
+		LOC_CITIZEN_JAPAN_*はバニラ本体のタグなので、このModにテキストは足していない(全言語で表示される)。
+	-->
+	<CivilizationCitizenNames>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MALE_1"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MALE_2"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MALE_3"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MALE_4"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MALE_5"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MALE_6"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MALE_7"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MALE_8"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MALE_9"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MALE_10"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_1" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_2" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_3" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_4" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_5" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_6" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_7" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_8" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_9" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_10" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_1" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_2" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_3" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_4" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_5" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_6" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_7" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_8" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_9" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_10" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_1" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_2" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_3" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_4" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_5" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_6" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_7" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_8" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_9" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_10" Female="true" Modern="true"/>
+	</CivilizationCitizenNames>
+
+	<!--
+		アジェンダは作り込まず、バニラの「文化重視」(AGENDA_CULTURED)をそのまま使う(本人判断。docs/design.md)。
+		他のHololive Mod(夜空メルのAGENDA_YOZORA_MEL_CULTURED)と同じ形: 専用のアジェンダ型を1つ足し、名前・説明・Traitは
+		バニラのもの(LOC_AGENDA_CULTURED_*、TRAIT_AGENDA_PREFER_CULTURE)を指す。ExclusiveAgendasで、バニラ本体の
+		AGENDA_CULTUREDと同時に割り当てられないようにする。好み・嫌いの判定はバニラの文化重視のまま。
+	-->
+	<Agendas>
+		<Row AgendaType="AGENDA_REGLOSS_JUUFUUTEI_RADEN" Name="LOC_AGENDA_CULTURED_NAME" Description="LOC_AGENDA_CULTURED_DESCRIPTION"/>
+	</Agendas>
+
+	<ExclusiveAgendas>
+		<Row AgendaOne="AGENDA_REGLOSS_JUUFUUTEI_RADEN" AgendaTwo="AGENDA_CULTURED"/>
+	</ExclusiveAgendas>
+
+	<AgendaTraits>
+		<Row AgendaType="AGENDA_REGLOSS_JUUFUUTEI_RADEN" TraitType="TRAIT_AGENDA_PREFER_CULTURE"/>
+	</AgendaTraits>
+
+	<HistoricalAgendas>
+		<Row LeaderType="LEADER_REGLOSS_JUUFUUTEI_RADEN" AgendaType="AGENDA_REGLOSS_JUUFUUTEI_RADEN"/>
+	</HistoricalAgendas>
+
+	<!-- ローディング画面(make-fallback-portraitの生成物をそのまま使う、一条莉々華と同じ構成) -->
+	<LoadingInfo>
+		<Row LeaderType="LEADER_REGLOSS_JUUFUUTEI_RADEN" ForegroundImage="LEADER_REGLOSS_JUUFUUTEI_RADEN_NEUTRAL" BackgroundImage="LEADER_REGLOSS_JUUFUUTEI_RADEN_BACKGROUND"/>
+	</LoadingInfo>
+
+	<!-- 外交交渉画面の背景。この行が無いとクレオパトラの背景にフォールバックする(一条莉々華と同じ理由) -->
+	<DiplomacyInfo>
+		<Row Type="LEADER_REGLOSS_JUUFUUTEI_RADEN" BackgroundImage="LEADER_REGLOSS_JUUFUUTEI_RADEN_BACKGROUND"/>
+	</DiplomacyInfo>
+
+	<!--
+		UU「学芸員」(考古学者UNIT_ARCHAEOLOGISTの置換)。設計はdocs/design.mdの「儒烏風亭らでん」節: 移動力+2、コスト50%(400→200)。
+		コスト50%は本人の決定(2026-10-04)。バニラUUの割安の前例では最大級(イェニチェリ50%)。
+
+		バニラの考古学者の行(Base/Assets/Gameplay/Data/Units.xml)をそのままコピーして、BaseMoves(4→6)とCost(400→200)と
+		Name/Description/TraitTypeだけ差し替えた。発掘の可否はExtractsArtifacts="true"(Base Schemaの列。SelectedUnit.luaが
+		GameInfo.Units[...].ExtractsArtifactsで判定している)とTypeTagsのCLASS_ARCHAEOLOGIST(ABILITY_ARCHAEOLOGIST_ENTER_FOREIGN_LANDS
+		の付与元)に依る。考古学者を置換するバニラUUは前例が無かったが、実機で発掘できることを確認済み(2026-10-04)。
+		注意: 学芸員をFireTunerで直接出すと拠点都市(Home City)が無く、発掘した秘宝が傑作として登録されず2回目の発掘もできない。考古博物館のある都市で購入/生産したものは正常に動く。
+		拡張パック(Expansion2_Units.xml)がバニラ考古学者に足しているCanEarnExperience/CanFormMilitaryFormationは、
+		拡張限定のスキーマ列で非対応ルールセットではUnits全体のINSERTが失敗するため(add-unique-content Skill落とし穴3番)入れていない。
+		UnitAiInfosはバニラの考古学者にも無いので足していない。博物館1つにつき1人の支援枠もバニラと同じNumSupported=1。
+		専用Traitは文明能力の表示が消える不具合の対策(同Skill落とし穴1番)。
+	-->
+	<TypeTags>
+		<Row Type="UNIT_REGLOSS_JUUFUUTEI_CURATOR" Tag="CLASS_LANDCIVILIAN"/>
+		<Row Type="UNIT_REGLOSS_JUUFUUTEI_CURATOR" Tag="CLASS_ARCHAEOLOGIST"/>
+	</TypeTags>
+
+	<Units>
+		<Row UnitType="UNIT_REGLOSS_JUUFUUTEI_CURATOR" Cost="200" BaseMoves="6" BaseSightRange="2" ZoneOfControl="false" Domain="DOMAIN_LAND" FormationClass="FORMATION_CLASS_CIVILIAN" AdvisorType="ADVISOR_CULTURE" Name="LOC_UNIT_REGLOSS_JUUFUUTEI_CURATOR_NAME" Description="LOC_UNIT_REGLOSS_JUUFUUTEI_CURATOR_DESCRIPTION" CanCapture="False" PurchaseYield="YIELD_GOLD" PseudoYieldType="PSEUDOYIELD_UNIT_ARCHAEOLOGIST" PrereqCivic="CIVIC_NATURAL_HISTORY" ExtractsArtifacts="true" CanRetreatWhenCaptured="True" TraitType="TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR"/>
+	</Units>
+
+	<UnitReplaces>
+		<Row CivUniqueUnitType="UNIT_REGLOSS_JUUFUUTEI_CURATOR" ReplacesUnitType="UNIT_ARCHAEOLOGIST"/>
+	</UnitReplaces>
+
+	<Unit_BuildingPrereqs>
+		<Row Unit="UNIT_REGLOSS_JUUFUUTEI_CURATOR" PrereqBuilding="BUILDING_MUSEUM_ARTIFACT" NumSupported="1"/>
+	</Unit_BuildingPrereqs>
+
+	<Traits>
+		<Row TraitType="TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR" Name="LOC_TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR_NAME"/>
+	</Traits>
+
+	<CivilizationTraits>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" TraitType="TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR"/>
+	</CivilizationTraits>
+
+	<!--
+		文明固有能力「芸術に満たされて」: 傑作1つにつき、食料+4・生産力+4・信仰力+4・文化力+4。
+		対象は美術4種(彫刻・肖像画・風景画・宗教画)・遺物・秘宝の6種類で、種類×産出=24本のModifier。
+		コンゴの文明能力「ンキシ」(TRAIT_GREAT_WORK_*_SCULPTURE/_ARTIFACT/_RELIC、Base/Assets/Gameplay/Data/Civilizations.xml)と
+		同じMODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD(引数GreatWorkObjectType/YieldType/YieldChange)。
+		観光力は入れない(設計はdocs/design.md)。数値は全て同じなので、調整はこのファイルの YieldChange(4)を書き換える。
+
+		指導者固有能力「芸術への渇望」: ターンごとに大芸術家ポイント+2と、新しい自然遺産を発見するたびに遺物を1つ獲得。
+		大芸術家ポイントはバニラの政策「フレスコ画」(FRESCOES_GREATARTISTPOINTS)と同じ
+		MODIFIER_PLAYER_ADJUST_GREAT_PERSON_POINTS(GreatPersonClassType=GREAT_PERSON_CLASS_ARTIST、Amount=2)。
+		自然遺産の遺物は、都市国家キャンディの宗主国ボーナス(Leaders.xmlのMINOR_CIV_KANDY_UNIQUE_INFLUENCE_GRANT_BONUS)が
+		宗主国に付与する内側のModifier(MINOR_CIV_KANDY_GRANT_RELIC_BONUS、MODIFIER_PLAYER_ADJUST_NATURAL_WONDER_RELIC、Amount=1)と
+		同じもの。宗主国の条件を外して指導者Traitから直接付けた。Traitから直接付けて動くかは実機で確認する。
+		キャンディの「遺物から信仰力+50%」(MINOR_CIV_KANDY_BETTER_RELIC_BONUS)は、文明能力の産出と重なるので入れない。
+	-->
+	<TraitModifiers>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_SCULPTURE_FOOD"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_SCULPTURE_PRODUCTION"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_SCULPTURE_FAITH"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_SCULPTURE_CULTURE"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_PORTRAIT_FOOD"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_PORTRAIT_PRODUCTION"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_PORTRAIT_FAITH"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_PORTRAIT_CULTURE"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_LANDSCAPE_FOOD"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_LANDSCAPE_PRODUCTION"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_LANDSCAPE_FAITH"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_LANDSCAPE_CULTURE"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_RELIGIOUS_FOOD"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_RELIGIOUS_PRODUCTION"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_RELIGIOUS_FAITH"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_RELIGIOUS_CULTURE"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_RELIC_FOOD"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_RELIC_PRODUCTION"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_RELIC_FAITH"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_RELIC_CULTURE"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_ARTIFACT_FOOD"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_ARTIFACT_PRODUCTION"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_ARTIFACT_FAITH"/>
+		<Row TraitType="TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI" ModifierId="REGLOSS_JUUFUUTEI_GW_ARTIFACT_CULTURE"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN" ModifierId="REGLOSS_JUUFUUTEI_RADEN_ARTIST_POINTS"/>
+		<Row TraitType="TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN" ModifierId="REGLOSS_JUUFUUTEI_RADEN_NATURAL_WONDER_RELIC"/>
+	</TraitModifiers>
+
+	<Modifiers>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_FOOD</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_PRODUCTION</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_FAITH</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_CULTURE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_FOOD</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_PRODUCTION</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_FAITH</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_CULTURE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_FOOD</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_PRODUCTION</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_FAITH</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_CULTURE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_FOOD</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_PRODUCTION</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_FAITH</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_CULTURE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_FOOD</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_PRODUCTION</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_FAITH</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_CULTURE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_FOOD</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_PRODUCTION</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_FAITH</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_CULTURE</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_CITIES_ADJUST_GREATWORK_YIELD</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_RADEN_ARTIST_POINTS</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_ADJUST_GREAT_PERSON_POINTS</ModifierType>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_RADEN_NATURAL_WONDER_RELIC</ModifierId>
+			<ModifierType>MODIFIER_PLAYER_ADJUST_NATURAL_WONDER_RELIC</ModifierType>
+		</Row>
+	</Modifiers>
+
+	<ModifierArguments>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_FOOD</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_SCULPTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_FOOD</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_FOOD</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_FOOD</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_PRODUCTION</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_SCULPTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_PRODUCTION</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_PRODUCTION</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_PRODUCTION</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_FAITH</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_SCULPTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_FAITH</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_FAITH</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_FAITH</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_CULTURE</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_SCULPTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_CULTURE</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_CULTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_SCULPTURE_CULTURE</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_FOOD</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_PORTRAIT</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_FOOD</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_FOOD</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_FOOD</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_PRODUCTION</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_PORTRAIT</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_PRODUCTION</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_PRODUCTION</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_PRODUCTION</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_FAITH</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_PORTRAIT</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_FAITH</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_FAITH</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_FAITH</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_CULTURE</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_PORTRAIT</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_CULTURE</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_CULTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_PORTRAIT_CULTURE</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_FOOD</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_LANDSCAPE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_FOOD</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_FOOD</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_FOOD</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_PRODUCTION</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_LANDSCAPE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_PRODUCTION</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_PRODUCTION</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_PRODUCTION</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_FAITH</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_LANDSCAPE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_FAITH</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_FAITH</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_FAITH</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_CULTURE</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_LANDSCAPE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_CULTURE</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_CULTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_LANDSCAPE_CULTURE</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_FOOD</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_RELIGIOUS</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_FOOD</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_FOOD</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_FOOD</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_PRODUCTION</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_RELIGIOUS</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_PRODUCTION</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_PRODUCTION</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_PRODUCTION</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_FAITH</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_RELIGIOUS</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_FAITH</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_FAITH</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_FAITH</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_CULTURE</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_RELIGIOUS</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_CULTURE</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_CULTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIGIOUS_CULTURE</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_FOOD</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_RELIC</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_FOOD</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_FOOD</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_FOOD</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_PRODUCTION</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_RELIC</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_PRODUCTION</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_PRODUCTION</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_PRODUCTION</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_FAITH</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_RELIC</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_FAITH</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_FAITH</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_FAITH</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_CULTURE</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_RELIC</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_CULTURE</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_CULTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_RELIC_CULTURE</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_FOOD</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_ARTIFACT</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_FOOD</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_FOOD</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_FOOD</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_PRODUCTION</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_ARTIFACT</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_PRODUCTION</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_PRODUCTION</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_PRODUCTION</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_FAITH</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_ARTIFACT</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_FAITH</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_FAITH</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_FAITH</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_CULTURE</ModifierId>
+			<Name>GreatWorkObjectType</Name>
+			<Value>GREATWORKOBJECT_ARTIFACT</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_CULTURE</ModifierId>
+			<Name>YieldType</Name>
+			<Value>YIELD_CULTURE</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_GW_ARTIFACT_CULTURE</ModifierId>
+			<Name>YieldChange</Name>
+			<Value>4</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_RADEN_ARTIST_POINTS</ModifierId>
+			<Name>GreatPersonClassType</Name>
+			<Value>GREAT_PERSON_CLASS_ARTIST</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_RADEN_ARTIST_POINTS</ModifierId>
+			<Name>Amount</Name>
+			<Value>2</Value>
+		</Row>
+		<Row>
+			<ModifierId>REGLOSS_JUUFUUTEI_RADEN_NATURAL_WONDER_RELIC</ModifierId>
+			<Name>Amount</Name>
+			<Value>1</Value>
+		</Row>
+	</ModifierArguments>
+
+	<!--
+		UB「寄席」(円形闘技場BUILDING_AMPHITHEATERの置換)。設計はdocs/design.mdの「儒烏風亭らでん」節。
+		円形闘技場の書物スロット2つを、宮殿と同じ種類のスロット(GREATWORKSLOT_PALACE、秘宝以外なら何でも置ける)2つに、
+		大著述家ポイント1を大芸術家ポイント1に変えた。美術館・考古博物館のスロットは増やさない(テーマ化の条件が変わるため)。
+
+		バニラの円形闘技場の行(Base/Assets/Gameplay/Data/Buildings.xml)をコピーして、Name/Description/TraitTypeを足した。
+		コスト150・維持費1・市民スロット1・文化力+2(Building_YieldChanges)はバニラの円形闘技場のまま。**暫定**
+		(コスト・維持費・文化力を残すかは未決。マオリの「マラエ」は維持費を外し、文化力を別の効果に差し替えている)。
+		Base Schemaの列だけで組み、拡張パック限定の列(TourismBombValue等)は入れていない。
+		専用Traitは文明能力の表示が消える不具合の対策(add-unique-content Skill落とし穴1番)。
+
+		**3Dモデル(Buildings.artdef/Landmarks.artdef)は未対応**。劇場広場の見た目は「円形闘技場+美術館」等の建物の組み合わせごとの
+		ランドマークで定義されており(Base/ArtDefs/Landmarks.artdef)、置換した建物がこの組み合わせに入るかは未確認。
+		アイコンは円形闘技場のものを流用する。
+		未確認: 寄席が円形闘技場として数えられるか(美術館・考古博物館の前提Building_Prerequisites、神の光、国立歴史博物館の効果)。
+	-->
+	<Buildings>
+		<Row BuildingType="BUILDING_REGLOSS_JUUFUUTEI_YOSE" Name="LOC_BUILDING_REGLOSS_JUUFUUTEI_YOSE_NAME" Description="LOC_BUILDING_REGLOSS_JUUFUUTEI_YOSE_DESCRIPTION" PrereqCivic="CIVIC_DRAMA_POETRY" PrereqDistrict="DISTRICT_THEATER" PurchaseYield="YIELD_GOLD" Cost="150" AdvisorType="ADVISOR_CULTURE" Maintenance="1" CitizenSlots="1" TraitType="TRAIT_CIVILIZATION_BUILDING_REGLOSS_JUUFUUTEI_YOSE"/>
+	</Buildings>
+
+	<BuildingReplaces>
+		<Row CivUniqueBuildingType="BUILDING_REGLOSS_JUUFUUTEI_YOSE" ReplacesBuildingType="BUILDING_AMPHITHEATER"/>
+	</BuildingReplaces>
+
+	<Traits>
+		<Row TraitType="TRAIT_CIVILIZATION_BUILDING_REGLOSS_JUUFUUTEI_YOSE" Name="LOC_TRAIT_CIVILIZATION_BUILDING_REGLOSS_JUUFUUTEI_YOSE_NAME"/>
+	</Traits>
+
+	<CivilizationTraits>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_JUUFUUTEI" TraitType="TRAIT_CIVILIZATION_BUILDING_REGLOSS_JUUFUUTEI_YOSE"/>
+	</CivilizationTraits>
+
+	<Building_YieldChanges>
+		<Row BuildingType="BUILDING_REGLOSS_JUUFUUTEI_YOSE" YieldType="YIELD_CULTURE" YieldChange="2"/>
+	</Building_YieldChanges>
+
+	<Building_GreatPersonPoints>
+		<Row BuildingType="BUILDING_REGLOSS_JUUFUUTEI_YOSE" GreatPersonClassType="GREAT_PERSON_CLASS_ARTIST" PointsPerTurn="1"/>
+	</Building_GreatPersonPoints>
+
+	<Building_GreatWorks>
+		<Row BuildingType="BUILDING_REGLOSS_JUUFUUTEI_YOSE" GreatWorkSlotType="GREATWORKSLOT_PALACE" NumSlots="2"/>
+	</Building_GreatWorks>
+
+	<!--
+		固有建造物「寄席」・固有ユニット「学芸員」を初めて完成/生産した時の時代スコアポップアップ(Historic Moment)用の専用挿絵。
+		スキーマ・規格は`.claude/skills/make-moment-illustration`参照。Textureはtools/png2dds/gen-moment-illustration.tsで生成し、
+		tools/IconBuild(AssetCooker)でビルドしたUI/RegLoss_Moments.blpに含まれる(うにの挿絵と同じパッケージ)。
+	-->
+	<MomentIllustrations>
+		<Row MomentIllustrationType="MOMENT_ILLUSTRATION_UNIQUE_BUILDING" MomentDataType="MOMENT_DATA_BUILDING" GameDataType="BUILDING_REGLOSS_JUUFUUTEI_YOSE" Texture="Moment_Infrastructure_ReglossJuufuutei_Yose.dds"/>
+		<Row MomentIllustrationType="MOMENT_ILLUSTRATION_UNIQUE_UNIT" MomentDataType="MOMENT_DATA_UNIT" GameDataType="UNIT_REGLOSS_JUUFUUTEI_CURATOR" Texture="Moment_UniqueUnit_ReglossJuufuutei_Curator.dds"/>
+	</MomentIllustrations>
+</GameData>

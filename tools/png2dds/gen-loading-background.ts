@@ -1,6 +1,6 @@
-// Build the loading-screen background (LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND) from the
-// wallpaper master art in Art/Source/ (read-only; never modified by this script). This is a
-// separate layer from the loading-screen portrait (LEADER_REGLOSS_ICHIJOU_RIRIKA_NEUTRAL,
+// Build the loading-screen background (LEADER_<leaderId>_BACKGROUND) from the
+// wallpaper master art in Art/Source/ (path relative to Art/Source/, e.g. sakamata-chloe/foo.png; read-only; never modified by this script). This is a
+// separate layer from the loading-screen portrait (LEADER_<leaderId>_NEUTRAL,
 // made by make-fallback-portrait's sibling pipeline): LoadScreen.xml nests a "Portrait" Image
 // control inside "BackgroundImage" as its own independent control, and LoadScreen.lua sets
 // their textures via two unrelated Controls.BackgroundImage:SetTexture(...) /
@@ -10,20 +10,28 @@
 // every leader, unlike the portrait images) via a center crop-to-fill, since the source
 // wallpaper's aspect ratio doesn't match. Also generates the sidecar .tex (copied from the
 // matching official template with mipmap count substituted) and .xlp.
-// Usage: tsx gen-loading-background.ts
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+// Usage: tsx gen-loading-background.ts <leaderId> <wallpaperFileName>
+// Example: tsx gen-loading-background.ts REGLOSS_ICHIJOU_RIRIKA ichijou-ririka/wallpaper-broadcast-night.webp
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
 import { convertPngToDds, computeMipCount } from "./png2dds.js";
+import { addXlpEntry } from "./merge-generated-entries.js";
+
+const [, , leaderId, wallpaperFileName] = process.argv;
+if (!leaderId || !wallpaperFileName) {
+  console.error("Usage: tsx gen-loading-background.ts <leaderId> <wallpaperFileName>");
+  process.exit(1);
+}
 
 const BACKGROUND_WIDTH = 1920;
 const BACKGROUND_HEIGHT = 960;
-const OUR_NAME = "LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND";
+const OUR_NAME = `LEADER_${leaderId}_BACKGROUND`;
 const SDK_ASSETS_TEXTURES =
   "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Sid Meier's Civilization VI SDK Assets\\Civ6\\DLC\\Expansion1\\pantry\\Textures";
 const TEX_TEMPLATE_NAME = "LEADER_ROBERT_THE_BRUCE_BACKGROUND";
 
-const sourcePath = join(import.meta.dirname, "..", "..", "Art", "Source", "wallpaper-broadcast-night.webp");
+const sourcePath = join(import.meta.dirname, "..", "..", "Art", "Source", wallpaperFileName);
 const iconsDirectory = join(import.meta.dirname, "..", "..", "Art", "Icons");
 const textureOutputDirectory = join(import.meta.dirname, "..", "IconBuild", "Textures");
 const xlpOutputDirectory = join(import.meta.dirname, "..", "IconBuild", "XLPs");
@@ -79,7 +87,8 @@ const buildBackgroundXlp = (): void => {
 </AssetObjects..XLP>
 `;
   const outputPath = join(xlpOutputDirectory, "RegLoss_Loading.xlp");
-  writeFileSync(outputPath, xml);
+  // The XLP is shared by every leader: add this leader's entry instead of overwriting the file.
+  writeFileSync(outputPath, existsSync(outputPath) ? addXlpEntry(readFileSync(outputPath, "utf8"), OUR_NAME) : xml);
   console.log(outputPath);
 };
 

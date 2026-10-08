@@ -13,6 +13,10 @@
 			<m_EntryID text="LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND"/>
 			<m_ObjectName text="LEADER_REGLOSS_ICHIJOU_RIRIKA_BACKGROUND"/>
 		</Element>
+		<Element>
+			<m_EntryID text="LEADER_REGLOSS_JUUFUUTEI_RADEN_BACKGROUND"/>
+			<m_ObjectName text="LEADER_REGLOSS_JUUFUUTEI_RADEN_BACKGROUND"/>
+		</Element>
 	</m_Entries>
 	<m_AllowedPlatforms>
 		<Element>WINDOWS</Element>

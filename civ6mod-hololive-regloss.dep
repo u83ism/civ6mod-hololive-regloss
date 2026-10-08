@@ -14,6 +14,7 @@
 		<Element>
 			<ConsumerName text="Units"/>
 			<ArtDefDependencyPaths>
+				<Element text="Units.artdef"/>
 			</ArtDefDependencyPaths>
 			<LibraryDependencies>
 				<Element text="Unit"/>
@@ -254,6 +255,7 @@
 		<Element>
 			<ConsumerName text="Civilizations"/>
 			<ArtDefDependencyPaths>
+				<Element text="Civilizations.artdef"/>
 			</ArtDefDependencyPaths>
 			<LibraryDependencies/>
 			<LoadsLibraries>false</LoadsLibraries>

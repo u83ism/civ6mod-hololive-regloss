@@ -24,8 +24,9 @@
 		<UpdateDatabase id="Config">
 			<File>XML/Config.xml</File>
 		</UpdateDatabase>
+		<!-- 2026-09-23確定: PlayerColors解決バグ対策のためColors.xmlではなくColors.sqlを読ませる(docs/civ6-icon-color-bug-investigation.md参照) -->
 		<UpdateColors id="ConfigColors">
-			<File>XML/Colors.xml</File>
+			<File>XML/Colors.sql</File>
 		</UpdateColors>
 		<UpdateText id="ConfigText">
 			<File>Text/en_US/Text.xml</File>
@@ -44,13 +45,15 @@
 		<UpdateDatabase id="Gameplay">
 			<File>XML/Civilizations.xml</File>
 			<File>XML/Leaders.xml</File>
+			<File>XML/JuufuuteiRaden.xml</File>
 			<File>XML/Units.xml</File>
 		</UpdateDatabase>
 		<UpdateDatabase id="GameplayMonopolies" criteria="Monopolies_Mode">
 			<File>XML/Leaders_Monopolies.xml</File>
 		</UpdateDatabase>
+		<!-- 2026-09-23確定: PlayerColors解決バグ対策のためColors.xmlではなくColors.sqlを読ませる(docs/civ6-icon-color-bug-investigation.md参照) -->
 		<UpdateColors id="Colors">
-			<File>XML/Colors.xml</File>
+			<File>XML/Colors.sql</File>
 		</UpdateColors>
 		<UpdateText id="Text">
 			<File>Text/en_US/Text.xml</File>
@@ -68,15 +71,18 @@
 	<Files>
 		<File>XML/Civilizations.xml</File>
 		<File>XML/Leaders.xml</File>
+		<File>XML/JuufuuteiRaden.xml</File>
 		<File>XML/Leaders_Monopolies.xml</File>
 		<File>XML/Units.xml</File>
-		<File>XML/Colors.xml</File>
+		<File>XML/Colors.sql</File>
 		<File>XML/Config.xml</File>
 		<File>Text/en_US/Text.xml</File>
 		<File>Text/ja_JP/Text.xml</File>
 		<File>Text/zh_Hans_CN/Text.xml</File>
 		<File>Text/zh_Hant_HK/Text.xml</File>
 		<File>Art/Icons/Icons.xml</File>
+		<File>ArtDefs/Civilizations.artdef</File>
+		<File>ArtDefs/Units.artdef</File>
 		<File>ArtDefs/Leaders.artdef</File>
 		<File>ArtDefs/FallbackLeaders.artdef</File>
 		<File>civ6mod-hololive-regloss.dep</File>

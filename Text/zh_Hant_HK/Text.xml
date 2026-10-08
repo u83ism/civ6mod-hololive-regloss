@@ -19,13 +19,13 @@
 			<Text>追星辛苦了～</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_DESCRIPTION" Language="zh_Hant_HK">
-			<Text>同時擁有市場和燈塔的城市 [ICON_TradeRoute] 貿易路線上限+1。來自 [ICON_TradeRoute] 貿易路線的 [ICON_Food] 食物+1、[ICON_Production] 生產力+1、[ICON_Science] 科技值+1、[ICON_Culture] 文化值+1。</Text>
+			<Text>同時擁有市場和燈塔的城市 [ICON_TradeRoute] 貿易路線容量+1。來自 [ICON_TradeRoute] 貿易路線的 [ICON_Food] 食物+1、[ICON_Production] 生產力+1、[ICON_Science] 科技值+1、[ICON_Culture] 文化值+1。</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_NAME" Language="zh_Hant_HK">
 			<Text>大天才</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_ICHIJOU_RIRIKA_MONOPOLIES_DESCRIPTION" Language="zh_Hant_HK">
-			<Text>工業額外獲得 [ICON_Culture] 文化值+2、[ICON_Science] 科技值+2、[ICON_Gold] 金幣+1。企業的這些加成全部翻倍。商品項目的 [ICON_Production] 生產力+100%。</Text>
+			<Text>工業額外獲得 [ICON_Culture] 文化值+2、[ICON_Science] 科技值+2、[ICON_Gold] 金幣+1。企業的這些加成全部翻倍。創造新產品項目的 [ICON_Production] 生產力+100%。</Text>
 		</Row>
 
 		<Row Tag="LOC_AGENDA_REGLOSS_ICHIJOU_RIRIKA_NAME" Language="zh_Hant_HK">
@@ -295,7 +295,7 @@
 			<Text>見習秘書們的奮鬥</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_ICHIJOU_DESCRIPTION" Language="zh_Hant_HK">
-			<Text>資源地塊已開發時，加成資源額外獲得 [ICON_Gold] 金幣+3，戰略資源+4，奢侈品資源+6。建造者的使用次數上限比通常多1次。</Text>
+			<Text>資源單元格已開發時，加成資源額外獲得 [ICON_Gold] 金幣+3，戰略資源+4，奢侈品資源+6。建造者會獲得額外建造勞動力。</Text>
 		</Row>
 
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_HQ" Language="zh_Hant_HK">
@@ -323,7 +323,7 @@
 			<Text>迪拜分公司</Text>
 		</Row>
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_08" Language="zh_Hant_HK">
-			<Text>悉尼分公司</Text>
+			<Text>雪梨分公司</Text>
 		</Row>
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_09" Language="zh_Hant_HK">
 			<Text>柏林分公司</Text>
@@ -359,17 +359,368 @@
 			<Text>墨西哥城分公司</Text>
 		</Row>
 		<Row Tag="LOC_CITY_NAME_REGLOSS_ICHIJOU_20" Language="zh_Hant_HK">
-			<Text>約翰內斯堡分公司</Text>
+			<Text>約翰尼斯堡分公司</Text>
 		</Row>
 
 		<Row Tag="LOC_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Language="zh_Hant_HK">
 			<Text>海膽</Text>
 		</Row>
 		<Row Tag="LOC_UNIT_REGLOSS_ICHIJOU_UNI_DESCRIPTION" Language="zh_Hant_HK">
-			<Text>取代偵察兵的一條公司專屬遠古時代偵察單位。[ICON_Movement] 移動力+1。</Text>
+			<Text>一條公司遠古時代特色偵察單位，取代偵察兵。[ICON_Movement] 移動力+1。</Text>
 		</Row>
 		<Row Tag="LOC_TRAIT_CIVILIZATION_UNIT_REGLOSS_ICHIJOU_UNI_NAME" Language="zh_Hant_HK">
 			<Text>社長的愛犬</Text>
+		</Row>
+		<Row Tag="LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME" Language="zh_Hant_HK">
+			<Text>儒烏風亭一門</Text>
+		</Row>
+		<Row Tag="LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_DESCRIPTION" Language="zh_Hant_HK">
+			<Text>儒烏風亭一門</Text>
+		</Row>
+		<Row Tag="LOC_CIVILIZATION_REGLOSS_JUUFUUTEI_ADJECTIVE" Language="zh_Hant_HK">
+			<Text>儒烏風亭</Text>
+		</Row>
+		<Row Tag="LOC_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME" Language="zh_Hant_HK">
+			<Text>儒烏風亭拉電</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_NAME" Language="zh_Hant_HK">
+			<Text>沉浸於藝術</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_CIVILIZATION_REGLOSS_JUUFUUTEI_DESCRIPTION" Language="zh_Hant_HK">
+			<Text>每個 [ICON_GreatWork_Landscape] 藝術巨作、[ICON_GreatWork_Relic] 遺跡和 [ICON_GreatWork_Artifact] 文物可獲得+4 [ICON_Food] 食物、+4 [ICON_Production] 生產力、+4 [ICON_Faith] 信仰值及+4 [ICON_Culture] 文化值。</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_NAME" Language="zh_Hant_HK">
+			<Text>對藝術的渴望</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_DESCRIPTION" Language="zh_Hant_HK">
+			<Text>每回合+2 [ICON_GreatArtist] 大藝術家點數。每發現一處新的自然奇觀，便獲得一個 [ICON_GreatWork_Relic] 遺跡。</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_CAPITAL" Language="zh_Hant_HK">
+			<Text>京都</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_01" Language="zh_Hant_HK">
+			<Text>上野</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_02" Language="zh_Hant_HK">
+			<Text>倉敷</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_03" Language="zh_Hant_HK">
+			<Text>淺草</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_04" Language="zh_Hant_HK">
+			<Text>直島</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_05" Language="zh_Hant_HK">
+			<Text>大阪</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_06" Language="zh_Hant_HK">
+			<Text>金澤</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_07" Language="zh_Hant_HK">
+			<Text>新宿</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_08" Language="zh_Hant_HK">
+			<Text>奈良</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_09" Language="zh_Hant_HK">
+			<Text>池袋</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_10" Language="zh_Hant_HK">
+			<Text>六本木</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_11" Language="zh_Hant_HK">
+			<Text>橫濱</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_12" Language="zh_Hant_HK">
+			<Text>豐島</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_13" Language="zh_Hant_HK">
+			<Text>大須</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_14" Language="zh_Hant_HK">
+			<Text>松本</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_15" Language="zh_Hant_HK">
+			<Text>神戶</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_16" Language="zh_Hant_HK">
+			<Text>十和田</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_17" Language="zh_Hant_HK">
+			<Text>神田</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_18" Language="zh_Hant_HK">
+			<Text>青森</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_19" Language="zh_Hant_HK">
+			<Text>谷中</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_20" Language="zh_Hant_HK">
+			<Text>熱海</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_21" Language="zh_Hant_HK">
+			<Text>箱根</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_22" Language="zh_Hant_HK">
+			<Text>竹橋</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_23" Language="zh_Hant_HK">
+			<Text>安來</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_24" Language="zh_Hant_HK">
+			<Text>廣島</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_25" Language="zh_Hant_HK">
+			<Text>福岡</Text>
+		</Row>
+		<Row Tag="LOC_CITY_NAME_REGLOSS_JUUFUUTEI_26" Language="zh_Hant_HK">
+			<Text>高松</Text>
+		</Row>
+		<Row Tag="LOC_UNIT_REGLOSS_JUUFUUTEI_CURATOR_NAME" Language="zh_Hant_HK">
+			<Text>策展人</Text>
+		</Row>
+		<Row Tag="LOC_UNIT_REGLOSS_JUUFUUTEI_CURATOR_DESCRIPTION" Language="zh_Hant_HK">
+			<Text>取代考古學家的儒烏風亭一門特色發掘單位。從 [ICON_RESOURCE_ANTIQUITY_SITE] 歷史古蹟中發現和提取 [ICON_GreatWork_Artifact] 文物，並在其所在城市的博物館進行展出。[ICON_Movement] 移動力比考古學家+2，生產成本更低。</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_CIVILIZATION_UNIT_REGLOSS_JUUFUUTEI_CURATOR_NAME" Language="zh_Hant_HK">
+			<Text>策展人</Text>
+		</Row>
+		<Row Tag="LOC_BUILDING_REGLOSS_JUUFUUTEI_YOSE_NAME" Language="zh_Hant_HK">
+			<Text>寄席</Text>
+		</Row>
+		<Row Tag="LOC_BUILDING_REGLOSS_JUUFUUTEI_YOSE_DESCRIPTION" Language="zh_Hant_HK">
+			<Text>儒烏風亭一門特色建築。擁有2個可存放任意巨作的槽位。每回合+1 [ICON_GreatArtist] 大藝術家點數。</Text>
+		</Row>
+		<Row Tag="LOC_TRAIT_CIVILIZATION_BUILDING_REGLOSS_JUUFUUTEI_YOSE_NAME" Language="zh_Hant_HK">
+			<Text>寄席</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_GREETING_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>是，我是拉電。要不要坐下來，聽我說一段小故事？</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>我是從hololive DEV_IS出道的，ReGLOSS中神出鬼沒的博物館公主擔當，儒烏風亭一門的見習前座，儒烏風亭 rrrrrr拉電！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_VISIT_RECIPIENT_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>我的城市就在附近喔。城裡還有博物館，請一定來看看！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_NEAR_INITIATOR_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>可以嗎！當然要去。我想好好欣賞一下貴國城市裡的建築呢。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_FIRST_MEET_NO_MANS_INFO_EXCHANGE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>我們離得挺遠的呢。這樣吧，先互相看看地圖如何？瞭解了彼此的國家，聊起來也更方便。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DECLARE_WAR_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>夠了，我的忍耐已經到極限了。接下來，拉電可不會手下留情！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DECLARE_WAR_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>什麼！？你這是怎麼了，這麼突然！……既然你要這樣，我奉陪到底。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DEFEAT_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>我輸了……漂亮。拉電的故事就到此為止了。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DEFEAT_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>我輸了……漂亮。拉電的故事就到此為止了。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>我覺得我和你應該合得來。我們做朋友好嗎？下次一起去逛逛博物館吧。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>謝謝你！啊啊啊咿咿咿！我好開心啊！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>這樣啊……真遺憾，那就等下次有機會吧。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DECLARE_FRIEND_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>當然！我才要請你多多關照。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DECLARE_FRIEND_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>嗯……現在還是算了吧。我們先多瞭解一下彼此再說。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>我們都這麼要好了，不如乾脆結成同盟吧？就當是同門之間互換酒杯。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>謝謝你！那麼，就來一杯盟約酒吧。我要喝酒啦——嘛啊斯！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_ALLIANCE_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>哎呀，被拒絕了嗎……不，我不勉強。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_ALLIANCE_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>我很樂意。從今天起，我們就是同門了！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_ALLIANCE_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>你的心意我很高興，但說到同盟就是另一回事了。這次還請見諒。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>說實話，這次的事我無法視而不見。對你的所作所為，拉電很失望。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DENOUNCE_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>什麼！？你要譴責拉電！？……是嗎。既然你說到這個份上，我這邊也自有打算。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_KUDO_EXIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>貴國真是美得像一幅畫呢。我還會再來拜訪的。那麼，再見拉電！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_EXIT_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>有些事讓我有點在意。請在我們下次見面之前好好想一想。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_DELEGATION_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>能讓我派一個代表團過去嗎？我想好好瞭解一下貴國的文化。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DELEGATION_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>謝謝你！希望這會是一次美好的相遇。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DELEGATION_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>真可惜……那我看時機再來拜託你。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_DELEGATION_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>當然，我們恭候多時了。請慢慢參觀。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_DELEGATION_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>抱歉，我現在實在是忙不過來。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_EMBASSY_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>我們互相設立使館好嗎？往來方便了，我的故事題材也會變多呢。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_EMBASSY_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>謝謝你！我們挑個好地方建吧。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_EMBASSY_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>這樣啊。那就等我們彼此更熟悉了再說吧。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_EMBASSY_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>樂意之至。我們慢慢逛逛彼此的城市吧。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_EMBASSY_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>還沒到那一步呢……再多相處一陣子再說吧。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>我們讓彼此的國家都能自由往來，好嗎？我最喜歡旅行了。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>謝謝你！我得馬上開始規劃旅行了！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_OPEN_BORDERS_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>這樣啊……那旅行只好下次再說了。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_OPEN_BORDERS_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>當然可以。也請務必來我的國家看看。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_OPEN_BORDERS_FROM_HUMAN_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>嗯……要讓你看我國內的樣子，我還有點不好意思呢。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_ACCEPT_DEAL_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>好，就按這個條件來吧。這筆買賣成交了。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_ADJUST_DEAL_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>這個嘛，如果這裡能稍微改一下，我就接受。請看這邊，拉電！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_DEAL_AI_REFUSE_DEAL_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>抱歉，這個條件我沒辦法接受。我最近老往博物館跑，手頭有點緊……</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_DEAL_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>謝謝你！這是一筆很愉快的交易。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_DEAL_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>哎呀，不行嗎？真可惜，下次再說吧。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>我們是不是該雙方都收起兵器了？再打下去，對誰都沒有好處。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_AI_ACCEPT_DEAL_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>明白了，我接受講和。我們都辛苦了。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_MAKE_PEACE_AI_REFUSE_DEAL_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>現在還不能結束。這種條件，我無法接受！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_ACCEPT_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>謝謝你。這下總算能安心了。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_REJECT_MAKE_PEACE_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>這樣啊……那我就再奉陪一陣子。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_AI_ACCEPT_DEMAND_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>明白了，我交給你。這件事就到此為止吧。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_AI_REFUSE_DEMAND_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>我拒絕！求人辦事，也該有求人辦事的態度。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_HUMAN_ACCEPT_DEMAND_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>謝謝你聽取我的要求。你真是個明事理的人，太好了。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_HUMAN_REFUSE_DEMAND_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>……這樣啊。既然如此，我這邊也自有打算。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>請等一下。你要是在那裡建城，我這邊的景觀就全毀了。能請你不要建嗎？</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>謝謝你。你能理解，幫了我大忙。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>……你沒有聽進去呢。我會記住的。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>啊，對不起！我沒注意到。以後我會小心的。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_DONT_SETTLE_NEAR_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>話是這麼說，可我這邊也有我的難處。恕難從命。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>能請你別再在我的城市裡傳教了嗎？信仰不是可以強加於人的東西。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>你能理解，真是太好了。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>……你不肯停下來呢。拉電可不喜歡這樣。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>啊啊啊，對不起！我不是那個意思。我會克制的。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_CONVERTING_MY_CITIES_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>這叫信仰自由。我拒絕！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>請你別擅自挖掘我的遺跡！身為策展人，我不能坐視不管！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>謝謝你。遺跡是大家的寶物嘛。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>……你還在挖嗎？身為策展人，我真的要生氣了！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>啊，失禮了！挖掘本該按部就班地進行才對。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_DIGGING_UP_ARTIFACTS_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>這是學術調查！策展人的工作用不著你來插嘴！</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>能請你別再在我國境內鬼鬼祟祟地打探了嗎？想看什麼的話，請光明正大地說出來。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>謝謝你。我們彼此都舒舒服服的吧。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_HUMAN_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>……你還要繼續嗎？你既然有這個打算，我也得好好考慮一下了。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>哎呀，被發現了嗎！對不起，我不做了。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_STOP_SPYING_ON_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>你在說什麼呢？拉電什麼都不知道喔。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>我國邊境附近的士兵是不是太多了？我都沒辦法安心說故事了。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_HUMAN_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>你能理解，我就放心了。謝謝你。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_AI_RESPONSE_POSITIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>啊，把你嚇到了嗎？我這就讓他們撤回去，抱歉。</Text>
+		</Row>
+		<Row Tag="LOC_DIPLO_WARNING_TOO_MANY_TROOPS_NEAR_ME_AI_RESPONSE_NEGATIVE_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY" Language="zh_Hant_HK">
+			<Text>這是我國境內的事，用不著你來插嘴。</Text>
 		</Row>
 	</LocalizedText>
 </GameData>

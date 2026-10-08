@@ -1,5 +1,5 @@
-// Build the diplomacy-screen fallback portrait (FALLBACK_NEUTRAL_REGLOSS_ICHIJOU_RIRIKA) from
-// the full-body master art in Art/Source/ (read-only; never modified by this script). Trims the
+// Build the diplomacy-screen fallback portrait (FALLBACK_NEUTRAL_<leaderId>) from
+// the full-body master art in Art/Source/ (path relative to Art/Source/, e.g. sakamata-chloe/foo.png; read-only; never modified by this script). Trims the
 // transparent margin around the character, crops off the bottom (below-knee) portion to match
 // official/Hololive EN-ID fallback portraits (they cut off just below the knee, not full body),
 // resizes to canvas height 1080 (matching every official FALLBACK_NEUTRAL_*.dds in Civ6 SDK
@@ -9,12 +9,20 @@
 // Also generates the sidecar .tex (copied from the matching official template with
 // width/height/mipmap count substituted, since those values differ per character unlike the
 // fixed-size badge icon templates) and .xlp.
-// Usage: tsx gen-leader-fallback.ts
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+// Usage: tsx gen-leader-fallback.ts <leaderId> <standingArtFileName>
+// Example: tsx gen-leader-fallback.ts REGLOSS_ICHIJOU_RIRIKA ichijou-ririka/ichijou-ririka-stand.webp
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
 import { convertPngToDds, computeMipCount } from "./png2dds.js";
+import { addFallbackLeaderToArtDef, addXlpEntry } from "./merge-generated-entries.js";
 import { padTopMargin, applyBottomFade } from "./leader-fallback-compositing.js";
+
+const [, , leaderId, standingArtFileName] = process.argv;
+if (!leaderId || !standingArtFileName) {
+  console.error("Usage: tsx gen-leader-fallback.ts <leaderId> <standingArtFileName>");
+  process.exit(1);
+}
 
 const LEADER_FALLBACK_HEIGHT = 1080;
 // Measured across 5 official leaders (see leader-fallback-compositing.ts's header comment):
@@ -26,13 +34,13 @@ const BOTTOM_FADE_START_FRACTION = 0.75;
 // bottom of the trimmed full-body source (own estimate, not measured from official pixel data
 // like the two constants above).
 const KNEE_CROP_FRACTION = 0.25;
-const OUR_NAME = "FALLBACK_NEUTRAL_REGLOSS_ICHIJOU_RIRIKA";
-const LEADER_TYPE = "LEADER_REGLOSS_ICHIJOU_RIRIKA";
+const OUR_NAME = `FALLBACK_NEUTRAL_${leaderId}`;
+const LEADER_TYPE = `LEADER_${leaderId}`;
 const SDK_ASSETS_TEXTURES =
   "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Sid Meier's Civilization VI SDK Assets\\Civ6\\DLC\\Expansion1\\pantry\\Textures";
 const TEX_TEMPLATE_NAME = "FALLBACK_NEUTRAL_ROBERT_THE_BRUCE";
 
-const sourcePath = join(import.meta.dirname, "..", "..", "Art", "Source", "ichijou-ririka-stand.webp");
+const sourcePath = join(import.meta.dirname, "..", "..", "Art", "Source", standingArtFileName);
 const iconsDirectory = join(import.meta.dirname, "..", "..", "Art", "Icons");
 const textureOutputDirectory = join(import.meta.dirname, "..", "IconBuild", "Textures");
 const xlpOutputDirectory = join(import.meta.dirname, "..", "IconBuild", "XLPs");
@@ -104,7 +112,8 @@ const buildFallbackPortraitXlp = (): void => {
 </AssetObjects..XLP>
 `;
   const outputPath = join(xlpOutputDirectory, "LeaderFallbackImages.xlp");
-  writeFileSync(outputPath, xml);
+  // The XLP is shared by every leader: add this leader's entry instead of overwriting the file.
+  writeFileSync(outputPath, existsSync(outputPath) ? addXlpEntry(readFileSync(outputPath, "utf8"), OUR_NAME) : xml);
   console.log(outputPath);
 };
 
@@ -113,20 +122,7 @@ const buildFallbackPortraitXlp = (): void => {
 // "DEFAULT" animation state pointing at the fallback image (no per-mood HAPPY/UNHAPPY/etc.
 // variants; official leaders only define DEFAULT too, e.g. LEADER_POUNDMAKER/LEADER_ROBERT_THE_BRUCE).
 const buildFallbackLeadersArtDef = (): void => {
-  const xml = `<?xml version="1.0" encoding="UTF-8" ?>
-<AssetObjects..ArtDefSet>
-\t<m_Version>
-\t\t<major>4</major>
-\t\t<minor>0</minor>
-\t\t<build>312</build>
-\t\t<revision>68</revision>
-\t</m_Version>
-\t<m_TemplateName text="LeaderFallback"/>
-\t<m_RootCollections>
-\t\t<Element>
-\t\t\t<m_CollectionName text="Leaders"/>
-\t\t\t<m_ReplaceMergedCollectionElements>false</m_ReplaceMergedCollectionElements>
-\t\t\t<Element>
+  const leaderElementXml = `\t\t\t<Element>
 \t\t\t\t<m_Fields>
 \t\t\t\t\t<m_Values/>
 \t\t\t\t</m_Fields>
@@ -156,13 +152,33 @@ const buildFallbackLeadersArtDef = (): void => {
 \t\t\t\t<m_Name text="${LEADER_TYPE}"/>
 \t\t\t\t<m_AppendMergedParameterCollections>false</m_AppendMergedParameterCollections>
 \t\t\t</Element>
-\t\t</Element>
+`;
+  const xml = `<?xml version="1.0" encoding="UTF-8" ?>
+<AssetObjects..ArtDefSet>
+\t<m_Version>
+\t\t<major>4</major>
+\t\t<minor>0</minor>
+\t\t<build>312</build>
+\t\t<revision>68</revision>
+\t</m_Version>
+\t<m_TemplateName text="LeaderFallback"/>
+\t<m_RootCollections>
+\t\t<Element>
+\t\t\t<m_CollectionName text="Leaders"/>
+\t\t\t<m_ReplaceMergedCollectionElements>false</m_ReplaceMergedCollectionElements>
+${leaderElementXml}\t\t</Element>
 \t</m_RootCollections>
 </AssetObjects..ArtDefSet>
 `;
   for (const directory of [iconBuildArtDefDirectory, modArtDefDirectory]) {
     const outputPath = join(directory, "FallbackLeaders.artdef");
-    writeFileSync(outputPath, xml);
+    // The artdef is shared by every leader: add this leader instead of overwriting the file.
+    writeFileSync(
+      outputPath,
+      existsSync(outputPath)
+        ? addFallbackLeaderToArtDef(readFileSync(outputPath, "utf8"), LEADER_TYPE, leaderElementXml)
+        : xml,
+    );
     console.log(outputPath);
   }
 };

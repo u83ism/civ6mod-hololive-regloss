@@ -13,8 +13,8 @@
 
 		効果(Modifier)は2026-09-21に実装(2026-09-20時点はダミー)。
 
-		1. 「産業」(IMPROVEMENT_INDUSTRY)+2文化力/+2科学力/+1ゴールド、「大企業」(IMPROVEMENT_CORPORATION)+4文化力/+4科学力/+1ゴールド
-		   (ゴールドのみ産業/大企業で同じ+1、2026-09-21追加。バランス調整の経緯は以下):
+		1. 「産業」(IMPROVEMENT_INDUSTRY)+2文化力/+2科学力/+1ゴールド、「大企業」(IMPROVEMENT_CORPORATION)+4文化力/+4科学力/+2ゴールド
+		   (ゴールドは当初2026-09-21に産業/大企業とも+1で追加、2026-09-22に大企業のみ+2へ上乗せ。バランス調整の経緯は以下):
 		   **「産業」は区域(District)ではなく、Kind="KIND_IMPROVEMENT"の正真正銘の改善(本人指摘により訂正、
 		   当初区域=DISTRICT_INDUSTRIAL_ZONEだと誤解していた)**。独占/大企業モードで、同種の高級資源2つに
 		   改善(鉱山/採石場/プランテーション等)を作った後、労働者(UNIT_BUILDER)で「産業」を創出でき、
@@ -38,11 +38,11 @@
 		   「大企業限定の上乗せボーナス」の2階建てに設計し直した(ImprovementTypeごとに数値を丸ごと分ける
 		   方式は撤回):
 		   - 基礎(産業 or 大企業のどちらかで発火、REQUIREMENTSET_TEST_ANY): 文化力+2、科学力+2、ゴールド+1
-		   - 大企業限定の上乗せ(REQUIREMENTSET_TEST_ALL、大企業のみ): 文化力+2、科学力+2
+		   - 大企業限定の上乗せ(REQUIREMENTSET_TEST_ALL、大企業のみ): 文化力+2、科学力+2(ゴールド+1は2026-09-22追加)
 		   この設計なら「大企業タイルで産業判定も同時にtrueになる」現象が起きていても基礎は1回しか発火しない
 		   (RequirementSetは1つのModifierの発火条件であって、満たすRequirementの数だけ多重発火するわけではない)
-		   ため、産業タイルは+2/+2/+1、大企業タイルは+4/+4/+1が常に保証される。ゴールドは大企業でも+1のまま
-		   (上乗せ無し)。
+		   ため、産業タイルは+2/+2/+1、大企業タイルは+4/+4/+2が常に保証される
+		   (ゴールドの上乗せは2026-09-22に追加)。
 
 		2. 商品プロジェクトの生産力+100%(実質ターン数半分): MODIFIER_PLAYER_CITIES_ADJUST_PROJECT_PRODUCTION
 		   (EFFECT_ADJUST_PROJECT_PRODUCTION)をProjectType(PROJECT_CREATE_CORPORATION_PRODUCT_<資源>)ごとに複製。

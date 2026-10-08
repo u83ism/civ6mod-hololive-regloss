@@ -1,10 +1,10 @@
-# 未解決: リーダー選択画面の能力アイコン色/パウズメニューの黒表示
+# 解決済み: リーダー選択画面の能力アイコン色/パウズメニューの黒表示
 
-> 汎用的な制作手順ではなく、本Mod固有の未解決バグのデバッグログ(`.claude/skills/make-leader-icons/references/icon-blp-pipeline.md`から分離)。次にこの領域を触るセッションは、着手前にこのファイル全体を読み、同じ道を辿り直さないこと。
+> 汎用的な制作手順ではなく、本Mod固有バグのデバッグログ(`.claude/skills/make-leader-icons/references/icon-blp-pipeline.md`から分離)。**2026-09-23、姉妹Mod holoxで原因・修正方法が確定した(末尾の「解決」節を参照)。本Mod(regloss)にも同じ修正(`XML/Colors.sql`への切り替え+文明アイコン全サイズの白シルエット化・BLP再ビルド)を適用し、2026-10-04に実機で直ったことを確認した(従来のオレンジ・紺ではなく、ピンクベースの白いアイコンで表示される)。恒久的な教訓は`.claude/skills/bootstrap-leader/SKILL.md`4節に昇格済みなので、次に新しい指導者を追加するときはそちらを読めば足りる。** 以下は解決に至るまでの調査経緯の記録。
 
 ## 【試して撤回した】白シルエット化(2026-09-19〜20実機検証、最終的にフルカラー1本に戻した)
 
-一時期、文明アイコンを45px以外だけ「白+透過のシルエット」化する実装を入れたが、後述の未解決問題(リーダー選択画面の能力アイコンが不安定)が出たため**最終的に全サイズフルカラー1枚(`ichijou-corporation-logo-circle.png`)に戻した**。現在の`tools/png2dds/gen-icon-sources.ts`はフルカラーのみで、白シルエット化コード(`toWhiteSilhouette`)は削除済み。ただし調査で分かった技術的知見(`SetColor`の着色メカニズム、DDS直接検証の方法、GIMPでの変換手順)は将来別のReGLOSSメンバーで再度必要になる可能性があるため、以下に経緯ごと残す。
+一時期、文明アイコンを45px以外だけ「白+透過のシルエット」化する実装を入れたが、後述の未解決問題(リーダー選択画面の能力アイコンが不安定)が出たため**最終的に全サイズフルカラー1枚(`ichijou-ririka/ichijou-corporation-logo-circle.png`)に戻した**。現在の`tools/png2dds/gen-icon-sources.ts`はフルカラーのみで、白シルエット化コード(`toWhiteSilhouette`)は削除済み。ただし調査で分かった技術的知見(`SetColor`の着色メカニズム、DDS直接検証の方法、GIMPでの変換手順)は将来別のReGLOSSメンバーで再度必要になる可能性があるため、以下に経緯ごと残す。
 
 ### 分かった仕組み(SetColor着色、2026-09-19実機検証)
 
@@ -19,13 +19,13 @@ self.Controls.CivIndicator:SetColor(backColor);   -- 円形の背景をプレイ
 self.Controls.CivIcon:SetColor(frontColor);        -- アイコン本体をセカンダリカラーで着色
 ```
 
-`Instances/CivilizationIcon.lua`(ランキング画面・交易画面・エスピオナージ画面等の汎用文明バッジ)、`Menus/InGameTopOptionsMenu.lua`(ESCメニュー上部)も同じ`SetColor(secondaryColor)`パターン。45x45だけは技術・社会制度ツリーで生のまま(着色なし)表示されるため、この45pxだけフルカラーのままにする。
+`Instances/CivilizationIcon.lua`(ランキング画面・交易画面・エスピオナージ画面等の汎用文明バッジ)、`Menus/InGameTopOptionsMenu.lua`(ESCメニュー上部)も同じ`SetColor(secondaryColor)`パターン。~~45x45だけは技術・社会制度ツリーで生のまま(着色なし)表示されるため、この45pxだけフルカラーのままにする。~~ → この記述はwikiの推測の受け売りで誤りだった(2026-09-24、姉妹Mod civ6mod-hololive-holoxでの調査で判明)。45pxが無着色表示されるのはプレイヤーカラー解決失敗時のフォールバックだけ。詳細は`.claude/skills/make-leader-icons/references/icon-blp-pipeline.md`の45x45の項を参照。
 
 **裏取り**: バニラの`Sid Meier's Civilization VI SDK Assets\Civ6\pantry\Textures\CivAztec22.dds`/`CivAztec32.dds`をDDSバイナリレベルで直接読むと、全不透明ピクセルのRGBが`(255,255,255)`固定でアルファだけが形状を表現していた。`CivAztec45.dds`だけはRGBに実際の色(濃紺系)が入っていた。DDSは128バイトヘッダ+ABGR8生ピクセル(`tools/png2dds/png2dds.ts`のコメント参照)なので、Node.jsで`readFileSync`して128バイト目以降を読むだけで検証できる。
 
 ### ハマった実例: フルカラーの円形ロゴ素材を単純に白色化すると破綻する
 
-一条コーポレーションのロゴ(`Art/Source/ichijou-corporation-logo-circle.png`)は、円の内側が最初から**全ピクセル不透明**(アルファは円形マスクのみを表現し、ロゴの形自体はRGBの色コントラストで表現)という作りだった。ここで「既存のアルファを維持したままRGBだけ白に強制する」という素朴な実装(`toWhiteSilhouette`: 全ピクセルのRGBを255に上書き、アルファは無変更)を書くと、円全体が単なる白い(またはプレイヤーカラーで塗られた)円になり、ロゴの意匠が完全に消えた(外交パネルでは黒、文明選択画面では白一色の円として症状が出た)。
+一条コーポレーションのロゴ(`Art/Source/ichijou-ririka/ichijou-corporation-logo-circle.png`)は、円の内側が最初から**全ピクセル不透明**(アルファは円形マスクのみを表現し、ロゴの形自体はRGBの色コントラストで表現)という作りだった。ここで「既存のアルファを維持したままRGBだけ白に強制する」という素朴な実装(`toWhiteSilhouette`: 全ピクセルのRGBを255に上書き、アルファは無変更)を書くと、円全体が単なる白い(またはプレイヤーカラーで塗られた)円になり、ロゴの意匠が完全に消えた(外交パネルでは黒、文明選択画面では白一色の円として症状が出た)。
 
 **正しい変換**は「アルファチャンネル自体を作り直す」こと: 白背景(このロゴはグラデーション背景+白抜きではなく、白背景+色付きロゴという配色だった。配色の思い込みで判断せず、`civ6wiki.info`のブランドガイドライン画像等の一次資料で実際の配色を確認すること)を透明に、色が付いている部分(ロゴ本体)を不透明にする。GIMP 3.2での手順:
 
@@ -50,7 +50,7 @@ self.Controls.CivIcon:SetColor(frontColor);        -- アイコン本体をセ�
 ### 症状(ソース素材のパターンごと)
 
 - **白シルエット版(45px以外を`toWhiteSilhouette`で白+透過化)**: リーダー選択画面の文明能力アイコンとパウズメニューのバッジが、**うちのピンクではなく常にオレンジ/紺色系になる**
-- **フルカラー版(全サイズ`ichijou-corporation-logo-circle.png`)**: リーダー選択画面の文明能力アイコンの色が変(フィルターがかかったような発色)。パウズメニューは真っ黒
+- **フルカラー版(全サイズ`ichijou-ririka/ichijou-corporation-logo-circle.png`)**: リーダー選択画面の文明能力アイコンの色が変(フィルターがかかったような発色)。パウズメニューは真っ黒
 
 どちらのパターンでも「外交パネル/プレイヤーリストのバッジ」「文明選択画面のバッジ(45px)」は正常。**リーダー選択画面の能力アイコンとパウズメニューの2箇所だけ**が問題を起こす。
 
@@ -92,3 +92,14 @@ Sailor Cat's Modding Tutorial(英語ガイド)の内容自体はColors/PlayerCol
   **`if`の中でしか`SetColor`を呼んでいない**。つまり`UI.GetPlayerColorValues`(エンジン内蔵関数、Luaソース無し)がうちの`LEADER_REGLOSS_ICHIJOU_RIRIKA`の解決に失敗して`nil`/`0`を返した場合、**このコードは何もせず`SetColor`を呼ばずに抜ける**(「Major色プールへの自動フォールバック割当」のような能動的な代替処理はLua側には存在しない)。`civAbility.Icon`/`civAbility.IconBG`は`tooltipControls.CivHeaderIconIM:GetInstance()`(InstanceManagerの使い回しプール)から取得したインスタンスなので、**直前に別の文明のツールチップを表示した際に付いた色が、SetColorされないままそのインスタンスに残留して見えている**可能性が高い。観測された「オレンジ/紺色」は汎用色プールへの積極的な割当結果ではなく、**直前に表示した別リーダー(たまたまオレンジ/紺系の配色だった)の残り香**という解釈の方が、コードの実態と整合する
   - `info.PlayerColor`自体は`row.PlayerColor or leader_type`(`PlayerSetupLogic.lua`527行目、`Config.Players.PlayerColor`列が無ければ`LeaderType`文字列をそのまま使う)なので、**`Config.xml`にPlayerColor列を明示しても・しなくても同じ文字列になる**。既存の「PlayerColor列を明示追加しても直らなかった」という実験結果と矛盾しない(そもそも変わりようがなかった)
 - **次の一手はこの仮説の検証**: `UI/Replacements/`相当の仕組みで`PlayerSetupLogic.lua`の該当関数を上書きし、`info.PlayerColor`・`info.PlayerColorIndex`・`backColor`・`frontColor`を`print()`でLua.logに出力する。`backColor`/`frontColor`が`nil`または`0`であれば「サイレント失敗」説が確定し、次は「なぜ`UI.GetPlayerColorValues`(ネイティブ関数)がFrontEnd DBから`LEADER_REGLOSS_ICHIJOU_RIRIKA`行を引けないのか」(FrontEnd用DBとInGame用DBのどちらを参照する関数なのか、`UpdateColors`アクションのタイミング等)を追うのが筋になる
+
+## 2026-09-23: 解決。姉妹Mod(civ6mod-hololive-holox)での検証により、`Colors.xml`をSQL形式に変えるだけで直ると判明
+
+姉妹リポジトリ(civ6mod-hololive-holox、沙花叉クロヱMod)で同一症状を再現させ、`Lua/`に一時的な診断用UI(`AddUserInterfaces`+`Events.LoadScreenClose`)を追加して`UI.GetPlayerColorValues`/`UI.GetPlayerColors`の戻り値を実機で直接観測した結果、以下が確定した:
+
+- `UI.GetPlayerColorValues(leaderType, index)`(能力アイコンが使う)は`index`が0〜3のどれでも一貫して`nil`を返す。うちの`Usage="Unique"`な`PlayerColors`行を一切見つけられていない
+- `UI.GetPlayerColors(playerID)`(パウズメニュー・外交パネル・ゲーム中の文明バッジが使う)はエラーにはならないが、戻り値をバニラの`Base/Assets/UI/Colors/PlayerStandardColors.xml`/`PlayerColors.xml`と照合すると、**`Usage="Major"`の汎用プール`PLAYERCOLOR_ORANGE`と数値が完全一致**した。つまり自分の色を見つけられず、静かに汎用オレンジ色へフォールバックしていた
+
+**修正**: `XML/Colors.xml`(XML形式)を`XML/Colors.sql`(実機で正しく着色されている`Hololive 2nd Generation`Mod等と同じ、生SQLの`INSERT OR REPLACE INTO Colors/PlayerColors (...) VALUES (...)`形式)に書き換え、`.modinfo`の`UpdateColors`(`FrontEndActions`/`InGameActions`両方)が読むファイルをこちらに差し替えるだけで、外交交渉画面・パウズメニュー・リーダー選択画面の能力アイコン・ゲーム中の文明アイコンの全箇所が正しい配色になることを、holox側で実機確認した(2026-09-23)。**XML形式の`UpdateColors`パーサー自体に何らかの不具合がある(または実行時に参照するDBコンテキストがSQL版と異なる)と推測されるが、Firaxis内部実装の話でこれ以上の深掘りは困難。「`UpdateColors`には常にSQLを渡す」で実用上確定してよい。** `UpdateDatabase`で読む他のXML(Civilizations.xml/Leaders.xml等)はこの問題の対象外(XMLのまま問題なく動く)。
+
+本Mod(regloss)側にも同じ修正(`XML/Colors.sql`新設・`.modinfo`のUpdateColors差し替え)を適用した。**2026-10-04、文明アイコンを全サイズ白シルエットで作り直してBLPを再ビルドし、実機で直ったことを確認した(従来のオレンジ・紺ではなく、ピンクベースの白いアイコンになった)。** 恒久的な手順としては`.claude/skills/bootstrap-leader/SKILL.md`4節に昇格したので、次に新しい指導者を追加するときは調査の再実施は不要、そちらに従うだけでよい。

@@ -39,6 +39,54 @@
 	</CityNames>
 
 	<!--
+		市民名はバニラの日本(CIVILIZATION_JAPAN)と同じ40個(男・女・現代男・現代女 各10)をそのまま参照する。
+		スパイ(捕虜の解放交渉画面を含む)の名前は文明の市民名から付く。未設定だと名無しになったとみられる(2026-10-05、らでんのテストプレイで捕虜の名前が空になった。市民名が原因かは実機で未確認)。
+		LOC_CITIZEN_JAPAN_*はバニラ本体のタグなので、このModにテキストは足していない(全言語で表示される)。
+	-->
+	<CivilizationCitizenNames>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MALE_1"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MALE_2"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MALE_3"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MALE_4"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MALE_5"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MALE_6"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MALE_7"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MALE_8"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MALE_9"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MALE_10"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_1" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_2" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_3" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_4" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_5" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_6" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_7" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_8" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_9" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_FEMALE_10" Female="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_1" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_2" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_3" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_4" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_5" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_6" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_7" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_8" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_9" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_MALE_10" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_1" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_2" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_3" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_4" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_5" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_6" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_7" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_8" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_9" Female="true" Modern="true"/>
+		<Row CivilizationType="CIVILIZATION_REGLOSS_ICHIJOU" CitizenName="LOC_CITIZEN_JAPAN_MODERN_FEMALE_10" Female="true" Modern="true"/>
+	</CivilizationCitizenNames>
+
+	<!--
 		開始地点補正: Bonus資源(Wheat/Stone/Cattle)を複数指定。
 		文明固有能力がBonus/Strategic/Luxury全クラスの改善済みタイルからゴールドを得る設計のため、
 		特定の高級資源1種に絞るより「空振りしにくい資源で早期に能力を起動させる」方が狙いに合う。
