@@ -95,63 +95,63 @@
     "tag": "LOC_DIPLO_FIRST_MEET_VISIT_RECIPIENT_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY",
     "message": "公式用語「美術館」のen_USの公式訳が見つからない(期待: Art Museum)",
     "fingerprint": "3913ae99deb1",
-    "reason": "日本語の一般名詞「美術館」(実在の施設)。他言語は一般語のmuseum/博物馆/博物館で、建造物Art Museumを指す文脈ではない(2026-10-09に実際の文を見て確認)"
+    "reason": "一般名詞の「美術館」(実在の施設)。建造物の美術館(Art Museum)と同じ字面だが、ゲーム用語とは無関係として本人が確定(2026-10-09)。他言語は一般語のmuseum/博物馆/博物館で正しい(2026-10-09に実際の文を見て確認)"
   },
   {
     "language": "zh_Hans_CN",
     "tag": "LOC_DIPLO_FIRST_MEET_VISIT_RECIPIENT_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY",
     "message": "公式用語「美術館」のzh_Hans_CNの公式訳が見つからない(期待: 艺术博物馆)",
     "fingerprint": "4ed812678adf",
-    "reason": "日本語の一般名詞「美術館」(実在の施設)。他言語は一般語のmuseum/博物馆/博物館で、建造物Art Museumを指す文脈ではない(2026-10-09に実際の文を見て確認)"
+    "reason": "一般名詞の「美術館」(実在の施設)。建造物の美術館(Art Museum)と同じ字面だが、ゲーム用語とは無関係として本人が確定(2026-10-09)。他言語は一般語のmuseum/博物馆/博物館で正しい(2026-10-09に実際の文を見て確認)"
   },
   {
     "language": "zh_Hant_HK",
     "tag": "LOC_DIPLO_FIRST_MEET_VISIT_RECIPIENT_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY",
     "message": "公式用語「美術館」のzh_Hant_HKの公式訳が見つからない(期待: 藝術博物館)",
     "fingerprint": "9e534d20cfbc",
-    "reason": "日本語の一般名詞「美術館」(実在の施設)。他言語は一般語のmuseum/博物馆/博物館で、建造物Art Museumを指す文脈ではない(2026-10-09に実際の文を見て確認)"
+    "reason": "一般名詞の「美術館」(実在の施設)。建造物の美術館(Art Museum)と同じ字面だが、ゲーム用語とは無関係として本人が確定(2026-10-09)。他言語は一般語のmuseum/博物馆/博物館で正しい(2026-10-09に実際の文を見て確認)"
   },
   {
     "language": "en_US",
     "tag": "LOC_DIPLO_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY",
     "message": "公式用語「美術館」のen_USの公式訳が見つからない(期待: Art Museum)",
     "fingerprint": "4dcf31365c9a",
-    "reason": "日本語の一般名詞「美術館」(実在の施設)。他言語は一般語のmuseum/博物馆/博物館で、建造物Art Museumを指す文脈ではない(2026-10-09に実際の文を見て確認)"
+    "reason": "一般名詞の「美術館」(実在の施設)。建造物の美術館(Art Museum)と同じ字面だが、ゲーム用語とは無関係として本人が確定(2026-10-09)。他言語は一般語のmuseum/博物馆/博物館で正しい(2026-10-09に実際の文を見て確認)"
   },
   {
     "language": "zh_Hans_CN",
     "tag": "LOC_DIPLO_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY",
     "message": "公式用語「美術館」のzh_Hans_CNの公式訳が見つからない(期待: 艺术博物馆)",
     "fingerprint": "317414fe0b60",
-    "reason": "日本語の一般名詞「美術館」(実在の施設)。他言語は一般語のmuseum/博物馆/博物館で、建造物Art Museumを指す文脈ではない(2026-10-09に実際の文を見て確認)"
+    "reason": "一般名詞の「美術館」(実在の施設)。建造物の美術館(Art Museum)と同じ字面だが、ゲーム用語とは無関係として本人が確定(2026-10-09)。他言語は一般語のmuseum/博物馆/博物館で正しい(2026-10-09に実際の文を見て確認)"
   },
   {
     "language": "zh_Hant_HK",
     "tag": "LOC_DIPLO_DECLARE_FRIEND_FROM_AI_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY",
     "message": "公式用語「美術館」のzh_Hant_HKの公式訳が見つからない(期待: 藝術博物館)",
     "fingerprint": "abce7eaa0fd4",
-    "reason": "日本語の一般名詞「美術館」(実在の施設)。他言語は一般語のmuseum/博物馆/博物館で、建造物Art Museumを指す文脈ではない(2026-10-09に実際の文を見て確認)"
+    "reason": "一般名詞の「美術館」(実在の施設)。建造物の美術館(Art Museum)と同じ字面だが、ゲーム用語とは無関係として本人が確定(2026-10-09)。他言語は一般語のmuseum/博物馆/博物館で正しい(2026-10-09に実際の文を見て確認)"
   },
   {
     "language": "en_US",
     "tag": "LOC_DIPLO_MAKE_DEAL_AI_REFUSE_DEAL_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY",
     "message": "公式用語「美術館」のen_USの公式訳が見つからない(期待: Art Museum)",
     "fingerprint": "08bb9b801323",
-    "reason": "日本語の一般名詞「美術館」(実在の施設)。他言語は一般語のmuseum/博物馆/博物館で、建造物Art Museumを指す文脈ではない(2026-10-09に実際の文を見て確認)"
+    "reason": "一般名詞の「美術館」(実在の施設)。建造物の美術館(Art Museum)と同じ字面だが、ゲーム用語とは無関係として本人が確定(2026-10-09)。他言語は一般語のmuseum/博物馆/博物館で正しい(2026-10-09に実際の文を見て確認)"
   },
   {
     "language": "zh_Hans_CN",
     "tag": "LOC_DIPLO_MAKE_DEAL_AI_REFUSE_DEAL_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY",
     "message": "公式用語「美術館」のzh_Hans_CNの公式訳が見つからない(期待: 艺术博物馆)",
     "fingerprint": "93c8018ac6f3",
-    "reason": "日本語の一般名詞「美術館」(実在の施設)。他言語は一般語のmuseum/博物馆/博物館で、建造物Art Museumを指す文脈ではない(2026-10-09に実際の文を見て確認)"
+    "reason": "一般名詞の「美術館」(実在の施設)。建造物の美術館(Art Museum)と同じ字面だが、ゲーム用語とは無関係として本人が確定(2026-10-09)。他言語は一般語のmuseum/博物馆/博物館で正しい(2026-10-09に実際の文を見て確認)"
   },
   {
     "language": "zh_Hant_HK",
     "tag": "LOC_DIPLO_MAKE_DEAL_AI_REFUSE_DEAL_LEADER_REGLOSS_JUUFUUTEI_RADEN_ANY",
     "message": "公式用語「美術館」のzh_Hant_HKの公式訳が見つからない(期待: 藝術博物館)",
     "fingerprint": "adab8baf74dc",
-    "reason": "日本語の一般名詞「美術館」(実在の施設)。他言語は一般語のmuseum/博物馆/博物館で、建造物Art Museumを指す文脈ではない(2026-10-09に実際の文を見て確認)"
+    "reason": "一般名詞の「美術館」(実在の施設)。建造物の美術館(Art Museum)と同じ字面だが、ゲーム用語とは無関係として本人が確定(2026-10-09)。他言語は一般語のmuseum/博物馆/博物館で正しい(2026-10-09に実際の文を見て確認)"
   },
   {
     "language": "en_US",
